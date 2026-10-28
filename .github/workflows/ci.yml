@@ -1,15 +1,16 @@
-name: CI / Deploy to GitHub Pages
+# 说明: 仓库为私有时 GitHub Pages(免费计划)不可用。
+# 本工作流只负责「校验 + 构建」；站点部署使用 Cloudflare Pages(免费, 支持私有仓库):
+#   连接仓库 → 框架预设 Astro → 构建命令 pnpm install --frozen-lockfile && pnpm build
+#   → 输出目录 dist → 环境变量 NODE_VERSION=22
+name: CI (校验+构建)
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-# 最小权限: 仅 pages 与 id-token 用于部署; contents 只读
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -58,18 +59,15 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: verify-build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  # 部署交由 Cloudflare Pages(见 README「Cloudflare 部署」)。
+  # 若以后将仓库转为公开, 取消注释下方任务即可启用 GitHub Pages:
+  # deploy:
+  #   needs: verify-build
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4

@@ -62,7 +62,7 @@ ChatGPT 定时任务
   → 生成更新数据（自检）
   → 连接器提交（审批视环境）
       → GitHub Actions: check + validate + test + build
-      → deploy-pages 发布
+      → 发布(Cloudflare Pages 或 GitHub Pages, 见 README「部署」)
   → 网页展示最新数据
 ```
 

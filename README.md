@@ -159,36 +159,35 @@ pnpm validate
 
 ## 部署
 
-### GitHub Actions 工作流
+### 推荐：Cloudflare Pages（免费，支持私有仓库）
 
-`.github/workflows/ci.yml`：
+本项目当前为私有仓库，GitHub 免费计划不支持私有仓库 Pages，因此推荐 Cloudflare Pages：
+
+1. 在 Cloudflare Dashboard → Workers & Pages → Create → Pages → **Connect to Git**。
+2. 选择 GitHub 仓库 `svefnz/airadar`（首次需授权 Cloudflare 访问该仓库）。
+3. 构建设置：
+   - 框架预设：**Astro**
+   - 构建命令：`pnpm install --frozen-lockfile && pnpm build`
+   - 构建输出目录：`dist`
+   - 环境变量：`NODE_VERSION=22`（必须，Astro 7 要求 Node 22+）
+4. 保存并部署。Cloudflare 分配 `https://<project>.pages.dev` 域名；站点在根路径 `/` 下运行（base 默认 `/`，无需额外配置）。
+5. 自定义域名：在 Pages 项目 → Custom domains 添加，并按提示配置 DNS 记录。
+6. 之后每次推送 `main`，Cloudflare 自动重新构建发布；GitHub Actions 同时执行校验+构建，作为双保险。
+
+### 备选：GitHub Pages（需仓库公开）
+
+`.github/workflows/ci.yml` 已预置 GitHub Pages 部署逻辑（提交注释掉了，仓库转为公开后可取消注释启用）：
 
 - 触发：push 到 `main`（代码与数据提交都会触发）。
-- 步骤：pnpm 安装 → 类型检查 → 数据 Schema+业务校验 → 单元测试 → `astro build` → 上传 artifact → deploy-pages。
-- 权限：`contents: read`、`pages: write`、`id-token: write`（最小权限）。
+- 步骤：pnpm 安装 → 类型检查 → 数据 Schema+业务校验 → 单元测试 → `astro build`（+ sync/artifact/deploy 任务）。
+- 权限：`contents: read`；为 Pages 部署时另需 `pages: write`、`id-token: write`。
 
-### GitHub Pages 设置
+如果启用 GitHub Pages：
 
 1. 仓库 Settings → Pages → Source：**GitHub Actions**。
-2. 启用 GitHub Pages（用户主页域名 `USER.github.io` 可直接用；项目站点 `/ai-radar/` 需要在构建时指定 base）。
-
-### 项目子路径（默认 `/ai-radar/`）
-
-```bash
-ASTRO_BASE=/ai-radar/ SITE_URL=https://USER.github.io/ai-radar/ pnpm build
-```
-
-CI 中通过环境变量注入；base 未配置时默认 `/`。
-
-### 自定义域名
-
-1. 在仓库 Settings → Pages 添加自定义域名（如 `radar.example.com`）。
-2. 在 DNS 添加记录（A/AAAA 或 CNAME）。
-3. 构建时设置 `SITE_URL=https://radar.example.com`（base 保持 `/`）。
-
-### 用户主页域名（`USER.github.io`）
-
-无需 base（默认 `/`），直接把站点发布到该仓库。
+2. **项目站点**（如 `/airadar/`）构建时会自动按仓库名推导 base；无需手动设置。
+3. **用户主页域名**（`USER.github.io`）：无需 base（默认 `/`）。
+4. **自定义域名**：仓库 Settings → Pages 添加域名 + 配置 DNS；构建时设置 `SITE_URL=https://radar.example.com`。
 
 ## 个人状态说明
 
