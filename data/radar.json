@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "lastSuccessfulSync": "2026-10-28T14:38:41.525Z",
+  "platforms": [
+    {
+      "id": "nebulaforge",
+      "name": "NebulaForge",
+      "slug": "nebulaforge",
+      "canonicalDomain": "nebulaforge.dev",
+      "websiteUrl": "https://nebulaforge.dev",
+      "description": "云原生 LLM API 平台, 提供多模型接入与统一计费(演示数据)。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-08T19:38:41.525Z",
+      "lastCheckedAt": "2026-10-28T14:38:41.525Z",
+      "trustStatus": "community",
+      "demo": true
+    },
+    {
+      "id": "codepilot",
+      "name": "CodePilot",
+      "slug": "codepilot",
+      "canonicalDomain": "codepilot.ai",
+      "websiteUrl": "https://codepilot.ai",
+      "description": "AI Coding Agent, 自动补全与代码审查(演示数据)。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-16T19:38:41.525Z",
+      "lastCheckedAt": "2026-10-28T14:38:41.525Z",
+      "trustStatus": "community",
+      "demo": true
+    },
+    {
+      "id": "vectorvault",
+      "name": "VectorVault",
+      "slug": "vectorvault",
+      "canonicalDomain": "vectorvault.io",
+      "websiteUrl": "https://vectorvault.io",
+      "description": "向量数据库与 RAG 服务(演示数据)。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-09-13T19:38:41.525Z",
+      "lastCheckedAt": "2026-10-26T19:38:41.525Z",
+      "trustStatus": "community",
+      "demo": true
+    },
+    {
+      "id": "chatnimbus",
+      "name": "ChatNimbus",
+      "slug": "chatnimbus",
+      "canonicalDomain": "chatnimbus.com",
+      "websiteUrl": "https://chatnimbus.com",
+      "description": "通用 AI 聊天客户端, 支持多模型切换(演示数据)。",
+      "category": "application",
+      "firstDiscoveredAt": "2026-08-29T19:38:41.525Z",
+      "lastCheckedAt": "2026-10-28T13:38:41.525Z",
+      "trustStatus": "community",
+      "demo": true
+    },
+    {
+      "id": "relayhub",
+      "name": "RelayHub",
+      "slug": "relayhub",
+      "canonicalDomain": "relayhub.net",
+      "websiteUrl": "https://relayhub.net",
+      "description": "第三方 API 中转服务(演示数据, 注意中转类风险)。",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-20T19:38:41.525Z",
+      "lastCheckedAt": "2026-10-27T19:38:41.525Z",
+      "trustStatus": "unverified",
+      "demo": true
+    }
+  ],
+  "offers": [
+    {
+      "id": "nebulaforge:1kfdke4",
+      "platformId": "nebulaforge",
+      "title": "注册赠送 $10 API Credits",
+      "models": [
+        "Nebula-2 (128K)"
+      ],
+      "accessType": "api",
+      "amount": 10,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新用户注册",
+        "邮箱验证"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ],
+      "demo": true,
+      "contextWindow": 128000,
+      "toolCalling": true,
+      "creditExpiresAt": "2026-12-27T19:38:41.525Z"
+    },
+    {
+      "id": "nebulaforge:jdg0il",
+      "platformId": "nebulaforge",
+      "title": "每天 100 次免费调用",
+      "models": [
+        "Nebula-1 (32K)"
+      ],
+      "accessType": "api",
+      "amount": 100,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册后默认开启"
+      ],
+      "billingRequirements": "card",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ],
+      "demo": true,
+      "contextWindow": 32000
+    },
+    {
+      "id": "nebulaforge:1ke4eok",
+      "platformId": "nebulaforge",
+      "title": "DeepThink-X2 限时免费",
+      "models": [
+        "DeepThink-X2"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "limited-unlimited",
+      "resetInterval": "unlimited",
+      "claimConditions": [
+        "期间内所有账户"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "both",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ],
+      "demo": true,
+      "endAt": "2026-11-09T19:38:41.525Z",
+      "contextWindow": 256000,
+      "toolCalling": true
+    },
+    {
+      "id": "codepilot:13h34ev",
+      "platformId": "codepilot",
+      "title": "Pro 版每月赠送 2000 Tokens",
+      "models": [
+        "CodePilot-Pro"
+      ],
+      "accessType": "client",
+      "amount": 2000,
+      "unit": "Token",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "免费订阅"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ],
+      "demo": true,
+      "contextWindow": 128000,
+      "toolCalling": true
+    },
+    {
+      "id": "codepilot:10fefcq",
+      "platformId": "codepilot",
+      "title": "连续签到送 5 积分",
+      "models": [],
+      "accessType": "client",
+      "amount": 5,
+      "unit": "Point",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "每日签到"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ],
+      "demo": true
+    },
+    {
+      "id": "vectorvault:s7gqd6",
+      "platformId": "vectorvault",
+      "title": "注册赠送 500 Credits",
+      "models": [],
+      "accessType": "api",
+      "amount": 500,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新用户注册"
+      ],
+      "billingRequirements": "trial",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ],
+      "demo": true,
+      "creditExpiresAt": "2026-11-27T19:38:41.525Z"
+    },
+    {
+      "id": "chatnimbus:1akho95",
+      "platformId": "chatnimbus",
+      "title": "免费版每月 300 条消息",
+      "models": [
+        "ChatNimbus-Small"
+      ],
+      "accessType": "client",
+      "amount": 300,
+      "unit": "Message",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "手机号注册"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "phone",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ],
+      "demo": true
+    },
+    {
+      "id": "relayhub:vgb0ic",
+      "platformId": "relayhub",
+      "title": "注册赠送 $1 API Credits(待核实)",
+      "models": [
+        "多模型中转"
+      ],
+      "accessType": "api",
+      "amount": 1,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新用户注册",
+        "实名认证"
+      ],
+      "billingRequirements": "card",
+      "identityVerification": "id",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-25T19:38:41.525Z",
+      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "sources": [
+        {
+          "url": "https://example.com/community-thread",
+          "label": "社区讨论(演示链接)",
+          "kind": "community"
+        }
+      ],
+      "demo": true
+    }
+  ],
+  "events": [
+    {
+      "id": "ev_demo_1",
+      "offerId": "nebulaforge:1ke4eok",
+      "platformId": "nebulaforge",
+      "eventType": "deadline-extended",
+      "timestamp": "2026-10-26T19:38:41.525Z",
+      "field": "endAt",
+      "previousValue": "2026-11-02T19:38:41.525Z",
+      "currentValue": "2026-11-09T19:38:41.525Z",
+      "description": "「DeepThink-X2 限时免费」截止日期延期 7 天",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方公告(演示链接)",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "ev_demo_2",
+      "offerId": "nebulaforge:1kfdke4",
+      "platformId": "nebulaforge",
+      "eventType": "amount-changed",
+      "timestamp": "2026-10-18T19:38:41.525Z",
+      "field": "amount",
+      "previousValue": "5",
+      "currentValue": "10",
+      "description": "「注册赠送 API Credits」从 $5 提升为 $10",
+      "sources": [
+        {
+          "url": "https://example.com/official-pricing",
+          "label": "官方定价页(演示链接)",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "id": "ev_demo_3",
+      "offerId": null,
+      "platformId": "codepilot",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-16T19:38:41.525Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "codepilot",
+      "description": "发现新平台 CodePilot",
+      "sources": [
+        {
+          "url": "https://example.com/community-thread",
+          "label": "社区讨论(演示链接)",
+          "kind": "community"
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "run_demo_1",
+      "startedAt": "2026-10-28T13:38:41.525Z",
+      "completedAt": "2026-10-28T14:38:41.525Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 14,
+      "candidatesFound": 1,
+      "offersCreated": 0,
+      "offersUpdated": 2,
+      "offersExpired": 0,
+      "errors": [],
+      "repositoryCommit": "demo",
+      "note": "演示运行记录"
+    },
+    {
+      "id": "run_demo_2",
+      "startedAt": "2026-10-27T13:38:41.525Z",
+      "completedAt": "2026-10-27T14:38:41.525Z",
+      "status": "failed",
+      "searchACompleted": true,
+      "searchBCompleted": false,
+      "sourcesChecked": 6,
+      "candidatesFound": 0,
+      "offersCreated": 0,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [
+        {
+          "code": "SEARCH_B_TIMEOUT",
+          "message": "新平台发现搜索超时(演示失败记录)"
+        }
+      ],
+      "note": "演示失败记录"
+    }
+  ]
+}

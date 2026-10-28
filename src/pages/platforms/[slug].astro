@@ -1,0 +1,169 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { loadRadar } from "../../lib/data/load";
+import { Badge } from '../../components/ui/Badge';
+import { Card, CardBody, CardHeader, CardTitle } from '../../components/ui/Card';
+import { SafeLink } from '../../components/ui/SafeLink';
+import { PersonalActions } from '../../features/PersonalActions';
+import { AmountBadge, AccessBadge, ConditionLine, DeadlineBadge, RiskHint, StatusBadge, TrustBadge } from '../../features/OfferBadges';
+import { Field } from '../../features/FieldRow';
+import {
+  API_COMPATIBILITY_LABELS,
+  AMOUNT_TYPE_LABELS,
+  BILLING_REQUIREMENT_LABELS,
+  IDENTITY_VERIFICATION_LABELS,
+  PLATFORM_CATEGORY_LABELS,
+  RESET_INTERVAL_LABELS,
+  SOURCE_KIND_LABELS,
+  TRUST_STATUS_LABELS,
+  type AccessType,
+  type AmountType,
+  type ApiCompatibility,
+  type BillingRequirement,
+  type IdentityVerification,
+  type OfferStatus,
+} from '../../lib/data/enums';
+import { fmtAmount, fmtDate, fmtDateTime } from '../../lib/utils/format';
+
+export function getStaticPaths() {
+  const d = loadRadar();
+  return d.platforms.map((p) => ({ params: { slug: p.slug }, props: { platformId: p.id } }));
+}
+
+const data = loadRadar();
+const { platformId } = Astro.props;
+const platform = data.platforms.find((p) => p.id === platformId)!;
+const offers = data.offers.filter((o) => o.platformId === platform.id).sort((a, b) => Date.parse(b.lastVerifiedAt) - Date.parse(a.lastVerifiedAt));
+const events = data.events.filter((e) => e.platformId === platform.id).sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+const relayPlatform = platform.category === 'api-relay';
+
+---
+
+<SiteLayout title={platform.name} description={platform.description}>
+  <div class="mb-5">
+    <nav class="text-xs text-faint mb-1">
+      <a href="/resources/" class="hover:text-accent">资源库</a> <span class="mx-1">/</span> <span>{platform.name}</span>
+    </nav>
+    <div class="flex flex-wrap items-center gap-2">
+      <h1 class="text-xl font-bold">{platform.name}</h1>
+      {platform.demo && <Badge tone="info">Demo</Badge>}
+      <TrustBadge status={platform.trustStatus} />
+      <Badge tone="neutral">{PLATFORM_CATEGORY_LABELS[platform.category]}</Badge>
+    </div>
+    <p class="mt-1 text-sm text-muted">{platform.description}</p>
+    <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-faint">
+      <span>域: <span class="text-ink tabular">{platform.canonicalDomain}</span></span>
+      <span>首次发现 {fmtDate(platform.firstDiscoveredAt)}</span>
+      <span>最近核验 {fmtDate(platform.lastCheckedAt)}</span>
+      {platform.launchDate && <span>官方上线 {fmtDate(platform.launchDate)}</span>}
+    </div>
+    <div class="mt-2 flex flex-wrap gap-2">
+      <SafeLink href={platform.websiteUrl} class="inline-flex items-center gap-1 rounded-md border border-edge-strong bg-surface px-3 py-1.5 text-xs font-medium text-ink hover:border-accent hover:text-accent">
+        访问官网
+      </SafeLink>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    {offers.map((o) => (
+      <div key={o.id} id={o.id} class="scroll-mt-16">
+      <Card>
+        <CardHeader>
+          <div>
+            <CardTitle>{o.title}</CardTitle>
+            <div class="mt-1 flex flex-wrap items-center gap-1.5">
+              <StatusBadge status={o.status} />
+              <TrustBadge status={o.verificationStatus} />
+              {o.demo && <Badge tone="info">Demo</Badge>}
+            </div>
+          </div>
+          <PersonalActions offerId={o.id} client:load />
+        </CardHeader>
+        <CardBody>
+          <div class="mb-3 flex flex-wrap items-center gap-1.5">
+            <AmountBadge offer={o} />
+            <AccessBadge access={o.accessType as AccessType} />
+            <DeadlineBadge offer={o} />
+          </div>
+
+          {o.models.length > 0 && (
+            <div class="mb-3 flex flex-wrap items-center gap-1.5 text-xs">
+              <span class="text-faint">模型:</span>
+              {o.models.map((m) => (
+                <span key={m} class="rounded bg-elevated border border-edge px-2 py-0.5 font-mono text-[11px] text-muted">{m}</span>
+              ))}
+            </div>
+          )}
+
+          <div class="rounded-md border border-edge px-3 py-1">
+            <Field label="额度" value={o.amount === null ? (o.unit === 'Unlimited' ? '无限量' : '') : fmtAmount(o.amount, o.unit)} hint={o.unit !== 'Unknown' ? AMOUNT_TYPE_LABELS[o.amountType as AmountType] : undefined} />
+            <Field label="恢复周期" value={o.resetInterval === 'unknown' || o.resetInterval === 'none' ? (o.amountType === 'one-time' ? '一次性' : '') : RESET_INTERVAL_LABELS[o.resetInterval]} />
+            <Field label="领取方式" value={o.claimConditions.length ? o.claimConditions.join('；') : ''} />
+            <Field label="有效期" value={o.startAt && o.endAt ? `${fmtDate(o.startAt)} ~ ${fmtDate(o.endAt)}` : o.endAt ? `至 ${fmtDate(o.endAt)}` : o.startAt ? `自 ${fmtDate(o.startAt)}` : ''} />
+            <Field label="额度到期" value={o.creditExpiresAt ? fmtDate(o.creditExpiresAt) : ''} />
+            <Field label="绑卡" value={o.billingRequirements === 'unknown' ? '' : BILLING_REQUIREMENT_LABELS[o.billingRequirements as BillingRequirement]} />
+            <Field label="实名" value={o.identityVerification === 'unknown' ? '' : IDENTITY_VERIFICATION_LABELS[o.identityVerification as IdentityVerification]} />
+            <Field label="地区限制" value={o.regionRestrictions.length ? o.regionRestrictions.join('、') : ''} />
+            <Field label="速率限制" value={o.rateLimits} />
+            <Field label="上下文窗口" value={o.contextWindow ? `${(o.contextWindow / 1000).toLocaleString()}K tokens` : ''} />
+            <Field label="Tool Calling" value={o.toolCalling === null ? '' : String(o.toolCalling)} />
+            <Field label="API 兼容" value={o.apiCompatibility === 'unknown' ? '' : API_COMPATIBILITY_LABELS[o.apiCompatibility as ApiCompatibility]} />
+            <Field label="活动状态" value={o.status === 'unknown' ? '' : o.status} />
+            <Field label="发现时间" value={fmtDateTime(o.discoveredAt)} />
+            <Field label="最近核验" value={fmtDateTime(o.lastVerifiedAt)} />
+          </div>
+
+          <div class="mt-2.5">
+            <ConditionLine offer={o} />
+            <div class="mt-1.5"><RiskHint offer={o} relayPlatform={relayPlatform} /></div>
+          </div>
+
+          <div class="mt-3 border-t border-edge pt-2.5">
+            <p class="text-[11px] font-medium text-faint mb-1">证据来源</p>
+            <div class="flex flex-wrap gap-x-4 gap-y-1.5">
+              {o.officialUrl && (
+                <SafeLink href={o.officialUrl} class="text-xs">官方依据链接</SafeLink>
+              )}
+              {o.sources.map((s) => (
+                <SafeLink key={s.url} href={s.url} class="text-xs">
+                  {s.label || s.url} <span class="text-faint">({SOURCE_KIND_LABELS[s.kind]})</span>
+                </SafeLink>
+              ))}
+            </div>
+          </div>
+        </CardBody>
+      </Card>
+      </div>
+    ))}
+
+    <Card>
+      <CardHeader>
+        <CardTitle>平台历史变更</CardTitle>
+      </CardHeader>
+      <CardBody>
+        {events.length === 0 ? (
+          <p class="py-4 text-center text-xs text-faint">该平台暂无历史变更事件</p>
+        ) : (
+          <ol class="relative border-l border-edge pl-4 space-y-3">
+            {events.map((ev) => (
+              <li key={ev.id} class="relative">
+                <span class="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full border-2 border-surface bg-accent" />
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                  <span class="tabular text-faint">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
+                  <Badge tone="accent">{ev.eventType}</Badge>
+                  {ev.field && <Badge tone="neutral">字段: {ev.field}</Badge>}
+                </div>
+                <p class="mt-1 text-[13px] text-ink">{ev.description}</p>
+                {ev.previousValue && ev.currentValue && (
+                  <p class="mt-0.5 text-[11px] text-muted break-all">
+                    <span class="line-through text-faint">{ev.previousValue}</span> → <span class="font-medium">{ev.currentValue}</span>
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        )}
+      </CardBody>
+    </Card>
+  </div>
+</SiteLayout>

@@ -1,0 +1,11 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { DashboardApp } from '../features/DashboardApp';
+import { loadRadar } from "../lib/data/load";
+
+const data = loadRadar();
+---
+
+<SiteLayout title="总览" description="持续更新的 AI 免费额度与新平台情报">
+  <DashboardApp data={data} client:load />
+</SiteLayout>

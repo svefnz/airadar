@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* 类名驱动的暗色模式 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* 语义化颜色: 通过 .dark 覆盖实现主题切换 */
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-elevated: #ffffff;
+  --color-edge: #e3e7ee;
+  --color-edge-strong: #c9d0dc;
+  --color-ink: #161a22;
+  --color-muted: #5b6472;
+  --color-faint: #8b94a3;
+  --color-accent: #4f46e5;
+  --color-accent-ink: #ffffff;
+  --color-ok: #059669;
+  --color-ok-bg: #ecfdf5;
+  --color-warn: #b45309;
+  --color-warn-bg: #fffbeb;
+  --color-bad: #e11d48;
+  --color-bad-bg: #fff1f2;
+  --color-info: #0369a1;
+  --color-info-bg: #f0f9ff;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.dark {
+  --color-bg: #0c0f14;
+  --color-surface: #141922;
+  --color-elevated: #1a2130;
+  --color-edge: #232c3b;
+  --color-edge-strong: #344057;
+  --color-ink: #e8ecf3;
+  --color-muted: #9aa5b5;
+  --color-faint: #6b7686;
+  --color-accent: #818cf8;
+  --color-accent-ink: #0c0f14;
+  --color-ok: #34d399;
+  --color-ok-bg: #0b2b21;
+  --color-warn: #fbbf24;
+  --color-warn-bg: #2b2308;
+  --color-bad: #fb7185;
+  --color-bad-bg: #33121c;
+  --color-info: #38bdf8;
+  --color-info-bg: #0a2233;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-edge);
+  }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "tnum";
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+  /* 移动端滚动容器回弹 */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+@layer utilities {
+  .field-grid {
+    grid-template-columns: 110px 1fr;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, var(--color-edge) 25%, var(--color-surface) 50%, var(--color-edge) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s infinite;
+  }
+  @keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .fade-in {
+    animation: fade-in 0.18s ease-out;
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
