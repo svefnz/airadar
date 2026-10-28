@@ -1,151 +1,1444 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-28T14:38:41.525Z",
+  "lastSuccessfulSync": null,
   "platforms": [
     {
-      "id": "nebulaforge",
-      "name": "NebulaForge",
-      "slug": "nebulaforge",
-      "canonicalDomain": "nebulaforge.dev",
-      "websiteUrl": "https://nebulaforge.dev",
-      "description": "云原生 LLM API 平台, 提供多模型接入与统一计费(演示数据)。",
-      "category": "llm-api",
-      "firstDiscoveredAt": "2026-10-08T19:38:41.525Z",
-      "lastCheckedAt": "2026-10-28T14:38:41.525Z",
-      "trustStatus": "community",
-      "demo": true
-    },
-    {
-      "id": "codepilot",
-      "name": "CodePilot",
-      "slug": "codepilot",
-      "canonicalDomain": "codepilot.ai",
-      "websiteUrl": "https://codepilot.ai",
-      "description": "AI Coding Agent, 自动补全与代码审查(演示数据)。",
+      "id": "agentfoundry",
+      "name": "AgentFoundry",
+      "slug": "agentfoundry",
+      "canonicalDomain": "agentfoundry.me",
+      "websiteUrl": "https://agentfoundry.me",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
       "category": "coding-agent",
-      "firstDiscoveredAt": "2026-10-16T19:38:41.525Z",
-      "lastCheckedAt": "2026-10-28T14:38:41.525Z",
-      "trustStatus": "community",
-      "demo": true
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
     },
     {
-      "id": "vectorvault",
-      "name": "VectorVault",
-      "slug": "vectorvault",
-      "canonicalDomain": "vectorvault.io",
-      "websiteUrl": "https://vectorvault.io",
-      "description": "向量数据库与 RAG 服务(演示数据)。",
+      "id": "agentscope",
+      "name": "AgentScope Platform",
+      "slug": "agentscope",
+      "canonicalDomain": "platform.agentscope.io",
+      "websiteUrl": "https://platform.agentscope.io",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "amd",
+      "name": "AMD Radeon Cloud Token Factory",
+      "slug": "amd",
+      "canonicalDomain": "developer.amd.com.cn",
+      "websiteUrl": "https://developer.amd.com.cn",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "autoclaw-cn",
+      "name": "智谱 AutoClaw 国内版",
+      "slug": "autoclaw-cn",
+      "canonicalDomain": "autoclaw.zhipuai.cn",
+      "websiteUrl": "https://autoclaw.zhipuai.cn",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "autoclaw-int",
+      "name": "智谱 AutoClaw 国际版",
+      "slug": "autoclaw-int",
+      "canonicalDomain": "autoclaw.z.ai",
+      "websiteUrl": "https://autoclaw.z.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "bespoke",
+      "name": "Bespoke Labs",
+      "slug": "bespoke",
+      "canonicalDomain": "bespokelabs.ai",
+      "websiteUrl": "https://www.bespokelabs.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "careti",
+      "name": "Careti",
+      "slug": "careti",
+      "canonicalDomain": "careti.ai",
+      "websiteUrl": "https://careti.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare Workers AI",
+      "slug": "cloudflare",
+      "canonicalDomain": "developers.cloudflare.com",
+      "websiteUrl": "https://developers.cloudflare.com/workers-ai/",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "codegpt",
+      "name": "CodeGPT",
+      "slug": "codegpt",
+      "canonicalDomain": "codegpt.co",
+      "websiteUrl": "https://www.codegpt.co",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "coreweave",
+      "name": "CoreWeave Forge",
+      "slug": "coreweave",
+      "canonicalDomain": "forge.coreweave.com",
+      "websiteUrl": "https://forge.coreweave.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "crawlforge",
+      "name": "CrawlForge MCP",
+      "slug": "crawlforge",
+      "canonicalDomain": "crawlforge.dev",
+      "websiteUrl": "https://www.crawlforge.dev",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
       "category": "dev-tool",
-      "firstDiscoveredAt": "2026-09-13T19:38:41.525Z",
-      "lastCheckedAt": "2026-10-26T19:38:41.525Z",
-      "trustStatus": "community",
-      "demo": true
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
     },
     {
-      "id": "chatnimbus",
-      "name": "ChatNimbus",
-      "slug": "chatnimbus",
-      "canonicalDomain": "chatnimbus.com",
-      "websiteUrl": "https://chatnimbus.com",
-      "description": "通用 AI 聊天客户端, 支持多模型切换(演示数据)。",
+      "id": "decisionnode",
+      "name": "DecisionNode",
+      "slug": "decisionnode",
+      "canonicalDomain": "decisionnode.com",
+      "websiteUrl": "https://decisionnode.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek API",
+      "slug": "deepseek",
+      "canonicalDomain": "api-docs.deepseek.com",
+      "websiteUrl": "https://api-docs.deepseek.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "dropstone",
+      "name": "Dropstone CLI",
+      "slug": "dropstone",
+      "canonicalDomain": "dropstone.io",
+      "websiteUrl": "https://www.dropstone.io",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "exa",
+      "name": "Exa",
+      "slug": "exa",
+      "canonicalDomain": "exa.ai",
+      "websiteUrl": "https://exa.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "freeai",
+      "name": "Free.ai",
+      "slug": "freeai",
+      "canonicalDomain": "free.ai",
+      "websiteUrl": "https://free.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
       "category": "application",
-      "firstDiscoveredAt": "2026-08-29T19:38:41.525Z",
-      "lastCheckedAt": "2026-10-28T13:38:41.525Z",
-      "trustStatus": "community",
-      "demo": true
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
     },
     {
-      "id": "relayhub",
-      "name": "RelayHub",
-      "slug": "relayhub",
-      "canonicalDomain": "relayhub.net",
-      "websiteUrl": "https://relayhub.net",
-      "description": "第三方 API 中转服务(演示数据, 注意中转类风险)。",
+      "id": "freebuff",
+      "name": "Freebuff",
+      "slug": "freebuff",
+      "canonicalDomain": "freebuff.com",
+      "websiteUrl": "https://freebuff.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "freecode",
+      "name": "freecode",
+      "slug": "freecode",
+      "canonicalDomain": "freecode.sh",
+      "websiteUrl": "https://freecode.sh",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "freepi",
+      "name": "free-pi",
+      "slug": "freepi",
+      "canonicalDomain": "freepi.ai",
+      "websiteUrl": "https://freepi.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "groq",
+      "name": "GroqCloud",
+      "slug": "groq",
+      "canonicalDomain": "console.groq.com",
+      "websiteUrl": "https://console.groq.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "huawei",
+      "name": "华为云码道 CodeArts",
+      "slug": "huawei",
+      "canonicalDomain": "codearts.huaweicloud.com",
+      "websiteUrl": "https://codearts.huaweicloud.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "inception",
+      "name": "Inception Labs",
+      "slug": "inception",
+      "canonicalDomain": "inceptionlabs.ai",
+      "websiteUrl": "https://www.inceptionlabs.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "jina",
+      "name": "Jina AI",
+      "slug": "jina",
+      "canonicalDomain": "api.jina.ai",
+      "websiteUrl": "https://api.jina.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "lightvela",
+      "name": "LightVela",
+      "slug": "lightvela",
+      "canonicalDomain": "lightvela.com",
+      "websiteUrl": "https://lightvela.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "liquidai",
+      "name": "Liquid AI",
+      "slug": "liquidai",
+      "canonicalDomain": "liquid.ai",
+      "websiteUrl": "https://www.liquid.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "liquidinference",
+      "name": "Liquid Inference",
+      "slug": "liquidinference",
+      "canonicalDomain": "liquidinference.ai",
+      "websiteUrl": "https://liquidinference.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "mangoboost",
+      "name": "MangoBoost Inference",
+      "slug": "mangoboost",
+      "canonicalDomain": "inference.mangoboost.io",
+      "websiteUrl": "https://inference.mangoboost.io",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "milliseconds",
+      "name": "Milliseconds.ai",
+      "slug": "milliseconds",
+      "canonicalDomain": "milliseconds.ai",
+      "websiteUrl": "https://milliseconds.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax Code",
+      "slug": "minimax",
+      "canonicalDomain": "minimax.io",
+      "websiteUrl": "https://www.minimax.io",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "moark",
+      "name": "模力方舟",
+      "slug": "moark",
+      "canonicalDomain": "moark.com",
+      "websiteUrl": "https://www.moark.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "morph",
+      "name": "Morph",
+      "slug": "morph",
+      "canonicalDomain": "morphllm.com",
+      "websiteUrl": "https://www.morphllm.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "nova",
+      "name": "NOVA CLI",
+      "slug": "nova",
+      "canonicalDomain": "runnova.ai",
+      "websiteUrl": "https://runnova.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "novai",
+      "name": "NovAI",
+      "slug": "novai",
+      "canonicalDomain": "aiapi-pro.com",
+      "websiteUrl": "https://aiapi-pro.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
       "category": "api-relay",
-      "firstDiscoveredAt": "2026-10-20T19:38:41.525Z",
-      "lastCheckedAt": "2026-10-27T19:38:41.525Z",
-      "trustStatus": "unverified",
-      "demo": true
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "nscale",
+      "name": "Nscale",
+      "slug": "nscale",
+      "canonicalDomain": "console.nscale.com",
+      "websiteUrl": "https://console.nscale.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama Cloud",
+      "slug": "ollama",
+      "canonicalDomain": "ollama.com",
+      "websiteUrl": "https://ollama.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode Zen",
+      "slug": "opencode",
+      "canonicalDomain": "opencode.ai",
+      "websiteUrl": "https://opencode.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "openllm",
+      "name": "OpenLLM",
+      "slug": "openllm",
+      "canonicalDomain": "openllm.sh",
+      "websiteUrl": "https://www.openllm.sh",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "slug": "openrouter",
+      "canonicalDomain": "openrouter.ai",
+      "websiteUrl": "https://openrouter.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "orca",
+      "name": "Orca Connect",
+      "slug": "orca",
+      "canonicalDomain": "orcarouter.ai",
+      "websiteUrl": "https://www.orcarouter.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "praex",
+      "name": "Praex",
+      "slug": "praex",
+      "canonicalDomain": "praex.ai",
+      "websiteUrl": "https://praex.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "publicai",
+      "name": "Public AI",
+      "slug": "publicai",
+      "canonicalDomain": "platform.publicai.co",
+      "websiteUrl": "https://platform.publicai.co",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "pulsedev",
+      "name": "PulseDev",
+      "slug": "pulsedev",
+      "canonicalDomain": "pulsedev.app",
+      "websiteUrl": "https://pulsedev.app",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "qiniu",
+      "name": "七牛云 AI",
+      "slug": "qiniu",
+      "canonicalDomain": "qiniu.com",
+      "websiteUrl": "https://www.qiniu.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "qoder",
+      "name": "Qoder",
+      "slug": "qoder",
+      "canonicalDomain": "qoder.com",
+      "websiteUrl": "https://qoder.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "qwenwork-cn",
+      "name": "QwenWork 中国版",
+      "slug": "qwenwork-cn",
+      "canonicalDomain": "qwenwork.cn",
+      "websiteUrl": "https://qwenwork.cn",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "application",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "qwenwork-int",
+      "name": "QwenWork 国际版",
+      "slug": "qwenwork-int",
+      "canonicalDomain": "qwenwork.ai",
+      "websiteUrl": "https://qwenwork.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "application",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "requesty",
+      "name": "Requesty",
+      "slug": "requesty",
+      "canonicalDomain": "requesty.ai",
+      "websiteUrl": "https://www.requesty.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "revix",
+      "name": "Revix AI",
+      "slug": "revix",
+      "canonicalDomain": "revix.ai",
+      "websiteUrl": "https://www.revix.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "river",
+      "name": "River AI",
+      "slug": "river",
+      "canonicalDomain": "river.ai",
+      "websiteUrl": "https://river.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "sensenova",
+      "name": "商汤 SenseNova",
+      "slug": "sensenova",
+      "canonicalDomain": "sensenova.ai",
+      "websiteUrl": "https://www.sensenova.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "septor",
+      "name": "Septor Labs",
+      "slug": "septor",
+      "canonicalDomain": "septorlabs.com",
+      "websiteUrl": "https://septorlabs.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "speka",
+      "name": "Speka",
+      "slug": "speka",
+      "canonicalDomain": "speka.me",
+      "websiteUrl": "https://speka.me",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "supercomputing",
+      "name": "国家超算互联网",
+      "slug": "supercomputing",
+      "canonicalDomain": "scnet.cn",
+      "websiteUrl": "https://www.scnet.cn",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "tabsh",
+      "name": "tabsh",
+      "slug": "tabsh",
+      "canonicalDomain": "tabsh.cc",
+      "websiteUrl": "https://tabsh.cc",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "unisound",
+      "name": "云知声 Token Hub",
+      "slug": "unisound",
+      "canonicalDomain": "maas.unisound.com",
+      "websiteUrl": "https://maas.unisound.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "upstage",
+      "name": "Upstage",
+      "slug": "upstage",
+      "canonicalDomain": "console.upstage.ai",
+      "websiteUrl": "https://console.upstage.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel AI Gateway",
+      "slug": "vercel",
+      "canonicalDomain": "vercel.com",
+      "websiteUrl": "https://vercel.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "voyage",
+      "name": "Voyage AI",
+      "slug": "voyage",
+      "canonicalDomain": "voyageai.com",
+      "websiteUrl": "https://www.voyageai.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "wavecode",
+      "name": "Wave Code",
+      "slug": "wavecode",
+      "canonicalDomain": "thewavecode.com",
+      "websiteUrl": "https://thewavecode.com",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "workbuddy",
+      "name": "WorkBuddy 国际版",
+      "slug": "workbuddy",
+      "canonicalDomain": "workbuddy.ai",
+      "websiteUrl": "https://www.workbuddy.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "wuwei",
+      "name": "Wuwei AI",
+      "slug": "wuwei",
+      "canonicalDomain": "wuweiai.io",
+      "websiteUrl": "https://wuweiai.io",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "xfyun",
+      "name": "科大讯飞 MaaS",
+      "slug": "xfyun",
+      "canonicalDomain": "maas.xfyun.cn",
+      "websiteUrl": "https://maas.xfyun.cn",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "yardlet",
+      "name": "Yardlet",
+      "slug": "yardlet",
+      "canonicalDomain": "producthunt.com",
+      "websiteUrl": "https://www.producthunt.com/products/yardlet-2",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "zcode",
+      "name": "ZCode",
+      "slug": "zcode",
+      "canonicalDomain": "zcode.z.ai",
+      "websiteUrl": "https://zcode.z.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
+    },
+    {
+      "id": "zro",
+      "name": "Zro",
+      "slug": "zro",
+      "canonicalDomain": "zro.moonmath.ai",
+      "websiteUrl": "https://zro.moonmath.ai",
+      "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T21:30:43Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "unverified"
     }
   ],
   "offers": [
     {
-      "id": "nebulaforge:1kfdke4",
-      "platformId": "nebulaforge",
-      "title": "注册赠送 $10 API Credits",
+      "id": "qoder:6c839fb00a42",
+      "platformId": "qoder",
+      "title": "DeepSeek V4.1 Flash 每日限免",
       "models": [
-        "Nebula-2 (128K)"
+        "DeepSeek-V4.1-Flash-1017"
       ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：国际版个人用户每日有限次数;1M上下文;不消耗Credits;10月24日原截止延期至10月31日"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://docs.qoder.com/zh/events/deepseek-flash-free",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/zh/events/deepseek-flash-free",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ],
+      "endAt": "2026-10-31T16:00:00Z"
+    },
+    {
+      "id": "qoder:2c1a7d777520",
+      "platformId": "qoder",
+      "title": "每日手动领取100 Credits",
+      "models": [],
+      "accessType": "client",
+      "amount": 100,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：北京时间10点新领取窗口;仅桌面端领取;每笔有效期30天"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://docs.qoder.com/zh/events/100credits",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/zh/events/100credits",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "qoder:1616e03fc52b",
+      "platformId": "qoder",
+      "title": "Qwen3.8-Flash 历史免费期",
+      "models": [
+        "Qwen3.8-Flash"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：官方仅明确9月30日原活动截止;历史报告称延期未获当前核实"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "ended",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://docs.qoder.com/zh/events/100credits",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/zh/events/100credits",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ],
+      "endAt": "2026-09-30T15:59:59Z"
+    },
+    {
+      "id": "qoder:e914384ad881",
+      "platformId": "qoder",
+      "title": "1024 Community Boost Sonus 见面礼包",
+      "models": [
+        "Sonus"
+      ],
+      "accessType": "client",
+      "amount": 1024,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：Free用户需申请并通过审核;Pro以上自动有参与资格;非无门槛赠额"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://docs.qoder.com/zh/events/communityboost",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/zh/events/communityboost",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ],
+      "endAt": "2026-10-30T15:59:00Z"
+    },
+    {
+      "id": "opencode:57d021a38cfc",
+      "platformId": "opencode",
+      "title": "Zen 免费模型合集",
+      "models": [
+        "MiMo-V2.5",
+        "Nemotron 3 Ultra",
+        "Nemotron 3.5 Lightning"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史列出多个免费模型;当前完整名单及调用上限待核查"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://opencode.ai/docs/zen",
+      "sources": [
+        {
+          "url": "https://opencode.ai/docs/zen",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare:4fa9271ded7b",
+      "platformId": "cloudflare",
+      "title": "Workers AI 每日10000 Neurons",
+      "models": [],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：额度为10000 Neurons非Tokens;每天UTC零点恢复;部分高级模型要求付费计划"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+      "sources": [
+        {
+          "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "qiniu:45596a0e039c",
+      "platformId": "qiniu",
+      "title": "Conatus Free 每日1亿 Tokens",
+      "models": [
+        "qiniu/conatus-free"
+      ],
+      "accessType": "api",
+      "amount": 100000000,
+      "unit": "Token",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：实名认证无需充值;每天北京时间00:00重置;1M上下文;工具调用;充值超过100元才提升到10亿"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "id",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "both",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.qiniu.com/ai/free-models/conatus-2026",
+      "sources": [
+        {
+          "url": "https://www.qiniu.com/ai/free-models/conatus-2026",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ],
+      "endAt": "2026-11-30T15:59:00Z",
+      "contextWindow": 1000000,
+      "toolCalling": true
+    },
+    {
+      "id": "zcode:756ccc421ca6",
+      "platformId": "zcode",
+      "title": "GLM-5.3 Flash 晚间每日额度",
+      "models": [
+        "GLM-5.3 Flash"
+      ],
+      "accessType": "client",
+      "amount": 300000000,
+      "unit": "Token",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称北京时间19点领取且23至次日9点使用;3亿数额未重新核查"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://zcode.z.ai",
+      "sources": [
+        {
+          "url": "https://zcode.z.ai",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "autoclaw-cn:5e3858014a37",
+      "platformId": "autoclaw-cn",
+      "title": "国内版登录领1亿 Tokens",
+      "models": [],
+      "accessType": "client",
+      "amount": 100000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：10月26日至11月1日登录;每账号一次;11月1日23:59失效"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://autoclaw.zhipuai.cn/blog/news/M10W4/",
+      "sources": [
+        {
+          "url": "https://autoclaw.zhipuai.cn/blog/news/M10W4/",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ],
+      "endAt": "2026-11-01T15:59:00Z"
+    },
+    {
+      "id": "autoclaw-int:8d18aae0071b",
+      "platformId": "autoclaw-int",
+      "title": "国际版登录赠4000万 Tokens",
+      "models": [],
+      "accessType": "client",
+      "amount": 40000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史报告的国际版数额待核实;不是国内版1亿赠额"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://autoclaw.z.ai/blog/news/M10W4/",
+      "sources": [
+        {
+          "url": "https://autoclaw.z.ai/blog/news/M10W4/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ],
+      "endAt": "2026-11-01T15:59:00Z"
+    },
+    {
+      "id": "inception:0b23c0d8dd32",
+      "platformId": "inception",
+      "title": "Mercury 3 新账户赠1亿 Tokens",
+      "models": [
+        "Mercury 3"
+      ],
+      "accessType": "api",
+      "amount": 100000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史多次报告相同福利;未重新核查到账条件有效期及限速"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://platform.inceptionlabs.ai/",
+      "sources": [
+        {
+          "url": "https://platform.inceptionlabs.ai/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "sensenova:fa71297bd71e",
+      "platformId": "sensenova",
+      "title": "SenseNova Token Plan 公测免费",
+      "models": [
+        "SenseNova 6.8 Flash Lite",
+        "SenseNova U1 Fast"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称公测免费及每模型5小时1500次;当前具体配额待核查"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.sensenova.ai/token-plan",
+      "sources": [
+        {
+          "url": "https://www.sensenova.ai/token-plan",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "nscale:640eca2e4692",
+      "platformId": "nscale",
+      "title": "新注册赠5美元 API Credits",
+      "models": [],
+      "accessType": "api",
+      "amount": 5,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称无需绑卡;实际赠额及有效期尚未重核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://console.nscale.com/",
+      "sources": [
+        {
+          "url": "https://console.nscale.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "mangoboost:23e07783ec62",
+      "platformId": "mangoboost",
+      "title": "Mango Inference 注册10美元",
+      "models": [],
       "accessType": "api",
       "amount": 10,
       "unit": "USD",
       "amountType": "one-time",
       "resetInterval": "none",
       "claimConditions": [
-        "新用户注册",
-        "邮箱验证"
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称支持GLM DeepSeek Kimi等多模型;赠额尚未重核"
       ],
-      "billingRequirements": "none",
+      "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
-      "apiCompatibility": "openai",
-      "status": "active",
-      "verificationStatus": "community",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://inference.mangoboost.io/",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
+          "url": "https://inference.mangoboost.io/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
         }
-      ],
-      "demo": true,
-      "contextWindow": 128000,
-      "toolCalling": true,
-      "creditExpiresAt": "2026-12-27T19:38:41.525Z"
+      ]
     },
     {
-      "id": "nebulaforge:jdg0il",
-      "platformId": "nebulaforge",
-      "title": "每天 100 次免费调用",
-      "models": [
-        "Nebula-1 (32K)"
-      ],
+      "id": "septor:a7cbd4bb0743",
+      "platformId": "septor",
+      "title": "Septor Labs 新用户1美元",
+      "models": [],
       "accessType": "api",
-      "amount": 100,
+      "amount": 1,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称90天有效;新兴服务可靠性待核查"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://septorlabs.com/",
+      "sources": [
+        {
+          "url": "https://septorlabs.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "septor:332a6b9f51c1",
+      "platformId": "septor",
+      "title": "Septor Labs 每日50次免费请求",
+      "models": [],
+      "accessType": "api",
+      "amount": 50,
       "unit": "Request",
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "注册后默认开启"
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称同时有50万Tokens额度;具体适用模型需复核"
       ],
-      "billingRequirements": "card",
+      "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
-      "apiCompatibility": "openai",
-      "status": "active",
-      "verificationStatus": "community",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://septorlabs.com/",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
+          "url": "https://septorlabs.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
         }
-      ],
-      "demo": true,
-      "contextWindow": 32000
+      ]
     },
     {
-      "id": "nebulaforge:1ke4eok",
-      "platformId": "nebulaforge",
-      "title": "DeepThink-X2 限时免费",
+      "id": "praex:58edb733d0cc",
+      "platformId": "praex",
+      "title": "Praex Velox III 每日免费",
       "models": [
-        "DeepThink-X2"
+        "Velox III"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称128K上下文及终端桌面网页支持;请求次数未公布"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://praex.ai/",
+      "sources": [
+        {
+          "url": "https://praex.ai/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "river:7b73d640e362",
+      "platformId": "river",
+      "title": "River AI 新账号25美元",
+      "models": [
+        "DeepSeek V4.1 Flash",
+        "GLM-5.3 Flash"
+      ],
+      "accessType": "api",
+      "amount": 25,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史有社区到账报告;官方当前赠额待验证"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://console.river.ai/",
+      "sources": [
+        {
+          "url": "https://console.river.ai/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "xfyun:44ee197d7c67",
+      "platformId": "xfyun",
+      "title": "Spark-X2.6 新用户10亿 Tokens",
+      "models": [
+        "Spark-X2.6"
+      ],
+      "accessType": "api",
+      "amount": 1000000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称实名后31天有效;检查余额用尽后自动计费"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://maas.xfyun.cn/modelSquare/base/2628905721051136",
+      "sources": [
+        {
+          "url": "https://maas.xfyun.cn/modelSquare/base/2628905721051136",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "unisound:dbd09b3c2513",
+      "platformId": "unisound",
+      "title": "U2 Flash 限时零费用API",
+      "models": [
+        "U2 Flash"
       ],
       "accessType": "api",
       "amount": null,
@@ -153,287 +1446,2188 @@
       "amountType": "limited-unlimited",
       "resetInterval": "unlimited",
       "claimConditions": [
-        "期间内所有账户"
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：官方公示输入输出每百万Token为0元;512K上下文;速率限制需核查"
       ],
-      "billingRequirements": "none",
+      "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
-      "apiCompatibility": "both",
+      "apiCompatibility": "unknown",
       "status": "active",
-      "verificationStatus": "community",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://maas.unisound.com/model-hub",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
+          "url": "https://maas.unisound.com/model-hub",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
         }
       ],
-      "demo": true,
-      "endAt": "2026-11-09T19:38:41.525Z",
-      "contextWindow": 256000,
-      "toolCalling": true
+      "endAt": "2026-10-31T15:59:00Z",
+      "contextWindow": 512000
     },
     {
-      "id": "codepilot:13h34ev",
-      "platformId": "codepilot",
-      "title": "Pro 版每月赠送 2000 Tokens",
+      "id": "lightvela:29587af2c2cd",
+      "platformId": "lightvela",
+      "title": "LightVela 免费云端Agent和4500积分",
+      "models": [],
+      "accessType": "client",
+      "amount": 4500,
+      "unit": "Point",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称1个月免费;登录实名及计费条件待核实"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://lightvela.com/",
+      "sources": [
+        {
+          "url": "https://lightvela.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "agentscope:9fd779bf7a40",
+      "platformId": "agentscope",
+      "title": "AgentScope Platform Beta 云端免费空间",
+      "models": [],
+      "accessType": "web",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史候选;CPU内存及结束时间未确认"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://platform.agentscope.io/",
+      "sources": [
+        {
+          "url": "https://platform.agentscope.io/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "minimax:69140f0ae727",
+      "platformId": "minimax",
+      "title": "MiniMax Code M3.1 Flash 免费",
       "models": [
-        "CodePilot-Pro"
+        "M3.1 Flash"
       ],
       "accessType": "client",
-      "amount": 2000,
-      "unit": "Token",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称免费有限使用次数;是否提供独立API赠额未知"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.minimax.io/m-plan",
+      "sources": [
+        {
+          "url": "https://www.minimax.io/m-plan",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "vercel:2c59d467c362",
+      "platformId": "vercel",
+      "title": "AI Gateway 每月5美元免费API",
+      "models": [],
+      "accessType": "api",
+      "amount": 5,
+      "unit": "USD",
       "amountType": "monthly",
       "resetInterval": "monthly",
       "claimConditions": [
-        "免费订阅"
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：团队免费档;购买额外Credits后不再提供每月赠额"
       ],
-      "billingRequirements": "none",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://vercel.com/docs/ai-gateway/pricing",
+      "sources": [
+        {
+          "url": "https://vercel.com/docs/ai-gateway/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "vercel:1c93003a9884",
+      "platformId": "vercel",
+      "title": "Reflection Beam Free 限时推理",
+      "models": [
+        "reflection/beam-free"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "limited-unlimited",
+      "resetInterval": "unlimited",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称输入输出免费且1M上下文;该特定免费模型当前状态待重核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://vercel.com/ai-gateway/models/beam-free",
+      "sources": [
+        {
+          "url": "https://vercel.com/ai-gateway/models/beam-free",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "voyage:cab6d4f33146",
+      "platformId": "voyage",
+      "title": "Embedding 前2亿免费Tokens",
+      "models": [
+        "voyage-code-4",
+        "voyage-4"
+      ],
+      "accessType": "api",
+      "amount": 200000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：Embedding模型非生成式聊天;不同模型免费Tokens门槛不同"
+      ],
+      "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
       "apiCompatibility": "unknown",
       "status": "active",
-      "verificationStatus": "community",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://docs.voyageai.com/docs/pricing",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
+          "url": "https://docs.voyageai.com/docs/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
         }
-      ],
-      "demo": true,
-      "contextWindow": 128000,
-      "toolCalling": true
+      ]
     },
     {
-      "id": "codepilot:10fefcq",
-      "platformId": "codepilot",
-      "title": "连续签到送 5 积分",
-      "models": [],
-      "accessType": "client",
-      "amount": 5,
-      "unit": "Point",
+      "id": "groq:dfb2f1e25095",
+      "platformId": "groq",
+      "title": "Groq Free Plan 免费推理",
+      "models": [
+        "Qwen3.8 27B"
+      ],
+      "accessType": "api",
+      "amount": 1000,
+      "unit": "Request",
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "每日签到"
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称30RPM 1000RPD;模型具体可用性需要再次核对"
       ],
-      "billingRequirements": "none",
+      "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
       "apiCompatibility": "unknown",
-      "status": "active",
-      "verificationStatus": "community",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://console.groq.com/docs/rate-limits",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
+          "url": "https://console.groq.com/docs/rate-limits",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
         }
-      ],
-      "demo": true
+      ]
     },
     {
-      "id": "vectorvault:s7gqd6",
-      "platformId": "vectorvault",
-      "title": "注册赠送 500 Credits",
+      "id": "workbuddy:0c7506d5968c",
+      "platformId": "workbuddy",
+      "title": "新人250 Credits 欢迎赠额",
       "models": [],
-      "accessType": "api",
-      "amount": 500,
+      "accessType": "client",
+      "amount": 250,
       "unit": "Credit",
       "amountType": "one-time",
       "resetInterval": "none",
       "claimConditions": [
-        "新用户注册"
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称14天有效;官网当前此项尚未重核"
       ],
-      "billingRequirements": "trial",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.workbuddy.ai/docs/workbuddy/Subscription",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.ai/docs/workbuddy/Subscription",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "workbuddy:7286fcd75a9b",
+      "platformId": "workbuddy",
+      "title": "免费档每月100 Credits",
+      "models": [],
+      "accessType": "client",
+      "amount": 100,
+      "unit": "Credit",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：官网标明免费个人档基础额度"
+      ],
+      "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
       "apiCompatibility": "unknown",
       "status": "active",
-      "verificationStatus": "community",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.workbuddy.ai/docs/workbuddy/pricing",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
+          "url": "https://www.workbuddy.ai/docs/workbuddy/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
         }
-      ],
-      "demo": true,
-      "creditExpiresAt": "2026-11-27T19:38:41.525Z"
+      ]
     },
     {
-      "id": "chatnimbus:1akho95",
-      "platformId": "chatnimbus",
-      "title": "免费版每月 300 条消息",
-      "models": [
-        "ChatNimbus-Small"
-      ],
+      "id": "workbuddy:2a1a77d1564a",
+      "platformId": "workbuddy",
+      "title": "限时每日活跃赠30 Credits",
+      "models": [],
       "accessType": "client",
-      "amount": 300,
-      "unit": "Message",
-      "amountType": "monthly",
-      "resetInterval": "monthly",
+      "amount": 30,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
       "claimConditions": [
-        "手机号注册"
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：需有效客户端对话;不等同开放API"
       ],
-      "billingRequirements": "none",
-      "identityVerification": "phone",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
       "apiCompatibility": "unknown",
       "status": "active",
-      "verificationStatus": "community",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.workbuddy.ai/docs/workbuddy/pricing",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
+          "url": "https://www.workbuddy.ai/docs/workbuddy/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
         }
-      ],
-      "demo": true
+      ]
     },
     {
-      "id": "relayhub:vgb0ic",
-      "platformId": "relayhub",
-      "title": "注册赠送 $1 API Credits(待核实)",
+      "id": "freecode:810247e25488",
+      "platformId": "freecode",
+      "title": "freecode 免费 Coding Agent",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称每日恢复且免自带API Key;注意代码与隐私条款"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://freecode.sh/",
+      "sources": [
+        {
+          "url": "https://freecode.sh/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "crawlforge:87c0cc061b0e",
+      "platformId": "crawlforge",
+      "title": "CrawlForge MCP 1000 Credits",
+      "models": [],
+      "accessType": "api",
+      "amount": 1000,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：工具API用于网页抓取和研究;非LLM推理额度"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.crawlforge.dev/pricing",
+      "sources": [
+        {
+          "url": "https://www.crawlforge.dev/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "careti:b1d984c8d1c1",
+      "platformId": "careti",
+      "title": "Careti 新注册20 Credits",
+      "models": [],
+      "accessType": "client",
+      "amount": 20,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称约2美元;具体汇率和到账条件待核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://careti.ai/pricing",
+      "sources": [
+        {
+          "url": "https://careti.ai/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "careti:aea690b8a5a4",
+      "platformId": "careti",
+      "title": "Careti 月度补至10 Credits",
+      "models": [],
+      "accessType": "client",
+      "amount": 10,
+      "unit": "Credit",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史说法为余额不足时补至至少10;不是每月必得额外10"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://careti.ai/pricing",
+      "sources": [
+        {
+          "url": "https://careti.ai/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "dropstone:68baaffb4f32",
+      "platformId": "dropstone",
+      "title": "Dropstone Free CLI 限量模型",
       "models": [
-        "多模型中转"
+        "Dropstone Fast",
+        "Dropstone Pro"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史报告称每7天恢复;官网可能采用月度额度;待核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.dropstone.io/pricing",
+      "sources": [
+        {
+          "url": "https://www.dropstone.io/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "nova:d7396ab44944",
+      "platformId": "nova",
+      "title": "NOVA CLI 免费代码修改",
+      "models": [],
+      "accessType": "client",
+      "amount": 10,
+      "unit": "Call",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称每项目每日10次修改且最多2个活跃项目;模型未公开"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://runnova.ai/pricing",
+      "sources": [
+        {
+          "url": "https://runnova.ai/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "jina:bd4efc205ef3",
+      "platformId": "jina",
+      "title": "Jina AI 新用户1000万Tokens",
+      "models": [],
+      "accessType": "api",
+      "amount": 10000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：Embedding/Reranking不是通用LLM聊天;历史报告称500RPM"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://api.jina.ai/scalar",
+      "sources": [
+        {
+          "url": "https://api.jina.ai/scalar",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "wuwei:bec72759c832",
+      "platformId": "wuwei",
+      "title": "Wuwei AI 免费客户端积分",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称注册送积分以及每日奖励;具体数量未公开"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://wuweiai.io/",
+      "sources": [
+        {
+          "url": "https://wuweiai.io/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "novai:b93183a55838",
+      "platformId": "novai",
+      "title": "NovAI 注册2美元API Credits",
+      "models": [
+        "GLM-4.7-Flash"
       ],
       "accessType": "api",
+      "amount": 2,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：第三方中转可靠性未经长期验证;不建议传敏感代码"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://aiapi-pro.com/free/index.html",
+      "sources": [
+        {
+          "url": "https://aiapi-pro.com/free/index.html",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "novai:0e6f0f8a6813",
+      "platformId": "novai",
+      "title": "NovAI 每日10次免费请求",
+      "models": [
+        "GLM-4.7-Flash"
+      ],
+      "accessType": "api",
+      "amount": 10,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称5RPM且0点重置;待核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://aiapi-pro.com/free/index.html",
+      "sources": [
+        {
+          "url": "https://aiapi-pro.com/free/index.html",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "milliseconds:9cd000783570",
+      "platformId": "milliseconds",
+      "title": "Milliseconds.ai 每月1.25亿输入Tokens",
+      "models": [
+        "decision-machine-1"
+      ],
+      "accessType": "api",
+      "amount": 125000000,
+      "unit": "Token",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：决策分类模型;不是通用编码聊天LLM"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://milliseconds.ai/pricing/",
+      "sources": [
+        {
+          "url": "https://milliseconds.ai/pricing/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "bespoke:6bcc8074d948",
+      "platformId": "bespoke",
+      "title": "Bespoke Labs 注册决策API体验",
+      "models": [
+        "Nimble-v4",
+        "Nimble-v4-max"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称约3000次决策;换算并非确定赠额"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://console.bespokelabs.ai/",
+      "sources": [
+        {
+          "url": "https://console.bespokelabs.ai/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "exa:6adc8c26a1b4",
+      "platformId": "exa",
+      "title": "Exa 注册赠10美元搜索Credits",
+      "models": [],
+      "accessType": "api",
+      "amount": 10,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：无需付款方式;搜索和研究API;非聊天模型"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://exa.ai/pricing",
+      "sources": [
+        {
+          "url": "https://exa.ai/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "exa:4f2ee2fcda70",
+      "platformId": "exa",
+      "title": "Exa 免费套餐每月10美元",
+      "models": [],
+      "accessType": "api",
+      "amount": 10,
+      "unit": "USD",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：每月恢复;10 QPS;搜索API和MCP"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://exa.ai/pricing",
+      "sources": [
+        {
+          "url": "https://exa.ai/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "moark:ae36cbf72567",
+      "platformId": "moark",
+      "title": "模力方舟每日100次免费API",
+      "models": [],
+      "accessType": "api",
+      "amount": 100,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称免费模型共享每日100次;当下配额待核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.moark.com/docs/getting-started",
+      "sources": [
+        {
+          "url": "https://www.moark.com/docs/getting-started",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "upstage:d26cc7b0aee9",
+      "platformId": "upstage",
+      "title": "Upstage 新用户10美元API Credits",
+      "models": [
+        "Solar"
+      ],
+      "accessType": "api",
+      "amount": 10,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称一次性赠额;到账与限制未确认"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://console.upstage.ai/",
+      "sources": [
+        {
+          "url": "https://console.upstage.ai/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:f1392a0041eb",
+      "platformId": "openrouter",
+      "title": "OpenRouter Xing4.0 Free",
+      "models": [
+        "xingchen-agi/xing4.0-29b-a4b:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史报告称50次每日且20RPM;模型在线状态待核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:08da1b6e7205",
+      "platformId": "openrouter",
+      "title": "Poolside Laguna S 2.1 Free",
+      "models": [
+        "poolside/laguna-s-2.1:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称10月31日下线;共享免费池日限制须核实"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://openrouter.ai/poolside/laguna-s-2.1:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ],
+      "endAt": "2026-10-31T00:00:00Z"
+    },
+    {
+      "id": "openrouter:c8f19e9a56c9",
+      "platformId": "openrouter",
+      "title": "Poolside Laguna XS 2.1 Free",
+      "models": [
+        "poolside/laguna-xs-2.1:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称10月31日下线;限额不是单模型独享"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ],
+      "endAt": "2026-10-31T00:00:00Z"
+    },
+    {
+      "id": "openrouter:c4ee00fd187d",
+      "platformId": "openrouter",
+      "title": "Recursive Flint 40B 免费API",
+      "models": [
+        "recursive/flint-v1.0:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称262K上下文且Tool Calling;当前模型状态待核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://openrouter.ai/recursive/flint-v1.0:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/recursive/flint-v1.0:free",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "agentfoundry:acefda803657",
+      "platformId": "agentfoundry",
+      "title": "AgentFoundry 前3个月1000 Credits/月",
+      "models": [
+        "Claude Haiku 4.5",
+        "GPT-5 Codex"
+      ],
+      "accessType": "client",
+      "amount": 1000,
+      "unit": "Credit",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称无需API Key;到期可能转付费订阅;具体费用须核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://agentfoundry.me/",
+      "sources": [
+        {
+          "url": "https://agentfoundry.me/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "amd:a2f5706359b5",
+      "platformId": "amd",
+      "title": "AMD Radeon Token Factory 免费模型",
+      "models": [
+        "DeepSeek V4.1 Flash",
+        "GLM-5.3 Flash",
+        "MiMo-V2.6 Flash"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称免费每日额度且20RPM;具体额度以官方控制台为准"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://developer.amd.com.cn/radeon/tokenfactory",
+      "sources": [
+        {
+          "url": "https://developer.amd.com.cn/radeon/tokenfactory",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "huawei:164dfc330f9a",
+      "platformId": "huawei",
+      "title": "华为 CodeArts 新注册4000积分",
+      "models": [],
+      "accessType": "client",
+      "amount": 4000,
+      "unit": "Point",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史数额未复核;不可当通用API"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://codearts.huaweicloud.com/index.html",
+      "sources": [
+        {
+          "url": "https://codearts.huaweicloud.com/index.html",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "huawei:dc1bedce8084",
+      "platformId": "huawei",
+      "title": "华为 CodeArts 每日签到100积分",
+      "models": [],
+      "accessType": "client",
+      "amount": 100,
+      "unit": "Point",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称10月27日开始100积分每天并当日有效;请重核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://support.huaweicloud.com/offers-codeartsagent/codeartsagent_offers_0004.html",
+      "sources": [
+        {
+          "url": "https://support.huaweicloud.com/offers-codeartsagent/codeartsagent_offers_0004.html",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ],
+      "endAt": "2026-12-31T15:59:00Z"
+    },
+    {
+      "id": "freepi:b115baf90e9b",
+      "platformId": "freepi",
+      "title": "free-pi 每日免费 Coding Agent",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称GitHub登陆及每日额度;隐私条款可能允许训练"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://freepi.ai/docs/models-and-limits",
+      "sources": [
+        {
+          "url": "https://freepi.ai/docs/models-and-limits",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "codegpt:b1015d117e0e",
+      "platformId": "codegpt",
+      "title": "CodeGPT Economy 每日10次交互",
+      "models": [],
+      "accessType": "client",
+      "amount": 10,
+      "unit": "Message",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：IDE插件限额;经济型模型每日10次"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.codegpt.co/pricing",
+      "sources": [
+        {
+          "url": "https://www.codegpt.co/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "codegpt:1ddc8c947deb",
+      "platformId": "codegpt",
+      "title": "CodeGPT 高级模型欢迎1美元额度",
+      "models": [],
+      "accessType": "client",
       "amount": 1,
       "unit": "USD",
       "amountType": "one-time",
       "resetInterval": "none",
       "claimConditions": [
-        "新用户注册",
-        "实名认证"
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：官网明确欢迎赠额;一次性非每日"
       ],
-      "billingRequirements": "card",
-      "identityVerification": "id",
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
       "apiCompatibility": "unknown",
       "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.codegpt.co/pricing",
+      "sources": [
+        {
+          "url": "https://www.codegpt.co/pricing",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "freebuff:e5bb9317a93a",
+      "platformId": "freebuff",
+      "title": "Freebuff 每日100 Freebucks",
+      "models": [],
+      "accessType": "client",
+      "amount": 100,
+      "unit": "Point",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：Freebucks是专用积分;历史称太平洋时间零点恢复"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
       "verificationStatus": "unverified",
-      "discoveredAt": "2026-10-25T19:38:41.525Z",
-      "lastVerifiedAt": "2026-10-28T14:38:41.525Z",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://freebuff.com/",
       "sources": [
         {
-          "url": "https://example.com/community-thread",
-          "label": "社区讨论(演示链接)",
-          "kind": "community"
+          "url": "https://freebuff.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "morph:8a3f01ecae2c",
+      "platformId": "morph",
+      "title": "Morph 每月200次免费API",
+      "models": [],
+      "accessType": "api",
+      "amount": 200,
+      "unit": "Request",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称GLM-5.3 DeepSeek V4.1等;免费模型范围待核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.morphllm.com/pricing",
+      "sources": [
+        {
+          "url": "https://www.morphllm.com/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "coreweave:fd767e4043bd",
+      "platformId": "coreweave",
+      "title": "CoreWeave Forge Free 2美元Credits",
+      "models": [],
+      "accessType": "api",
+      "amount": 2,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：社区历史报告2美元;官方赠额不明确"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.coreweave.com/forge-pricing",
+      "sources": [
+        {
+          "url": "https://www.coreweave.com/forge-pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "pulsedev:463a20e5494d",
+      "platformId": "pulsedev",
+      "title": "PulseDev 免费1项目",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：免费的Agent UI辅助工具;需要自带模型与Coding Agent"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://pulsedev.app/",
+      "sources": [
+        {
+          "url": "https://pulsedev.app/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "zro:a3b847dce119",
+      "platformId": "zro",
+      "title": "Zro 每日免费模型API",
+      "models": [
+        "DeepSeek V4.1 Flash",
+        "GLM-5.3 Flash"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称每日免费恢复;额度未公开"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://zro.moonmath.ai/pricing",
+      "sources": [
+        {
+          "url": "https://zro.moonmath.ai/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "speka:f2aba96a4f85",
+      "platformId": "speka",
+      "title": "Speka 每月1美元推理额度",
+      "models": [],
+      "accessType": "api",
+      "amount": 1,
+      "unit": "USD",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称无需信用卡且10RPM;未重核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://speka.me/pricing",
+      "sources": [
+        {
+          "url": "https://speka.me/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "publicai:6f3161c96786",
+      "platformId": "publicai",
+      "title": "Public AI 新注册赠2美元",
+      "models": [],
+      "accessType": "api",
+      "amount": 2,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称一次性赠额且支持Apertus等;有效期未确认"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://platform.publicai.co/docs",
+      "sources": [
+        {
+          "url": "https://platform.publicai.co/docs",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "tabsh:a0a65cdfaf6e",
+      "platformId": "tabsh",
+      "title": "tabsh 免费开源Agent看板",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：开源工具不赠托管模型推理额度"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://tabsh.cc/",
+      "sources": [
+        {
+          "url": "https://tabsh.cc/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "openllm:9d496c73383d",
+      "platformId": "openllm",
+      "title": "OpenLLM DeepSeek 每月200万计费单位",
+      "models": [
+        "openllm/deepseek/deepseek-v4.1-flash"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：平台月度200万计费单位并非200万等量Tokens;输入输出计费权重不同;250K上下文"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://docs.openllm.sh/providers/included",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
         }
       ],
-      "demo": true
-    }
-  ],
-  "events": [
-    {
-      "id": "ev_demo_1",
-      "offerId": "nebulaforge:1ke4eok",
-      "platformId": "nebulaforge",
-      "eventType": "deadline-extended",
-      "timestamp": "2026-10-26T19:38:41.525Z",
-      "field": "endAt",
-      "previousValue": "2026-11-02T19:38:41.525Z",
-      "currentValue": "2026-11-09T19:38:41.525Z",
-      "description": "「DeepThink-X2 限时免费」截止日期延期 7 天",
-      "sources": [
-        {
-          "url": "https://example.com/official-pricing",
-          "label": "官方公告(演示链接)",
-          "kind": "official"
-        }
-      ]
+      "contextWindow": 250000
     },
     {
-      "id": "ev_demo_2",
-      "offerId": "nebulaforge:1kfdke4",
-      "platformId": "nebulaforge",
-      "eventType": "amount-changed",
-      "timestamp": "2026-10-18T19:38:41.525Z",
-      "field": "amount",
-      "previousValue": "5",
-      "currentValue": "10",
-      "description": "「注册赠送 API Credits」从 $5 提升为 $10",
+      "id": "openllm:6aef21bc7192",
+      "platformId": "openllm",
+      "title": "OpenLLM Qwen3.7 Plus 每月666667计费单位",
+      "models": [
+        "openllm/qwen/qwen3.7-plus"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：平台计费单位非Tokens;输入和输出权重不同;250K上下文"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://docs.openllm.sh/providers/included",
       "sources": [
         {
-          "url": "https://example.com/official-pricing",
-          "label": "官方定价页(演示链接)",
-          "kind": "official"
-        }
-      ]
-    },
-    {
-      "id": "ev_demo_3",
-      "offerId": null,
-      "platformId": "codepilot",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-16T19:38:41.525Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "codepilot",
-      "description": "发现新平台 CodePilot",
-      "sources": [
-        {
-          "url": "https://example.com/community-thread",
-          "label": "社区讨论(演示链接)",
-          "kind": "community"
-        }
-      ]
-    }
-  ],
-  "runs": [
-    {
-      "id": "run_demo_1",
-      "startedAt": "2026-10-28T13:38:41.525Z",
-      "completedAt": "2026-10-28T14:38:41.525Z",
-      "status": "success",
-      "searchACompleted": true,
-      "searchBCompleted": true,
-      "sourcesChecked": 14,
-      "candidatesFound": 1,
-      "offersCreated": 0,
-      "offersUpdated": 2,
-      "offersExpired": 0,
-      "errors": [],
-      "repositoryCommit": "demo",
-      "note": "演示运行记录"
-    },
-    {
-      "id": "run_demo_2",
-      "startedAt": "2026-10-27T13:38:41.525Z",
-      "completedAt": "2026-10-27T14:38:41.525Z",
-      "status": "failed",
-      "searchACompleted": true,
-      "searchBCompleted": false,
-      "sourcesChecked": 6,
-      "candidatesFound": 0,
-      "offersCreated": 0,
-      "offersUpdated": 0,
-      "offersExpired": 0,
-      "errors": [
-        {
-          "code": "SEARCH_B_TIMEOUT",
-          "message": "新平台发现搜索超时(演示失败记录)"
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
         }
       ],
-      "note": "演示失败记录"
+      "contextWindow": 250000
+    },
+    {
+      "id": "qwenwork-cn:5999e3e2056e",
+      "platformId": "qwenwork-cn",
+      "title": "国内注册赠2000积分",
+      "models": [],
+      "accessType": "web",
+      "amount": 2000,
+      "unit": "Point",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称90天有效;客户端是否也可用需核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://qwenwork.cn/pricing",
+      "sources": [
+        {
+          "url": "https://qwenwork.cn/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "qwenwork-cn:7dd8a013ed4b",
+      "platformId": "qwenwork-cn",
+      "title": "国内每日登录100积分",
+      "models": [],
+      "accessType": "web",
+      "amount": 100,
+      "unit": "Point",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称当日有效;尚未重核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://qwenwork.cn/pricing",
+      "sources": [
+        {
+          "url": "https://qwenwork.cn/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "qwenwork-int:291c63b440d5",
+      "platformId": "qwenwork-int",
+      "title": "国际注册赠500 Credits",
+      "models": [],
+      "accessType": "web",
+      "amount": 500,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称免费用户权益;API不可直接使用"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://qwenwork.ai/pricing",
+      "sources": [
+        {
+          "url": "https://qwenwork.ai/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "qwenwork-int:139f484a84fe",
+      "platformId": "qwenwork-int",
+      "title": "国际每日200 Credits",
+      "models": [],
+      "accessType": "web",
+      "amount": 200,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称每天登录领取;待重核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://qwenwork.ai/pricing",
+      "sources": [
+        {
+          "url": "https://qwenwork.ai/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "decisionnode:0317890292c4",
+      "platformId": "decisionnode",
+      "title": "DecisionNode Flash 每日50调用",
+      "models": [
+        "DecisionNode Flash"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Call",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：决策API非通用LLM"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://decisionnode.com/",
+      "sources": [
+        {
+          "url": "https://decisionnode.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "decisionnode:10c1fb5efc3d",
+      "platformId": "decisionnode",
+      "title": "DecisionNode 每日20调用",
+      "models": [
+        "DecisionNode"
+      ],
+      "accessType": "api",
+      "amount": 20,
+      "unit": "Call",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：决策与路由场景"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://decisionnode.com/",
+      "sources": [
+        {
+          "url": "https://decisionnode.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "decisionnode:42cd458068eb",
+      "platformId": "decisionnode",
+      "title": "DecisionNode Booster 每日10调用",
+      "models": [
+        "DecisionNode Booster"
+      ],
+      "accessType": "api",
+      "amount": 10,
+      "unit": "Call",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：决策分类服务"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://decisionnode.com/",
+      "sources": [
+        {
+          "url": "https://decisionnode.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "freeai:6307bb7f07da",
+      "platformId": "freeai",
+      "title": "Free.ai 每日3万平台Tokens",
+      "models": [],
+      "accessType": "web",
+      "amount": 30000,
+      "unit": "Token",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：仅确认历史网页额度;免费API Key是否能无付款获取存在矛盾"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://free.ai/signup/",
+      "sources": [
+        {
+          "url": "https://free.ai/signup/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "yardlet:1e1934edb311",
+      "platformId": "yardlet",
+      "title": "Yardlet 开源多Agent管理器",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：开源管理工具不赠推理Tokens"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.producthunt.com/products/yardlet-2",
+      "sources": [
+        {
+          "url": "https://www.producthunt.com/products/yardlet-2",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "requesty:449b20d8f3e0",
+      "platformId": "requesty",
+      "title": "Requesty 免费模型每日200请求",
+      "models": [
+        "Nemotron 3.5 Lightning",
+        "Iling 3.1 Flash"
+      ],
+      "accessType": "api",
+      "amount": 200,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "本轮核验官方来源：13款免费模型;模型和限速以当前免费列表为准"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.requesty.ai/models/free",
+      "sources": [
+        {
+          "url": "https://www.requesty.ai/models/free",
+          "label": "官方页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T21:30:43Z"
+        }
+      ]
+    },
+    {
+      "id": "orca:716697ab03b4",
+      "platformId": "orca",
+      "title": "Orca Connect 本地GPU转发零平台费",
+      "models": [],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：需要自有GPU;不是免费云端模型额度"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.orcarouter.ai/solutions/orca-connect",
+      "sources": [
+        {
+          "url": "https://www.orcarouter.ai/solutions/orca-connect",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "revix:b61949a88b11",
+      "platformId": "revix",
+      "title": "Revix AI 公开仓库免费PR审查",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称私有仓库14天试用;免费服务底层模型未公开"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.revix.ai/pricing",
+      "sources": [
+        {
+          "url": "https://www.revix.ai/pricing",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "ollama:3b1fc12445c7",
+      "platformId": "ollama",
+      "title": "Ollama Cloud Reflection Beam 限时免费",
+      "models": [
+        "beam:cloud"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：免费套餐并发1等限制未重核"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://ollama.com/blog/reflection-beam",
+      "sources": [
+        {
+          "url": "https://ollama.com/blog/reflection-beam",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "deepseek:59133da4d7c7",
+      "platformId": "deepseek",
+      "title": "DeepSeek Harness Search Fetch 工具免费期",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称11月1日起收费;不是免费LLM Tokens"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://api-docs.deepseek.com/guides/search/",
+      "sources": [
+        {
+          "url": "https://api-docs.deepseek.com/guides/search/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ],
+      "endAt": "2026-10-31T16:00:00Z"
+    },
+    {
+      "id": "liquidinference:40ba7b1c378e",
+      "platformId": "liquidinference",
+      "title": "Liquid Inference 前500名新用户20美元",
+      "models": [],
+      "accessType": "api",
+      "amount": 20,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：候选历史公告;前500名是否满额未知"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://liquidinference.ai/",
+      "sources": [
+        {
+          "url": "https://liquidinference.ai/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "liquidai:fd0d26d406a8",
+      "platformId": "liquidai",
+      "title": "Liquid AI LFM3 Playground 免费配额待核",
+      "models": [
+        "LFM3"
+      ],
+      "accessType": "web",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：新模型已发布;是否有免费调用权益未确认"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.liquid.ai/",
+      "sources": [
+        {
+          "url": "https://www.liquid.ai/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "supercomputing:71fc9996937b",
+      "platformId": "supercomputing",
+      "title": "国家超算互联网 GLM 历史礼包",
+      "models": [
+        "GLM-5.3-Flash"
+      ],
+      "accessType": "api",
+      "amount": 10000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：历史活动页可能已经标已结束;不能认定仍可领取"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://www.scnet.cn",
+      "sources": [
+        {
+          "url": "https://www.scnet.cn",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "id": "wavecode:9b06b32f6ef7",
+      "platformId": "wavecode",
+      "title": "Wave Code 广告支持免费编码",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "历史报告导入；不是本轮新发现",
+        "仅来自本会话旧报告；本轮尚未确认当前权益：仅宣传线索;免费调用额度未验证"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "",
+      "apiCompatibility": "unknown",
+      "status": "unknown",
+      "verificationStatus": "unverified",
+      "discoveredAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "officialUrl": "https://thewavecode.com/",
+      "sources": [
+        {
+          "url": "https://thewavecode.com/",
+          "label": "历史会话来源链接（内容待重核）",
+          "kind": "other"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "runs": []
 }
