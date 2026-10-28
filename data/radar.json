@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": null,
+  "lastSuccessfulSync": "2026-10-28T22:15:59.284Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -781,6 +781,67 @@
       "firstDiscoveredAt": "2026-10-28T21:30:43Z",
       "lastCheckedAt": "2026-10-28T21:30:43Z",
       "trustStatus": "unverified"
+    },
+    {
+      "id": "google-ai-studio",
+      "name": "Google AI Studio / Gemini API",
+      "slug": "google-ai-studio",
+      "canonicalDomain": "ai.google.dev",
+      "websiteUrl": "https://ai.google.dev",
+      "description": "Google 原生 Gemini API，部分模型提供无计费账户免费层",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastCheckedAt": "2026-10-28T22:15:59.283Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face Inference Providers",
+      "slug": "huggingface",
+      "canonicalDomain": "huggingface.co",
+      "websiteUrl": "https://huggingface.co",
+      "description": "每月自动提供少量多推理商路由额度",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastCheckedAt": "2026-10-28T22:15:59.283Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "cto",
+      "name": "cto.new",
+      "slug": "cto",
+      "canonicalDomain": "cto.new",
+      "websiteUrl": "https://cto.new",
+      "description": "广告支持、每日重置免费用量的云端 AI Agent",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastCheckedAt": "2026-10-28T22:15:59.283Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "retriever",
+      "name": "Retriever AI (rtrvr.ai)",
+      "slug": "retriever",
+      "canonicalDomain": "rtrvr.ai",
+      "websiteUrl": "https://rtrvr.ai",
+      "description": "Chrome 扩展和云端浏览器 AI Agent，广告支持的免费模式",
+      "category": "agent-platform",
+      "launchDate": "2026-10-14T00:00:00Z",
+      "firstDiscoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastCheckedAt": "2026-10-28T22:15:59.283Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "codync",
+      "name": "Codync",
+      "slug": "codync",
+      "canonicalDomain": "codync.dev",
+      "websiteUrl": "https://codync.dev",
+      "description": "免费开源 iOS/macOS/Windows/Linux Coding Agent 遥控与加密中继，不提供免费模型调用",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastCheckedAt": "2026-10-28T22:15:59.283Z",
+      "trustStatus": "official"
     }
   ],
   "offers": [
@@ -928,11 +989,18 @@
     {
       "id": "opencode:57d021a38cfc",
       "platformId": "opencode",
-      "title": "Zen 免费模型合集",
+      "title": "OpenCode Console 免费模型合集（仅 OpenCode 客户端）",
       "models": [
-        "MiMo-V2.5",
-        "Nemotron 3 Ultra",
-        "Nemotron 3.5 Lightning"
+        "Big Pickle",
+        "GLM-5.3-Flash Free",
+        "DeepSeek V4.1 Flash Free",
+        "Beam Free",
+        "Flint 40B Free",
+        "MiMo-V2.6-Flash Free",
+        "Nemotron 3 Ultra Free",
+        "Nemotron 3.5 Lightning Free",
+        "Nemotron 3.5 Super VL Free",
+        "Jev 1.13 Free"
       ],
       "accessType": "client",
       "amount": null,
@@ -940,24 +1008,31 @@
       "amountType": "unknown",
       "resetInterval": "unknown",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史列出多个免费模型;当前完整名单及调用上限待核查"
+        "OpenCode v2 官方列出 10 款免费模型；免费聊天模型限在 OpenCode 使用，不代表其他客户端或自建 API 可免费调用",
+        "GLM-5.3-Flash Free、DeepSeek V4.1 Flash Free、MiMo-V2.6-Flash Free 等为限时免费，具体结束时间未公布",
+        "不同免费模型有独立数据使用条款；Beam Free 明确限制包括中国大陆和香港澳门等地区"
       ],
       "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
+      "rateLimits": "官网未列统一每日请求数",
       "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
-      "officialUrl": "https://opencode.ai/docs/zen",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "officialUrl": "https://opencode.ai/v2/docs/console/models/",
       "sources": [
         {
           "url": "https://opencode.ai/docs/zen",
           "label": "历史会话来源链接（内容待重核）",
           "kind": "other"
+        },
+        {
+          "url": "https://opencode.ai/v2/docs/console/models/",
+          "label": "OpenCode v2 免费模型官方列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
         }
       ]
     },
@@ -3473,24 +3548,37 @@
       "amountType": "unknown",
       "resetInterval": "unknown",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称11月1日起收费;不是免费LLM Tokens"
+        "DeepSeek API 用户经 DeepSeek Harness、Claude Code、Codex 服务端工具调用 Search & Fetch 在截止前免工具调用费",
+        "原生独立 Search / Fetch API 正常每千次 $0.75，免费权益不是 LLM Tokens",
+        "2026-10-31 16:00 UTC 起计费（北京时间 11 月 1 日 00:00）"
       ],
       "billingRequirements": "unknown",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
+      "rateLimits": "Search 100 QPS，Fetch 25 QPS 每账户；无单独免费次数声明",
       "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
       "officialUrl": "https://api-docs.deepseek.com/guides/search/",
       "sources": [
         {
           "url": "https://api-docs.deepseek.com/guides/search/",
           "label": "历史会话来源链接（内容待重核）",
           "kind": "other"
+        },
+        {
+          "url": "https://api-docs.deepseek.com/guides/search/",
+          "label": "DeepSeek Search & Fetch 官方计费",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://api-docs.deepseek.com/news/news261017/",
+          "label": "DeepSeek 2026-10-17 官方公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
         }
       ],
       "endAt": "2026-10-31T16:00:00Z"
@@ -3626,8 +3714,530 @@
           "kind": "other"
         }
       ]
+    },
+    {
+      "id": "google-ai-studio:1rqztvv",
+      "platformId": "google-ai-studio",
+      "title": "Gemini 3.8 Flash 原生 API 免费层",
+      "models": [
+        "gemini-3.8-flash"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "创建 Google AI Studio 免费项目和 API Key",
+        "官方免费层 Standard 输入和输出 Token 免费；按模型/项目动态限制",
+        "免费层内容可能用于改善产品；Gemini 4 Argon 不提供免费层"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "具体 RPM/TPM/RPD 依账户，AI Studio 查看；每日请求配额太平洋时间午夜恢复",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "officialUrl": "https://ai.google.dev/gemini-api/docs/pricing",
+      "sources": [
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/pricing",
+          "label": "Google Gemini API 免费层",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+          "label": "Gemini 3.8 Flash 模型规格",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+          "label": "Google 免费层限速规则",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "contextWindow": 1048576,
+      "toolCalling": true
+    },
+    {
+      "id": "huggingface:2u0e6v",
+      "platformId": "huggingface",
+      "title": "Inference Providers Free 每月 $0.10",
+      "models": [],
+      "accessType": "api",
+      "amount": 0.1,
+      "unit": "USD",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "免费账户每月自动获得 $0.10 Inference Providers 路由额度",
+        "只限 HF Routed Requests；自带推理商 Key 不享受此额度",
+        "超出需购买 Credits，额度可能调整"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "按各模型价格消耗；官方标注 subject to change",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "officialUrl": "https://huggingface.co/docs/inference-providers/pricing",
+      "sources": [
+        {
+          "url": "https://huggingface.co/docs/inference-providers/pricing",
+          "label": "Hugging Face 官方推理额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ]
+    },
+    {
+      "id": "cto:1apqa85",
+      "platformId": "cto",
+      "title": "cto.new 广告支持每日免费 Agent 使用",
+      "models": [],
+      "accessType": "web",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册免费账号，不需信用卡或自带模型 API Key",
+        "官网注明免费版广告支持、每日额度重置，具体次数未披露",
+        "Anthropic/OpenAI 等模型可用性依产品当前界面"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费每日上限未公布；付费升级为可选项",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "officialUrl": "https://cto.new/product-hunt",
+      "sources": [
+        {
+          "url": "https://cto.new/product-hunt",
+          "label": "cto.new 免费每日额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ]
+    },
+    {
+      "id": "retriever:1kf2dpw",
+      "platformId": "retriever",
+      "title": "Retriever Free Mode 每日恢复的浏览器 Agent",
+      "models": [],
+      "accessType": "web",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "Chrome 扩展或 Cloud Dashboard 手动启动任务，免费使用内置 AI 模型",
+        "广告支持、每日公平使用额度重置，无需信用卡或模型 API Key",
+        "免费每天最多一个计划任务；Cloud API 和托管 Agent MCP 执行需要付费，浏览器工具 MCP 可免费"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "每日确切次数由账户后台显示；Free Mode 不等于免费开放 API",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "officialUrl": "https://rtrvr.ai/pricing",
+      "sources": [
+        {
+          "url": "https://rtrvr.ai/pricing",
+          "label": "Retriever 官方定价页",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ]
+    },
+    {
+      "id": "retriever:fp48iy",
+      "platformId": "retriever",
+      "title": "Retriever 新账号一次性 100 Welcome Credits",
+      "models": [],
+      "accessType": "web",
+      "amount": 100,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "免费注册获一次性 100 Welcome Credits",
+        "与每日免费模式额度独立，供计费资源使用",
+        "有效期、地区及具体适用资源以账号界面为准"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "一次性赠额，并非每日 100 Credits",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "officialUrl": "https://rtrvr.ai/pricing",
+      "sources": [
+        {
+          "url": "https://rtrvr.ai/pricing",
+          "label": "Retriever 官方定价页",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ]
+    },
+    {
+      "id": "codync:f3t3tc",
+      "platformId": "codync",
+      "title": "Codync 免费远控、加密中继与多 Agent 管理",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "可免费安装客户端与自托管 Rust host，支持 iOS/macOS/Windows/Linux/SSH",
+        "支持 OpenCode、Pi、Codex、Claude Code、Gemini CLI 等 ACP Agent",
+        "无附赠模型 Tokens，模型使用须自备已有账号、订阅或 API Key；加密 Cloudflare relay 免费"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "官方未列免费模型调用次数；本权益是工具和中继而非推理服务",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "officialUrl": "https://github.com/leepokai/Codync",
+      "sources": [
+        {
+          "url": "https://github.com/leepokai/Codync",
+          "label": "Codync 开源 README",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://codync.dev/",
+          "label": "Codync 官网",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ]
     }
   ],
-  "events": [],
-  "runs": []
+  "events": [
+    {
+      "id": "ev_gwuy66",
+      "platformId": "google-ai-studio",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "sources": [],
+      "description": "发现平台：Google AI Studio / Gemini API"
+    },
+    {
+      "id": "ev_11lelre",
+      "platformId": "google-ai-studio",
+      "offerId": "google-ai-studio:1rqztvv",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/pricing",
+          "label": "Google Gemini API 免费层",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+          "label": "Gemini 3.8 Flash 模型规格",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+          "label": "Google 免费层限速规则",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "新增官方确认权益：Gemini 3.8 Flash 原生 API 免费层"
+    },
+    {
+      "id": "ev_xpvn3t",
+      "platformId": "huggingface",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "sources": [],
+      "description": "发现平台：Hugging Face Inference Providers"
+    },
+    {
+      "id": "ev_19i2ep0",
+      "platformId": "huggingface",
+      "offerId": "huggingface:2u0e6v",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://huggingface.co/docs/inference-providers/pricing",
+          "label": "Hugging Face 官方推理额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "新增官方确认权益：Inference Providers Free 每月 $0.10"
+    },
+    {
+      "id": "ev_1btjzcz",
+      "platformId": "cto",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "sources": [],
+      "description": "发现平台：cto.new"
+    },
+    {
+      "id": "ev_1movs25",
+      "platformId": "cto",
+      "offerId": "cto:1apqa85",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://cto.new/product-hunt",
+          "label": "cto.new 免费每日额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "新增官方确认权益：cto.new 广告支持每日免费 Agent 使用"
+    },
+    {
+      "id": "ev_1m7wgjp",
+      "platformId": "retriever",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "sources": [],
+      "description": "发现平台：Retriever AI (rtrvr.ai)"
+    },
+    {
+      "id": "ev_1msb9f7",
+      "platformId": "retriever",
+      "offerId": "retriever:1kf2dpw",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://rtrvr.ai/pricing",
+          "label": "Retriever 官方定价页",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "新增官方确认权益：Retriever Free Mode 每日恢复的浏览器 Agent"
+    },
+    {
+      "id": "ev_fxjc4a",
+      "platformId": "retriever",
+      "offerId": "retriever:fp48iy",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://rtrvr.ai/pricing",
+          "label": "Retriever 官方定价页",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "新增官方确认权益：Retriever 新账号一次性 100 Welcome Credits"
+    },
+    {
+      "id": "ev_1m2r497",
+      "platformId": "codync",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "sources": [],
+      "description": "发现平台：Codync"
+    },
+    {
+      "id": "ev_11oc40n",
+      "platformId": "codync",
+      "offerId": "codync:f3t3tc",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://github.com/leepokai/Codync",
+          "label": "Codync 开源 README",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://codync.dev/",
+          "label": "Codync 官网",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "新增官方确认权益：Codync 免费远控、加密中继与多 Agent 管理"
+    },
+    {
+      "id": "ev_1nfe7ro",
+      "platformId": "opencode",
+      "offerId": "opencode:57d021a38cfc",
+      "eventType": "model-changed",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "models",
+      "previousValue": "[\"MiMo-V2.5\",\"Nemotron 3 Ultra\",\"Nemotron 3.5 Lightning\"]",
+      "currentValue": "[\"Big Pickle\",\"GLM-5.3-Flash Free\",\"DeepSeek V4.1 Flash Free\",\"Beam Free\",\"Flint 40B Free\",\"MiMo-V2.6-Flash Free\",\"Nemotron 3 Ultra Free\",\"Nemotron 3.5 Lightning Free\",\"Nemotron 3.5 Super VL Free\",\"Jev 1.13 Free\"]",
+      "sources": [
+        {
+          "url": "https://opencode.ai/v2/docs/console/models/",
+          "label": "OpenCode v2 免费模型官方列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "OpenCode v2 官方更新：10款限时免费模型"
+    },
+    {
+      "id": "ev_ir2te5",
+      "platformId": "opencode",
+      "offerId": "opencode:57d021a38cfc",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://opencode.ai/v2/docs/console/models/",
+          "label": "OpenCode v2 免费模型官方列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "核实当前提供免费模型"
+    },
+    {
+      "id": "ev_19sod45",
+      "platformId": "opencode",
+      "offerId": "opencode:57d021a38cfc",
+      "eventType": "verified",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://opencode.ai/v2/docs/console/models/",
+          "label": "OpenCode v2 免费模型官方列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "从历史待核实升级为官方确认"
+    },
+    {
+      "id": "ev_k7ffxn",
+      "platformId": "deepseek",
+      "offerId": "deepseek:59133da4d7c7",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://api-docs.deepseek.com/guides/search/",
+          "label": "DeepSeek Search & Fetch 官方计费",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://api-docs.deepseek.com/news/news261017/",
+          "label": "DeepSeek 2026-10-17 官方公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "官方明确工具免费期尚有效至10月31日16:00 UTC"
+    },
+    {
+      "id": "ev_k54wsf",
+      "platformId": "deepseek",
+      "offerId": "deepseek:59133da4d7c7",
+      "eventType": "verified",
+      "timestamp": "2026-10-28T22:15:59.283Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://api-docs.deepseek.com/guides/search/",
+          "label": "DeepSeek Search & Fetch 官方计费",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://api-docs.deepseek.com/news/news261017/",
+          "label": "DeepSeek 2026-10-17 官方公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T22:15:59.283Z"
+        }
+      ],
+      "description": "DeepSeek 官方文档核验"
+    }
+  ],
+  "runs": [
+    {
+      "id": "run_1djckdi",
+      "startedAt": "2026-10-28T22:13:58.000Z",
+      "completedAt": "2026-10-28T22:15:59.284Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 26,
+      "candidatesFound": 11,
+      "offersCreated": 6,
+      "offersUpdated": 2,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A/B 双独立搜索：48h/7d/30d及长期免费；中文英文官方页、Product Hunt、Hacker News、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X。新发现5个平台6条权益，复核2条既有权益。账号级免费限额未实测；提交记录以 GitHub commit 为准。"
+    }
+  ]
 }
