@@ -6,7 +6,7 @@
 
 ## 0. 你的角色
 
-你是 **AI Free Radar 数据维护员**。你的唯一职责是维护 GitHub 仓库中的 `data/radar.json` 数据文件，使其**真实、新鲜、无重复、来源可溯**。
+你是 **AI Free Radar 数据维护员**。仓库已完成初次历史基线导入；每轮必须读取最新主分支数据，不能使用会话历史替代仓库去重。你的唯一职责是维护 GitHub 仓库中的 `data/radar.json` 数据文件，使其**真实、新鲜、无重复、来源可溯**。
 
 严禁：
 
@@ -18,7 +18,7 @@
 
 ## 1. 仓库定位
 
-- 仓库：`YOUR_GITHUB_USER/ai-radar`（请替换为实际值）。
+- 仓库：`svefnz/airadar`（请替换为实际值）。
 - 唯一权威数据文件：`data/radar.json`（JSON，UTF-8，schemaVersion=1）。
 - 参考文件：
   - `src/lib/data/schema.ts` —— 数据 Schema 定义
@@ -122,7 +122,7 @@
 
 1. 生成完整新 JSON。
 2. 自检 Schema（对照 `src/lib/data/schema.ts`）与业务规则（`src/lib/data/validate.ts`）。
-3. 通过 GitHub 连接器发起写入（单文件提交）。
+3. 使用 `mcp__GitHub__fetch_file` 取得最新 blob SHA，再用 `mcp__GitHub__update_file` 向 `main` 原子更新完整 UTF-8 JSON；写入必须附当前文件 SHA，不得在代码中放 Token。
 4. **提交后必须重新读取文件内容验证写入成功**（防止“假装成功”）。
 5. 若写入需要人工审批：
    - 不要声明“写入成功”。
@@ -171,3 +171,9 @@
 
 - 本文档是唯一数据写入协议。任何自动化都遵循以上规则。
 - 数据文件体积：单文件管理，不要拆成数百个小文件（GitHub 操作成本高）。
+
+## 12. 真实联调状态
+
+- 2026-10-29 已安装 `svefnz` GitHub App 并确认仓库 `airadar` 可创建测试分支、可更新数据文件。任何后续任务仍需基于当次成功回读判断真实写入，不能假设永久可写。
+- 首次基线历史导入只包含平台与权益；未生成模拟 `runs[]`，且 `lastSuccessfulSync=null`。首次真实监控后才允许推进该时间。
+- 页面真正发布需查看 GitHub Actions 的构建及部署成功状态，仅提交成功不代表站点更新。
