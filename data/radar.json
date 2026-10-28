@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-28T22:15:59.284Z",
+  "lastSuccessfulSync": "2026-10-28T23:28:17.906Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -841,6 +841,18 @@
       "category": "coding-agent",
       "firstDiscoveredAt": "2026-10-28T22:15:59.283Z",
       "lastCheckedAt": "2026-10-28T22:15:59.283Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "akamai-inference",
+      "name": "Akamai Inference",
+      "slug": "akamai-inference",
+      "canonicalDomain": "akamai.com",
+      "websiteUrl": "https://www.akamai.com/newsroom/press-release/akamai-launches-ai-inference-service-and-agent-execution-environment",
+      "description": "2026-10-27 官方发布的新托管推理产品，OpenAI 兼容 API，serverless 按量计费或专用部署；没有找到公开免费额度，作为 B 类新平台候选，不创建 Offer。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T23:28:17.906Z",
+      "lastCheckedAt": "2026-10-28T23:28:17.906Z",
       "trustStatus": "official"
     }
   ],
@@ -3940,6 +3952,251 @@
           "verifiedAt": "2026-10-28T22:15:59.283Z"
         }
       ]
+    },
+    {
+      "id": "openrouter:1lhnzem",
+      "platformId": "openrouter",
+      "title": "North Mini Code 免费编码 API（256K）",
+      "models": [
+        "cohere/north-mini-code:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "免费注册 OpenRouter，创建 API Key；:free 变体无需充值",
+        "Cohere North Mini Code，256K 上下文，64K 最大输出，支持工具调用",
+        "50 次/日为免费模型共享账号额度，不是每模型独享；累计充值 $10 后可提高至 1000 次/日，但无需付费即可用 50 次"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "50 RPD shared across free models, 20 RPM; failed requests count; negative balance blocks free models",
+      "contextWindow": 256000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T23:28:17.906Z",
+      "lastVerifiedAt": "2026-10-28T23:28:17.906Z",
+      "officialUrl": "https://openrouter.ai/cohere/north-mini-code:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/cohere/north-mini-code:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:18llzm6",
+      "platformId": "openrouter",
+      "title": "Nemotron 3 Ultra 免费 API（1M 上下文）",
+      "models": [
+        "nvidia/nemotron-3-ultra-550b-a55b:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "免费注册 OpenRouter，创建 API Key；:free 变体无需充值",
+        "NVIDIA Nemotron 3 Ultra，1M 上下文，65536 最大输出，支持工具调用",
+        "50 次/日为免费模型共享账号额度，不是每模型独享；累计充值 $10 后可提高至 1000 次/日，但无需付费即可用 50 次"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "50 RPD shared across free models, 20 RPM; failed requests count; negative balance blocks free models",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T23:28:17.906Z",
+      "lastVerifiedAt": "2026-10-28T23:28:17.906Z",
+      "officialUrl": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:fcv5so",
+      "platformId": "openrouter",
+      "title": "Ling 2.6 1T 免费推理 API（262K）",
+      "models": [
+        "inclusionai/ling-2.6-1t:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "免费注册 OpenRouter，创建 API Key；:free 变体无需充值",
+        "InclusionAI Ling-2.6-1T，262144 上下文；不支持欧盟区内路由",
+        "50 次/日为免费模型共享账号额度，不是每模型独享；累计充值 $10 后可提高至 1000 次/日，但无需付费即可用 50 次"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "50 RPD shared across free models, 20 RPM; failed requests count; negative balance blocks free models",
+      "contextWindow": 262144,
+      "toolCalling": null,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T23:28:17.906Z",
+      "lastVerifiedAt": "2026-10-28T23:28:17.906Z",
+      "officialUrl": "https://openrouter.ai/inclusionai/ling-2.6-1t:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/inclusionai/ling-2.6-1t:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:bkg6dk",
+      "platformId": "openrouter",
+      "title": "Dots3 Note Preview 免费 API（512K）",
+      "models": [
+        "dots-studio/dots-3-note-preview:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "免费注册 OpenRouter，创建 API Key；:free 变体无需充值",
+        "Dots3 Note Preview，512K 上下文，支持工具调用；官方不同页面截止日期不一致，待核",
+        "50 次/日为免费模型共享账号额度，不是每模型独享；累计充值 $10 后可提高至 1000 次/日，但无需付费即可用 50 次"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "50 RPD shared across free models, 20 RPM; failed requests count; negative balance blocks free models",
+      "contextWindow": 512000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T23:28:17.906Z",
+      "lastVerifiedAt": "2026-10-28T23:28:17.906Z",
+      "officialUrl": "https://openrouter.ai/dots-studio/dots-3-note-preview:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/dots-studio/dots-3-note-preview:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ]
+    },
+    {
+      "id": "vercel:gsfjr9",
+      "platformId": "vercel",
+      "title": "Laya 决策模型 API 免费至 10 月 31 日",
+      "models": [
+        "convaiinnovations/laya-free"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "Vercel 官方公告：Boundless 提供商免费至 2026-10-31；具体截止时区未公布",
+        "通过 AI Gateway API Key 使用；模型用于分类、路由、打分、布尔选择，不是聊天 LLM",
+        "-free ID 活动结束后停止服务；标准 ID 届时可能收费",
+        "AI Gateway Free 账号的每 30 天 $5 赠额已单独入库，不能叠加重复计算"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "官方未公布独立免费请求次数",
+      "contextWindow": 8192,
+      "toolCalling": false,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T23:28:17.906Z",
+      "lastVerifiedAt": "2026-10-28T23:28:17.906Z",
+      "officialUrl": "https://vercel.com/changelog/laya-decision-model-now-available-on-ai-gateway-free-through-october-31",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/laya-decision-model-now-available-on-ai-gateway-free-through-october-31",
+          "label": "2026-10-01 Vercel 官方免费期公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/laya-free",
+          "label": "Vercel 模型定价详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ]
     }
   ],
   "events": [
@@ -4221,6 +4478,174 @@
         }
       ],
       "description": "DeepSeek 官方文档核验"
+    },
+    {
+      "id": "ev_8464sg",
+      "offerId": null,
+      "platformId": "akamai-inference",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "akamai-inference",
+      "sources": [
+        {
+          "url": "https://www.akamai.com/newsroom/press-release/akamai-launches-ai-inference-service-and-agent-execution-environment",
+          "label": "Akamai 2026-10-27 发布",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "新平台候选：Akamai Inference，无已核实免费权益"
+    },
+    {
+      "id": "ev_1wpyc9j",
+      "offerId": "openrouter:1lhnzem",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/cohere/north-mini-code:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：North Mini Code 免费编码 API（256K）"
+    },
+    {
+      "id": "ev_1ejteww",
+      "offerId": "openrouter:18llzm6",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Nemotron 3 Ultra 免费 API（1M 上下文）"
+    },
+    {
+      "id": "ev_1ah02r6",
+      "offerId": "openrouter:fcv5so",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/inclusionai/ling-2.6-1t:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Ling 2.6 1T 免费推理 API（262K）"
+    },
+    {
+      "id": "ev_fqrwgl",
+      "offerId": "openrouter:bkg6dk",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/dots-studio/dots-3-note-preview:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Dots3 Note Preview 免费 API（512K）"
+    },
+    {
+      "id": "ev_1xp6axf",
+      "offerId": "vercel:gsfjr9",
+      "platformId": "vercel",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/laya-decision-model-now-available-on-ai-gateway-free-through-october-31",
+          "label": "2026-10-01 Vercel 官方免费期公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/laya-free",
+          "label": "Vercel 模型定价详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Laya 决策模型 API 免费至 10 月 31 日"
     }
   ],
   "runs": [
@@ -4238,6 +4663,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A/B 双独立搜索：48h/7d/30d及长期免费；中文英文官方页、Product Hunt、Hacker News、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X。新发现5个平台6条权益，复核2条既有权益。账号级免费限额未实测；提交记录以 GitHub commit 为准。"
+    },
+    {
+      "id": "run_17r3i4i",
+      "startedAt": "2026-10-28T23:26:20.000Z",
+      "completedAt": "2026-10-28T23:28:17.906Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 31,
+      "candidatesFound": 13,
+      "offersCreated": 5,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A 免费额度独立检索：48h/7d/30d/长期，官方活动与定价；B 新平台独立检索：Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X 中英检索。新入库 OpenRouter 4 款原生免费 API 与 Vercel Laya 限免；Akamai Inference 新发布但无免费权益，仅平台候选。排除已过期 Vercel MiniMax 10/22、Baseten 10/27、付费订阅专享 OpenAI Pro/Team；Grok iOS Ultra 试用仅社区反馈，Qoder Qwen 延期缺少最新官方确认；Unchained 注册需申请。OpenRouter 50 RPD 为账号共享额度。未实测登录账号限额。"
     }
   ]
 }
