@@ -83,6 +83,46 @@ function serializeFilters(f: Filters): string {
   return s ? `?${s}` : '';
 }
 
+interface PresetItem {
+  id: string;
+  label: string;
+  desc: string;
+  apply: Partial<Filters>;
+}
+
+const PRESETS: PresetItem[] = [
+  {
+    id: 'beginner',
+    label: '🔥 新手无门槛',
+    desc: '无需绑卡 · 注册即用',
+    apply: { billing: ['none'], amountType: ['one-time'] },
+  },
+  {
+    id: 'developer',
+    label: '⚡ 开发者 API',
+    desc: '原生 API · Tool Calling',
+    apply: { access: ['api'], toolCalling: true },
+  },
+  {
+    id: 'long-context',
+    label: '📚 1M 超长上下文',
+    desc: '百万级 Tokens 处理',
+    apply: { context: '1m' },
+  },
+  {
+    id: 'expiring',
+    label: '⏰ 临期捡漏',
+    desc: '14 天内即将截止',
+    apply: { expiringOnly: true },
+  },
+  {
+    id: 'long-term',
+    label: '🌟 长期稳定免费',
+    desc: '每日恢复 / 周期可用',
+    apply: { longTermOnly: true },
+  },
+];
+
 export function ResourcesApp({ data }: { data: RadarData }) {
   const [filters, setFilters] = useUrlState<Filters>(parseFilters, serializeFilters, DEFAULT_FILTERS);
   const [view, setView] = useState<View>('card');
@@ -245,6 +285,51 @@ export function ResourcesApp({ data }: { data: RadarData }) {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Quick Presets Bar */}
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-xs font-semibold text-slate-400 mr-1 flex items-center gap-1">
+          <span>快捷场景:</span>
+        </span>
+        {PRESETS.map((preset) => {
+          const isActive =
+            preset.id === 'beginner'
+              ? filters.billing.includes('none') && filters.amountType.includes('one-time')
+              : preset.id === 'developer'
+              ? filters.access.includes('api') && filters.toolCalling
+              : preset.id === 'long-context'
+              ? filters.context === '1m'
+              : preset.id === 'expiring'
+              ? filters.expiringOnly
+              : preset.id === 'long-term'
+              ? filters.longTermOnly
+              : false;
+
+          return (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => {
+                if (isActive) {
+                  setFilters({ ...DEFAULT_FILTERS, q: filters.q });
+                } else {
+                  setFilters({ ...DEFAULT_FILTERS, q: filters.q, ...preset.apply });
+                }
+              }}
+              className={`group flex items-center gap-2 rounded-xl border px-3 py-1.5 text-xs transition-all cursor-pointer ${
+                isActive
+                  ? 'border-blue-500 bg-blue-600 text-white font-semibold shadow-md shadow-blue-500/20'
+                  : 'border-[#1e2a42] bg-[#0c1220]/80 text-slate-300 hover:border-slate-600 hover:bg-[#121c2e]'
+              }`}
+            >
+              <span>{preset.label}</span>
+              <span className={`text-[10px] hidden sm:inline ${isActive ? 'text-blue-100' : 'text-slate-500 group-hover:text-slate-400'}`}>
+                {preset.desc}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Filter Chips Container */}

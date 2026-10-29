@@ -14,6 +14,8 @@ import {
   AlertTriangle,
   Info,
   CheckCircle2,
+  Copy,
+  Terminal,
 } from 'lucide-react';
 import {
   Dialog,
@@ -52,15 +54,43 @@ export function OfferDetailDialog({
   const { isFavorite, toggleFavorite, toggleClaim, setNote, state } = usePersonal();
   const [noteDraft, setNoteDraft] = useState('');
   const [isEditingNote, setIsEditingNote] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const claim = state.claims[offer.id];
   const fav = isFavorite(offer.id);
   const claimUrl = offer.officialUrl ?? platform.websiteUrl;
   const daysLeft = daysUntil(offer.endAt);
 
+  const isApi = offer.accessType === 'api';
+  const modelName = offer.models[0] || 'default-model';
+  const baseUrl = platform.websiteUrl.replace(/\/$/, '') + '/v1';
+  const curlSnippet = offer.apiCompatibility === 'anthropic'
+    ? `curl ${baseUrl}/messages \\
+  -H "x-api-key: $API_KEY" \\
+  -H "anthropic-version: 2023-06-01" \\
+  -H "content-type: application/json" \\
+  -d '{
+    "model": "${modelName}",
+    "max_tokens": 1024,
+    "messages": [{"role": "user", "content": "Hello"}]
+  }'`
+    : `curl ${baseUrl}/chat/completions \\
+  -H "Authorization: Bearer $API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "${modelName}",
+    "messages": [{"role": "user", "content": "Hello"}]
+  }'`;
+
+  const copySnippet = () => {
+    navigator.clipboard?.writeText(curlSnippet);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0d1424] border-slate-800 text-slate-100 p-0 shadow-2xl">
+      <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0d1424] border-slate-800 text-slate-100 p-0 shadow-2xl rounded-2xl">
         {/* Header Bar */}
         <div className="relative border-b border-slate-800/80 bg-[#10192e] p-5">
           <div className="flex items-start justify-between gap-3">
@@ -232,6 +262,38 @@ export function OfferDetailDialog({
                   </span>
                 </div>
               </div>
+
+              {/* cURL API snippet for developers */}
+              {isApi && (
+                <div className="pt-3 border-t border-slate-800">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="flex items-center gap-1.5 text-slate-300 font-semibold text-[11px]">
+                      <Terminal className="h-3.5 w-3.5 text-blue-400" />
+                      <span>开发者 cURL 快速接入代码</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={copySnippet}
+                      className="inline-flex items-center gap-1 text-[11px] rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white px-2 py-0.5 border border-slate-700 transition-colors cursor-pointer"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="h-3 w-3 text-emerald-400" />
+                          <span className="text-emerald-400">已复制</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-3 w-3" />
+                          <span>复制代码</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  <pre className="rounded-lg bg-black/60 p-2.5 font-mono text-[11px] text-slate-300 overflow-x-auto leading-relaxed border border-slate-800">
+                    {curlSnippet}
+                  </pre>
+                </div>
+              )}
             </div>
           </div>
 

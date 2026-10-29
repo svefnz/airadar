@@ -103,8 +103,8 @@ export function OfferTableView({ offers, platformById, onSortToggle }: OfferTabl
           </div>
         )}
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[920px]">
+        <div className="overflow-x-auto touch-pan-x overscroll-x-contain">
+          <table className="w-full text-left border-collapse min-w-[880px]">
             {/* Table Header */}
             <thead>
               <tr className="border-b border-[#1e2a42] bg-[#0f172a]/90 text-[11px] font-semibold text-slate-400 select-none">
@@ -269,15 +269,20 @@ export function OfferTableView({ offers, platformById, onSortToggle }: OfferTabl
                     {/* 时效信息 */}
                     <td className="px-4 py-3.5">
                       <div className="space-y-0.5">
-                        <div className="flex items-center gap-1 text-[11px]">
+                        <div className="flex items-center gap-1.5 text-[11px]">
                           <Calendar className="h-3 w-3 text-slate-400 shrink-0" />
                           <span
-                            className={`font-semibold ${
-                              daysLeft !== null && daysLeft <= 7
+                            className={`font-semibold inline-flex items-center gap-1 ${
+                              daysLeft !== null && daysLeft <= 3
+                                ? 'text-amber-400 font-bold animate-pulse drop-shadow-xs'
+                                : daysLeft !== null && daysLeft <= 7
                                 ? 'text-amber-400'
                                 : 'text-slate-200'
                             }`}
                           >
+                            {daysLeft !== null && daysLeft <= 3 && (
+                              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-ping inline-block shrink-0" />
+                            )}
                             {offer.endAt
                               ? daysLeft !== null && daysLeft <= 7
                                 ? `${daysLeft} 天后截止`

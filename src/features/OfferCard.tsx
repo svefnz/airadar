@@ -198,7 +198,10 @@ export function OfferCard({ offer, platform }: OfferCardProps) {
                   t.variant === 'purple' &&
                     'bg-purple-950/50 text-purple-300 border-purple-800/60',
                   t.variant === 'amber' &&
-                    'bg-amber-950/50 text-amber-300 border-amber-800/60',
+                    cn(
+                      'bg-amber-950/50 text-amber-300 border-amber-800/60',
+                      daysLeft !== null && daysLeft <= 3 && 'animate-pulse shadow-xs shadow-amber-500/40 border-amber-600'
+                    ),
                   t.variant === 'blue' &&
                     'bg-blue-950/60 text-blue-300 border-blue-800/60'
                 )}
@@ -261,7 +264,21 @@ export function OfferCard({ offer, platform }: OfferCardProps) {
             <Clock className="h-3.5 w-3.5 shrink-0" />
             <span>{fmtDate(offer.discoveredAt)} 发现</span>
             <span className="text-slate-600">|</span>
-            <span className={daysLeft !== null && daysLeft <= 7 ? 'text-amber-400 font-medium' : ''}>
+            <span
+              className={
+                daysLeft !== null && daysLeft <= 3
+                  ? 'text-amber-400 font-bold inline-flex items-center gap-1.5'
+                  : daysLeft !== null && daysLeft <= 7
+                  ? 'text-amber-400 font-medium'
+                  : ''
+              }
+            >
+              {daysLeft !== null && daysLeft <= 3 && (
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500"></span>
+                </span>
+              )}
               {expiryDisplay}
             </span>
           </div>
