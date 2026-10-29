@@ -27,8 +27,8 @@
 
 ## 5. 文档与发布
 
-- [ ] 5.1 在 README/技术栈说明中补充 shadcn/ui 组件基线说明；`pnpm build` 通过
-- [ ] 5.2 推送 main，CI 通过并线上抽查移动端导航与深色主题
+^- [x] 5.1 在 README/技术栈说明中补充 shadcn/ui 组件基线说明；`pnpm build` 通过
+^- [x] 5.2 推送 main，CI 通过并线上抽查移动端导航与深色主题
 
 ## Workflow follow-up
 
