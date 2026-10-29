@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T14:16:03.863Z",
+  "lastSuccessfulSync": "2026-10-29T17:54:07.274Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -455,8 +455,8 @@
       "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
       "category": "llm-api",
       "firstDiscoveredAt": "2026-10-28T21:30:43Z",
-      "lastCheckedAt": "2026-10-28T21:30:43Z",
-      "trustStatus": "unverified"
+      "lastCheckedAt": "2026-10-29T17:54:07.272Z",
+      "trustStatus": "official"
     },
     {
       "id": "orca",
@@ -1142,6 +1142,30 @@
       "category": "coding-agent",
       "firstDiscoveredAt": "2026-10-28T00:00:00Z",
       "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "workato",
+      "name": "Workato",
+      "slug": "workato",
+      "canonicalDomain": "workato.com",
+      "websiteUrl": "https://www.workato.com/free",
+      "description": "Agent/MCP 与工作流自动化平台；免费 50K 平台 Credits（非模型 Tokens）",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastCheckedAt": "2026-10-29T17:54:07.272Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "agentgrid",
+      "name": "AgentGrid.io",
+      "slug": "agentgrid",
+      "canonicalDomain": "agentgrid.io",
+      "websiteUrl": "https://agentgrid.io",
+      "description": "2026年10月新推出的多 Agent 协作工作区；Free 100 artifacts、无限 Agent 席位，不附赠推理额度",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastCheckedAt": "2026-10-29T17:54:07.272Z",
       "trustStatus": "official"
     }
   ],
@@ -2720,26 +2744,36 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史报告称50次每日且20RPM;模型在线状态待核"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
       "sources": [
         {
           "url": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Xing4.0 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
-      ]
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "openrouter:08da1b6e7205",
@@ -2754,27 +2788,38 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称10月31日下线;共享免费池日限制须核实"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测",
+        "官方页面标注2026年10月31日下线，未公布准确时刻",
+        "Poolside 免费端点可能用于模型训练，请勿提交私密代码"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/poolside/laguna-s-2.1:free",
       "sources": [
         {
           "url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Laguna S 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
       ],
-      "endAt": "2026-10-31T00:00:00Z"
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "openrouter:c8f19e9a56c9",
@@ -2789,27 +2834,38 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称10月31日下线;限额不是单模型独享"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测",
+        "官方页面标注2026年10月31日下线，未公布准确时刻",
+        "Poolside 免费端点可能用于模型训练，请勿提交私密代码"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
       "sources": [
         {
           "url": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Laguna XS 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
       ],
-      "endAt": "2026-10-31T00:00:00Z"
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "openrouter:c4ee00fd187d",
@@ -2824,26 +2880,36 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称262K上下文且Tool Calling;当前模型状态待核"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/recursive/flint-v1.0:free",
       "sources": [
         {
           "url": "https://openrouter.ai/recursive/flint-v1.0:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Recursive Flint 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
-      ]
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "agentfoundry:acefda803657",
@@ -5759,6 +5825,176 @@
         }
       ],
       "endAt": "2026-11-11T23:59:59Z"
+    },
+    {
+      "id": "workato:1p8rxvr",
+      "platformId": "workato",
+      "title": "Workato Free 注册一次性 50,000 平台 Credits",
+      "models": [],
+      "accessType": "web",
+      "amount": 50000,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "Workato Free 自助注册（工作邮箱或 SSO）",
+        "无需信用卡",
+        "平台 Credits 用于 Tasks、API Calls、Rows、Genie actions；不是 LLM Token",
+        "一次性额度，不按月恢复；有效期/地区/实名未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "各功能独立按平台 Credits 计费",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://www.workato.com/free",
+      "sources": [
+        {
+          "url": "https://www.workato.com/free",
+          "label": "Workato 官方 50K 一次性 Credits 免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://docs.workato.com/en/pricing/self-service/self-service.html",
+          "label": "Workato Credits 计费用途",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ]
+    },
+    {
+      "id": "agentgrid:5wfnj0",
+      "platformId": "agentgrid",
+      "title": "AgentGrid.io 免费协作工作区（100 artifacts、无限 Agent 席位）",
+      "models": [],
+      "accessType": "web",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "免费方案每团队100 artifacts；此单位无法用 Schema 数额字段表达",
+        "无限 Agent 席位；URL/Figma 成功导入合计5次；文件导入上限50MiB、1000文件",
+        "连接 Claude/Codex/Hermes 等需自有模型权限，不赠推理 Token",
+        "需要登录；绑卡/实名/地区未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "100 artifacts/团队；5次 URL/Figma 成功导入",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://agentgrid.io/docs/help/limits",
+      "sources": [
+        {
+          "url": "https://agentgrid.io/docs/help/limits",
+          "label": "AgentGrid Free 100 artifacts、5 imports",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://agentgrid.io/connect",
+          "label": "AgentGrid 免费 Agent 接入说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:1dr4ux0",
+      "platformId": "openrouter",
+      "title": "OpenRouter Gemma 4 26B A4B 免费多模态 API（262K）",
+      "models": [
+        "google/gemma-4-26b-a4b-it:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册 OpenRouter 免费账号并创建 API Key；无需充值或绑卡",
+        "50次/日、20 RPM 为所有 :free 模型账号共享，并非该模型独享",
+        "具体有效期未公布；账号实际可用额度未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费账号共享50 RPD/20 RPM；购买≥$10 后额度提高不属于免费福利",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
+          "label": "Gemma 4 26B A4B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
+    },
+    {
+      "id": "openrouter:dt6hhw",
+      "platformId": "openrouter",
+      "title": "OpenRouter Gemma 4 31B 免费多模态编码 API（262K）",
+      "models": [
+        "google/gemma-4-31b-it:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册 OpenRouter 免费账号并创建 API Key；无需充值或绑卡",
+        "50次/日、20 RPM 为所有 :free 模型账号共享，并非该模型独享",
+        "具体有效期未公布；账号实际可用额度未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费账号共享50 RPD/20 RPM；购买≥$10 后额度提高不属于免费福利",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://openrouter.ai/google/gemma-4-31b-it:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-31b-it:free",
+          "label": "Gemma 4 31B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
     }
   ],
   "events": [
@@ -7391,9 +7627,374 @@
         }
       ],
       "description": "DeepSeek 官方文档核验"
+    },
+    {
+      "id": "ev_4kmqgx",
+      "offerId": null,
+      "platformId": "workato",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "workato",
+      "sources": [
+        {
+          "url": "https://www.workato.com/free",
+          "label": "Workato 官方 50K 一次性 Credits 免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://docs.workato.com/en/pricing/self-service/self-service.html",
+          "label": "Workato Credits 计费用途",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "独立新平台发现：Workato"
+    },
+    {
+      "id": "ev_bk5c81",
+      "offerId": null,
+      "platformId": "agentgrid",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "agentgrid",
+      "sources": [
+        {
+          "url": "https://agentgrid.io/docs/help/limits",
+          "label": "AgentGrid Free 100 artifacts、5 imports",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://agentgrid.io/connect",
+          "label": "AgentGrid 免费 Agent 接入说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "独立新平台发现：AgentGrid.io"
+    },
+    {
+      "id": "ev_15nd8m8",
+      "offerId": "workato:1p8rxvr",
+      "platformId": "workato",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.workato.com/free",
+          "label": "Workato 官方 50K 一次性 Credits 免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://docs.workato.com/en/pricing/self-service/self-service.html",
+          "label": "Workato Credits 计费用途",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：Workato Free 注册一次性 50,000 平台 Credits"
+    },
+    {
+      "id": "ev_1vmc6uj",
+      "offerId": "agentgrid:5wfnj0",
+      "platformId": "agentgrid",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://agentgrid.io/docs/help/limits",
+          "label": "AgentGrid Free 100 artifacts、5 imports",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://agentgrid.io/connect",
+          "label": "AgentGrid 免费 Agent 接入说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：AgentGrid.io 免费协作工作区（100 artifacts、无限 Agent 席位）"
+    },
+    {
+      "id": "ev_1wfjil5",
+      "offerId": "openrouter:1dr4ux0",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
+          "label": "Gemma 4 26B A4B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：OpenRouter Gemma 4 26B A4B 免费多模态 API（262K）"
+    },
+    {
+      "id": "ev_1s4ysle",
+      "offerId": "openrouter:dt6hhw",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-31b-it:free",
+          "label": "Gemma 4 31B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：OpenRouter Gemma 4 31B 免费多模态编码 API（262K）"
+    },
+    {
+      "id": "ev_1bgzy1f",
+      "offerId": "openrouter:f1392a0041eb",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
+          "label": "Xing4.0 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_nddphg",
+      "offerId": "openrouter:f1392a0041eb",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
+          "label": "Xing4.0 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_1utyd02",
+      "offerId": "openrouter:08da1b6e7205",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
+          "label": "Laguna S 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；10月31日下线；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_qmwxl5",
+      "offerId": "openrouter:08da1b6e7205",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
+          "label": "Laguna S 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_13l91g4",
+      "offerId": "openrouter:c8f19e9a56c9",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
+          "label": "Laguna XS 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；10月31日下线；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_9su9w3",
+      "offerId": "openrouter:c8f19e9a56c9",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
+          "label": "Laguna XS 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_j3prp0",
+      "offerId": "openrouter:c4ee00fd187d",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/recursive/flint-v1.0:free",
+          "label": "Recursive Flint 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_hjypzb",
+      "offerId": "openrouter:c4ee00fd187d",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/recursive/flint-v1.0:free",
+          "label": "Recursive Flint 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
     }
   ],
   "runs": [
+    {
+      "id": "run_r7pphd",
+      "startedAt": "2026-10-29T17:51:52.000Z",
+      "completedAt": "2026-10-29T17:54:07.274Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 25,
+      "candidatesFound": 11,
+      "offersCreated": 4,
+      "offersUpdated": 4,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：独立中英搜索48h/7d/30d与长期免费，官方核查 OpenRouter、Workato、Amp、OpenCode、Vercel 等；B：独立检索 Product Hunt、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X 近7–30天新平台，AgentGrid 入库。新增 Workato 50K 平台Credits、AgentGrid 100 artifacts 免费档、Gemma4两款原生免费API；官方复核4条OpenRouter历史待核实权益，Poolside两款10月31日下线但未给出具体时刻。排除 Amp 历史$10/日新用户不可领、AgentRouter高额签到缺少官方确认。未实测账号。"
+    },
     {
       "id": "run_dxn2sw",
       "startedAt": "2026-10-29T14:12:47.000Z",
