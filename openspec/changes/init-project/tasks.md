@@ -38,8 +38,8 @@
 
 ## 7. 集成验收
 
-- [ ] 7.1 全量执行 `pnpm check && pnpm test && pnpm e2e && pnpm build`，全部通过
-- [ ] 7.2 线上验证：确认 https://svefnz.github.io/airadar/ 各页面与内部跳转可用，监控状态页展示最新真实运行记录
+^- [x] 7.1 全量执行 `pnpm check && pnpm test && pnpm e2e && pnpm build`，全部通过
+^- [x] 7.2 线上验证：确认 https://svefnz.github.io/airadar/ 各页面与内部跳转可用，监控状态页展示最新真实运行记录
 
 ## Workflow follow-up
 
