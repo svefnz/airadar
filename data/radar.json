@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T08:13:48.208Z",
+  "lastSuccessfulSync": "2026-10-29T11:53:32.277Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1022,6 +1022,30 @@
       "category": "dev-tool",
       "firstDiscoveredAt": "2026-10-29T08:13:47.892Z",
       "lastCheckedAt": "2026-10-29T08:13:47.892Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "kilo",
+      "name": "Kilo Code / Kilo Gateway",
+      "slug": "kilo",
+      "canonicalDomain": "kilo.ai",
+      "websiteUrl": "https://kilo.ai/",
+      "description": "Kilo IDE、CLI、云端 Coding Agent，Auto Free 动态选择免费模型",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastCheckedAt": "2026-10-29T11:53:32.277Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "scaleway",
+      "name": "Scaleway Generative APIs",
+      "slug": "scaleway",
+      "canonicalDomain": "scaleway.com",
+      "websiteUrl": "https://www.scaleway.com/en/generative-apis/",
+      "description": "欧洲原生兼容 API，新客户 100 万 Tokens 免费层，需绑卡且超额计费",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastCheckedAt": "2026-10-29T11:53:32.277Z",
       "trustStatus": "official"
     }
   ],
@@ -4910,6 +4934,341 @@
       ],
       "discoveredAt": "2026-10-29T08:13:47.892Z",
       "lastVerifiedAt": "2026-10-29T08:13:47.892Z"
+    },
+    {
+      "id": "vercel:1p33uow",
+      "platformId": "vercel",
+      "title": "Reflection Beam 1.0 免费推理 API（1M 上下文）",
+      "models": [
+        "reflection/beam-free"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "注册 Vercel 免费账户创建 AI Gateway API Key，无需购买订阅",
+        "必须使用明确的 -free 模型 ID；标准模型 ID 可能计费",
+        "限时免费，官方尚未公布截止日期；免费模型与账户通用 $5/30天赠额不可重复计数",
+        "Reflection 服务免费路由，支持工具调用、结构化输出和可调推理强度"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费请求总次数未公布；-free 免费期结束后停止服务",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "both",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastVerifiedAt": "2026-10-29T11:53:32.277Z",
+      "officialUrl": "https://vercel.com/ai-gateway/models/beam-free",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free",
+          "label": "2026-10-16 Vercel 官方免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/beam-free",
+          "label": "Vercel 免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ]
+    },
+    {
+      "id": "vercel:5bcxig",
+      "platformId": "vercel",
+      "title": "Nemotron 3.5 Lightning 免费 API（1M 上下文）",
+      "models": [
+        "nvidia/nemotron-3.5-lightning-free"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "注册 Vercel 免费账户创建 AI Gateway API Key，无需购买订阅",
+        "必须使用明确的 -free 模型 ID；标准模型 ID 可能计费",
+        "限时免费，官方尚未公布截止日期；免费模型与账户通用 $5/30天赠额不可重复计数",
+        "NVIDIA 可能记录提示词和输出用于模型改进；避免机密代码"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费请求总次数及截止日期未公布",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "both",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastVerifiedAt": "2026-10-29T11:53:32.277Z",
+      "officialUrl": "https://vercel.com/ai-gateway/models/nemotron-3.5-lightning-free",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/nemotron-3-5-lightning-now-available-on-ai-gateway-for-free",
+          "label": "2026-10-14 Vercel 官方免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/nemotron-3.5-lightning-free",
+          "label": "Vercel 免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:14lumsg",
+      "platformId": "openrouter",
+      "title": "Thinking Machines Inkling 免费编码 API（1M，仅 Agent Harness）",
+      "models": [
+        "thinkingmachines/inkling:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册 OpenRouter，创建 API Key；:free 模型无需购买 Credits",
+        "50 次/日为所有 :free 模型共享账号额度，20 次/分钟；不是每模型 50 次",
+        "购买 $10 Credits 可提高日限额但非免费档使用条件",
+        "部分免费模型会记录请求，勿传机密数据",
+        "仅限 Agentic Harness；输入输出可能被 Thinking Machines 用于训练",
+        "文本/图像/音频输入，支持工具调用"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "50 RPD shared across free models; 20 RPM; failed attempts count",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastVerifiedAt": "2026-10-29T11:53:32.277Z",
+      "officialUrl": "https://openrouter.ai/thinkingmachines/inkling:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/thinkingmachines/inkling:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:ijaxgn",
+      "platformId": "openrouter",
+      "title": "Thinking Machines Inkling Small 免费编码 API（1M，仅 Agent Harness）",
+      "models": [
+        "thinkingmachines/inkling-small:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册 OpenRouter，创建 API Key；:free 模型无需购买 Credits",
+        "50 次/日为所有 :free 模型共享账号额度，20 次/分钟；不是每模型 50 次",
+        "购买 $10 Credits 可提高日限额但非免费档使用条件",
+        "部分免费模型会记录请求，勿传机密数据",
+        "仅限 Agentic Harness；输入输出可能被 Thinking Machines 用于训练",
+        "文本/图像/音频输入，支持工具调用"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "50 RPD shared across free models; 20 RPM; failed attempts count",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastVerifiedAt": "2026-10-29T11:53:32.277Z",
+      "officialUrl": "https://openrouter.ai/thinkingmachines/inkling-small:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/thinkingmachines/inkling-small:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:1dobb6d",
+      "platformId": "openrouter",
+      "title": "Nemotron 3.5 Super VL 免费多模态 API（1M 上下文）",
+      "models": [
+        "nvidia/nemotron-3.5-super-vl:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册 OpenRouter，创建 API Key；:free 模型无需购买 Credits",
+        "50 次/日为所有 :free 模型共享账号额度，20 次/分钟；不是每模型 50 次",
+        "购买 $10 Credits 可提高日限额但非免费档使用条件",
+        "部分免费模型会记录请求，勿传机密数据",
+        "NVIDIA 试用端点可能记录输入输出用于改进模型",
+        "支持文本、图像、视频输入与工具调用"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "50 RPD shared across free models; 20 RPM; failed attempts count",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastVerifiedAt": "2026-10-29T11:53:32.277Z",
+      "officialUrl": "https://openrouter.ai/nvidia/nemotron-3.5-super-vl:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/nvidia/nemotron-3.5-super-vl:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ]
+    },
+    {
+      "id": "kilo:1q889hf",
+      "platformId": "kilo",
+      "title": "Kilo Auto Free 免费 Coding Agent（每 IP 每小时 200 请求）",
+      "models": [
+        "kilo-auto/free（动态选择免费模型）"
+      ],
+      "accessType": "client",
+      "amount": 200,
+      "unit": "Request",
+      "amountType": "fixed-period",
+      "resetInterval": "periodic",
+      "claimConditions": [
+        "免费注册后在 IDE、CLI 或云端 Coding Agent 选择 Auto Free",
+        "200 次/小时是每 IP 上限，仍受上游限流影响",
+        "免费模型会动态变更；可能记录提示词，避免机密代码",
+        "按客户端专用权益记录，不推断可以无条件反代外部 API"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "200 requests/hour/IP, plus upstream provider limits",
+      "contextWindow": null,
+      "toolCalling": true,
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastVerifiedAt": "2026-10-29T11:53:32.277Z",
+      "officialUrl": "https://kilo.ai/docs/getting-started/using-kilo-for-free",
+      "sources": [
+        {
+          "url": "https://kilo.ai/docs/getting-started/using-kilo-for-free",
+          "label": "Kilo 官方 Auto Free 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://kilo.ai/docs/getting-started/rate-limits-and-costs",
+          "label": "Kilo 官方 200 请求/小时限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://kilo.ai/pricing",
+          "label": "Kilo 官方免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ]
+    },
+    {
+      "id": "scaleway:103cack",
+      "platformId": "scaleway",
+      "title": "Scaleway 新客户原生 API 免费 100 万 Tokens（需绑卡）",
+      "models": [
+        "glm-5.3",
+        "deepseek-v4.1-flash",
+        "qwen3.8-27b"
+      ],
+      "accessType": "api",
+      "amount": 1000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新客户一次性共享 100 万 Tokens，不是每模型各自赠送",
+        "Scaleway 创建可用资源需银行卡；KYC 可能要求，部分地区限制未确认",
+        "超过免费层自动按量计费，须提前设置预算与限额",
+        "原生 OpenAI 兼容 API"
+      ],
+      "billingRequirements": "card",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费层 1,000,000 Tokens 总量；超额按量收费",
+      "contextWindow": null,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T11:53:32.277Z",
+      "lastVerifiedAt": "2026-10-29T11:53:32.277Z",
+      "officialUrl": "https://www.scaleway.com/en/generative-apis/",
+      "sources": [
+        {
+          "url": "https://www.scaleway.com/en/generative-apis/",
+          "label": "官方新用户 100 万 Tokens 免费层",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://www.scaleway.com/en/docs/generative-apis/faq/",
+          "label": "官方超额收费说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://www.scaleway.com/en/docs/account/setup-lifecycle/create-an-account/",
+          "label": "官方银行卡与注册流程",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ]
     }
   ],
   "events": [
@@ -5917,6 +6276,231 @@
         }
       ],
       "description": "新增官网声明免费权益：Qubico AI 新注册 $0.25 推理 API Credits（6个月有效）；实际账号到账未实测"
+    },
+    {
+      "id": "ev_sggbk0",
+      "offerId": null,
+      "platformId": "kilo",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "kilo",
+      "sources": [
+        {
+          "url": "https://kilo.ai/",
+          "label": "平台官方网站",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "新增核实有免费服务的平台：Kilo Code / Kilo Gateway"
+    },
+    {
+      "id": "ev_1hsfp00",
+      "offerId": null,
+      "platformId": "scaleway",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "scaleway",
+      "sources": [
+        {
+          "url": "https://www.scaleway.com/en/generative-apis/",
+          "label": "平台官方网站",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "新增核实有免费服务的平台：Scaleway Generative APIs"
+    },
+    {
+      "id": "ev_pe1mwl",
+      "offerId": "vercel:1p33uow",
+      "platformId": "vercel",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free",
+          "label": "2026-10-16 Vercel 官方免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/beam-free",
+          "label": "Vercel 免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Reflection Beam 1.0 免费推理 API（1M 上下文）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_10gw1zf",
+      "offerId": "vercel:5bcxig",
+      "platformId": "vercel",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/nemotron-3-5-lightning-now-available-on-ai-gateway-for-free",
+          "label": "2026-10-14 Vercel 官方免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/nemotron-3.5-lightning-free",
+          "label": "Vercel 免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Nemotron 3.5 Lightning 免费 API（1M 上下文）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_hmftmc",
+      "offerId": "openrouter:14lumsg",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/thinkingmachines/inkling:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Thinking Machines Inkling 免费编码 API（1M，仅 Agent Harness）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_147h4g6",
+      "offerId": "openrouter:ijaxgn",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/thinkingmachines/inkling-small:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Thinking Machines Inkling Small 免费编码 API（1M，仅 Agent Harness）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_12oivun",
+      "offerId": "openrouter:1dobb6d",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/nvidia/nemotron-3.5-super-vl:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Nemotron 3.5 Super VL 免费多模态 API（1M 上下文）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_ip1cf0",
+      "offerId": "kilo:1q889hf",
+      "platformId": "kilo",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://kilo.ai/docs/getting-started/using-kilo-for-free",
+          "label": "Kilo 官方 Auto Free 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://kilo.ai/docs/getting-started/rate-limits-and-costs",
+          "label": "Kilo 官方 200 请求/小时限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://kilo.ai/pricing",
+          "label": "Kilo 官方免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Kilo Auto Free 免费 Coding Agent（每 IP 每小时 200 请求）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_tq7uxn",
+      "offerId": "scaleway:103cack",
+      "platformId": "scaleway",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.scaleway.com/en/generative-apis/",
+          "label": "官方新用户 100 万 Tokens 免费层",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://www.scaleway.com/en/docs/generative-apis/faq/",
+          "label": "官方超额收费说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://www.scaleway.com/en/docs/account/setup-lifecycle/create-an-account/",
+          "label": "官方银行卡与注册流程",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Scaleway 新客户原生 API 免费 100 万 Tokens（需绑卡）；账户实际到账未实测"
     }
   ],
   "runs": [
@@ -5994,6 +6578,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A：中英检索48h/7d/30d及长期有效免费 API/IDE/CLI/网页客户端，复核DeepSeek、GLM、Kimi、Qwen、MiMo、Gemini、GPT、Claude、Qoder、OpenCode。B：独立检索Product Hunt 10/27-28、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X及新平台。发现OptraCloud官网声明1.5亿输出Token、Qubico $0.25 API；Push仅免费客户端不含模型赠额。Tuna需绑卡排除；Vireonix无Key高风险、SharedLLM beta无法独立验证未入库；Mudroom免费权益不明未入库。新账号实际到账未实测。"
+    },
+    {
+      "id": "run_muk9c6",
+      "startedAt": "2026-10-29T11:51:33.000Z",
+      "completedAt": "2026-10-29T11:53:32.277Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 33,
+      "candidatesFound": 12,
+      "offersCreated": 7,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：中英独立检索48h/7d/30d及长期免费权益，核查OpenRouter、Vercel、Kilo、Scaleway、Qoder、Hugging Face、Amp及DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude等。B：独立检索Product Hunt 10/28榜、HN newest、GitHub/HF trending、Reddit、Linux.do、V2EX、X与官方新平台，新增Kilo/Scaleway候选及7项权益。排除需付费Pro的Glyph、旧Amp $10/day非新户开放、融资门槛DeepStart、未经核实AgentRouter。未实测账号到账；Kilo仅客户端、Scaleway绑卡且超额计费。"
     }
   ]
 }
