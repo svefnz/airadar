@@ -1,7 +1,8 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { loadRadar } from "../lib/data/load";
-import { Badge } from '../components/ui/Badge';
+import { Badge } from '../components/ui/badge';
+import { badgeTone } from '../lib/utils/badgeTone';
 import { PlatformRow } from '../features/PlatformRow';
 
 const data = loadRadar();
@@ -32,7 +33,7 @@ const last30 = discovered.filter((p) => now - Date.parse(p.firstDiscoveredAt) > 
 
   <section class="space-y-3">
     <h2 class="text-sm font-semibold text-ink flex items-center gap-2">
-      最近 7 天 <Badge tone="accent">{last7.length}</Badge>
+      最近 7 天 <Badge variant="outline" className={badgeTone('accent')}>{last7.length}</Badge>
     </h2>
     {last7.length === 0 ? (
       <p class="text-xs text-faint py-4">最近 7 天未发现新平台</p>
@@ -45,7 +46,7 @@ const last30 = discovered.filter((p) => now - Date.parse(p.firstDiscoveredAt) > 
 
   <section class="mt-6 space-y-3">
     <h2 class="text-sm font-semibold text-ink flex items-center gap-2">
-      8–30 天前 <Badge tone="neutral">{last30.length}</Badge>
+      8–30 天前 <Badge variant="outline" className={badgeTone('neutral')}>{last30.length}</Badge>
     </h2>
     {last30.length === 0 ? (
       <p class="text-xs text-faint py-4">暂无数据显示</p>

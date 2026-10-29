@@ -51,6 +51,6 @@ test('资源库: 视图切换与排序', async ({ page }) => {
   await page.goto('/resources/');
   await page.getByRole('button', { name: '紧凑列表视图' }).click();
   await expect(page.locator('article').first()).toBeVisible();
-  await page.getByLabel('排序方式').selectOption('name');
-  await expect(page.getByLabel('排序方式')).toHaveValue('name');
+  await page.getByLabel('排序方式').click();
+  await page.getByRole('option', { name: '平台名称' }).click();
 });

@@ -1,4 +1,6 @@
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { badgeTone } from '@/lib/utils/badgeTone';
 import {
   ACCESS_TYPE_LABELS,
   AMOUNT_TYPE_LABELS,
@@ -22,10 +24,22 @@ export function amountTone(offer: Offer): 'accent' | 'ok' | 'warn' | 'neutral' {
   return 'accent';
 }
 
-/** 额度徽章: 高对比展示核心信息 */
+/** 额度徽章: 高对比展示核心信息, 附单位语义说明 */
 export function AmountBadge({ offer }: { offer: Offer }) {
   const label = offer.unit === 'Unknown' && offer.amountType === 'unknown' ? '额度未确认' : `${fmtAmount(offer.amount, offer.unit)} · ${AMOUNT_TYPE_LABELS[offer.amountType]}`;
-  return <Badge tone={amountTone(offer)} className="text-xs font-semibold">{label}</Badge>;
+  const tip = offer.unit === 'Unknown' ? '额度数值未知, 不得与其他单位比较' : `单位 ${offer.unit}${offer.resetInterval !== 'unknown' ? ` · ${RESET_INTERVAL_LABELS[offer.resetInterval]}` : ''} · 不同单位之间不作价值比较`;
+  return (
+    <TooltipProvider delayDuration={200}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span tabIndex={0}>
+            <Badge variant="outline" className={badgeTone(amountTone(offer), 'text-xs font-semibold')}>{label}</Badge>
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>{tip}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
 }
 
 export function StatusBadge({ status }: { status: OfferStatus }) {
@@ -36,28 +50,28 @@ export function StatusBadge({ status }: { status: OfferStatus }) {
     paused: 'warn',
     unknown: 'neutral',
   };
-  return <Badge tone={tone[status]}>{OFFER_STATUS_LABELS[status]}</Badge>;
+  return <Badge variant="outline" className={badgeTone(tone[status])}>{OFFER_STATUS_LABELS[status]}</Badge>;
 }
 
 export function TrustBadge({ status }: { status: TrustStatus }) {
   const tone: Record<TrustStatus, 'ok' | 'warn' | 'info'> = { official: 'ok', community: 'info', unverified: 'warn' };
-  return <Badge tone={tone[status]}>{TRUST_STATUS_LABELS[status]}</Badge>;
+  return <Badge variant="outline" className={badgeTone(tone[status])}>{TRUST_STATUS_LABELS[status]}</Badge>;
 }
 
 export function AccessBadge({ access }: { access: AccessType }) {
   const tone: Record<AccessType, 'accent' | 'neutral' | 'info'> = { api: 'accent', client: 'info', web: 'neutral', unknown: 'neutral' };
-  return <Badge tone={tone[access]}>{ACCESS_TYPE_LABELS[access]}</Badge>;
+  return <Badge variant="outline" className={badgeTone(tone[access])}>{ACCESS_TYPE_LABELS[access]}</Badge>;
 }
 
 /** 截止倒计时 */
 export function DeadlineBadge({ offer }: { offer: Offer }) {
   const d = daysUntil(offer.endAt);
-  if (offer.status === 'ended') return <Badge tone="bad">已结束</Badge>;
-  if (offer.status === 'upcoming') return <Badge tone="info">即将开始</Badge>;
-  if (d === null) return <Badge tone="neutral">长期</Badge>;
-  if (d <= 7) return <Badge tone="warn">{d} 天后截止</Badge>;
-  if (d <= 30) return <Badge tone="info">{d} 天后截止</Badge>;
-  return <Badge tone="neutral">截止 {offer.endAt!.slice(0, 10)}</Badge>;
+  if (offer.status === 'ended') return <Badge variant="outline" className={badgeTone('bad')}>已结束</Badge>;
+  if (offer.status === 'upcoming') return <Badge variant="outline" className={badgeTone('info')}>即将开始</Badge>;
+  if (d === null) return <Badge variant="outline" className={badgeTone('neutral')}>长期</Badge>;
+  if (d <= 7) return <Badge variant="outline" className={badgeTone('warn')}>{d} 天后截止</Badge>;
+  if (d <= 30) return <Badge variant="outline" className={badgeTone('info')}>{d} 天后截止</Badge>;
+  return <Badge variant="outline" className={badgeTone('neutral')}>截止 {offer.endAt!.slice(0, 10)}</Badge>;
 }
 
 /** 领取条件与风险信息行 */
@@ -93,7 +107,7 @@ export function RiskHint({ offer, relayPlatform }: { offer: Offer; relayPlatform
   return (
     <div className="flex flex-wrap gap-1">
       {risks.map((r) => (
-        <Badge key={r} tone="warn">⚠ {r}</Badge>
+        <Badge key={r} variant="outline" className={badgeTone('warn')}>⚠ {r}</Badge>
       ))}
     </div>
   );

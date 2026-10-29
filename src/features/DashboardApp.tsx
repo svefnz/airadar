@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { CalendarClock, Layers, Radar, ShieldCheck, Sparkles, TrendingUp, WifiOff, Zap } from 'lucide-react';
-import { Card, CardBody, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { badgeTone } from '@/lib/utils/badgeTone';
+import { Button } from '@/components/ui/button';
 import { Donut } from '@/components/charts/Donut';
 import { TrendBars } from '@/components/charts/TrendBars';
 import { OfferCard } from '@/features/OfferCard';
@@ -128,12 +129,12 @@ export function DashboardApp({ data }: { data: RadarData }) {
             <CardTitle className="flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-warn" /> 值得立即领取</CardTitle>
             <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/resources/?sort=value'))}>全部资源 →</Button>
           </CardHeader>
-          <CardBody className="space-y-3">
+          <CardContent className="space-y-3">
             {immediate.length === 0 && <p className="py-6 text-center text-xs text-faint">暂无可推荐的立即领取资源</p>}
             {immediate.map((o) => (
               <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
             ))}
-          </CardBody>
+          </CardContent>
         </Card>
 
         <div className="space-y-4">
@@ -141,23 +142,23 @@ export function DashboardApp({ data }: { data: RadarData }) {
             <CardHeader>
               <CardTitle>近 30 天新增趋势</CardTitle>
             </CardHeader>
-            <CardBody>
+            <CardContent className="px-4 pb-4">
               <TrendBars values={trend.map((d) => d.count)} labels={trend.map((d) => d.label)} />
-            </CardBody>
+            </CardContent>
           </Card>
           <Card>
             <CardHeader>
               <CardTitle>API / 客户端占比</CardTitle>
             </CardHeader>
-            <CardBody>
+            <CardContent className="px-4 pb-4">
               <Donut slices={accessShare} />
-            </CardBody>
+            </CardContent>
           </Card>
           <Card>
             <CardHeader>
               <CardTitle>额度恢复周期分布</CardTitle>
             </CardHeader>
-            <CardBody>
+            <CardContent className="px-4 pb-4">
               {resetDist.length === 0 ? (
                 <p className="py-4 text-center text-xs text-faint">暂无数据</p>
               ) : (
@@ -173,21 +174,21 @@ export function DashboardApp({ data }: { data: RadarData }) {
                   ))}
                 </ul>
               )}
-            </CardBody>
+            </CardContent>
           </Card>
           <Card>
             <CardHeader>
               <CardTitle>活动状态分布</CardTitle>
             </CardHeader>
-            <CardBody>
+            <CardContent className="px-4 pb-4">
               <div className="flex flex-wrap gap-1.5">
                 {[...statusCounts.entries()].map(([k, v]) => (
-                  <Badge key={k} tone={k === 'active' ? 'ok' : k === 'ended' ? 'bad' : k === 'upcoming' ? 'info' : k === 'paused' ? 'warn' : 'neutral'}>
+                  <Badge key={k} variant="outline" className={badgeTone(k === 'active' ? 'ok' : k === 'ended' ? 'bad' : k === 'upcoming' ? 'info' : k === 'paused' ? 'warn' : 'neutral')}>
                     {k} {v}
                   </Badge>
                 ))}
               </div>
-            </CardBody>
+            </CardContent>
           </Card>
         </div>
       </div>
@@ -198,11 +199,11 @@ export function DashboardApp({ data }: { data: RadarData }) {
           <CardTitle className="flex items-center gap-1.5"><Sparkles className="h-3.5 w-3.5 text-accent" /> 最新发现</CardTitle>
           <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/resources/?sort=discovered'))}>查看全部 →</Button>
         </CardHeader>
-        <CardBody className="space-y-3">
+        <CardContent className="space-y-3">
           {latest.map((o) => (
             <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
           ))}
-        </CardBody>
+        </CardContent>
       </Card>
 
       {/* 值得长期使用 */}
@@ -211,12 +212,12 @@ export function DashboardApp({ data }: { data: RadarData }) {
           <CardTitle className="flex items-center gap-1.5"><Radar className="h-3.5 w-3.5 text-ok" /> 值得长期使用</CardTitle>
           <span className="text-[11px] text-faint">每日/每周/每月恢复</span>
         </CardHeader>
-        <CardBody className="space-y-3">
+        <CardContent className="space-y-3">
           {longTerm.length === 0 && <p className="py-6 text-center text-xs text-faint">暂无长期免费资源</p>}
           {longTerm.map((o) => (
             <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
           ))}
-        </CardBody>
+        </CardContent>
       </Card>
 
       {/* 最新变化时间线 */}
@@ -225,7 +226,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
           <CardTitle>最新变化</CardTitle>
           <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/changelog/'))}>变更记录 →</Button>
         </CardHeader>
-        <CardBody>
+        <CardContent className="px-4 pb-4">
           <ol className="relative border-l border-edge pl-4 space-y-3">
             {recentEvents.map((ev) => {
               const p = ev.platformId ? platformById.get(ev.platformId) : undefined;
@@ -235,7 +236,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
                     <span className="tabular text-faint">{ev.timestamp.slice(0, 16)}</span>
                     {p && <a href={withBase(`/platforms/${p.slug}/`)} className="font-medium text-muted hover:text-accent">{p.name}</a>}
-                    <Badge tone="accent">{ev.eventType}</Badge>
+                    <Badge variant="outline" className={badgeTone('accent')}>{ev.eventType}</Badge>
                   </div>
                   <p className="mt-0.5 text-[13px] text-ink">{ev.description}</p>
                   {ev.previousValue && ev.currentValue && (
@@ -248,7 +249,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
             })}
           </ol>
           {recentEvents.length === 0 && <p className="py-6 text-center text-xs text-faint">暂无变更事件</p>}
-        </CardBody>
+        </CardContent>
       </Card>
     </div>
   );

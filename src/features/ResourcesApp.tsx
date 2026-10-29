@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 import { Search, LayoutGrid, List, X, ArrowUpDown } from 'lucide-react';
-import { Input, Select, Toggle } from '@/components/ui/fields';
-import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { OfferCard } from '@/features/OfferCard';
 import { priorityScore } from '@/lib/data/radar';
@@ -168,13 +170,18 @@ export function ResourcesApp({ data }: { data: RadarData }) {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Select value={sort} onChange={(e) => setSort(e.target.value as SortKey)} aria-label="排序方式">
-            <option value="value">按领取价值</option>
-            <option value="discovered">最近发现</option>
-            <option value="updated">最近更新</option>
-            <option value="expiring">即将过期</option>
-            <option value="verified">最近核验</option>
-            <option value="name">平台名称</option>
+          <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
+            <SelectTrigger className="w-44" aria-label="排序方式">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="value">按领取价值</SelectItem>
+              <SelectItem value="discovered">最近发现</SelectItem>
+              <SelectItem value="updated">最近更新</SelectItem>
+              <SelectItem value="expiring">即将过期</SelectItem>
+              <SelectItem value="verified">最近核验</SelectItem>
+              <SelectItem value="name">平台名称</SelectItem>
+            </SelectContent>
           </Select>
           <div className="flex items-center rounded-md border border-edge-strong bg-surface p-0.5">
             <button
@@ -238,9 +245,9 @@ export function ResourcesApp({ data }: { data: RadarData }) {
           <Chip active={filters.context === '1m'} onClick={() => set({ context: filters.context === '1m' ? '' : '1m' })} label="1M+" />
         </FilterGroup>
         <div className="flex items-center gap-1.5 ml-auto">
-          <Toggle checked={filters.expiringOnly} onChange={(v) => set({ expiringOnly: v })} label="仅看即将过期" />
+          <Switch checked={filters.expiringOnly} onCheckedChange={(v) => set({ expiringOnly: v })} aria-label="仅看即将过期" />
           <span className="text-muted">即将过期</span>
-          <Toggle checked={filters.longTermOnly} onChange={(v) => set({ longTermOnly: v })} label="仅看长期免费" />
+          <Switch checked={filters.longTermOnly} onCheckedChange={(v) => set({ longTermOnly: v })} aria-label="仅看长期免费" />
           <span className="text-muted">长期免费</span>
         </div>
         <Button size="sm" variant="ghost" onClick={() => setFilters(DEFAULT_FILTERS)} className="gap-1">

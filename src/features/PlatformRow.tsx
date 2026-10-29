@@ -1,5 +1,6 @@
-import { Card, CardBody } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { badgeTone } from '@/lib/utils/badgeTone';
 import { PLATFORM_CATEGORY_LABELS } from '@/lib/data/enums';
 import { fmtDate } from '@/lib/utils/format';
 import { withBase } from '@/lib/utils/url';
@@ -18,15 +19,15 @@ export function PlatformRow({ data, platform }: { data: RadarData; platform: Pla
   const offers = data.offers.filter((o) => o.platformId === platform.id);
   return (
     <Card>
-      <CardBody>
+      <CardContent className="px-4 pb-4">
         <div className="flex flex-col gap-3 pt-2">
           <div className="flex flex-wrap items-start justify-between gap-2">
             <div className="min-w-0">
               <a href={withBase(`/platforms/${platform.slug}/`)} className="text-sm font-semibold text-ink hover:text-accent">{platform.name}</a>
               <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
-                <Badge tone={st.tone}>{st.label}</Badge>
-                <Badge tone="neutral">{PLATFORM_CATEGORY_LABELS[platform.category]}</Badge>
-                {platform.demo && <Badge tone="info">Demo</Badge>}
+                <Badge variant="outline" className={badgeTone(st.tone)}>{st.label}</Badge>
+                <Badge variant="outline" className={badgeTone('neutral')}>{PLATFORM_CATEGORY_LABELS[platform.category]}</Badge>
+                {platform.demo && <Badge variant="outline" className={badgeTone('info')}>Demo</Badge>}
               </div>
             </div>
             <div className="text-right text-[11px] text-faint">
@@ -46,7 +47,7 @@ export function PlatformRow({ data, platform }: { data: RadarData; platform: Pla
             </div>
           )}
         </div>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 }

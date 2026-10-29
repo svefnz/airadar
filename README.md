@@ -23,7 +23,7 @@
 
 Astro · React · TypeScript（strict）· Tailwind CSS v4 · Zod · Lucide Icons · Vitest · Playwright · pnpm · GitHub Actions + Pages
 
-组件为自研轻量实现（等效 shadcn/ui 的质量与可访问性，避免引入大量运行时依赖；图表为纯 SVG，无图表库）。
+UI 组件基线为 **shadcn/ui**（Radix 底层，Tailwind v4 CSS 变量主题），业务自定义组件（EmptyState、SafeLink、图表等）统一消费 shadcn 基础原语；图表为纯 SVG，无图表库。添加新交互组件时按本基线以 shadcn 为准（`pnpm dlx shadcn add <name>`）。
 
 ## 目录结构
 

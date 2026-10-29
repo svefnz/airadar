@@ -1,12 +1,15 @@
 import { useRef, useState } from 'react';
 import { Download, Upload, Trash2, UserRound } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { toast } from 'sonner';
 import { usePersonal } from '@/lib/usePersonal';
 
 export function PersonalDataPanel() {
   const { state, clear, exportText, importFromText } = usePersonal();
   const fileRef = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const doExport = () => {
     const blob = new Blob([exportText()], { type: 'application/json' });
@@ -16,12 +19,19 @@ export function PersonalDataPanel() {
     a.download = `ai-radar-personal-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
+    toast.success('个人记录已导出');
   };
 
   const doImport = async (file: File) => {
     const text = await file.text();
     const r = importFromText(text);
-    setStatus(r.ok ? { ok: true, msg: '导入成功，已合并到当前浏览器' } : { ok: false, msg: r.error ?? '导入失败' });
+    if (r.ok) {
+      setStatus({ ok: true, msg: '导入成功，已合并到当前浏览器' });
+      toast.success('导入成功');
+    } else {
+      setStatus({ ok: false, msg: r.error ?? '导入失败' });
+      toast.error(r.error ?? '导入失败');
+    }
   };
 
   const claimed = Object.values(state.claims).filter((c) => c.status === 'claimed').length;
@@ -41,9 +51,38 @@ export function PersonalDataPanel() {
         <Button size="sm" variant="outline" onClick={() => fileRef.current?.click()}>
           <Upload className="h-3 w-3" /> 导入
         </Button>
-        <Button size="sm" variant="danger" onClick={() => { clear(); setStatus({ ok: true, msg: '已清除个人记录' }); }}>
-          <Trash2 className="h-3 w-3" /> 清除
-        </Button>
+        <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+          <DialogTrigger asChild>
+            <Button size="sm" variant="destructive">
+              <Trash2 className="h-3 w-3" /> 清除
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>清除个人记录？</DialogTitle>
+              <DialogDescription>
+                将删除本浏览器中的收藏、领取状态与备注（localStorage），公共数据不受影响。此操作不可撤销。
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button size="sm" variant="outline" onClick={() => setConfirmOpen(false)}>
+                取消
+              </Button>
+              <Button
+                size="sm"
+                variant="destructive"
+                onClick={() => {
+                  clear();
+                  setConfirmOpen(false);
+                  setStatus({ ok: true, msg: '已清除个人记录' });
+                  toast.success('已清除个人记录');
+                }}
+              >
+                确认清除
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
       <input
         ref={fileRef}

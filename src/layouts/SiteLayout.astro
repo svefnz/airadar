@@ -3,6 +3,8 @@ import '../styles/global.css';
 import { ThemeToggle, themeInitScript } from '../components/theme';
 import { loadRadar } from "../lib/data/load";
 import { PersonalDataPanel } from '../features/PersonalDataPanel';
+import { MobileNav } from '../components/MobileNav';
+import { SonnerMount } from '../components/SonnerMount';
 import { withBase } from '../lib/utils/url';
 import { ShieldAlert, Radio } from 'lucide-react';
 
@@ -89,32 +91,7 @@ const nav = [
         </a>
         <div class="flex items-center gap-1">
           <ThemeToggle client:load />
-          <button
-            id="mobile-nav-toggle"
-            type="button"
-            aria-label="打开导航"
-            class="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted hover:text-ink"
-          >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div id="mobile-nav" class="fixed inset-0 z-30 hidden lg:hidden">
-        <div id="mobile-nav-backdrop" class="absolute inset-0 bg-black/40"></div>
-        <div class="absolute right-0 top-12 bottom-0 w-64 bg-surface border-l border-edge p-3 space-y-0.5 shadow-lg">
-          {
-            nav.map((item) => (
-              <a
-                href={item.href}
-                class="block rounded-md px-3 py-2.5 text-sm font-medium text-ink hover:bg-elevated"
-              >
-                {item.label}
-              </a>
-            ))
-          }
+          <MobileNav client:load />
         </div>
       </div>
 
@@ -137,23 +114,6 @@ const nav = [
       </div>
     </div>
 
-    <script>
-      const toggle = document.getElementById('mobile-nav-toggle');
-      const navEl = document.getElementById('mobile-nav');
-      const backdrop = document.getElementById('mobile-nav-backdrop');
-      if (toggle && navEl && backdrop) {
-        const open = () => {
-          navEl.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-        };
-        const close = () => {
-          navEl.classList.add('hidden');
-          document.body.style.overflow = '';
-        };
-        toggle.addEventListener('click', open);
-        backdrop.addEventListener('click', close);
-        navEl.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
-      }
-    </script>
+    <SonnerMount client:load />
   </body>
 </html>

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Select } from '@/components/ui/fields';
-import { Badge } from '@/components/ui/Badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Badge } from '@/components/ui/badge';
+import { badgeTone } from '@/lib/utils/badgeTone';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { SafeLink } from '@/components/ui/SafeLink';
 import { EVENT_TYPE_LABELS, EVENT_TYPES, SOURCE_KIND_LABELS } from '@/lib/data/enums';
@@ -41,16 +42,26 @@ export function ChangelogApp({ data }: { data: RadarData }) {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-2">
-        <Select value={platformId} onChange={(e) => setPlatformId(e.target.value)} className="w-44" aria-label="按平台筛选">
-          <option value="all">全部平台</option>
-          {data.platforms.map((p) => (
-            <option key={p.id} value={p.id}>{p.name}</option>
-          ))}
+        <Select value={platformId} onValueChange={setPlatformId}>
+          <SelectTrigger className="w-44" aria-label="按平台筛选">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">全部平台</SelectItem>
+            {data.platforms.map((p) => (
+              <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+            ))}
+          </SelectContent>
         </Select>
-        <Select value={range} onChange={(e) => setRange(e.target.value)} className="w-32" aria-label="按时间范围筛选">
-          {RANGES.map(([v, l]) => (
-            <option key={v} value={v}>{l}</option>
-          ))}
+        <Select value={range} onValueChange={setRange}>
+          <SelectTrigger className="w-32" aria-label="按时间范围筛选">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {RANGES.map(([v, l]) => (
+              <SelectItem key={v} value={v}>{l}</SelectItem>
+            ))}
+          </SelectContent>
         </Select>
         <div className="flex flex-wrap gap-1.5">
           {EVENT_TYPES.map((t) => (
@@ -82,13 +93,13 @@ export function ChangelogApp({ data }: { data: RadarData }) {
                 <div className="rounded-lg border border-edge bg-surface p-3">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <span className="tabular text-[11px] text-faint">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
-                    <Badge tone="accent">{EVENT_TYPE_LABELS[ev.eventType]}</Badge>
+                    <Badge variant="outline" className={badgeTone('accent')}>{EVENT_TYPE_LABELS[ev.eventType]}</Badge>
                     {p && (
                       <a href={withBase(`/platforms/${p.slug}/`)} className="text-xs font-medium text-muted hover:text-accent">
                         {p.name}
                       </a>
                     )}
-                    {ev.field && <Badge tone="neutral">字段: {ev.field}</Badge>}
+                    {ev.field && <Badge variant="outline" className={badgeTone('neutral')}>字段: {ev.field}</Badge>}
                   </div>
                   <p className="mt-1.5 text-[13px] text-ink">{ev.description}</p>
                   {ev.previousValue && ev.currentValue && (

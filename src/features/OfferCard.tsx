@@ -1,5 +1,6 @@
 import { ExternalLink, Sparkles } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
+import { badgeTone } from '@/lib/utils/badgeTone';
 import { SafeLink } from '@/components/ui/SafeLink';
 import { AmountBadge, AccessBadge, ConditionLine, DeadlineBadge, RiskHint, StatusBadge, TrustBadge } from '@/features/OfferBadges';
 import { PersonalActions } from '@/features/PersonalActions';
@@ -25,7 +26,7 @@ export function OfferCard({ offer, platform, list }: { offer: Offer; platform: P
             <a href={withBase(`/platforms/${platform.slug}/`)} className="text-[11px] font-medium text-muted hover:text-accent">
               {platform.name}
             </a>
-            {offer.demo && <Badge tone="info">Demo</Badge>}
+            {offer.demo && <Badge variant="outline" className={badgeTone('info')}>Demo</Badge>}
             <StatusBadge status={offer.status} />
             <TrustBadge status={offer.verificationStatus} />
           </div>

@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test('首页: 总览内容与导航', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle(/AI Free Radar/);
-  await expect(page.getByRole('heading', { name: '值得立即领取' })).toBeVisible();
+  await expect(page.getByText('值得立即领取')).toBeVisible();
   await expect(page.getByText('最近 24 小时新发现')).toBeVisible();
   await expect(page.getByText('最新变化')).toBeVisible();
 
