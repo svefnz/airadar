@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-28T23:28:17.906Z",
+  "lastSuccessfulSync": "2026-10-29T02:46:39.536Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -853,6 +853,79 @@
       "category": "llm-api",
       "firstDiscoveredAt": "2026-10-28T23:28:17.906Z",
       "lastCheckedAt": "2026-10-28T23:28:17.906Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "strawberry",
+      "name": "Strawberry 1.0 AI Browser",
+      "slug": "strawberry",
+      "canonicalDomain": "strawberrybrowser.com",
+      "websiteUrl": "https://strawberrybrowser.com",
+      "description": "2026-10-26 Strawberry 1.0 发布；AI 浏览器及自动化 Companions，官方免费档每月500 Credits，非开放 API。",
+      "category": "agent-platform",
+      "launchDate": "2026-10-26T00:00:00Z",
+      "firstDiscoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastCheckedAt": "2026-10-29T02:46:39.536Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "llm7",
+      "name": "LLM7.io",
+      "slug": "llm7",
+      "canonicalDomain": "llm7.io",
+      "websiteUrl": "https://llm7.io",
+      "description": "OpenAI 兼容路由 API；官网声明免费模型池每日10万 Tokens，付费 Pro 模型不包含。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastCheckedAt": "2026-10-29T02:46:39.536Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "slug": "github-copilot",
+      "canonicalDomain": "github.com",
+      "websiteUrl": "https://github.com/features/copilot",
+      "description": "个人 Free 计划：每月2000次代码补全，Chat/CLI/Agent 使用有限 AI Credits；非模型原生 API。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastCheckedAt": "2026-10-29T02:46:39.536Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "mistral-vibe",
+      "name": "Mistral Vibe",
+      "slug": "mistral-vibe",
+      "canonicalDomain": "mistral.ai",
+      "websiteUrl": "https://mistral.ai/pricing/",
+      "description": "Mistral Free 包含 Web/移动 Vibe 和有限编程会话；次数未公开，付费 API Credits 不包含。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastCheckedAt": "2026-10-29T02:46:39.536Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "google-antigravity",
+      "name": "Google Antigravity",
+      "slug": "google-antigravity",
+      "canonicalDomain": "antigravity.google",
+      "websiteUrl": "https://www.antigravity.google/pricing",
+      "description": "Individual 免费：多种 Agent 模型、无限 Tab 补全和命令请求，Agent 有每周基础限额。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastCheckedAt": "2026-10-29T02:46:39.536Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "bullet",
+      "name": "Bullet Coding Agent",
+      "slug": "bullet",
+      "canonicalDomain": "codewithbullet.com",
+      "websiteUrl": "https://www.codewithbullet.com/",
+      "description": "2026年10月 Product Hunt 亮相的免费 Coding Agent CLI；免费模型额度未确认，不创建模型赠额。",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastCheckedAt": "2026-10-29T02:46:39.536Z",
       "trustStatus": "official"
     }
   ],
@@ -4197,6 +4270,249 @@
           "verifiedAt": "2026-10-28T23:28:17.906Z"
         }
       ]
+    },
+    {
+      "platformId": "qoder",
+      "title": "Community Boost Round 4 每日4096 SOTA Credits（Sonus）",
+      "models": [
+        "Sonus"
+      ],
+      "accessType": "client",
+      "amount": 4096,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "2026-10-28、29、30 每天 UTC+8 00:00 开放一包4096 SOTA Credits，需当天手动领取且当天23:59前使用；3日合计最多12288",
+        "免费个人用户须提交活动申请并获批准；Pro及以上个人用户自动有资格；Lite不支持 Sonus",
+        "只可在 Qoder / IDE / JetBrains / CLI 官方领取入口领取；CLI 使用 /claim；仅 Sonus 可消费，不是通用API额度",
+        "活动于2026-10-30 23:59 UTC+8结束；错过当日不可补领"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "4096 SOTA Credits/日，三日最多12288；需审核资格",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://docs.qoder.com/events/communityboost",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/events/communityboost",
+          "label": "Qoder 官方 Round4 资格与领取窗口",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "startAt": "2026-10-27T16:00:00Z",
+      "endAt": "2026-10-30T15:59:00Z",
+      "id": "qoder:c2cxjz",
+      "discoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastVerifiedAt": "2026-10-29T02:46:39.536Z"
+    },
+    {
+      "platformId": "strawberry",
+      "title": "Strawberry 1.0 Free 每月500 Agent Credits",
+      "models": [
+        "Efficient",
+        "Default"
+      ],
+      "accessType": "client",
+      "amount": 500,
+      "unit": "Credit",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "免费注册 Strawberry 账号，在 Mac/Windows AI 浏览器中使用 Companions",
+        "每月500 Credits，自动刷新不结转；普通网页浏览免费",
+        "官方当前定价为500；搜索缓存仍有旧版2000额度，以最新官网为准",
+        "仅客户端 AI Agent 积分，不是模型 API"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "500 Credits/月；任务耗额按界面显示",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://strawberrybrowser.com/pricing",
+      "sources": [
+        {
+          "url": "https://strawberrybrowser.com/pricing",
+          "label": "Strawberry 最新官方定价和无绑卡声明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://www.producthunt.com/products/strawberry",
+          "label": "2026-10-26 Product Hunt Strawberry 1.0",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "id": "strawberry:1tx7mgb",
+      "discoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastVerifiedAt": "2026-10-29T02:46:39.536Z"
+    },
+    {
+      "platformId": "llm7",
+      "title": "LLM7 Free Token API 每日100000 Tokens",
+      "models": [
+        "default",
+        "fast（免费动态模型池）"
+      ],
+      "accessType": "api",
+      "amount": 100000,
+      "unit": "Token",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "在 LLM7 面板申请免费 API Key，接入 https://api.llm7.io/v1；不要求先充值",
+        "每日10万输入+输出 Tokens，滚动24小时；免费模型池会变化，不能假设付费 GLM/GPT/Claude/DeepSeek 都免费",
+        "免费额度可能因容量/风控调整，未实测具体账号发 Key 过程",
+        "第三方模型路由服务，不保证生产 SLA"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "100000 Tokens/rolling 24h；250 RPH、60 RPM、1 RPS",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://llm7.io/",
+      "sources": [
+        {
+          "url": "https://llm7.io/",
+          "label": "LLM7 官方免费额度与请求限速",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "id": "llm7:1y696pv",
+      "discoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastVerifiedAt": "2026-10-29T02:46:39.536Z"
+    },
+    {
+      "platformId": "github-copilot",
+      "title": "GitHub Copilot Free 每月2000代码补全及有限Agent",
+      "models": [
+        "Auto model selection"
+      ],
+      "accessType": "client",
+      "amount": 2000,
+      "unit": "Request",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "GitHub 个人账号启用 Copilot Free，不能同时已由组织获得 Copilot 席位",
+        "每月2000次代码补全；Chat、CLI 和 IDE Agent 另有有限 AI Credits，免费档具体 Credits 未公布",
+        "模型自动选择，非每月2000次 LLM API 调用；仅 GitHub Copilot 产品内使用",
+        "GitHub 官方说明免费个人档不需绑卡"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "2000次代码补全/月；Chat/Agent AI Credits 数字未公布",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://github.com/features/copilot/plans",
+      "sources": [
+        {
+          "url": "https://github.com/features/copilot/plans",
+          "label": "GitHub Copilot 官方 Free 定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://docs.github.com/en/copilot/get-started/plans",
+          "label": "官方免费档资格和自动模型选择",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "id": "github-copilot:hinxh6",
+      "discoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastVerifiedAt": "2026-10-29T02:46:39.536Z"
+    },
+    {
+      "platformId": "mistral-vibe",
+      "title": "Mistral Vibe Free 免费编程会话与网页移动端Agent",
+      "models": [
+        "Mistral Vibe（模型由免费档决定）"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "免费注册 Mistral 个人账号，官网确认网页及移动端 Vibe 访问与有限编码会话",
+        "免费消息/编码会话精确次数、恢复周期均未公布",
+        "CLI/IDE 的免费权限未实测，不能将付费 Pro 的 API Credits 当作免费权益"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "有限消息、搜索和编码会话；具体数值未确认",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://mistral.ai/pricing/",
+      "sources": [
+        {
+          "url": "https://mistral.ai/pricing/",
+          "label": "Mistral 官方 Vibe Free 计划",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "id": "mistral-vibe:ra6f7h",
+      "discoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastVerifiedAt": "2026-10-29T02:46:39.536Z"
+    },
+    {
+      "platformId": "google-antigravity",
+      "title": "Google Antigravity Individual Free 每周基础Agent额度",
+      "models": [
+        "Antigravity 免费档多种 Agent 模型"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "Google Antigravity Individual $0/月，无需订阅 Google AI Pro/Ultra",
+        "免费档包含无限 Tab 补全及 Command 请求；Agent 模型有基础每周限额",
+        "具体每周 Agent 请求数未公布；客户端权限不等于 Gemini 原生 API 额度",
+        "2026-06-18 旧 Gemini Code Assist 个人版 IDE/CLI Google 登录途径停用，迁移至 Antigravity"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "Tab 补全/命令无限；Agent 每周基础限额数字未确认",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://www.antigravity.google/pricing",
+      "sources": [
+        {
+          "url": "https://www.antigravity.google/pricing",
+          "label": "Google Antigravity 官方 Individual Free 定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals",
+          "label": "Google 旧 Code Assist 个人版停用公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "id": "google-antigravity:m9irde",
+      "discoveredAt": "2026-10-29T02:46:39.536Z",
+      "lastVerifiedAt": "2026-10-29T02:46:39.536Z"
     }
   ],
   "events": [
@@ -4646,6 +4962,252 @@
         }
       ],
       "description": "官方确认新增：Laya 决策模型 API 免费至 10 月 31 日"
+    },
+    {
+      "id": "ev_1b5jvwb",
+      "offerId": null,
+      "platformId": "strawberry",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "strawberry",
+      "sources": [
+        {
+          "url": "https://strawberrybrowser.com",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Strawberry 1.0 AI Browser"
+    },
+    {
+      "id": "ev_1nv7dkn",
+      "offerId": null,
+      "platformId": "llm7",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "llm7",
+      "sources": [
+        {
+          "url": "https://llm7.io",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 LLM7.io"
+    },
+    {
+      "id": "ev_14041ez",
+      "offerId": null,
+      "platformId": "github-copilot",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "github-copilot",
+      "sources": [
+        {
+          "url": "https://github.com/features/copilot",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 GitHub Copilot"
+    },
+    {
+      "id": "ev_1mhskcf",
+      "offerId": null,
+      "platformId": "mistral-vibe",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "mistral-vibe",
+      "sources": [
+        {
+          "url": "https://mistral.ai/pricing/",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Mistral Vibe"
+    },
+    {
+      "id": "ev_pw5fv7",
+      "offerId": null,
+      "platformId": "google-antigravity",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "google-antigravity",
+      "sources": [
+        {
+          "url": "https://www.antigravity.google/pricing",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Google Antigravity"
+    },
+    {
+      "id": "ev_r4yynj",
+      "offerId": null,
+      "platformId": "bullet",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "bullet",
+      "sources": [
+        {
+          "url": "https://www.codewithbullet.com/",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Bullet Coding Agent"
+    },
+    {
+      "id": "ev_3zykvv",
+      "offerId": "qoder:c2cxjz",
+      "platformId": "qoder",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/events/communityboost",
+          "label": "Qoder 官方 Round4 资格与领取窗口",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Community Boost Round 4 每日4096 SOTA Credits（Sonus）"
+    },
+    {
+      "id": "ev_cawihn",
+      "offerId": "strawberry:1tx7mgb",
+      "platformId": "strawberry",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://strawberrybrowser.com/pricing",
+          "label": "Strawberry 最新官方定价和无绑卡声明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://www.producthunt.com/products/strawberry",
+          "label": "2026-10-26 Product Hunt Strawberry 1.0",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Strawberry 1.0 Free 每月500 Agent Credits"
+    },
+    {
+      "id": "ev_nzfv39",
+      "offerId": "llm7:1y696pv",
+      "platformId": "llm7",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://llm7.io/",
+          "label": "LLM7 官方免费额度与请求限速",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：LLM7 Free Token API 每日100000 Tokens"
+    },
+    {
+      "id": "ev_anrwv1",
+      "offerId": "github-copilot:hinxh6",
+      "platformId": "github-copilot",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://github.com/features/copilot/plans",
+          "label": "GitHub Copilot 官方 Free 定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://docs.github.com/en/copilot/get-started/plans",
+          "label": "官方免费档资格和自动模型选择",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：GitHub Copilot Free 每月2000代码补全及有限Agent"
+    },
+    {
+      "id": "ev_1b17myf",
+      "offerId": "mistral-vibe:ra6f7h",
+      "platformId": "mistral-vibe",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://mistral.ai/pricing/",
+          "label": "Mistral 官方 Vibe Free 计划",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Mistral Vibe Free 免费编程会话与网页移动端Agent"
+    },
+    {
+      "id": "ev_irzqa6",
+      "offerId": "google-antigravity:m9irde",
+      "platformId": "google-antigravity",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.antigravity.google/pricing",
+          "label": "Google Antigravity 官方 Individual Free 定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals",
+          "label": "Google 旧 Code Assist 个人版停用公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Google Antigravity Individual Free 每周基础Agent额度"
     }
   ],
   "runs": [
@@ -4678,6 +5240,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A 免费额度独立检索：48h/7d/30d/长期，官方活动与定价；B 新平台独立检索：Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X 中英检索。新入库 OpenRouter 4 款原生免费 API 与 Vercel Laya 限免；Akamai Inference 新发布但无免费权益，仅平台候选。排除已过期 Vercel MiniMax 10/22、Baseten 10/27、付费订阅专享 OpenAI Pro/Team；Grok iOS Ultra 试用仅社区反馈，Qoder Qwen 延期缺少最新官方确认；Unchained 注册需申请。OpenRouter 50 RPD 为账号共享额度。未实测登录账号限额。"
+    },
+    {
+      "id": "run_503vwf",
+      "startedAt": "2026-10-29T02:44:24.000Z",
+      "completedAt": "2026-10-29T02:46:39.536Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 26,
+      "candidatesFound": 11,
+      "offersCreated": 6,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "独立完成 A：48h/7d/30d及长期有效免费 API/IDE/CLI/客户端活动中英搜索、官方定价与Qoder活动复核；B：Product Hunt 10/26-28、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X及官方新平台检索。新增 Qoder Round4 4096/day、Strawberry 500/月、LLM7 100k/day、Copilot Free、Mistral Vibe Free、Antigravity Free；Bullet 仅候选不伪造模型额度。排除已过期MiniMax M3.1 Flash、付费订阅赠额、未开放Braise公测及高风险无Key转发服务。账号级免费资格未实测。"
     }
   ]
 }
