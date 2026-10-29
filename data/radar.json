@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T17:54:07.274Z",
+  "lastSuccessfulSync": "2026-10-29T20:31:42.405Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1166,6 +1166,42 @@
       "category": "agent-platform",
       "firstDiscoveredAt": "2026-10-29T17:54:07.272Z",
       "lastCheckedAt": "2026-10-29T17:54:07.272Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "haimaker",
+      "name": "Haimaker",
+      "slug": "haimaker",
+      "canonicalDomain": "haimaker.ai",
+      "websiteUrl": "https://haimaker.ai/free/",
+      "description": "多模型API网关，提供GLM-5.3、DeepSeek V4.1 Flash、MiniMax M3免绑卡限免",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastCheckedAt": "2026-10-29T20:31:42.405Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "tokenharbor",
+      "name": "Token Harbor",
+      "slug": "tokenharbor",
+      "canonicalDomain": "tokenharbor.ai",
+      "websiteUrl": "https://tokenharbor.ai/pricing",
+      "description": "OpenAI兼容模型网关；DeepSeek与MiMo免费路由每7日滚动恢复，免费路由需主动同意数据留存",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastCheckedAt": "2026-10-29T20:31:42.405Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "botscanner",
+      "name": "Botscanner / AutoBench Router",
+      "slug": "botscanner",
+      "canonicalDomain": "botscanner.ai",
+      "websiteUrl": "https://botscanner.ai/",
+      "description": "AutoBench智能模型路由器2026-10-29 Beta首发，新账号凭邀请码领取$1，兼容OpenAI API",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastCheckedAt": "2026-10-29T20:31:42.405Z",
       "trustStatus": "official"
     }
   ],
@@ -4187,17 +4223,18 @@
       "claimConditions": [
         "免费账户每月自动获得 $0.10 Inference Providers 路由额度",
         "只限 HF Routed Requests；自带推理商 Key 不享受此额度",
-        "超出需购买 Credits，额度可能调整"
+        "超出需购买 Credits，额度可能调整",
+        "2026-10-29 官方定价显示 Free Users 月度额度 None，原$0.10赠额已不再适用；具体取消日期未公布"
       ],
       "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "按各模型价格消耗；官方标注 subject to change",
       "apiCompatibility": "openai",
-      "status": "active",
+      "status": "ended",
       "verificationStatus": "official",
       "discoveredAt": "2026-10-28T22:15:59.283Z",
-      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z",
       "officialUrl": "https://huggingface.co/docs/inference-providers/pricing",
       "sources": [
         {
@@ -4205,6 +4242,12 @@
           "label": "Hugging Face 官方推理额度",
           "kind": "official",
           "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://huggingface.co/docs/inference-providers/pricing",
+          "label": "官方最新价格：Free Users 月度额度 None；需要购买 Credits",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
         }
       ]
     },
@@ -5995,6 +6038,143 @@
       ],
       "contextWindow": 262144,
       "toolCalling": true
+    },
+    {
+      "id": "haimaker:free-wave-20261029",
+      "platformId": "haimaker",
+      "title": "Haimaker 三款1M上下文编码模型免绑卡API限免至11月1日",
+      "models": [
+        "z-ai/glm-5.3",
+        "deepseek/deepseek-v4.1-flash",
+        "minimax/minimax-m3"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "免费注册获取API Key，免绑卡、无需充值",
+        "免费总次数/Token额度未公布",
+        "官方当前页也有 Between Waves 历史文案，未实测新账号实际调用"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "共享容量，可能429/503，付费请求优先；无公开固定RPD/RPM",
+      "contextWindow": 1048576,
+      "apiCompatibility": "both",
+      "endAt": "2026-11-01T14:00:00Z",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://haimaker.ai/free/",
+      "sources": [
+        {
+          "url": "https://haimaker.ai/free/",
+          "label": "Haimaker 官方3款限免模型、11月1日14:00 UTC截止、无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z"
+    },
+    {
+      "id": "tokenharbor:free-weekly-api",
+      "platformId": "tokenharbor",
+      "title": "Token Harbor 每7日恢复免费API：DeepSeek V4.1 Flash和MiMo V2.6 Flash",
+      "models": [
+        "deepseek-v4.1-flash:free",
+        "mimo-v2.6-flash:free"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "weekly",
+      "resetInterval": "weekly",
+      "claimConditions": [
+        "免费注册创建API Key，无需绑卡",
+        "首个免费请求启动滚动7×24小时周期；额度为共享价值计量，实际数字未公布",
+        "免费路由需在仪表盘手动启用并同意数据政策；服务方人员可能读取免费请求，第三方模型提供商可能用于训练",
+        "TH-Rudder也列入免费方案但官方说明主要为网页聊天，不作为本API权益承诺"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "共享价值额度耗尽即暂停，仪表盘百分比显示；无保证固定RPD/RPM",
+      "contextWindow": 1048576,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://tokenharbor.ai/pricing",
+      "sources": [
+        {
+          "url": "https://tokenharbor.ai/pricing",
+          "label": "官方免费档每7日恢复且无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/deepseek-v4.1-flash:free",
+          "label": "官方 DeepSeek V4.1 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/mimo-v2.6-flash:free",
+          "label": "官方 MiMo V2.6 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z"
+    },
+    {
+      "id": "botscanner:autobench-beta-1usd",
+      "platformId": "botscanner",
+      "title": "AutoBench Beta Router 新注册 $1 免费 API Credits（需邀请码）",
+      "models": [
+        "autobench/beta-cost",
+        "autobench/beta-balanced",
+        "autobench/beta-quality"
+      ],
+      "accessType": "api",
+      "amount": 1,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "Botscanner 官方首页需先申请$1免费邀请码，再邮箱注册，非无条件自动到账",
+        "官网确认无需信用卡；实名、地区和邀请码审核条件未确认",
+        "免费账号仅开放 Cost 路由，Balanced/Quality 需 Tier 1，不能默认赠额可使用",
+        "底层路由选 DeepSeek V4 Flash、GPT-5.6 Luna、GPT-5.6 Sol，不支持锁定模型"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "一次性$1；实际消耗依路由选型与请求，未实测到账",
+      "apiCompatibility": "openai",
+      "startAt": "2026-10-29T00:00:00Z",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://botscanner.ai/",
+      "sources": [
+        {
+          "url": "https://botscanner.ai/",
+          "label": "官方$1邀请码及免绑卡、Cost档与API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://huggingface.co/blog/PeterKruger/autobench-beta-router",
+          "label": "作者2026-10-29首发公告、$1赠额、兼容API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z"
     }
   ],
   "events": [
@@ -7977,9 +8157,193 @@
         }
       ],
       "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_1bp7qdn",
+      "platformId": "haimaker",
+      "offerId": null,
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "haimaker",
+      "sources": [
+        {
+          "url": "https://haimaker.ai/free/",
+          "label": "Haimaker 官方3款限免模型、11月1日14:00 UTC截止、无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "B类主动发现 Haimaker，已核实官方免费权益"
+    },
+    {
+      "id": "ev_1pwl0lo",
+      "platformId": "tokenharbor",
+      "offerId": null,
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "tokenharbor",
+      "sources": [
+        {
+          "url": "https://tokenharbor.ai/pricing",
+          "label": "官方免费档每7日恢复且无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/deepseek-v4.1-flash:free",
+          "label": "官方 DeepSeek V4.1 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/mimo-v2.6-flash:free",
+          "label": "官方 MiMo V2.6 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "B类主动发现 Token Harbor，已核实官方免费权益"
+    },
+    {
+      "id": "ev_1q4tq10",
+      "platformId": "botscanner",
+      "offerId": null,
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "botscanner",
+      "sources": [
+        {
+          "url": "https://botscanner.ai/",
+          "label": "官方$1邀请码及免绑卡、Cost档与API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://huggingface.co/blog/PeterKruger/autobench-beta-router",
+          "label": "作者2026-10-29首发公告、$1赠额、兼容API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "B类主动发现 Botscanner / AutoBench Router，已核实官方免费权益"
+    },
+    {
+      "id": "ev_wfq6d8",
+      "platformId": "haimaker",
+      "offerId": "haimaker:free-wave-20261029",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://haimaker.ai/free/",
+          "label": "Haimaker 官方3款限免模型、11月1日14:00 UTC截止、无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "新增官方页面证实的权益：Haimaker 三款1M上下文编码模型免绑卡API限免至11月1日；未实测实际领取"
+    },
+    {
+      "id": "ev_1y4njk5",
+      "platformId": "tokenharbor",
+      "offerId": "tokenharbor:free-weekly-api",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://tokenharbor.ai/pricing",
+          "label": "官方免费档每7日恢复且无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/deepseek-v4.1-flash:free",
+          "label": "官方 DeepSeek V4.1 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/mimo-v2.6-flash:free",
+          "label": "官方 MiMo V2.6 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "新增官方页面证实的权益：Token Harbor 每7日恢复免费API：DeepSeek V4.1 Flash和MiMo V2.6 Flash；未实测实际领取"
+    },
+    {
+      "id": "ev_c01w8a",
+      "platformId": "botscanner",
+      "offerId": "botscanner:autobench-beta-1usd",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://botscanner.ai/",
+          "label": "官方$1邀请码及免绑卡、Cost档与API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://huggingface.co/blog/PeterKruger/autobench-beta-router",
+          "label": "作者2026-10-29首发公告、$1赠额、兼容API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "新增官方页面证实的权益：AutoBench Beta Router 新注册 $1 免费 API Credits（需邀请码）；未实测实际领取"
+    },
+    {
+      "id": "ev_16blc4l",
+      "platformId": "huggingface",
+      "offerId": "huggingface:2u0e6v",
+      "eventType": "offer-ended",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": "active",
+      "currentValue": "ended",
+      "sources": [
+        {
+          "url": "https://huggingface.co/docs/inference-providers/pricing",
+          "label": "官方最新价格：Free Users 月度额度 None；需要购买 Credits",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "Hugging Face 官方定价 Free Users = None，原$0.10/月已终止；生效日期不明"
     }
   ],
   "runs": [
+    {
+      "id": "run_eih1z5",
+      "startedAt": "2026-10-29T20:29:29.000Z",
+      "completedAt": "2026-10-29T20:31:42.405Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 32,
+      "candidatesFound": 9,
+      "offersCreated": 3,
+      "offersUpdated": 1,
+      "offersExpired": 1,
+      "errors": [],
+      "note": "A: 中英双语搜索近48h/7d/30d和长期免费，核实Haimaker、Token Harbor、Qoder、OpenCode、Hugging Face等官方权益。B: 独立检索Product Hunt 10/28、HN newest、GitHub、Hugging Face 10/29首发、Reddit、Linux.do、V2EX、X及官方公告。新增3个平台3项权益；HF免费账号$0.10/月官方已取消。MetaHarness无赠送模型额度，AgentRouter$25签到缺少可靠官方证据未收录。未登录实测到账。"
+    },
     {
       "id": "run_r7pphd",
       "startedAt": "2026-10-29T17:51:52.000Z",
