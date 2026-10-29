@@ -7,34 +7,37 @@ import type { Offer, Platform } from '../../src/lib/data/schema';
 const mockPlatform: Platform = {
   id: 'openai',
   name: 'OpenAI',
+  slug: 'openai',
   canonicalDomain: 'openai.com',
   websiteUrl: 'https://openai.com',
   category: 'llm-api',
   description: 'AI platform',
   firstDiscoveredAt: '2026-01-01T00:00:00Z',
   lastCheckedAt: '2026-10-28T00:00:00Z',
-  availability: 'public',
-  regions: ['global'],
-  tags: ['api'],
+  trustStatus: 'official',
 };
 
 const mockOffer1: Offer = {
   id: 'off_1',
   platformId: 'openai',
   title: 'ChatGPT Plus 体验',
-  description: '限时免费体验',
   status: 'active',
   accessType: 'web',
+  amount: null,
+  unit: 'Unlimited',
   amountType: 'one-time',
+  resetInterval: 'none',
   billingRequirements: 'none',
   identityVerification: 'none',
   regionRestrictions: [],
+  rateLimits: '',
+  apiCompatibility: 'none',
   discoveredAt: '2026-10-28T00:00:00Z',
   lastVerifiedAt: '2026-10-28T00:00:00Z',
   verificationStatus: 'official',
-  confidenceScore: 0.95,
   claimConditions: ['新用户注册'],
   models: ['gpt-4o'],
+  sources: [],
 };
 
 describe('OfferSwipeDeck (王权堆叠滑动卡片)', () => {

@@ -17,6 +17,7 @@ type View = 'card' | 'list' | 'swipe';
 type SortKey = 'discovered' | 'updated' | 'expiring' | 'value' | 'name' | 'verified';
 
 interface Filters {
+  view: View;
   q: string;
   access: string[]; // api/client/web/unknown
   amountType: string[]; // one-time/daily/weekly/monthly/limited-unlimited
@@ -32,6 +33,7 @@ interface Filters {
 }
 
 const DEFAULT_FILTERS: Filters = {
+  view: 'card',
   q: '',
   access: [],
   amountType: [],
@@ -49,7 +51,10 @@ const DEFAULT_FILTERS: Filters = {
 function parseFilters(search: string): Filters {
   const sp = new URLSearchParams(search);
   const arr = (k: string) => sp.get(k)?.split(',').filter(Boolean) ?? [];
+  const rawView = sp.get('view');
+  const view: View = rawView === 'swipe' || rawView === 'list' ? rawView : 'card';
   return {
+    view,
     q: sp.get('q') ?? '',
     access: arr('access'),
     amountType: arr('amount'),
@@ -67,6 +72,7 @@ function parseFilters(search: string): Filters {
 
 function serializeFilters(f: Filters): string {
   const sp = new URLSearchParams();
+  if (f.view && f.view !== 'card') sp.set('view', f.view);
   if (f.q) sp.set('q', f.q);
   const setArr = (k: string, v: string[]) => { if (v.length) sp.set(k, v.join(',')); };
   setArr('access', f.access);
@@ -126,29 +132,9 @@ const PRESETS: PresetItem[] = [
 
 export function ResourcesApp({ data }: { data: RadarData }) {
   const [filters, setFilters] = useUrlState<Filters>(parseFilters, serializeFilters, DEFAULT_FILTERS);
-  const [view, setView] = useState<View>(() => {
-    if (typeof window !== 'undefined') {
-      const sp = new URLSearchParams(window.location.search);
-      const v = sp.get('view');
-      if (v === 'swipe' || v === 'list' || v === 'card') return v;
-    }
-    return 'card';
-  });
+  const view = filters.view;
+  const setView = (v: View) => setFilters({ ...filters, view: v });
   const [sort, setSort] = useState<SortKey>('value');
-
-  // Sync view mode to URL query without hard reloading
-  const handleViewChange = (newView: View) => {
-    setView(newView);
-    if (typeof window !== 'undefined') {
-      const url = new URL(window.location.href);
-      if (newView === 'card') {
-        url.searchParams.delete('view');
-      } else {
-        url.searchParams.set('view', newView);
-      }
-      window.history.replaceState({}, '', url.toString());
-    }
-  };
 
   const platformById = useMemo(() => {
     const m = new Map<string, RadarData['platforms'][number]>();
@@ -281,7 +267,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               type="button"
               aria-label="卡片网格视图"
               aria-pressed={view === 'card'}
-              onClick={() => handleViewChange('card')}
+              onClick={() => setView('card')}
               className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 view === 'card'
                   ? 'bg-blue-600 text-white shadow-sm'
@@ -295,7 +281,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               type="button"
               aria-label="紧凑列表表格视图"
               aria-pressed={view === 'list'}
-              onClick={() => handleViewChange('list')}
+              onClick={() => setView('list')}
               className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 view === 'list'
                   ? 'bg-blue-600 text-white shadow-sm'
@@ -309,7 +295,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               type="button"
               aria-label="王权堆叠滑动视图"
               aria-pressed={view === 'swipe'}
-              onClick={() => handleViewChange('swipe')}
+              onClick={() => setView('swipe')}
               className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 view === 'swipe'
                   ? 'bg-blue-600 text-white shadow-sm'
@@ -348,9 +334,9 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               type="button"
               onClick={() => {
                 if (isActive) {
-                  setFilters({ ...DEFAULT_FILTERS, q: filters.q });
+                  setFilters({ ...DEFAULT_FILTERS, q: filters.q, view: filters.view });
                 } else {
-                  setFilters({ ...DEFAULT_FILTERS, q: filters.q, ...preset.apply });
+                  setFilters({ ...DEFAULT_FILTERS, q: filters.q, view: filters.view, ...preset.apply });
                 }
               }}
               className={`group flex items-center gap-2 rounded-xl border px-3 py-1.5 text-xs transition-all cursor-pointer ${
@@ -493,7 +479,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
           title="没有匹配的资源"
           hint="尝试减少筛选条件，或重置搜索词。"
           action={
-            <Button size="sm" variant="outline" onClick={() => setFilters(DEFAULT_FILTERS)} className="border-slate-700 text-slate-200">
+            <Button size="sm" variant="outline" onClick={() => setFilters({ ...DEFAULT_FILTERS, view: filters.view })} className="border-slate-700 text-slate-200">
               清除全部筛选
             </Button>
           }
@@ -502,7 +488,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
         <OfferSwipeDeck
           offers={results}
           platformById={platformById}
-          onSwitchView={handleViewChange}
+          onSwitchView={setView}
         />
       ) : view === 'card' ? (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
