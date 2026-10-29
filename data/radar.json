@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T11:53:32.277Z",
+  "lastSuccessfulSync": "2026-10-29T14:16:03.863Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1046,6 +1046,42 @@
       "category": "llm-api",
       "firstDiscoveredAt": "2026-10-29T11:53:32.277Z",
       "lastCheckedAt": "2026-10-29T11:53:32.277Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "evomap",
+      "name": "EvoMap EvoX Agent",
+      "slug": "evomap",
+      "canonicalDomain": "evomap.ai",
+      "websiteUrl": "https://evomap.ai/evox/beta",
+      "description": "macOS/Windows EvoX Beta 自进化 Coding Agent；10月28–30日 MiniMax M3.1 Flash 客户端限免，未公布额度",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastCheckedAt": "2026-10-29T14:16:03.561Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "antdigital-dtmaas",
+      "name": "蚂蚁数科 DTMaaS",
+      "slug": "antdigital-dtmaas",
+      "canonicalDomain": "maas.antdigital.com",
+      "websiteUrl": "https://maas.antdigital.com/models",
+      "description": "蚂蚁数科推理 API；LingDT-Decision-1.0 4B/27B 结构化决策模型限免至10月30日",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastCheckedAt": "2026-10-29T14:16:03.561Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "kolo",
+      "name": "Kolo",
+      "slug": "kolo",
+      "canonicalDomain": "github.com",
+      "websiteUrl": "https://github.com/komovaar/kolo",
+      "description": "10月29日 Show HN 新发布的开源共享 Claude Code/Codex/OpenCode 会话工具；alpha阶段，运行于宿主用户权限，无免费模型额度",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastCheckedAt": "2026-10-29T14:16:03.561Z",
       "trustStatus": "official"
     }
   ],
@@ -3249,24 +3285,27 @@
       "models": [
         "openllm/deepseek/deepseek-v4.1-flash"
       ],
-      "accessType": "client",
+      "accessType": "api",
       "amount": null,
       "unit": "Unknown",
       "amountType": "monthly",
       "resetInterval": "monthly",
       "claimConditions": [
         "历史报告导入；不是本轮新发现",
-        "本轮核验官方来源：平台月度200万计费单位并非200万等量Tokens;输入输出计费权重不同;250K上下文"
+        "本轮核验官方来源：平台月度200万计费单位并非200万等量Tokens;输入输出计费权重不同;250K上下文",
+        "官方确认 Hosted Gateway 可通过 OpenAI/Anthropic 兼容 API 调用内置模型，免费计划免绑卡",
+        "Free另有每月50M非缓存平台Token上限；内置模型额度按加权单位计费，不等于同量Tokens",
+        "免费计划需要广告Cookie同意；未实测新账号及地区限制"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
-      "apiCompatibility": "unknown",
+      "apiCompatibility": "both",
       "status": "active",
       "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
       "officialUrl": "https://docs.openllm.sh/providers/included",
       "sources": [
         {
@@ -3274,6 +3313,24 @@
           "label": "官方页面当前核验",
           "kind": "official",
           "verifiedAt": "2026-10-28T21:30:43Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
         }
       ],
       "contextWindow": 250000
@@ -3285,24 +3342,27 @@
       "models": [
         "openllm/qwen/qwen3.7-plus"
       ],
-      "accessType": "client",
+      "accessType": "api",
       "amount": null,
       "unit": "Unknown",
       "amountType": "monthly",
       "resetInterval": "monthly",
       "claimConditions": [
         "历史报告导入；不是本轮新发现",
-        "本轮核验官方来源：平台计费单位非Tokens;输入和输出权重不同;250K上下文"
+        "本轮核验官方来源：平台计费单位非Tokens;输入和输出权重不同;250K上下文",
+        "官方确认 Hosted Gateway 可通过 OpenAI/Anthropic 兼容 API 调用内置模型，免费计划免绑卡",
+        "Free另有每月50M非缓存平台Token上限；内置模型额度按加权单位计费，不等于同量Tokens",
+        "免费计划需要广告Cookie同意；未实测新账号及地区限制"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
-      "apiCompatibility": "unknown",
+      "apiCompatibility": "both",
       "status": "active",
       "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
       "officialUrl": "https://docs.openllm.sh/providers/included",
       "sources": [
         {
@@ -3310,6 +3370,24 @@
           "label": "官方页面当前核验",
           "kind": "official",
           "verifiedAt": "2026-10-28T21:30:43Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
         }
       ],
       "contextWindow": 250000
@@ -5269,6 +5347,148 @@
           "verifiedAt": "2026-10-29T11:53:32.277Z"
         }
       ]
+    },
+    {
+      "id": "evomap:bkl0lo",
+      "platformId": "evomap",
+      "title": "EvoX Agent MiniMax M3.1 Flash 限免（10月28–30日）",
+      "models": [
+        "MiniMax M3.1 Flash"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "10月28–30日限时免费；截止具体时刻及时区未公布",
+        "下载 EvoX Beta 桌面客户端，登录后选择 MiniMax M3.1 Flash；不是原生模型 API",
+        "官方 X 原帖403，通过 MiniMax 官方转推镜像及第三方资料核对，尚未实测到账",
+        "免费次数/绑卡/实名/地区/商用条件均未公布"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "未公布免费用量上限",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
+      "officialUrl": "https://evomap.ai/evox/beta",
+      "sources": [
+        {
+          "url": "https://x.com/EvoMapAI/status/2115287529197044084",
+          "label": "EvoMap 官方 X 原帖（直达403，镜像交叉核验）",
+          "kind": "official"
+        },
+        {
+          "url": "https://www.sotwe.com/MiniMax_ai",
+          "label": "MiniMax 官方账号转推镜像",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://evomap.ai/evox/beta",
+          "label": "EvoX 官方 Beta 客户端下载",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://freeai.alexai.top/evox-minimax-m3-1-flash-free-oct28-30/",
+          "label": "第三方活动核验",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ]
+    },
+    {
+      "id": "antdigital-dtmaas:12jmdsw",
+      "platformId": "antdigital-dtmaas",
+      "title": "LingDT-Decision-1.0 4B/27B 决策 API 限免至10月30日",
+      "models": [
+        "LingDT-Decision-1.0 4B",
+        "LingDT-Decision-1.0 27B"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "官方 DTMaaS 模型市场注明限免至2026-10-30，具体时刻/时区未知；输入输出标价¥0/百万Tokens",
+        "用于结构化决策（分类、选择、评分、DAG），不是普通聊天模型",
+        "模型市场可选API调用；注册/绑卡/实名/地区要求未确认",
+        "用量总上限未知；单请求最多32个问题、255个选项"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费请求/Token总量未公布；单请求32问/255选项",
+      "contextWindow": 16000,
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
+      "officialUrl": "https://maas.antdigital.com/models",
+      "sources": [
+        {
+          "url": "https://maas.antdigital.com/",
+          "label": "蚂蚁数科 DTMaaS 官方首页限免公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://maas.antdigital.com/models",
+          "label": "官方模型广场",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.panewslab.com/zh/articles/01a1625e-ad69-718b-b86b-e38791a7111e",
+          "label": "10月22日限免报道",
+          "kind": "other",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ]
+    },
+    {
+      "id": "qoder:1h8szdb",
+      "platformId": "qoder",
+      "title": "Qoder 邀请好友免费奖励：每位有效好友最多150 Credits",
+      "models": [
+        "Qoder coding agent"
+      ],
+      "accessType": "client",
+      "amount": 150,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "2026-10-29开始；现有Qoder Global用户可邀请最多50位有效新用户，每位最多150 Credits（50注册使用+100活跃）",
+        "好友通过邀请链接注册并在7天内开始1个任务/对话得50；7天内累计3天有效使用再得100；第8天发放",
+        "仅收录无需付费的50+100奖励；好友首购订阅的额外1000/500 Credits不计入",
+        "活动结束日期未公布；异常设备/环境不合格；绑卡、实名及地区要求未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "最多50位新用户，每人最多150免费奖励；非每日恢复",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
+      "officialUrl": "https://docs.qoder.com/events/invite-friends",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/events/invite-friends",
+          "label": "2026-10-29 Qoder 官方邀请奖励规则",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ]
     }
   ],
   "events": [
@@ -6501,6 +6721,406 @@
         }
       ],
       "description": "官方资料确认、仓库此前未收录的免费权益：Scaleway 新客户原生 API 免费 100 万 Tokens（需绑卡）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_9hq63n",
+      "offerId": null,
+      "platformId": "evomap",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "evomap",
+      "sources": [
+        {
+          "url": "https://x.com/EvoMapAI/status/2115287529197044084",
+          "label": "EvoMap 官方 X 原帖（直达403，镜像交叉核验）",
+          "kind": "official"
+        },
+        {
+          "url": "https://www.sotwe.com/MiniMax_ai",
+          "label": "MiniMax 官方账号转推镜像",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://evomap.ai/evox/beta",
+          "label": "EvoX 官方 Beta 客户端下载",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://freeai.alexai.top/evox-minimax-m3-1-flash-free-oct28-30/",
+          "label": "第三方活动核验",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新平台候选：EvoMap EvoX Agent；无免费模型权益不自动创建 Offer"
+    },
+    {
+      "id": "ev_1f6k9pp",
+      "offerId": null,
+      "platformId": "antdigital-dtmaas",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "antdigital-dtmaas",
+      "sources": [
+        {
+          "url": "https://maas.antdigital.com/",
+          "label": "蚂蚁数科 DTMaaS 官方首页限免公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://maas.antdigital.com/models",
+          "label": "官方模型广场",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.panewslab.com/zh/articles/01a1625e-ad69-718b-b86b-e38791a7111e",
+          "label": "10月22日限免报道",
+          "kind": "other",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新平台候选：蚂蚁数科 DTMaaS；无免费模型权益不自动创建 Offer"
+    },
+    {
+      "id": "ev_ymh8w3",
+      "offerId": null,
+      "platformId": "kolo",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "kolo",
+      "sources": [
+        {
+          "url": "https://github.com/komovaar/kolo",
+          "label": "Kolo 官方仓库及alpha安全提示",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://news.ycombinator.com/from?site=github.com%2Fkomovaar",
+          "label": "10月29日 Show HN",
+          "kind": "forum",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新平台候选：Kolo；无免费模型权益不自动创建 Offer"
+    },
+    {
+      "id": "ev_1kvj9l1",
+      "offerId": "evomap:bkl0lo",
+      "platformId": "evomap",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://x.com/EvoMapAI/status/2115287529197044084",
+          "label": "EvoMap 官方 X 原帖（直达403，镜像交叉核验）",
+          "kind": "official"
+        },
+        {
+          "url": "https://www.sotwe.com/MiniMax_ai",
+          "label": "MiniMax 官方账号转推镜像",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://evomap.ai/evox/beta",
+          "label": "EvoX 官方 Beta 客户端下载",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://freeai.alexai.top/evox-minimax-m3-1-flash-free-oct28-30/",
+          "label": "第三方活动核验",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新发现免费权益：EvoX Agent MiniMax M3.1 Flash 限免（10月28–30日）；未实测账号到账"
+    },
+    {
+      "id": "ev_1c4zaoj",
+      "offerId": "antdigital-dtmaas:12jmdsw",
+      "platformId": "antdigital-dtmaas",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://maas.antdigital.com/",
+          "label": "蚂蚁数科 DTMaaS 官方首页限免公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://maas.antdigital.com/models",
+          "label": "官方模型广场",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.panewslab.com/zh/articles/01a1625e-ad69-718b-b86b-e38791a7111e",
+          "label": "10月22日限免报道",
+          "kind": "other",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新发现免费权益：LingDT-Decision-1.0 4B/27B 决策 API 限免至10月30日；未实测账号到账"
+    },
+    {
+      "id": "ev_91bcqv",
+      "offerId": "qoder:1h8szdb",
+      "platformId": "qoder",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/events/invite-friends",
+          "label": "2026-10-29 Qoder 官方邀请奖励规则",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新发现免费权益：Qoder 邀请好友免费奖励：每位有效好友最多150 Credits；未实测账号到账"
+    },
+    {
+      "id": "ev_a8n6x0",
+      "offerId": "openllm:9d496c73383d",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "accessType",
+      "previousValue": "client",
+      "currentValue": "api",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_13bvogl",
+      "offerId": "openllm:9d496c73383d",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "billingRequirements",
+      "previousValue": "unknown",
+      "currentValue": "none",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_xbvj2p",
+      "offerId": "openllm:9d496c73383d",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "apiCompatibility",
+      "previousValue": "unknown",
+      "currentValue": "both",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_b2fbw8",
+      "offerId": "openllm:6aef21bc7192",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "accessType",
+      "previousValue": "client",
+      "currentValue": "api",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_dw3h1l",
+      "offerId": "openllm:6aef21bc7192",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "billingRequirements",
+      "previousValue": "unknown",
+      "currentValue": "none",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_wm7ryl",
+      "offerId": "openllm:6aef21bc7192",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "apiCompatibility",
+      "previousValue": "unknown",
+      "currentValue": "both",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
     }
   ],
   "runs": [
@@ -6593,6 +7213,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A：中英独立检索48h/7d/30d及长期免费权益，核查OpenRouter、Vercel、Kilo、Scaleway、Qoder、Hugging Face、Amp及DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude等。B：独立检索Product Hunt 10/28榜、HN newest、GitHub/HF trending、Reddit、Linux.do、V2EX、X与官方新平台，新增Kilo/Scaleway候选及7项权益。排除需付费Pro的Glyph、旧Amp $10/day非新户开放、融资门槛DeepStart、未经核实AgentRouter。未实测账号到账；Kilo仅客户端、Scaleway绑卡且超额计费。"
+    },
+    {
+      "id": "run_dxn2sw",
+      "startedAt": "2026-10-29T14:12:47.000Z",
+      "completedAt": "2026-10-29T14:16:03.863Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 29,
+      "candidatesFound": 9,
+      "offersCreated": 3,
+      "offersUpdated": 2,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：中英48h/7d/30d与长期活动搜索；核查Qoder新邀请、EvoX×MiniMax、蚂蚁数科限免、OpenLLM、OpenCode、Copilot、Google、Vercel、Hugging Face、Reddit等。B：独立核查Product Hunt 10/28-29、HN newest/Show HN、GitHub/HF、Reddit、Linux.do、V2EX、X镜像及新平台，Kolo只入候选。EvoMap官方X直达403，按community标记；未实测账号。OpenLLM仅纠正API/绑卡字段。"
     }
   ]
 }
