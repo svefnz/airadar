@@ -35,7 +35,7 @@ export function AppShell({
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 lg:px-8">
           {children}
         </main>
-        <footer className="mx-auto max-w-6xl px-4 pb-8 text-center text-xs text-faint sm:px-6 lg:px-8">
+        <footer className="mx-auto max-w-6xl px-4 pb-8 text-center text-xs text-muted-foreground sm:px-6 lg:px-8">
           个人状态仅保存在当前浏览器（localStorage），不会自动同步其他设备 · 数据来自公开情报，使用前请自行核验官方条款
         </footer>
       </SidebarInset>

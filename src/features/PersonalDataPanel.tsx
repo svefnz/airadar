@@ -38,10 +38,10 @@ export function PersonalDataPanel() {
 
   return (
     <div className="border-t border-edge px-5 py-4 space-y-3">
-      <p className="flex items-center gap-1.5 text-[11px] font-medium text-muted">
+      <p className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
         <UserRound className="h-3.5 w-3.5" /> 个人数据（localStorage）
       </p>
-      <p className="text-[11px] leading-4 text-faint">
+      <p className="text-[11px] leading-4 text-muted-foreground">
         收藏 {state.favorites.length} 项 · 已领取 {claimed} 项 · 仅保存在当前浏览器，不同设备不自动同步
       </p>
       <div className="flex flex-wrap gap-1.5">

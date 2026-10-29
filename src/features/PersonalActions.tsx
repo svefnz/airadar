@@ -26,7 +26,7 @@ export function PersonalActions({ offerId }: { offerId: string }) {
           className={cn(
             'inline-flex h-7 w-7 items-center justify-center rounded-md transition-colors cursor-pointer',
             'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
-            fav ? 'text-warn bg-warn-bg' : 'text-faint hover:text-warn hover:bg-warn-bg',
+            fav ? 'text-warn bg-warn-bg' : 'text-muted-foreground hover:text-warn hover:bg-warn-bg',
           )}
         >
           <Star className="h-3.5 w-3.5" fill={fav ? 'currentColor' : 'none'} />
@@ -72,8 +72,8 @@ export function PersonalActions({ offerId }: { offerId: string }) {
         </form>
       )}
 
-      {claim?.claimedAt && <span className="text-[10px] text-faint">领取于 {claim.claimedAt.slice(0, 10)}</span>}
-      {claim?.status === 'ignored' && <span className="text-[10px] text-faint">{CLAIM_STATUS_LABELS.ignored}</span>}
+      {claim?.claimedAt && <span className="text-[10px] text-muted-foreground">领取于 {claim.claimedAt.slice(0, 10)}</span>}
+      {claim?.status === 'ignored' && <span className="text-[10px] text-muted-foreground">{CLAIM_STATUS_LABELS.ignored}</span>}
     </div>
   );
 }

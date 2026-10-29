@@ -53,7 +53,7 @@ export function ThemeToggle() {
       aria-label={`当前主题 ${label}, 点击切换`}
       onClick={() => setTheme(next[theme])}
       className={cn(
-        'inline-flex h-8 w-8 items-center justify-center rounded-md text-muted hover:text-ink hover:bg-elevated',
+        'inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-elevated',
         'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent cursor-pointer',
       )}
     >

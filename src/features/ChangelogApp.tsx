@@ -72,7 +72,7 @@ export function ChangelogApp({ data }: { data: RadarData }) {
               onClick={() => toggleType(t)}
               className={
                 'rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors cursor-pointer ' +
-                (types.includes(t) ? 'border-accent bg-accent/10 text-primary' : 'border-edge bg-surface text-muted hover:text-ink')
+                (types.includes(t) ? 'border-accent bg-accent/10 text-primary' : 'border-edge bg-surface text-muted-foreground hover:text-foreground')
               }
             >
               {EVENT_TYPE_LABELS[t]}
@@ -92,26 +92,26 @@ export function ChangelogApp({ data }: { data: RadarData }) {
                 <span className="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-surface bg-accent" />
                 <div className="rounded-lg border border-edge bg-surface p-3">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span className="tabular text-[11px] text-faint">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
+                    <span className="tabular text-[11px] text-muted-foreground">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
                     <Badge variant="outline" className={badgeTone('accent')}>{EVENT_TYPE_LABELS[ev.eventType]}</Badge>
                     {p && (
-                      <a href={withBase(`/platforms/${p.slug}/`)} className="text-xs font-medium text-muted hover:text-primary">
+                      <a href={withBase(`/platforms/${p.slug}/`)} className="text-xs font-medium text-muted-foreground hover:text-primary">
                         {p.name}
                       </a>
                     )}
                     {ev.field && <Badge variant="outline" className={badgeTone('neutral')}>字段: {ev.field}</Badge>}
                   </div>
-                  <p className="mt-1.5 text-[13px] text-ink">{ev.description}</p>
+                  <p className="mt-1.5 text-[13px] text-foreground">{ev.description}</p>
                   {ev.previousValue && ev.currentValue && (
-                    <p className="mt-1 text-[11px] text-muted break-all">
-                      <span className="line-through text-faint">{ev.previousValue}</span> → <span className="font-medium text-ink">{ev.currentValue}</span>
+                    <p className="mt-1 text-[11px] text-muted-foreground break-all">
+                      <span className="line-through text-muted-foreground">{ev.previousValue}</span> → <span className="font-medium text-foreground">{ev.currentValue}</span>
                     </p>
                   )}
                   {ev.sources.length > 0 && (
                     <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1">
                       {ev.sources.map((s) => (
                         <SafeLink key={s.url} href={s.url} className="text-[11px]">
-                          {s.label || s.url} <span className="text-faint">({SOURCE_KIND_LABELS[s.kind]})</span>
+                          {s.label || s.url} <span className="text-muted-foreground">({SOURCE_KIND_LABELS[s.kind]})</span>
                         </SafeLink>
                       ))}
                     </div>

@@ -10,7 +10,7 @@ export function SafeLink({ href, className, children, ...rest }: AnchorHTMLAttri
   } catch {
     safeHref = undefined;
   }
-  if (!safeHref) return <span className={cn('text-faint line-through', className)}>{children}</span>;
+  if (!safeHref) return <span className={cn('text-muted-foreground line-through', className)}>{children}</span>;
   return (
     <a
       {...rest}

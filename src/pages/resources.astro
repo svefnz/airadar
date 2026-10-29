@@ -9,7 +9,7 @@ const data = loadRadar();
 <SiteLayout title="资源库" description="全部 AI 免费资源, 支持搜索、筛选与排序">
   <div class="mb-5">
     <h1 class="text-xl font-bold">资源库</h1>
-    <p class="mt-1 text-xs text-muted">共 {data.offers.length} 条资源记录 · 筛选条件自动同步到 URL</p>
+    <p class="mt-1 text-xs text-muted-foreground">共 {data.offers.length} 条资源记录 · 筛选条件自动同步到 URL</p>
   </div>
   <ResourcesApp data={data} client:load />
 </SiteLayout>

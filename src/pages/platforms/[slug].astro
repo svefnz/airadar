@@ -43,7 +43,7 @@ const relayPlatform = platform.category === 'api-relay';
 
 <SiteLayout title={platform.name} description={platform.description}>
   <div class="mb-5">
-    <nav class="text-xs text-faint mb-1">
+    <nav class="text-xs text-muted-foreground mb-1">
       <a href={withBase('/resources/')} class="hover:text-primary">资源库</a> <span class="mx-1">/</span> <span>{platform.name}</span>
     </nav>
     <div class="flex flex-wrap items-center gap-2">
@@ -52,15 +52,15 @@ const relayPlatform = platform.category === 'api-relay';
       <TrustBadge status={platform.trustStatus} />
       <Badge variant="outline" className={badgeTone('neutral')}>{PLATFORM_CATEGORY_LABELS[platform.category]}</Badge>
     </div>
-    <p class="mt-1 text-sm text-muted">{platform.description}</p>
-    <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-faint">
-      <span>域: <span class="text-ink tabular">{platform.canonicalDomain}</span></span>
+    <p class="mt-1 text-sm text-muted-foreground">{platform.description}</p>
+    <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+      <span>域: <span class="text-foreground tabular">{platform.canonicalDomain}</span></span>
       <span>首次发现 {fmtDate(platform.firstDiscoveredAt)}</span>
       <span>最近核验 {fmtDate(platform.lastCheckedAt)}</span>
       {platform.launchDate && <span>官方上线 {fmtDate(platform.launchDate)}</span>}
     </div>
     <div class="mt-2 flex flex-wrap gap-2">
-      <SafeLink href={platform.websiteUrl} class="inline-flex items-center gap-1 rounded-md border border-edge-strong bg-surface px-3 py-1.5 text-xs font-medium text-ink hover:border-accent hover:text-primary">
+      <SafeLink href={platform.websiteUrl} class="inline-flex items-center gap-1 rounded-md border border-edge-strong bg-surface px-3 py-1.5 text-xs font-medium text-foreground hover:border-accent hover:text-primary">
         访问官网
       </SafeLink>
     </div>
@@ -90,9 +90,9 @@ const relayPlatform = platform.category === 'api-relay';
 
           {o.models.length > 0 && (
             <div class="mb-3 flex flex-wrap items-center gap-1.5 text-xs">
-              <span class="text-faint">模型:</span>
+              <span class="text-muted-foreground">模型:</span>
               {o.models.map((m) => (
-                <span key={m} class="rounded bg-elevated border border-edge px-2 py-0.5 font-mono text-[11px] text-muted">{m}</span>
+                <span key={m} class="rounded bg-elevated border border-edge px-2 py-0.5 font-mono text-[11px] text-muted-foreground">{m}</span>
               ))}
             </div>
           )}
@@ -121,14 +121,14 @@ const relayPlatform = platform.category === 'api-relay';
           </div>
 
           <div class="mt-3 border-t border-edge pt-2.5">
-            <p class="text-[11px] font-medium text-faint mb-1">证据来源</p>
+            <p class="text-[11px] font-medium text-muted-foreground mb-1">证据来源</p>
             <div class="flex flex-wrap gap-x-4 gap-y-1.5">
               {o.officialUrl && (
                 <SafeLink href={o.officialUrl} class="text-xs">官方依据链接</SafeLink>
               )}
               {o.sources.map((s) => (
                 <SafeLink key={s.url} href={s.url} class="text-xs">
-                  {s.label || s.url} <span class="text-faint">({SOURCE_KIND_LABELS[s.kind]})</span>
+                  {s.label || s.url} <span class="text-muted-foreground">({SOURCE_KIND_LABELS[s.kind]})</span>
                 </SafeLink>
               ))}
             </div>
@@ -144,21 +144,21 @@ const relayPlatform = platform.category === 'api-relay';
       </CardHeader>
       <CardContent className="px-4 pb-4">
         {events.length === 0 ? (
-          <p class="py-4 text-center text-xs text-faint">该平台暂无历史变更事件</p>
+          <p class="py-4 text-center text-xs text-muted-foreground">该平台暂无历史变更事件</p>
         ) : (
           <ol class="relative border-l border-edge pl-4 space-y-3">
             {events.map((ev) => (
               <li key={ev.id} class="relative">
                 <span class="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full border-2 border-surface bg-accent" />
                 <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
-                  <span class="tabular text-faint">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
+                  <span class="tabular text-muted-foreground">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
                   <Badge variant="outline" className={badgeTone('accent')}>{ev.eventType}</Badge>
                   {ev.field && <Badge variant="outline" className={badgeTone('neutral')}>字段: {ev.field}</Badge>}
                 </div>
-                <p class="mt-1 text-[13px] text-ink">{ev.description}</p>
+                <p class="mt-1 text-[13px] text-foreground">{ev.description}</p>
                 {ev.previousValue && ev.currentValue && (
-                  <p class="mt-0.5 text-[11px] text-muted break-all">
-                    <span class="line-through text-faint">{ev.previousValue}</span> → <span class="font-medium">{ev.currentValue}</span>
+                  <p class="mt-0.5 text-[11px] text-muted-foreground break-all">
+                    <span class="line-through text-muted-foreground">{ev.previousValue}</span> → <span class="font-medium">{ev.currentValue}</span>
                   </p>
                 )}
               </li>

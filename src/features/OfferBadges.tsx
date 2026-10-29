@@ -85,7 +85,7 @@ export function ConditionLine({ offer }: { offer: Offer }) {
   if (offer.rateLimits) bits.push(offer.rateLimits);
   if (!bits.length && !offer.claimConditions.length) return null;
   return (
-    <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted">
+    <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
       {bits.map((b) => (
         <span key={b} className="inline-flex items-center gap-1">· {b}</span>
       ))}

@@ -63,7 +63,7 @@ export function DesktopSidebar({ pathname }: { pathname: string }) {
       </SidebarContent>
       <SidebarFooter>
         <div className="px-2 pb-1">
-          <p className="text-[11px] leading-4 text-muted-foreground group-data-[collapsible=icon]:hidden">
+          <p className="text-[11px] leading-4 text-muted-foreground-foreground group-data-[collapsible=icon]:hidden">
             GitHub 仓库为唯一数据源
             <br />
             持续监控 · 永久历史

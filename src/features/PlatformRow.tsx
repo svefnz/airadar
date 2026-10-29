@@ -23,21 +23,21 @@ export function PlatformRow({ data, platform }: { data: RadarData; platform: Pla
         <div className="flex flex-col gap-3 pt-2">
           <div className="flex flex-wrap items-start justify-between gap-2">
             <div className="min-w-0">
-              <a href={withBase(`/platforms/${platform.slug}/`)} className="text-sm font-semibold text-ink hover:text-primary">{platform.name}</a>
+              <a href={withBase(`/platforms/${platform.slug}/`)} className="text-sm font-semibold text-foreground hover:text-primary">{platform.name}</a>
               <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
                 <Badge variant="outline" className={badgeTone(st.tone)}>{st.label}</Badge>
                 <Badge variant="outline" className={badgeTone('neutral')}>{PLATFORM_CATEGORY_LABELS[platform.category]}</Badge>
                 {platform.demo && <Badge variant="outline" className={badgeTone('info')}>Demo</Badge>}
               </div>
             </div>
-            <div className="text-right text-[11px] text-faint">
+            <div className="text-right text-[11px] text-muted-foreground">
               <p>发现于 {fmtDate(platform.firstDiscoveredAt)}</p>
               {platform.launchDate && <p>官方上线 {fmtDate(platform.launchDate)}</p>}
             </div>
           </div>
-          {platform.description && <p className="line-clamp-2 text-xs text-muted">{platform.description}</p>}
+          {platform.description && <p className="line-clamp-2 text-xs text-muted-foreground">{platform.description}</p>}
           {offers.length > 0 && (
-            <div className="border-t border-edge pt-2 text-[11px] text-muted">
+            <div className="border-t border-edge pt-2 text-[11px] text-muted-foreground">
               {offers.map((o) => (
                 <a key={o.id} href={withBase(`/platforms/${platform.slug}/#${o.id}`)} className="mr-3 inline-flex items-center gap-1 hover:text-primary">
                   <span className="h-1 w-1 rounded-full bg-accent" />

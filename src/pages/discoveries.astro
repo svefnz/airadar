@@ -24,19 +24,19 @@ const last30 = discovered.filter((p) => now - Date.parse(p.firstDiscoveredAt) > 
   <div class="mb-5 flex flex-wrap items-end justify-between gap-2">
     <div>
       <h1 class="text-xl font-bold">新平台发现</h1>
-      <p class="mt-1 text-xs text-muted">
+      <p class="mt-1 text-xs text-muted-foreground">
         最近 30 天主动发现的新平台 · 共 {discovered.length} 个
-        <span class="ml-1 text-faint">（“发现时间” ≠ “官方发布日期”，分别记录）</span>
+        <span class="ml-1 text-muted-foreground">（“发现时间” ≠ “官方发布日期”，分别记录）</span>
       </p>
     </div>
   </div>
 
   <section class="space-y-3">
-    <h2 class="text-sm font-semibold text-ink flex items-center gap-2">
+    <h2 class="text-sm font-semibold text-foreground flex items-center gap-2">
       最近 7 天 <Badge variant="outline" className={badgeTone('accent')}>{last7.length}</Badge>
     </h2>
     {last7.length === 0 ? (
-      <p class="text-xs text-faint py-4">最近 7 天未发现新平台</p>
+      <p class="text-xs text-muted-foreground py-4">最近 7 天未发现新平台</p>
     ) : (
       <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
         {last7.map((p) => <PlatformRow data={data} platform={p} />)}
@@ -45,11 +45,11 @@ const last30 = discovered.filter((p) => now - Date.parse(p.firstDiscoveredAt) > 
   </section>
 
   <section class="mt-6 space-y-3">
-    <h2 class="text-sm font-semibold text-ink flex items-center gap-2">
+    <h2 class="text-sm font-semibold text-foreground flex items-center gap-2">
       8–30 天前 <Badge variant="outline" className={badgeTone('neutral')}>{last30.length}</Badge>
     </h2>
     {last30.length === 0 ? (
-      <p class="text-xs text-faint py-4">暂无数据显示</p>
+      <p class="text-xs text-muted-foreground py-4">暂无数据显示</p>
     ) : (
       <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
         {last30.map((p) => <PlatformRow data={data} platform={p} />)}

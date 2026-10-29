@@ -160,7 +160,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
       {/* 搜索与排序栏 */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <div className="relative flex-1">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-9"
             placeholder="搜索平台 / 模型 / 活动 / 域名…"
@@ -189,7 +189,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               aria-label="卡片视图"
               aria-pressed={view === 'card'}
               onClick={() => setView('card')}
-              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'card' ? 'bg-elevated text-primary' : 'text-faint hover:text-ink'} cursor-pointer`}
+              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'card' ? 'bg-elevated text-primary' : 'text-muted-foreground hover:text-foreground'} cursor-pointer`}
             >
               <LayoutGrid className="h-3.5 w-3.5" />
             </button>
@@ -198,7 +198,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               aria-label="紧凑列表视图"
               aria-pressed={view === 'list'}
               onClick={() => setView('list')}
-              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'list' ? 'bg-elevated text-primary' : 'text-faint hover:text-ink'} cursor-pointer`}
+              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'list' ? 'bg-elevated text-primary' : 'text-muted-foreground hover:text-foreground'} cursor-pointer`}
             >
               <List className="h-3.5 w-3.5" />
             </button>
@@ -246,17 +246,17 @@ export function ResourcesApp({ data }: { data: RadarData }) {
         </FilterGroup>
         <div className="flex items-center gap-1.5 ml-auto">
           <Switch checked={filters.expiringOnly} onCheckedChange={(v) => set({ expiringOnly: v })} aria-label="仅看即将过期" />
-          <span className="text-muted">即将过期</span>
+          <span className="text-muted-foreground">即将过期</span>
           <Switch checked={filters.longTermOnly} onCheckedChange={(v) => set({ longTermOnly: v })} aria-label="仅看长期免费" />
-          <span className="text-muted">长期免费</span>
+          <span className="text-muted-foreground">长期免费</span>
         </div>
         <Button size="sm" variant="ghost" onClick={() => setFilters(DEFAULT_FILTERS)} className="gap-1">
           <X className="h-3 w-3" /> 清除筛选
         </Button>
       </div>
 
-      <p className="text-xs text-muted">
-        共 <span className="tabular font-medium text-ink">{results.length}</span> 个活动
+      <p className="text-xs text-muted-foreground">
+        共 <span className="tabular font-medium text-foreground">{results.length}</span> 个活动
       </p>
 
       {results.length === 0 ? (
@@ -292,7 +292,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
 function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-faint">{label}</span>
+      <span className="text-muted-foreground">{label}</span>
       <div className="flex flex-wrap items-center gap-1.5">{children}</div>
     </div>
   );
@@ -306,7 +306,7 @@ function Chip({ active, onClick, label }: { active: boolean; onClick: () => void
       onClick={onClick}
       className={
         'rounded-full border px-2 py-0.5 text-[11px] font-medium transition-colors cursor-pointer ' +
-        (active ? 'border-accent bg-accent/10 text-primary' : 'border-edge text-muted hover:border-edge-strong hover:text-ink')
+        (active ? 'border-accent bg-accent/10 text-primary' : 'border-edge text-muted-foreground hover:border-edge-strong hover:text-foreground')
       }
     >
       {label}

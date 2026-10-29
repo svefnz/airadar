@@ -21,7 +21,7 @@ export function Donut({ slices, size = 120, thickness = 14 }: { slices: DonutSli
 
   if (total === 0) {
     return (
-      <div className="flex items-center justify-center text-xs text-faint" style={{ width: size, height: size }}>
+      <div className="flex items-center justify-center text-xs text-muted-foreground" style={{ width: size, height: size }}>
         暂无数据
       </div>
     );
@@ -48,10 +48,10 @@ export function Donut({ slices, size = 120, thickness = 14 }: { slices: DonutSli
       </svg>
       <ul className="space-y-1 text-xs">
         {slices.map((s) => (
-          <li key={s.label} className="flex items-center gap-1.5 text-muted">
+          <li key={s.label} className="flex items-center gap-1.5 text-muted-foreground">
             <span className="h-2 w-2 rounded-sm shrink-0" style={{ background: s.color }} />
             <span className="shrink-0">{s.label}</span>
-            <span className="tabular text-ink font-medium">{s.value}</span>
+            <span className="tabular text-foreground font-medium">{s.value}</span>
           </li>
         ))}
       </ul>

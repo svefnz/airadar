@@ -7,15 +7,16 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* 业务语义别名: 全部映射至 shadcn 变量(以 shadcn 为准), 扩展状态色映射至 :root/.dark 定义 */
+  /* 业务语义别名: 全部只映射至 shadcn 标准变量(单一来源, 明/暗两套随 html.dark 切换)。
+     扩展状态色(ok/warn/bad/info)仍由 :root / html.dark 定义, 其余一律不自行维护。 */
   --color-bg: var(--background);
   --color-surface: var(--card);
   --color-elevated: var(--muted);
   --color-edge: var(--border);
   --color-edge-strong: var(--input);
   --color-ink: var(--foreground);
-  --color-muted: var(--ink-muted);
-  --color-faint: var(--ink-faint);
+  --color-muted: var(--muted-foreground);
+  --color-faint: var(--muted-foreground);
   --color-accent: var(--primary);
   --color-accent-ink: var(--primary-foreground);
   --color-ok: var(--ok);
@@ -42,8 +43,8 @@ html.dark {
   --primary-foreground: oklch(0.12 0.03 278);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted: oklch(0.33 0 0);
+  --muted-foreground: #cbd5e1;
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
@@ -72,8 +73,6 @@ html.dark {
   --bad-bg: #33121c;
   --info: #38bdf8;
   --info-bg: #0a2233;
-  --ink-muted: oklch(0.87 0 0);
-  --ink-faint: oklch(0.80 0 0);
 }
 
 @layer base {
@@ -203,7 +202,7 @@ html.dark {
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: #4b5563;
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -233,7 +232,4 @@ html.dark {
   --bad-bg: #fff1f2;
   --info: #0369a1;
   --info-bg: #f0f9ff;
-  /* 文本层次(提高对比): 辅助文字/次要文字 */
-  --ink-muted: oklch(0.38 0 0);
-  --ink-faint: oklch(0.46 0 0);
 }

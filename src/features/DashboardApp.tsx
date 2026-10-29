@@ -130,7 +130,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
             <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/resources/?sort=value'))}>全部资源 →</Button>
           </CardHeader>
           <CardContent className="space-y-3">
-            {immediate.length === 0 && <p className="py-6 text-center text-xs text-faint">暂无可推荐的立即领取资源</p>}
+            {immediate.length === 0 && <p className="py-6 text-center text-xs text-muted-foreground">暂无可推荐的立即领取资源</p>}
             {immediate.map((o) => (
               <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
             ))}
@@ -160,16 +160,16 @@ export function DashboardApp({ data }: { data: RadarData }) {
             </CardHeader>
             <CardContent className="px-4 pb-4">
               {resetDist.length === 0 ? (
-                <p className="py-4 text-center text-xs text-faint">暂无数据</p>
+                <p className="py-4 text-center text-xs text-muted-foreground">暂无数据</p>
               ) : (
                 <ul className="space-y-1.5">
                   {resetDist.map((r) => (
                     <li key={r.label} className="flex items-center gap-2 text-xs">
-                      <span className="w-20 shrink-0 text-muted">{r.label}</span>
+                      <span className="w-20 shrink-0 text-muted-foreground">{r.label}</span>
                       <div className="h-2 flex-1 overflow-hidden rounded bg-elevated">
                         <div className="h-full rounded" style={{ width: `${(r.value / active.length) * 100}%`, background: r.color }} />
                       </div>
-                      <span className="tabular w-6 text-right text-ink font-medium">{r.value}</span>
+                      <span className="tabular w-6 text-right text-foreground font-medium">{r.value}</span>
                     </li>
                   ))}
                 </ul>
@@ -210,10 +210,10 @@ export function DashboardApp({ data }: { data: RadarData }) {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-1.5"><Radar className="h-3.5 w-3.5 text-ok" /> 值得长期使用</CardTitle>
-          <span className="text-[11px] text-faint">每日/每周/每月恢复</span>
+          <span className="text-[11px] text-muted-foreground">每日/每周/每月恢复</span>
         </CardHeader>
         <CardContent className="space-y-3">
-          {longTerm.length === 0 && <p className="py-6 text-center text-xs text-faint">暂无长期免费资源</p>}
+          {longTerm.length === 0 && <p className="py-6 text-center text-xs text-muted-foreground">暂无长期免费资源</p>}
           {longTerm.map((o) => (
             <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
           ))}
@@ -234,21 +234,21 @@ export function DashboardApp({ data }: { data: RadarData }) {
                 <li key={ev.id} className="relative">
                   <span className="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full border-2 border-surface bg-accent" />
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
-                    <span className="tabular text-faint">{ev.timestamp.slice(0, 16)}</span>
-                    {p && <a href={withBase(`/platforms/${p.slug}/`)} className="font-medium text-muted hover:text-primary">{p.name}</a>}
+                    <span className="tabular text-muted-foreground">{ev.timestamp.slice(0, 16)}</span>
+                    {p && <a href={withBase(`/platforms/${p.slug}/`)} className="font-medium text-muted-foreground hover:text-primary">{p.name}</a>}
                     <Badge variant="outline" className={badgeTone('accent')}>{ev.eventType}</Badge>
                   </div>
-                  <p className="mt-0.5 text-[13px] text-ink">{ev.description}</p>
+                  <p className="mt-0.5 text-[13px] text-foreground">{ev.description}</p>
                   {ev.previousValue && ev.currentValue && (
-                    <p className="mt-0.5 text-[11px] text-muted">
-                      <span className="line-through text-faint">{ev.previousValue}</span> → <span className="font-medium">{ev.currentValue}</span>
+                    <p className="mt-0.5 text-[11px] text-muted-foreground">
+                      <span className="line-through text-muted-foreground">{ev.previousValue}</span> → <span className="font-medium">{ev.currentValue}</span>
                     </p>
                   )}
                 </li>
               );
             })}
           </ol>
-          {recentEvents.length === 0 && <p className="py-6 text-center text-xs text-faint">暂无变更事件</p>}
+          {recentEvents.length === 0 && <p className="py-6 text-center text-xs text-muted-foreground">暂无变更事件</p>}
         </CardContent>
       </Card>
     </div>
@@ -258,12 +258,12 @@ export function DashboardApp({ data }: { data: RadarData }) {
 function StatCard({ icon, label, value, sub, tone = 'neutral' }: { icon: React.ReactNode; label: string; value: string; sub?: string; tone?: 'neutral' | 'ok' | 'warn' }) {
   return (
     <Card className="p-3.5">
-      <div className="flex items-center gap-2 text-faint">
+      <div className="flex items-center gap-2 text-muted-foreground">
         {icon}
         <span className="text-[11px] font-medium">{label}</span>
       </div>
-      <p className={`mt-1.5 text-2xl font-bold tabular leading-8 ${tone === 'ok' ? 'text-ok' : tone === 'warn' ? 'text-warn' : 'text-ink'}`}>{value}</p>
-      {sub && <p className="mt-0.5 text-[11px] text-faint">{sub}</p>}
+      <p className={`mt-1.5 text-2xl font-bold tabular leading-8 ${tone === 'ok' ? 'text-ok' : tone === 'warn' ? 'text-warn' : 'text-foreground'}`}>{value}</p>
+      {sub && <p className="mt-0.5 text-[11px] text-muted-foreground">{sub}</p>}
     </Card>
   );
 }
