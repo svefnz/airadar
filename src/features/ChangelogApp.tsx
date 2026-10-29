@@ -72,7 +72,7 @@ export function ChangelogApp({ data }: { data: RadarData }) {
               onClick={() => toggleType(t)}
               className={
                 'rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors cursor-pointer ' +
-                (types.includes(t) ? 'border-accent bg-accent/10 text-accent' : 'border-edge bg-surface text-muted hover:text-ink')
+                (types.includes(t) ? 'border-accent bg-accent/10 text-primary' : 'border-edge bg-surface text-muted hover:text-ink')
               }
             >
               {EVENT_TYPE_LABELS[t]}
@@ -95,7 +95,7 @@ export function ChangelogApp({ data }: { data: RadarData }) {
                     <span className="tabular text-[11px] text-faint">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
                     <Badge variant="outline" className={badgeTone('accent')}>{EVENT_TYPE_LABELS[ev.eventType]}</Badge>
                     {p && (
-                      <a href={withBase(`/platforms/${p.slug}/`)} className="text-xs font-medium text-muted hover:text-accent">
+                      <a href={withBase(`/platforms/${p.slug}/`)} className="text-xs font-medium text-muted hover:text-primary">
                         {p.name}
                       </a>
                     )}

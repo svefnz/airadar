@@ -17,7 +17,7 @@ export function SafeLink({ href, className, children, ...rest }: AnchorHTMLAttri
       href={safeHref}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn('text-accent hover:underline underline-offset-2', className)}
+      className={cn('text-primary hover:underline underline-offset-2', className)}
     >
       {children}
     </a>

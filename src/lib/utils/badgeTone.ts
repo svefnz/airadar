@@ -7,8 +7,9 @@ import { cn } from './cn';
 export type BadgeTone = 'neutral' | 'accent' | 'ok' | 'warn' | 'bad' | 'info';
 
 const TONE_CLASS: Record<BadgeTone, string> = {
+  // accent: 用主色(--primary: 深紫/亮紫)而非 shadcn --accent(浅灰, 仅供 hover 背景)
+  accent: 'border-primary/25 bg-primary/10 text-primary',
   neutral: 'border-edge bg-elevated text-muted',
-  accent: 'border-accent/25 bg-accent/10 text-accent',
   ok: 'border-ok/25 bg-ok-bg text-ok',
   warn: 'border-warn/25 bg-warn-bg text-warn',
   bad: 'border-bad/25 bg-bad-bg text-bad',

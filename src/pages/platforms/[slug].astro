@@ -44,7 +44,7 @@ const relayPlatform = platform.category === 'api-relay';
 <SiteLayout title={platform.name} description={platform.description}>
   <div class="mb-5">
     <nav class="text-xs text-faint mb-1">
-      <a href={withBase('/resources/')} class="hover:text-accent">资源库</a> <span class="mx-1">/</span> <span>{platform.name}</span>
+      <a href={withBase('/resources/')} class="hover:text-primary">资源库</a> <span class="mx-1">/</span> <span>{platform.name}</span>
     </nav>
     <div class="flex flex-wrap items-center gap-2">
       <h1 class="text-xl font-bold">{platform.name}</h1>
@@ -60,7 +60,7 @@ const relayPlatform = platform.category === 'api-relay';
       {platform.launchDate && <span>官方上线 {fmtDate(platform.launchDate)}</span>}
     </div>
     <div class="mt-2 flex flex-wrap gap-2">
-      <SafeLink href={platform.websiteUrl} class="inline-flex items-center gap-1 rounded-md border border-edge-strong bg-surface px-3 py-1.5 text-xs font-medium text-ink hover:border-accent hover:text-accent">
+      <SafeLink href={platform.websiteUrl} class="inline-flex items-center gap-1 rounded-md border border-edge-strong bg-surface px-3 py-1.5 text-xs font-medium text-ink hover:border-accent hover:text-primary">
         访问官网
       </SafeLink>
     </div>

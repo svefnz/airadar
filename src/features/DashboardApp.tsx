@@ -196,7 +196,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
       {/* 最新发现 */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-1.5"><Sparkles className="h-3.5 w-3.5 text-accent" /> 最新发现</CardTitle>
+          <CardTitle className="flex items-center gap-1.5"><Sparkles className="h-3.5 w-3.5 text-primary" /> 最新发现</CardTitle>
           <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/resources/?sort=discovered'))}>查看全部 →</Button>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -235,7 +235,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
                   <span className="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full border-2 border-surface bg-accent" />
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
                     <span className="tabular text-faint">{ev.timestamp.slice(0, 16)}</span>
-                    {p && <a href={withBase(`/platforms/${p.slug}/`)} className="font-medium text-muted hover:text-accent">{p.name}</a>}
+                    {p && <a href={withBase(`/platforms/${p.slug}/`)} className="font-medium text-muted hover:text-primary">{p.name}</a>}
                     <Badge variant="outline" className={badgeTone('accent')}>{ev.eventType}</Badge>
                   </div>
                   <p className="mt-0.5 text-[13px] text-ink">{ev.description}</p>

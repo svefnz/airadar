@@ -189,7 +189,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               aria-label="卡片视图"
               aria-pressed={view === 'card'}
               onClick={() => setView('card')}
-              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'card' ? 'bg-elevated text-accent' : 'text-faint hover:text-ink'} cursor-pointer`}
+              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'card' ? 'bg-elevated text-primary' : 'text-faint hover:text-ink'} cursor-pointer`}
             >
               <LayoutGrid className="h-3.5 w-3.5" />
             </button>
@@ -198,7 +198,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               aria-label="紧凑列表视图"
               aria-pressed={view === 'list'}
               onClick={() => setView('list')}
-              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'list' ? 'bg-elevated text-accent' : 'text-faint hover:text-ink'} cursor-pointer`}
+              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'list' ? 'bg-elevated text-primary' : 'text-faint hover:text-ink'} cursor-pointer`}
             >
               <List className="h-3.5 w-3.5" />
             </button>
@@ -306,7 +306,7 @@ function Chip({ active, onClick, label }: { active: boolean; onClick: () => void
       onClick={onClick}
       className={
         'rounded-full border px-2 py-0.5 text-[11px] font-medium transition-colors cursor-pointer ' +
-        (active ? 'border-accent bg-accent/10 text-accent' : 'border-edge text-muted hover:border-edge-strong hover:text-ink')
+        (active ? 'border-accent bg-accent/10 text-primary' : 'border-edge text-muted hover:border-edge-strong hover:text-ink')
       }
     >
       {label}

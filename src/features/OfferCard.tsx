@@ -23,7 +23,7 @@ export function OfferCard({ offer, platform, list }: { offer: Offer; platform: P
       <div className={cn('flex items-start justify-between gap-2', list && 'flex-wrap')}>
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-1.5">
-            <a href={withBase(`/platforms/${platform.slug}/`)} className="text-[11px] font-medium text-muted hover:text-accent">
+            <a href={withBase(`/platforms/${platform.slug}/`)} className="text-[11px] font-medium text-muted hover:text-primary">
               {platform.name}
             </a>
             {offer.demo && <Badge variant="outline" className={badgeTone('info')}>Demo</Badge>}
@@ -50,7 +50,7 @@ export function OfferCard({ offer, platform, list }: { offer: Offer; platform: P
         <div className="mt-2 flex flex-wrap gap-1">
           {offer.models.slice(0, 3).map((m) => (
             <span key={m} className="inline-flex items-center gap-1 rounded bg-elevated px-1.5 py-0.5 text-[11px] text-muted border border-edge">
-              <Sparkles className="h-2.5 w-2.5 text-accent" />
+              <Sparkles className="h-2.5 w-2.5 text-primary" />
               {m}
             </span>
           ))}
