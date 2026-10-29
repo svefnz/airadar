@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T02:46:39.536Z",
+  "lastSuccessfulSync": "2026-10-29T05:44:57.121Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -926,6 +926,66 @@
       "category": "coding-agent",
       "firstDiscoveredAt": "2026-10-29T02:46:39.536Z",
       "lastCheckedAt": "2026-10-29T02:46:39.536Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "allmodels",
+      "name": "AllModels",
+      "slug": "allmodels",
+      "canonicalDomain": "allmodels.io",
+      "websiteUrl": "https://allmodels.io/",
+      "category": "api-relay",
+      "description": "音频与 LLM 路由 API，官网提供注册生产赠额",
+      "firstDiscoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastCheckedAt": "2026-10-29T05:44:57.121Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "kiro",
+      "name": "Kiro",
+      "slug": "kiro",
+      "canonicalDomain": "kiro.dev",
+      "websiteUrl": "https://kiro.dev/",
+      "category": "coding-agent",
+      "description": "AWS Kiro IDE/CLI，Free及学生计划是客户端权益",
+      "firstDiscoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastCheckedAt": "2026-10-29T05:44:57.121Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "fireworks",
+      "name": "Fireworks AI",
+      "slug": "fireworks",
+      "canonicalDomain": "fireworks.ai",
+      "websiteUrl": "https://fireworks.ai/",
+      "category": "llm-api",
+      "description": "开源模型 Serverless API，新注册一次性赠额",
+      "firstDiscoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastCheckedAt": "2026-10-29T05:44:57.121Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "nvidia-build",
+      "name": "NVIDIA Build / NIM API",
+      "slug": "nvidia-build",
+      "canonicalDomain": "build.nvidia.com",
+      "websiteUrl": "https://build.nvidia.com/",
+      "category": "llm-api",
+      "description": "NVIDIA 免费开发者推理端点，支持 DeepSeek 和 Nemotron",
+      "firstDiscoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastCheckedAt": "2026-10-29T05:44:57.121Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "hob",
+      "name": "Hob",
+      "slug": "hob",
+      "canonicalDomain": "hob.chat",
+      "websiteUrl": "https://hob.chat/",
+      "category": "application",
+      "description": "2026年10月新发布的 MIT 开源离线AI客户端，不附赠云端额度",
+      "firstDiscoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastCheckedAt": "2026-10-29T05:44:57.121Z",
       "trustStatus": "official"
     }
   ],
@@ -4513,6 +4573,212 @@
       "id": "google-antigravity:m9irde",
       "discoveredAt": "2026-10-29T02:46:39.536Z",
       "lastVerifiedAt": "2026-10-29T02:46:39.536Z"
+    },
+    {
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "rateLimits": "$0.25 总赠额，具体请求速率未知",
+      "platformId": "allmodels",
+      "title": "AllModels 新注册 $0.25 生产 API Credits",
+      "models": [
+        "Audio TTS/STT",
+        "LLM Router（以后台可用模型为准）"
+      ],
+      "accessType": "api",
+      "amount": 0.25,
+      "unit": "USD",
+      "claimConditions": [
+        "免费注册 AllModels 账号，官网当前 Pricing 明示获 $0.25 生产赠额",
+        "支持音频与 LLM 路由；具体模型及价格以官方模型目录为准",
+        "绑卡、实名、赠额过期日、地区限制尚未确认"
+      ],
+      "officialUrl": "https://allmodels.io/pricing",
+      "sources": [
+        {
+          "url": "https://allmodels.io/pricing",
+          "label": "AllModels 官方：注册 $0.25 生产赠额",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "id": "allmodels:1aei5gw",
+      "discoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastVerifiedAt": "2026-10-29T05:44:57.121Z"
+    },
+    {
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "rateLimits": "免费档按模型限流，具体以账号界面为准",
+      "platformId": "kiro",
+      "title": "Kiro Free 永久每月 50 Coding Credits",
+      "models": [
+        "Claude Sonnet 4.5",
+        "Qwen3 Coder Next",
+        "DeepSeek 3.2",
+        "MiniMax M2.1"
+      ],
+      "accessType": "client",
+      "amount": 50,
+      "unit": "Credit",
+      "claimConditions": [
+        "社交登录或 AWS Builder ID 注册 Kiro Free",
+        "50 Credits/月，消耗按模型和任务复杂度变化，未用完不结转",
+        "Kiro IDE/CLI 官方界面权益，不是模型原生 API；不得绕过官方界面转接第三方 Harness"
+      ],
+      "officialUrl": "https://kiro.dev/pricing/",
+      "sources": [
+        {
+          "url": "https://kiro.dev/pricing/",
+          "label": "Kiro 官方 Free 50 Credits/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "id": "kiro:1karlcj",
+      "discoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastVerifiedAt": "2026-10-29T05:44:57.121Z"
+    },
+    {
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [
+        "仅官方名单内国家及高校"
+      ],
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "rateLimits": "每月1000 Credits，不允许超额消费",
+      "platformId": "kiro",
+      "title": "Kiro Students 合格大学生 12 个月每月 1000 Credits",
+      "models": [
+        "Kiro 学生档 Premium Models（以账号权限为准）"
+      ],
+      "accessType": "client",
+      "amount": 1000,
+      "unit": "Credit",
+      "claimConditions": [
+        "仅官方名单内高校学生；用学校邮箱注册，完成 SheerID 学生身份验证",
+        "2026年9月扩大至16国121所新增高校，完整学校名单以官网当前为准",
+        "每月1000 Credits，连续12个月；不结转，期满自动降级免费档",
+        "支持 Kiro IDE/CLI/Web/Crew；不是模型 API"
+      ],
+      "officialUrl": "https://kiro.dev/students/",
+      "sources": [
+        {
+          "url": "https://kiro.dev/students/",
+          "label": "Kiro Students 官方：合格学生每月1000 Credits一年",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://kiro.dev/blog/students-2026/",
+          "label": "Kiro 官方 2026-09-08 学生计划扩展",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "id": "kiro:1dz61h7",
+      "discoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastVerifiedAt": "2026-10-29T05:44:57.121Z"
+    },
+    {
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "rateLimits": "$1 一次性赠额；速率限制依账号",
+      "platformId": "fireworks",
+      "title": "Fireworks AI 新注册一次性 $1 Serverless API Credits",
+      "models": [
+        "Fireworks Serverless 开源模型（实际可用依账号）"
+      ],
+      "accessType": "api",
+      "amount": 1,
+      "unit": "USD",
+      "claimConditions": [
+        "注册 Fireworks 并获取 API Key，使用一次性 $1 Starter Credit",
+        "试用可不绑卡；$1 耗尽且无支付方式时 API 暂停",
+        "具体试用过期日和地区限制未确认，不是每日恢复"
+      ],
+      "officialUrl": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
+      "sources": [
+        {
+          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
+          "label": "Fireworks 官方 $1 Starter Credits 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://docs.fireworks.ai/getting-started/introduction",
+          "label": "Fireworks Serverless 官方 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "id": "fireworks:1sv5x6v",
+      "discoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastVerifiedAt": "2026-10-29T05:44:57.121Z"
+    },
+    {
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "rateLimits": "官方确认免费开发者端点限流，未确认具体免费次数",
+      "platformId": "nvidia-build",
+      "title": "NVIDIA Build 免费开发者推理 API（DeepSeek V4.1 Flash / Nemotron）",
+      "models": [
+        "deepseek-ai/deepseek-v4.1-flash",
+        "nvidia/nemotron-3-ultra-550b-a55b"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "claimConditions": [
+        "注册 NVIDIA Build，获取 NVIDIA API Key",
+        "官方明确提供免费的开发者推理端点，DeepSeek V4.1 Flash 可通过 OpenAI 兼容 API 调用",
+        "免费请求数/Token 数、恢复周期、绑卡、实名和地区限制未确认；受限流及容量约束"
+      ],
+      "officialUrl": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
+      "sources": [
+        {
+          "url": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
+          "label": "NVIDIA Build DeepSeek V4.1 Flash 免费开发者 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://build.nvidia.com/",
+          "label": "NVIDIA Build 免费推理目录",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "id": "nvidia-build:108pq3y",
+      "discoveredAt": "2026-10-29T05:44:57.121Z",
+      "lastVerifiedAt": "2026-10-29T05:44:57.121Z"
     }
   ],
   "events": [
@@ -5208,6 +5474,214 @@
         }
       ],
       "description": "官方确认新发现：Google Antigravity Individual Free 每周基础Agent额度"
+    },
+    {
+      "id": "ev_uh5q3i",
+      "offerId": null,
+      "platformId": "allmodels",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "allmodels",
+      "sources": [
+        {
+          "url": "https://allmodels.io/pricing",
+          "label": "AllModels 官方：注册 $0.25 生产赠额",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：AllModels"
+    },
+    {
+      "id": "ev_16vav36",
+      "offerId": null,
+      "platformId": "kiro",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "kiro",
+      "sources": [
+        {
+          "url": "https://kiro.dev/pricing/",
+          "label": "Kiro 官方 Free 50 Credits/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：Kiro"
+    },
+    {
+      "id": "ev_ig7vi5",
+      "offerId": null,
+      "platformId": "fireworks",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "fireworks",
+      "sources": [
+        {
+          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
+          "label": "Fireworks 官方 $1 Starter Credits 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：Fireworks AI"
+    },
+    {
+      "id": "ev_1wqqb7z",
+      "offerId": null,
+      "platformId": "nvidia-build",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "nvidia-build",
+      "sources": [
+        {
+          "url": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
+          "label": "NVIDIA Build DeepSeek V4.1 Flash 免费开发者 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：NVIDIA Build / NIM API"
+    },
+    {
+      "id": "ev_rsq1ja",
+      "offerId": null,
+      "platformId": "hob",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "hob",
+      "sources": [
+        {
+          "url": "https://github.com/FrigadeHQ/hob",
+          "label": "Hob MIT 开源离线 AI 客户端",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：Hob"
+    },
+    {
+      "id": "ev_1y2y9sg",
+      "offerId": "allmodels:1aei5gw",
+      "platformId": "allmodels",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://allmodels.io/pricing",
+          "label": "AllModels 官方：注册 $0.25 生产赠额",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：AllModels 新注册 $0.25 生产 API Credits"
+    },
+    {
+      "id": "ev_hjt1pv",
+      "offerId": "kiro:1karlcj",
+      "platformId": "kiro",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://kiro.dev/pricing/",
+          "label": "Kiro 官方 Free 50 Credits/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：Kiro Free 永久每月 50 Coding Credits"
+    },
+    {
+      "id": "ev_1i8wbey",
+      "offerId": "kiro:1dz61h7",
+      "platformId": "kiro",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://kiro.dev/students/",
+          "label": "Kiro Students 官方：合格学生每月1000 Credits一年",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://kiro.dev/blog/students-2026/",
+          "label": "Kiro 官方 2026-09-08 学生计划扩展",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：Kiro Students 合格大学生 12 个月每月 1000 Credits"
+    },
+    {
+      "id": "ev_14cwrx9",
+      "offerId": "fireworks:1sv5x6v",
+      "platformId": "fireworks",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
+          "label": "Fireworks 官方 $1 Starter Credits 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://docs.fireworks.ai/getting-started/introduction",
+          "label": "Fireworks Serverless 官方 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：Fireworks AI 新注册一次性 $1 Serverless API Credits"
+    },
+    {
+      "id": "ev_ofs1ma",
+      "offerId": "nvidia-build:108pq3y",
+      "platformId": "nvidia-build",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
+          "label": "NVIDIA Build DeepSeek V4.1 Flash 免费开发者 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://build.nvidia.com/",
+          "label": "NVIDIA Build 免费推理目录",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：NVIDIA Build 免费开发者推理 API（DeepSeek V4.1 Flash / Nemotron）"
     }
   ],
   "runs": [
@@ -5255,6 +5729,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "独立完成 A：48h/7d/30d及长期有效免费 API/IDE/CLI/客户端活动中英搜索、官方定价与Qoder活动复核；B：Product Hunt 10/26-28、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X及官方新平台检索。新增 Qoder Round4 4096/day、Strawberry 500/月、LLM7 100k/day、Copilot Free、Mistral Vibe Free、Antigravity Free；Bullet 仅候选不伪造模型额度。排除已过期MiniMax M3.1 Flash、付费订阅赠额、未开放Braise公测及高风险无Key转发服务。账号级免费资格未实测。"
+    },
+    {
+      "id": "run_1ix8a1i",
+      "startedAt": "2026-10-29T05:43:05.000Z",
+      "completedAt": "2026-10-29T05:44:57.121Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 37,
+      "candidatesFound": 11,
+      "offersCreated": 5,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A 独立核查48h/7d/30d及长期免费：中英官方页面、DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude/OpenCode/Qoder/WorkBuddy、Kiro/Fireworks/NVIDIA/Groq/Cerebras；B 独立检索 Product Hunt、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X，发现 AllModels 与 Hob。排除 Kiro 2026-11-01 500 Credits 首升 Pro 需付费订阅升级，以及 Cerebras 2026-07 结束的永久免卡免费档（现$5绑卡30天试用）。新权益是新发现长期仍有效，不代表刚上线；未实测账号到账。"
     }
   ]
 }
