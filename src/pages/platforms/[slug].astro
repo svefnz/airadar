@@ -24,6 +24,7 @@ import {
   type OfferStatus,
 } from '../../lib/data/enums';
 import { fmtAmount, fmtDate, fmtDateTime } from '../../lib/utils/format';
+import { withBase } from '../../lib/utils/url';
 
 export function getStaticPaths() {
   const d = loadRadar();
@@ -42,7 +43,7 @@ const relayPlatform = platform.category === 'api-relay';
 <SiteLayout title={platform.name} description={platform.description}>
   <div class="mb-5">
     <nav class="text-xs text-faint mb-1">
-      <a href="/resources/" class="hover:text-accent">资源库</a> <span class="mx-1">/</span> <span>{platform.name}</span>
+      <a href={withBase('/resources/')} class="hover:text-accent">资源库</a> <span class="mx-1">/</span> <span>{platform.name}</span>
     </nav>
     <div class="flex flex-wrap items-center gap-2">
       <h1 class="text-xl font-bold">{platform.name}</h1>

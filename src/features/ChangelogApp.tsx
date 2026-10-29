@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { SafeLink } from '@/components/ui/SafeLink';
 import { EVENT_TYPE_LABELS, EVENT_TYPES, SOURCE_KIND_LABELS } from '@/lib/data/enums';
+import { withBase } from '@/lib/utils/url';
 import type { RadarData } from '@/lib/data/schema';
 
 const RANGES = [
@@ -83,7 +84,7 @@ export function ChangelogApp({ data }: { data: RadarData }) {
                     <span className="tabular text-[11px] text-faint">{ev.timestamp.replace('T', ' ').slice(0, 16)}</span>
                     <Badge tone="accent">{EVENT_TYPE_LABELS[ev.eventType]}</Badge>
                     {p && (
-                      <a href={`/platforms/${p.slug}/`} className="text-xs font-medium text-muted hover:text-accent">
+                      <a href={withBase(`/platforms/${p.slug}/`)} className="text-xs font-medium text-muted hover:text-accent">
                         {p.name}
                       </a>
                     )}

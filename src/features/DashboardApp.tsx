@@ -9,6 +9,7 @@ import { OfferCard } from '@/features/OfferCard';
 import { computeDashboard, priorityScore } from '@/lib/data/radar';
 import { AMOUNT_TYPE_LABELS, RUN_STATUS_LABELS } from '@/lib/data/enums';
 import { daysUntil, fmtDateTime, fmtTimeAgo } from '@/lib/utils/format';
+import { withBase } from '@/lib/utils/url';
 import type { RadarData } from '@/lib/data/schema';
 
 export function DashboardApp({ data }: { data: RadarData }) {
@@ -125,7 +126,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
         <Card className="xl:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-warn" /> 值得立即领取</CardTitle>
-            <Button size="sm" variant="ghost" onClick={() => window.location.assign('/resources/?sort=value')}>全部资源 →</Button>
+            <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/resources/?sort=value'))}>全部资源 →</Button>
           </CardHeader>
           <CardBody className="space-y-3">
             {immediate.length === 0 && <p className="py-6 text-center text-xs text-faint">暂无可推荐的立即领取资源</p>}
@@ -195,7 +196,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-1.5"><Sparkles className="h-3.5 w-3.5 text-accent" /> 最新发现</CardTitle>
-          <Button size="sm" variant="ghost" onClick={() => window.location.assign('/resources/?sort=discovered')}>查看全部 →</Button>
+          <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/resources/?sort=discovered'))}>查看全部 →</Button>
         </CardHeader>
         <CardBody className="space-y-3">
           {latest.map((o) => (
@@ -222,7 +223,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
       <Card>
         <CardHeader>
           <CardTitle>最新变化</CardTitle>
-          <Button size="sm" variant="ghost" onClick={() => window.location.assign('/changelog/')}>变更记录 →</Button>
+          <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/changelog/'))}>变更记录 →</Button>
         </CardHeader>
         <CardBody>
           <ol className="relative border-l border-edge pl-4 space-y-3">
@@ -233,7 +234,7 @@ export function DashboardApp({ data }: { data: RadarData }) {
                   <span className="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full border-2 border-surface bg-accent" />
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
                     <span className="tabular text-faint">{ev.timestamp.slice(0, 16)}</span>
-                    {p && <a href={`/platforms/${p.slug}/`} className="font-medium text-muted hover:text-accent">{p.name}</a>}
+                    {p && <a href={withBase(`/platforms/${p.slug}/`)} className="font-medium text-muted hover:text-accent">{p.name}</a>}
                     <Badge tone="accent">{ev.eventType}</Badge>
                   </div>
                   <p className="mt-0.5 text-[13px] text-ink">{ev.description}</p>

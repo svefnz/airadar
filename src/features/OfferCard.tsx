@@ -4,6 +4,7 @@ import { SafeLink } from '@/components/ui/SafeLink';
 import { AmountBadge, AccessBadge, ConditionLine, DeadlineBadge, RiskHint, StatusBadge, TrustBadge } from '@/features/OfferBadges';
 import { PersonalActions } from '@/features/PersonalActions';
 import { cn } from '@/lib/utils/cn';
+import { withBase } from '@/lib/utils/url';
 import type { Offer, Platform } from '@/lib/data/schema';
 
 export function OfferCard({ offer, platform, list }: { offer: Offer; platform: Platform; list?: boolean }) {
@@ -21,7 +22,7 @@ export function OfferCard({ offer, platform, list }: { offer: Offer; platform: P
       <div className={cn('flex items-start justify-between gap-2', list && 'flex-wrap')}>
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-1.5">
-            <a href={`/platforms/${platform.slug}/`} className="text-[11px] font-medium text-muted hover:text-accent">
+            <a href={withBase(`/platforms/${platform.slug}/`)} className="text-[11px] font-medium text-muted hover:text-accent">
               {platform.name}
             </a>
             {offer.demo && <Badge tone="info">Demo</Badge>}

@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { ThemeToggle, themeInitScript } from '../components/theme';
 import { loadRadar } from "../lib/data/load";
 import { PersonalDataPanel } from '../features/PersonalDataPanel';
+import { withBase } from '../lib/utils/url';
 import { ShieldAlert, Radio } from 'lucide-react';
 
 interface Props {
@@ -25,7 +26,7 @@ const nav = [
   { href: '/discoveries/', label: '新平台发现' },
   { href: '/changelog/', label: '变更记录' },
   { href: '/monitor/', label: '监控状态' },
-];
+].map((item) => ({ ...item, href: withBase(item.href) }));
 ---
 
 <!doctype html>
@@ -36,14 +37,14 @@ const nav = [
     <title>{title} · AI Free Radar</title>
     <meta name="description" content={description ?? '持续更新的 AI 免费额度与新平台情报' } />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <script set:html={themeInitScript} />
   </head>
   <body class="min-h-screen">
     <div class="flex min-h-screen">
       <!-- 桌面端侧边导航 -->
       <aside class="sticky top-0 hidden h-screen w-52 shrink-0 flex-col border-r border-edge bg-surface lg:flex">
-        <a href="/" class="flex items-center gap-2 px-5 pt-5 pb-4">
+        <a href={withBase('/')} class="flex items-center gap-2 px-5 pt-5 pb-4">
           <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-accent-ink">
             <Radio class="h-4 w-4" />
           </span>
@@ -80,7 +81,7 @@ const nav = [
 
       <!-- 移动端顶部栏 -->
       <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-between border-b border-edge bg-surface px-3 lg:hidden">
-        <a href="/" class="flex items-center gap-1.5">
+        <a href={withBase('/')} class="flex items-center gap-1.5">
           <span class="flex h-6 w-6 items-center justify-center rounded bg-accent text-accent-ink">
             <Radio class="h-3.5 w-3.5" />
           </span>
