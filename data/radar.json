@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T05:44:57.121Z",
+  "lastSuccessfulSync": "2026-10-29T08:13:48.208Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -986,6 +986,42 @@
       "description": "2026年10月新发布的 MIT 开源离线AI客户端，不附赠云端额度",
       "firstDiscoveredAt": "2026-10-29T05:44:57.121Z",
       "lastCheckedAt": "2026-10-29T05:44:57.121Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "optracloud",
+      "name": "OptraCloud",
+      "slug": "optracloud",
+      "canonicalDomain": "optracloud.com",
+      "websiteUrl": "https://optracloud.com/",
+      "description": "Globussoft 推理服务；官网宣称验证邮箱和手机号可获1.5亿输出Token（Qwen3.8-27B/128K）；尚未实测新账号到账。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T08:13:47.892Z",
+      "lastCheckedAt": "2026-10-29T08:13:47.892Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "qubico",
+      "name": "Qubico AI",
+      "slug": "qubico",
+      "canonicalDomain": "qubico.ai",
+      "websiteUrl": "https://qubico.ai/",
+      "description": "图片、视频、音频及3D模型推理API与Playground；官网声明注册赠送$0.25，6个月有效，未实测到账。",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T08:13:47.892Z",
+      "lastCheckedAt": "2026-10-29T08:13:47.892Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "push-agent",
+      "name": "Push (MasslessAI)",
+      "slug": "push-agent",
+      "canonicalDomain": "push.computer",
+      "websiteUrl": "https://push.computer/",
+      "description": "Mac/iPhone/Slack/网页 Agent 协作客户端免费，需已有Claude Code/Codex/OpenCode/Hermes订阅或自有API；不附赠模型Token；macOS26+ Apple Silicon。",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-29T08:13:47.892Z",
+      "lastCheckedAt": "2026-10-29T08:13:47.892Z",
       "trustStatus": "official"
     }
   ],
@@ -4779,6 +4815,101 @@
       "id": "nvidia-build:108pq3y",
       "discoveredAt": "2026-10-29T05:44:57.121Z",
       "lastVerifiedAt": "2026-10-29T05:44:57.121Z"
+    },
+    {
+      "id": "optracloud:11jx2ix",
+      "platformId": "optracloud",
+      "title": "OptraCloud 注册免费 150,000,000 输出 Tokens（Qwen3.8-27B）",
+      "models": [
+        "Qwen3.8-27B",
+        "optra-coder"
+      ],
+      "accessType": "api",
+      "amount": 150000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "验证邮箱与手机号；无需信用卡",
+        "仅输出 Token 计入赠额，输入 Token 免费",
+        "免费层128K上下文，60输出Token/秒；官方宣称无试用时钟",
+        "额外邀请奖励需被邀请人产生100,000输出Token；不与初次赠额混淆",
+        "账户实际到账未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "phone",
+      "regionRestrictions": [],
+      "rateLimits": "免费层60输出Token/s，128K上下文；地区限制及请求频率未公布，印度机房",
+      "contextWindow": 131072,
+      "toolCalling": true,
+      "apiCompatibility": "both",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://optracloud.com/free.html",
+      "sources": [
+        {
+          "url": "https://optracloud.com/free.html",
+          "label": "官方免费额度说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        },
+        {
+          "url": "https://optracloud.com/pricing/",
+          "label": "官方定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        },
+        {
+          "url": "https://optracloud.com/docs.html",
+          "label": "官方API及限流文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T08:13:47.892Z",
+      "lastVerifiedAt": "2026-10-29T08:13:47.892Z"
+    },
+    {
+      "id": "qubico:bo7rdp",
+      "platformId": "qubico",
+      "title": "Qubico AI 新注册 $0.25 推理 API Credits（6个月有效）",
+      "models": [
+        "Flux Schnell",
+        "Flux Dev",
+        "Wan 2.1",
+        "Hunyuan",
+        "F5-TTS",
+        "Trellis"
+      ],
+      "accessType": "api",
+      "amount": 0.25,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "免费注册后通过 Dashboard 使用试用额度",
+        "无需信用卡，6个月内使用",
+        "仅适用官网所列图片/视频/音频/3D模型，非Coding LLM赠额",
+        "实名、地区与到账尚未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "按模型消耗额度；具体速率限制未确认",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://qubico.ai/",
+      "sources": [
+        {
+          "url": "https://qubico.ai/",
+          "label": "官方注册免费额度及定价说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T08:13:47.892Z",
+      "lastVerifiedAt": "2026-10-29T08:13:47.892Z"
     }
   ],
   "events": [
@@ -5682,6 +5813,110 @@
         }
       ],
       "description": "A类官方来源核实，首次入库：NVIDIA Build 免费开发者推理 API（DeepSeek V4.1 Flash / Nemotron）"
+    },
+    {
+      "id": "ev_1qttixk",
+      "platformId": "optracloud",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "OptraCloud",
+      "sources": [
+        {
+          "url": "https://optracloud.com/",
+          "label": "平台官方首页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新发现平台：OptraCloud"
+    },
+    {
+      "id": "ev_v2s5fc",
+      "platformId": "qubico",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "Qubico AI",
+      "sources": [
+        {
+          "url": "https://qubico.ai/",
+          "label": "平台官方首页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新发现平台：Qubico AI"
+    },
+    {
+      "id": "ev_dj6sdl",
+      "platformId": "push-agent",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "Push (MasslessAI)",
+      "sources": [
+        {
+          "url": "https://push.computer/",
+          "label": "平台官方首页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新发现平台：Push (MasslessAI)；客户端免费但不赠模型Token"
+    },
+    {
+      "id": "ev_1h4c06i",
+      "offerId": "optracloud:11jx2ix",
+      "platformId": "optracloud",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://optracloud.com/free.html",
+          "label": "官方免费额度说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        },
+        {
+          "url": "https://optracloud.com/pricing/",
+          "label": "官方定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        },
+        {
+          "url": "https://optracloud.com/docs.html",
+          "label": "官方API及限流文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新增官网声明免费权益：OptraCloud 注册免费 150,000,000 输出 Tokens（Qwen3.8-27B）；实际账号到账未实测"
+    },
+    {
+      "id": "ev_z9ela1",
+      "offerId": "qubico:bo7rdp",
+      "platformId": "qubico",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://qubico.ai/",
+          "label": "官方注册免费额度及定价说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新增官网声明免费权益：Qubico AI 新注册 $0.25 推理 API Credits（6个月有效）；实际账号到账未实测"
     }
   ],
   "runs": [
@@ -5744,6 +5979,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A 独立核查48h/7d/30d及长期免费：中英官方页面、DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude/OpenCode/Qoder/WorkBuddy、Kiro/Fireworks/NVIDIA/Groq/Cerebras；B 独立检索 Product Hunt、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X，发现 AllModels 与 Hob。排除 Kiro 2026-11-01 500 Credits 首升 Pro 需付费订阅升级，以及 Cerebras 2026-07 结束的永久免卡免费档（现$5绑卡30天试用）。新权益是新发现长期仍有效，不代表刚上线；未实测账号到账。"
+    },
+    {
+      "id": "run_1c9b4kb",
+      "startedAt": "2026-10-29T08:11:35.000Z",
+      "completedAt": "2026-10-29T08:13:48.208Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 21,
+      "candidatesFound": 8,
+      "offersCreated": 2,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：中英检索48h/7d/30d及长期有效免费 API/IDE/CLI/网页客户端，复核DeepSeek、GLM、Kimi、Qwen、MiMo、Gemini、GPT、Claude、Qoder、OpenCode。B：独立检索Product Hunt 10/27-28、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X及新平台。发现OptraCloud官网声明1.5亿输出Token、Qubico $0.25 API；Push仅免费客户端不含模型赠额。Tuna需绑卡排除；Vireonix无Key高风险、SharedLLM beta无法独立验证未入库；Mudroom免费权益不明未入库。新账号实际到账未实测。"
     }
   ]
 }
