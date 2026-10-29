@@ -30,5 +30,6 @@ playwright-report/
 data/incoming/
 *.tmp
 
-# agent tooling
-.agents/
+# worktrees
+.worktrees/
+
