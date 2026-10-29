@@ -4,6 +4,7 @@ import { ThemeToggle, themeInitScript } from '../components/theme';
 import { loadRadar } from "../lib/data/load";
 import { PersonalDataPanel } from '../features/PersonalDataPanel';
 import { MobileNav } from '../components/MobileNav';
+import { DesktopSidebar } from '../components/DesktopSidebar';
 import { SonnerMount } from '../components/SonnerMount';
 import { withBase } from '../lib/utils/url';
 import { ShieldAlert, Radio } from 'lucide-react';
@@ -21,17 +22,8 @@ try {
 }
 
 const { title, description } = Astro.props;
-
-const nav = [
-  { href: '/', label: '总览', exact: true },
-  { href: '/resources/', label: '资源库' },
-  { href: '/discoveries/', label: '新平台发现' },
-  { href: '/changelog/', label: '变更记录' },
-  { href: '/monitor/', label: '监控状态' },
-].map((item) => ({ ...item, href: withBase(item.href) }));
 ---
 
-<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
@@ -44,42 +36,8 @@ const nav = [
   </head>
   <body class="min-h-screen">
     <div class="flex min-h-screen">
-      <!-- 桌面端侧边导航 -->
-      <aside class="sticky top-0 hidden h-screen w-52 shrink-0 flex-col border-r border-edge bg-surface lg:flex">
-        <a href={withBase('/')} class="flex items-center gap-2 px-5 pt-5 pb-4">
-          <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-accent-ink">
-            <Radio class="h-4 w-4" />
-          </span>
-          <span class="text-sm font-bold tracking-tight">AI Free Radar</span>
-        </a>
-        <nav class="flex-1 px-3 space-y-0.5">
-          {
-            nav.map((item) => {
-              const path = Astro.url.pathname;
-              const active = item.exact ? path === item.href : path.startsWith(item.href);
-              return (
-                <a
-                  href={item.href}
-                  class:list={[
-                    'block rounded-md px-3 py-2 text-[13px] font-medium transition-colors',
-                    active ? 'bg-accent/10 text-accent' : 'text-muted hover:bg-elevated hover:text-ink',
-                  ]}
-                >
-                  {item.label}
-                </a>
-              );
-            })
-          }
-        </nav>
-        <div class="border-t border-edge px-5 py-4">
-          <p class="text-[11px] leading-4 text-faint">
-            GitHub 仓库为唯一数据源
-            <br />
-            持续监控 · 永久历史
-          </p>
-        </div>
-        <PersonalDataPanel client:load />
-      </aside>
+      <!-- 桌面端侧边导航(shadcn Sidebar) -->
+      <DesktopSidebar client:load pathname={Astro.url.pathname} />
 
       <!-- 移动端顶部栏 -->
       <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-between border-b border-edge bg-surface px-3 lg:hidden">
