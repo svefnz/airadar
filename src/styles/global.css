@@ -14,8 +14,8 @@
   --color-edge: var(--border);
   --color-edge-strong: var(--input);
   --color-ink: var(--foreground);
-  --color-muted: var(--muted-foreground);
-  --color-faint: color-mix(in srgb, var(--muted-foreground) 65%, transparent);
+  --color-muted: var(--ink-muted);
+  --color-faint: var(--ink-faint);
   --color-accent: var(--primary);
   --color-accent-ink: var(--primary-foreground);
   --color-ok: var(--ok);
@@ -72,6 +72,8 @@ html.dark {
   --bad-bg: #33121c;
   --info: #38bdf8;
   --info-bg: #0a2233;
+  --ink-muted: oklch(0.87 0 0);
+  --ink-faint: oklch(0.80 0 0);
 }
 
 @layer base {
@@ -231,4 +233,7 @@ html.dark {
   --bad-bg: #fff1f2;
   --info: #0369a1;
   --info-bg: #f0f9ff;
+  /* 文本层次(提高对比): 辅助文字/次要文字 */
+  --ink-muted: oklch(0.38 0 0);
+  --ink-faint: oklch(0.46 0 0);
 }
