@@ -129,11 +129,16 @@ export function DashboardApp({ data }: { data: RadarData }) {
             <CardTitle className="flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-warn" /> 值得立即领取</CardTitle>
             <Button size="sm" variant="ghost" onClick={() => window.location.assign(withBase('/resources/?sort=value'))}>全部资源 →</Button>
           </CardHeader>
-          <CardContent className="space-y-3">
-            {immediate.length === 0 && <p className="py-6 text-center text-xs text-muted-foreground">暂无可推荐的立即领取资源</p>}
-            {immediate.map((o) => (
-              <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
-            ))}
+          <CardContent>
+            {immediate.length === 0 ? (
+              <p className="py-6 text-center text-xs text-muted-foreground">暂无可推荐的立即领取资源</p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {immediate.map((o) => (
+                  <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -257,13 +262,13 @@ export function DashboardApp({ data }: { data: RadarData }) {
 
 function StatCard({ icon, label, value, sub, tone = 'neutral' }: { icon: React.ReactNode; label: string; value: string; sub?: string; tone?: 'neutral' | 'ok' | 'warn' }) {
   return (
-    <Card className="p-3.5">
-      <div className="flex items-center gap-2 text-muted-foreground">
-        {icon}
-        <span className="text-[11px] font-medium">{label}</span>
+    <div className="relative overflow-hidden rounded-2xl border border-[#1e2a42] bg-[#0c1220]/90 p-4 shadow-lg transition-all hover:border-blue-500/30">
+      <div className="flex items-center gap-2 text-slate-400">
+        <span className="p-1 rounded-md bg-[#182338] text-blue-400">{icon}</span>
+        <span className="text-xs font-medium text-slate-300">{label}</span>
       </div>
-      <p className={`mt-1.5 text-2xl font-bold tabular leading-8 ${tone === 'ok' ? 'text-ok' : tone === 'warn' ? 'text-warn' : 'text-foreground'}`}>{value}</p>
-      {sub && <p className="mt-0.5 text-[11px] text-muted-foreground">{sub}</p>}
-    </Card>
+      <p className={`mt-2 text-2xl font-black tabular tracking-tight ${tone === 'ok' ? 'text-emerald-400' : tone === 'warn' ? 'text-amber-400' : 'text-white'}`}>{value}</p>
+      {sub && <p className="mt-1 text-[11px] text-slate-400">{sub}</p>}
+    </div>
   );
 }

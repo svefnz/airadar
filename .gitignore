@@ -29,3 +29,6 @@ playwright-report/
 # data incoming & tmp
 data/incoming/
 *.tmp
+
+# agent tooling
+.agents/

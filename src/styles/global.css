@@ -33,46 +33,46 @@
 }
 
 html.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.7 0.17 278);
-  --primary-foreground: oklch(0.12 0.03 278);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.33 0 0);
-  --muted-foreground: #cbd5e1;
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.7 0.17 278);
-  --chart-1: oklch(0.7 0.17 278);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.7 0.17 278);
-  --sidebar-primary-foreground: oklch(0.12 0.03 278);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.7 0.17 278);
+  --background: #090d16;
+  --foreground: #f8fafc;
+  --card: #101726;
+  --card-foreground: #f8fafc;
+  --popover: #10192e;
+  --popover-foreground: #f8fafc;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #182234;
+  --secondary-foreground: #f8fafc;
+  --muted: #182234;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --border: #1e2a42;
+  --input: #23324d;
+  --ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #8b5cf6;
+  --chart-5: #06b6d4;
+  --sidebar: #0b1020;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #151f33;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #182338;
+  --sidebar-ring: #3b82f6;
   /* 扩展语义状态色(暗色) */
   --ok: #34d399;
-  --ok-bg: #0b2b21;
+  --ok-bg: #064e3b33;
   --warn: #fbbf24;
-  --warn-bg: #2b2308;
-  --bad: #fb7185;
-  --bad-bg: #33121c;
+  --warn-bg: #451a0333;
+  --bad: #f87171;
+  --bad-bg: #450a0a33;
   --info: #38bdf8;
-  --info-bg: #0a2233;
+  --info-bg: #082f4933;
 }
 
 @layer base {

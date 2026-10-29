@@ -1047,9 +1047,279 @@
       "firstDiscoveredAt": "2026-10-29T11:53:32.277Z",
       "lastCheckedAt": "2026-10-29T11:53:32.277Z",
       "trustStatus": "official"
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "slug": "openai",
+      "canonicalDomain": "openai.com",
+      "websiteUrl": "https://openai.com",
+      "description": "OpenAI 官方 ChatGPT 及通用人工智能前沿模型体验平台",
+      "category": "application",
+      "firstDiscoveredAt": "2026-10-25T00:00:00Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "slug": "google",
+      "canonicalDomain": "google.com",
+      "websiteUrl": "https://google.com",
+      "description": "Google Gemini 先进大语言模型及生态服务",
+      "category": "application",
+      "firstDiscoveredAt": "2026-10-25T00:00:00Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "slug": "anthropic",
+      "canonicalDomain": "anthropic.com",
+      "websiteUrl": "https://anthropic.com",
+      "description": "Anthropic Claude 模型官方开发者控制台与 API 平台",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-25T00:00:00Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "u2-flash",
+      "name": "U2 Flash",
+      "slug": "u2-flash",
+      "canonicalDomain": "u2flash.ai",
+      "websiteUrl": "https://u2flash.ai",
+      "description": "超高并发多模态原生 API 平台",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-28T00:00:00Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "sonus",
+      "name": "Sonus",
+      "slug": "sonus",
+      "canonicalDomain": "sonus.dev",
+      "websiteUrl": "https://sonus.dev",
+      "description": "开发者声学与认知推理客户端工作站",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-28T00:00:00Z",
+      "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
     }
   ],
   "offers": [
+    {
+      "id": "sonus:community-boost-r4",
+      "platformId": "sonus",
+      "title": "Community Boost Round 4",
+      "models": [
+        "Sonus"
+      ],
+      "accessType": "client",
+      "amount": 4096,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "无需绑卡",
+        "三日最多 12288",
+        "客户端专用",
+        "社区用户自动发放"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "三日最多 12288",
+      "contextWindow": 256000,
+      "toolCalling": false,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T00:00:00Z",
+      "lastVerifiedAt": "2026-10-29T00:00:00Z",
+      "officialUrl": "https://sonus.dev/boost",
+      "sources": [
+        {
+          "url": "https://sonus.dev",
+          "label": "社区活动公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-10-31T12:49:54.411Z"
+    },
+    {
+      "id": "u2-flash:zero-cost-api",
+      "platformId": "u2-flash",
+      "title": "U2 Flash 限时零费用API",
+      "models": [
+        "U2 Flash"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "limited-unlimited",
+      "resetInterval": "unlimited",
+      "claimConditions": [
+        "无需绑卡",
+        "输入输出免费 · 限时无限量",
+        "原生 API 直连无需审批"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "输入输出免费 · 限时无限量",
+      "contextWindow": 512000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T00:00:00Z",
+      "lastVerifiedAt": "2026-10-28T00:00:00Z",
+      "officialUrl": "https://u2flash.ai/api",
+      "sources": [
+        {
+          "url": "https://u2flash.ai",
+          "label": "官方限时免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-11-01T12:49:54.406Z"
+    },
+    {
+      "id": "anthropic:claude-dev-100",
+      "platformId": "anthropic",
+      "title": "Claude 开发者额度 ",
+      "models": [
+        "Claude 3.5 Sonnet",
+        "3.5 Haiku"
+      ],
+      "accessType": "api",
+      "amount": 100,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "开发者",
+        "符合条件的开发者可获得  API Credits",
+        "符合条件的开发者（学生/开源/特定活动）",
+        "通过官方页面申请并完成身份验证"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "id",
+      "regionRestrictions": [
+        "全球（部分地区受限）"
+      ],
+      "rateLimits": "适用于 API 调用",
+      "contextWindow": 200000,
+      "toolCalling": true,
+      "apiCompatibility": "anthropic",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-25T00:00:00Z",
+      "lastVerifiedAt": "2026-10-25T00:00:00Z",
+      "officialUrl": "https://console.anthropic.com",
+      "sources": [
+        {
+          "url": "https://console.anthropic.com",
+          "label": "Anthropic Console 官方开发者活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-25T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "google:gemini-pro-3m",
+      "platformId": "google",
+      "title": "Gemini Pro 3 个月免费试用",
+      "models": [
+        "Gemini 1.5 Pro",
+        "2.0 Flash",
+        "NotebookLM Plus"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新用户",
+        "新用户可免费体验 Gemini Pro 高级功能",
+        "新注册 Google 账号（部分地区受限）",
+        "前往 Google One 页面领取"
+      ],
+      "billingRequirements": "card",
+      "identityVerification": "none",
+      "regionRestrictions": [
+        "全球（部分地区受限）"
+      ],
+      "rateLimits": "1M 上下文、NotebookLM Plus 等",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-27T00:00:00Z",
+      "lastVerifiedAt": "2026-10-27T00:00:00Z",
+      "officialUrl": "https://one.google.com/explore-plan/gemini-advanced",
+      "sources": [
+        {
+          "url": "https://one.google.com",
+          "label": "Google One 官方活动核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-27T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-12-31T23:59:59Z"
+    },
+    {
+      "id": "openai:chatgpt-plus-14d",
+      "platformId": "openai",
+      "title": "OpenAI 新用户 14 天 Plus 体验",
+      "models": [
+        "GPT-4o",
+        "o1",
+        "Advanced Voice",
+        "DALL·E 3"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新用户",
+        "限时免费体验 ChatGPT Plus 全部功能",
+        "新注册账号",
+        "访问活动页面注册并激活"
+      ],
+      "billingRequirements": "card",
+      "identityVerification": "none",
+      "regionRestrictions": [
+        "全球（部分地区受限）"
+      ],
+      "rateLimits": "完整 Plus 功能",
+      "contextWindow": 128000,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-27T00:00:00Z",
+      "lastVerifiedAt": "2026-10-27T00:00:00Z",
+      "officialUrl": "https://chatgpt.com/overview",
+      "sources": [
+        {
+          "url": "https://openai.com/blog",
+          "label": "官方活动页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-27T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-11-11T23:59:59Z"
+    },
     {
       "id": "qoder:6c839fb00a42",
       "platformId": "qoder",

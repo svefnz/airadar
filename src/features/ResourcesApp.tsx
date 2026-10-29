@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react';
-import { Search, LayoutGrid, List, X, ArrowUpDown } from 'lucide-react';
+import { Search, LayoutGrid, List, X, ArrowUpDown, Filter, RotateCcw } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { OfferCard } from '@/features/OfferCard';
+import { OfferTableView } from '@/features/OfferTableView';
 import { priorityScore } from '@/lib/data/radar';
 import { daysUntil, isPast } from '@/lib/utils/format';
 import type { Offer, RadarData } from '@/lib/data/schema';
@@ -155,26 +156,54 @@ export function ResourcesApp({ data }: { data: RadarData }) {
 
   const set = (patch: Partial<Filters>) => setFilters({ ...filters, ...patch });
 
+  const activeFiltersCount = useMemo(() => {
+    let count = 0;
+    if (filters.q) count++;
+    count += filters.access.length;
+    count += filters.amountType.length;
+    count += filters.status.length;
+    count += filters.verification.length;
+    count += filters.billing.length;
+    count += filters.identity.length;
+    count += filters.compat.length;
+    if (filters.toolCalling) count++;
+    if (filters.context) count++;
+    if (filters.expiringOnly) count++;
+    if (filters.longTermOnly) count++;
+    return count;
+  }, [filters]);
+
   return (
-    <div className="space-y-4">
-      {/* 搜索与排序栏 */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+    <div className="space-y-5">
+      {/* Search and Tool Bar */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <div className="relative flex-1">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <Input
-            className="pl-9"
+            className="pl-10 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-slate-100 placeholder:text-slate-500 focus-visible:border-blue-500 focus-visible:ring-1 focus-visible:ring-blue-500 text-sm"
             placeholder="搜索平台 / 模型 / 活动 / 域名…"
             value={filters.q}
             onChange={(e) => set({ q: e.target.value })}
             aria-label="搜索资源"
           />
+          {filters.q && (
+            <button
+              type="button"
+              onClick={() => set({ q: '' })}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
         </div>
+
         <div className="flex items-center gap-2">
+          {/* Sort selector */}
           <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
-            <SelectTrigger className="w-44" aria-label="排序方式">
+            <SelectTrigger className="w-40 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-slate-200 text-xs font-medium" aria-label="排序方式">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-[#10192e] border-slate-800 text-slate-200 text-xs">
               <SelectItem value="value">按领取价值</SelectItem>
               <SelectItem value="discovered">最近发现</SelectItem>
               <SelectItem value="updated">最近更新</SelectItem>
@@ -183,101 +212,183 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               <SelectItem value="name">平台名称</SelectItem>
             </SelectContent>
           </Select>
-          <div className="flex items-center rounded-md border border-edge-strong bg-surface p-0.5">
+
+          {/* View switcher: Card View vs Table / List View */}
+          <div className="flex items-center rounded-xl border border-[#1e2a42] bg-[#0e1626] p-1 shadow-inner">
             <button
               type="button"
-              aria-label="卡片视图"
+              aria-label="卡片网格视图"
               aria-pressed={view === 'card'}
               onClick={() => setView('card')}
-              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'card' ? 'bg-elevated text-primary' : 'text-muted-foreground hover:text-foreground'} cursor-pointer`}
+              className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                view === 'card'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-100'
+              }`}
             >
               <LayoutGrid className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">卡片</span>
             </button>
             <button
               type="button"
-              aria-label="紧凑列表视图"
+              aria-label="紧凑列表表格视图"
               aria-pressed={view === 'list'}
               onClick={() => setView('list')}
-              className={`inline-flex h-7 w-7 items-center justify-center rounded ${view === 'list' ? 'bg-elevated text-primary' : 'text-muted-foreground hover:text-foreground'} cursor-pointer`}
+              className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                view === 'list'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-100'
+              }`}
             >
               <List className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">表格</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* 筛选器 */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs rounded-lg border border-edge bg-surface px-3 py-2.5">
-        <FilterGroup label="接入方式">
-          {['api', 'client', 'web', 'unknown'].map((k) => (
-            <Chip key={k} active={filters.access.includes(k)} onClick={() => toggleArr('access', k)} label={{ api: '原生 API', client: '客户端专用', web: '网页专用', unknown: '接入方式不确定' }[k]!} />
-          ))}
-        </FilterGroup>
-        <FilterGroup label="额度周期">
-          {[['one-time', '免费注册赠额'], ['daily', '每日恢复'], ['weekly', '每周恢复'], ['monthly', '每月恢复'], ['limited-unlimited', '限时免费']].map((kv) => {
-            const [k, l] = kv as [string, string];
-            return <Chip key={k} active={filters.amountType.includes(k)} onClick={() => toggleArr('amountType', k)} label={l} />;
-          })}
-        </FilterGroup>
-        <FilterGroup label="状态">
-          {[['active', '有效'], ['upcoming', '即将开始'], ['ended', '已过期'], ['paused', '暂停']].map((kv) => {
-            const [k, l] = kv as [string, string];
-            return <Chip key={k} active={filters.status.includes(k)} onClick={() => toggleArr('status', k)} label={l} />;
-          })}
-        </FilterGroup>
-        <FilterGroup label="可信度">
-          {[['official', '官方确认'], ['community', '社区实测'], ['unverified', '待核实']].map((kv) => {
-            const [k, l] = kv as [string, string];
-            return <Chip key={k} active={filters.verification.includes(k)} onClick={() => toggleArr('verification', k)} label={l} />;
-          })}
-        </FilterGroup>
-        <FilterGroup label="领取门槛">
-          <Chip active={filters.billing.includes('none')} onClick={() => toggleArr('billing', 'none')} label="无需绑卡" />
-          <Chip active={filters.identity.includes('id')} onClick={() => toggleArr('identity', 'id')} label="需要实名认证" />
-        </FilterGroup>
-        <FilterGroup label="接口">
-          <Chip active={filters.compat.includes('openai')} onClick={() => toggleArr('compat', 'openai')} label="OpenAI 兼容" />
-          <Chip active={filters.compat.includes('anthropic')} onClick={() => toggleArr('compat', 'anthropic')} label="Anthropic 兼容" />
-          <Chip active={filters.toolCalling} onClick={() => set({ toolCalling: !filters.toolCalling })} label="Tool Calling" />
-        </FilterGroup>
-        <FilterGroup label="上下文">
-          <Chip active={filters.context === '256k'} onClick={() => set({ context: filters.context === '256k' ? '' : '256k' })} label="256K+" />
-          <Chip active={filters.context === '1m'} onClick={() => set({ context: filters.context === '1m' ? '' : '1m' })} label="1M+" />
-        </FilterGroup>
-        <div className="flex items-center gap-1.5 ml-auto">
-          <Switch checked={filters.expiringOnly} onCheckedChange={(v) => set({ expiringOnly: v })} aria-label="仅看即将过期" />
-          <span className="text-muted-foreground">即将过期</span>
-          <Switch checked={filters.longTermOnly} onCheckedChange={(v) => set({ longTermOnly: v })} aria-label="仅看长期免费" />
-          <span className="text-muted-foreground">长期免费</span>
+      {/* Filter Chips Container */}
+      <div className="rounded-2xl border border-[#1e2a42] bg-[#0c1220]/95 p-4 space-y-3 shadow-lg">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 text-xs">
+          <FilterGroup label="接入方式">
+            {['api', 'client', 'web', 'unknown'].map((k) => (
+              <Chip
+                key={k}
+                active={filters.access.includes(k)}
+                onClick={() => toggleArr('access', k)}
+                label={{ api: '原生 API', client: '客户端专用', web: '网页专用', unknown: '接入方式不确定' }[k]!}
+              />
+            ))}
+          </FilterGroup>
+
+          <FilterGroup label="额度周期">
+            {(
+              [
+                ['one-time', '免费注册赠额'],
+                ['daily', '每日恢复'],
+                ['weekly', '每周恢复'],
+                ['monthly', '每月恢复'],
+                ['limited-unlimited', '限时免费'],
+              ] as [string, string][]
+            ).map(([k, l]) => (
+              <Chip
+                key={k}
+                active={filters.amountType.includes(k)}
+                onClick={() => toggleArr('amountType', k)}
+                label={l}
+              />
+            ))}
+          </FilterGroup>
+
+          <FilterGroup label="状态">
+            {(
+              [
+                ['active', '有效'],
+                ['upcoming', '即将开始'],
+                ['ended', '已过期'],
+                ['paused', '暂停'],
+              ] as [string, string][]
+            ).map(([k, l]) => (
+              <Chip
+                key={k}
+                active={filters.status.includes(k)}
+                onClick={() => toggleArr('status', k)}
+                label={l}
+              />
+            ))}
+          </FilterGroup>
+
+          <FilterGroup label="可信度">
+            {(
+              [
+                ['official', '官方确认'],
+                ['community', '社区实测'],
+                ['unverified', '待核实'],
+              ] as [string, string][]
+            ).map(([k, l]) => (
+              <Chip
+                key={k}
+                active={filters.verification.includes(k)}
+                onClick={() => toggleArr('verification', k)}
+                label={l}
+              />
+            ))}
+          </FilterGroup>
+
+          <FilterGroup label="领取门槛">
+            <Chip active={filters.billing.includes('none')} onClick={() => toggleArr('billing', 'none')} label="无需绑卡" />
+            <Chip active={filters.identity.includes('id')} onClick={() => toggleArr('identity', 'id')} label="需要实名认证" />
+          </FilterGroup>
+
+          <FilterGroup label="接口兼容">
+            <Chip active={filters.compat.includes('openai')} onClick={() => toggleArr('compat', 'openai')} label="OpenAI 兼容" />
+            <Chip active={filters.compat.includes('anthropic')} onClick={() => toggleArr('compat', 'anthropic')} label="Anthropic 兼容" />
+            <Chip active={filters.toolCalling} onClick={() => set({ toolCalling: !filters.toolCalling })} label="Tool Calling" />
+          </FilterGroup>
+
+          <FilterGroup label="上下文">
+            <Chip active={filters.context === '256k'} onClick={() => set({ context: filters.context === '256k' ? '' : '256k' })} label="256K+" />
+            <Chip active={filters.context === '1m'} onClick={() => set({ context: filters.context === '1m' ? '' : '1m' })} label="1M+" />
+          </FilterGroup>
         </div>
-        <Button size="sm" variant="ghost" onClick={() => setFilters(DEFAULT_FILTERS)} className="gap-1">
-          <X className="h-3 w-3" /> 清除筛选
-        </Button>
+
+        {/* Footer of filter section */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#1a2336] text-xs">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Switch checked={filters.expiringOnly} onCheckedChange={(v) => set({ expiringOnly: v })} aria-label="仅看即将过期" />
+              <span className="text-slate-300">即将过期 (14天内)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Switch checked={filters.longTermOnly} onCheckedChange={(v) => set({ longTermOnly: v })} aria-label="仅看长期免费" />
+              <span className="text-slate-300">长期有效</span>
+            </div>
+          </div>
+
+          {activeFiltersCount > 0 && (
+            <button
+              type="button"
+              onClick={() => setFilters(DEFAULT_FILTERS)}
+              className="inline-flex items-center gap-1 text-slate-400 hover:text-blue-400 cursor-pointer"
+            >
+              <RotateCcw className="h-3.5 w-3.5" />
+              <span>重置全部筛选 ({activeFiltersCount})</span>
+            </button>
+          )}
+        </div>
       </div>
 
-      <p className="text-xs text-muted-foreground">
-        共 <span className="tabular font-medium text-foreground">{results.length}</span> 个活动
-      </p>
+      {/* Results Header Count */}
+      <div className="flex items-center justify-between px-1">
+        <p className="text-xs text-slate-400">
+          共发现 <span className="font-bold text-white tabular">{results.length}</span> 个 AI 免费活动
+        </p>
+      </div>
 
+      {/* Main Content Area */}
       {results.length === 0 ? (
         <EmptyState
-          icon={<Search className="h-8 w-8" />}
+          icon={<Search className="h-8 w-8 text-slate-500" />}
           title="没有匹配的资源"
-          hint="尝试减少筛选条件，或该状态确实没有数据（未渲染空状态以外的内容）。"
-          action={<Button size="sm" variant="outline" onClick={() => setFilters(DEFAULT_FILTERS)}>清除全部筛选</Button>}
+          hint="尝试减少筛选条件，或重置搜索词。"
+          action={
+            <Button size="sm" variant="outline" onClick={() => setFilters(DEFAULT_FILTERS)} className="border-slate-700 text-slate-200">
+              清除全部筛选
+            </Button>
+          }
         />
       ) : view === 'card' ? (
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {results.map((o) => (
             <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
           ))}
         </div>
       ) : (
-        <div className="divide-y divide-edge rounded-lg border border-edge bg-surface">
-          {results.map((o) => (
-            <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} list />
-          ))}
-        </div>
+        <OfferTableView
+          offers={results}
+          platformById={platformById}
+          onSortToggle={() => setSort(sort === 'value' ? 'expiring' : 'value')}
+        />
       )}
     </div>
   );
@@ -291,8 +402,8 @@ export function ResourcesApp({ data }: { data: RadarData }) {
 
 function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-1.5">
-      <span className="text-muted-foreground">{label}</span>
+    <div className="flex items-center gap-2">
+      <span className="text-slate-400 text-[11px] font-medium shrink-0">{label}:</span>
       <div className="flex flex-wrap items-center gap-1.5">{children}</div>
     </div>
   );
@@ -305,8 +416,10 @@ function Chip({ active, onClick, label }: { active: boolean; onClick: () => void
       aria-pressed={active}
       onClick={onClick}
       className={
-        'rounded-full border px-2 py-0.5 text-[11px] font-medium transition-colors cursor-pointer ' +
-        (active ? 'border-accent bg-accent/10 text-primary' : 'border-edge text-muted-foreground hover:border-edge-strong hover:text-foreground')
+        'rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-all cursor-pointer ' +
+        (active
+          ? 'border border-blue-500 bg-blue-600/25 text-blue-300 font-semibold shadow-xs'
+          : 'border border-[#223048] bg-[#111827]/70 text-slate-400 hover:border-slate-600 hover:text-slate-200')
       }
     >
       {label}
