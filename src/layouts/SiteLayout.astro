@@ -1,13 +1,10 @@
 ---
 import '../styles/global.css';
-import { ThemeToggle, themeInitScript } from '../components/theme';
+import { themeInitScript } from '../components/theme';
 import { loadRadar } from "../lib/data/load";
-import { PersonalDataPanel } from '../features/PersonalDataPanel';
-import { MobileNav } from '../components/MobileNav';
-import { DesktopSidebar } from '../components/DesktopSidebar';
+import { AppShell } from '../components/AppShell';
 import { SonnerMount } from '../components/SonnerMount';
 import { withBase } from '../lib/utils/url';
-import { ShieldAlert, Radio } from 'lucide-react';
 
 interface Props {
   title: string;
@@ -35,42 +32,10 @@ const { title, description } = Astro.props;
     <script set:html={themeInitScript} />
   </head>
   <body class="min-h-screen">
-    <div class="flex min-h-screen">
-      <!-- 桌面端侧边导航(shadcn Sidebar) -->
-      <DesktopSidebar client:load pathname={Astro.url.pathname} />
-
-      <!-- 移动端顶部栏 -->
-      <div class="fixed inset-x-0 top-0 z-40 flex h-12 items-center justify-between border-b border-edge bg-surface px-3 lg:hidden">
-        <a href={withBase('/')} class="flex items-center gap-1.5">
-          <span class="flex h-6 w-6 items-center justify-center rounded bg-accent text-accent-ink">
-            <Radio class="h-3.5 w-3.5" />
-          </span>
-          <span class="text-sm font-bold">AI Free Radar</span>
-        </a>
-        <div class="flex items-center gap-1">
-          <ThemeToggle client:load />
-          <MobileNav client:load />
-        </div>
-      </div>
-
-      <!-- 主内容 -->
-      <div class="min-w-0 flex-1 pt-12 lg:pt-0">
-        {
-          demoCount > 0 && (
-            <div class="flex items-center gap-2 border-b border-warn/30 bg-warn-bg px-4 py-2 text-xs text-warn">
-              <ShieldAlert class="h-3.5 w-3.5 shrink-0" />
-              <span>当前为演示数据（{demoCount} 项），正式监控写入后将自动替换。演示条目均标记「Demo」。</span>
-            </div>
-          )
-        }
-        <main class="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-          <slot />
-        </main>
-        <footer class="mx-auto max-w-6xl px-4 pb-8 text-center text-xs text-faint sm:px-6 lg:px-8">
-          个人状态仅保存在当前浏览器（localStorage），不会自动同步其他设备 · 数据来自公开情报，使用前请自行核验官方条款
-        </footer>
-      </div>
-    </div>
+    <!-- 官方 shadcn Sidebar 整页布局: SidebarProvider + Sidebar + SidebarInset -->
+    <AppShell client:load pathname={Astro.url.pathname} demoCount={demoCount}>
+      <slot />
+    </AppShell>
 
     <SonnerMount client:load />
   </body>
