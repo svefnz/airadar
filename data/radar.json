@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T11:53:32.277Z",
+  "lastSuccessfulSync": "2026-10-29T14:16:03.863Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1049,6 +1049,42 @@
       "trustStatus": "official"
     },
     {
+      "id": "evomap",
+      "name": "EvoMap EvoX Agent",
+      "slug": "evomap",
+      "canonicalDomain": "evomap.ai",
+      "websiteUrl": "https://evomap.ai/evox/beta",
+      "description": "macOS/Windows EvoX Beta 自进化 Coding Agent；10月28–30日 MiniMax M3.1 Flash 客户端限免，未公布额度",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastCheckedAt": "2026-10-29T14:16:03.561Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "antdigital-dtmaas",
+      "name": "蚂蚁数科 DTMaaS",
+      "slug": "antdigital-dtmaas",
+      "canonicalDomain": "maas.antdigital.com",
+      "websiteUrl": "https://maas.antdigital.com/models",
+      "description": "蚂蚁数科推理 API；LingDT-Decision-1.0 4B/27B 结构化决策模型限免至10月30日",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastCheckedAt": "2026-10-29T14:16:03.561Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "kolo",
+      "name": "Kolo",
+      "slug": "kolo",
+      "canonicalDomain": "github.com",
+      "websiteUrl": "https://github.com/komovaar/kolo",
+      "description": "10月29日 Show HN 新发布的开源共享 Claude Code/Codex/OpenCode 会话工具；alpha阶段，运行于宿主用户权限，无免费模型额度",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastCheckedAt": "2026-10-29T14:16:03.561Z",
+      "trustStatus": "official"
+    },
+    {
       "id": "openai",
       "name": "OpenAI",
       "slug": "openai",
@@ -1110,216 +1146,6 @@
     }
   ],
   "offers": [
-    {
-      "id": "sonus:community-boost-r4",
-      "platformId": "sonus",
-      "title": "Community Boost Round 4",
-      "models": [
-        "Sonus"
-      ],
-      "accessType": "client",
-      "amount": 4096,
-      "unit": "Credit",
-      "amountType": "daily",
-      "resetInterval": "daily",
-      "claimConditions": [
-        "无需绑卡",
-        "三日最多 12288",
-        "客户端专用",
-        "社区用户自动发放"
-      ],
-      "billingRequirements": "none",
-      "identityVerification": "none",
-      "regionRestrictions": [],
-      "rateLimits": "三日最多 12288",
-      "contextWindow": 256000,
-      "toolCalling": false,
-      "apiCompatibility": "none",
-      "status": "active",
-      "verificationStatus": "official",
-      "discoveredAt": "2026-10-29T00:00:00Z",
-      "lastVerifiedAt": "2026-10-29T00:00:00Z",
-      "officialUrl": "https://sonus.dev/boost",
-      "sources": [
-        {
-          "url": "https://sonus.dev",
-          "label": "社区活动公告",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T00:00:00Z"
-        }
-      ],
-      "endAt": "2026-10-31T12:49:54.411Z"
-    },
-    {
-      "id": "u2-flash:zero-cost-api",
-      "platformId": "u2-flash",
-      "title": "U2 Flash 限时零费用API",
-      "models": [
-        "U2 Flash"
-      ],
-      "accessType": "api",
-      "amount": null,
-      "unit": "Unlimited",
-      "amountType": "limited-unlimited",
-      "resetInterval": "unlimited",
-      "claimConditions": [
-        "无需绑卡",
-        "输入输出免费 · 限时无限量",
-        "原生 API 直连无需审批"
-      ],
-      "billingRequirements": "none",
-      "identityVerification": "none",
-      "regionRestrictions": [],
-      "rateLimits": "输入输出免费 · 限时无限量",
-      "contextWindow": 512000,
-      "toolCalling": true,
-      "apiCompatibility": "openai",
-      "status": "active",
-      "verificationStatus": "official",
-      "discoveredAt": "2026-10-28T00:00:00Z",
-      "lastVerifiedAt": "2026-10-28T00:00:00Z",
-      "officialUrl": "https://u2flash.ai/api",
-      "sources": [
-        {
-          "url": "https://u2flash.ai",
-          "label": "官方限时免费公告",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T00:00:00Z"
-        }
-      ],
-      "endAt": "2026-11-01T12:49:54.406Z"
-    },
-    {
-      "id": "anthropic:claude-dev-100",
-      "platformId": "anthropic",
-      "title": "Claude 开发者额度 ",
-      "models": [
-        "Claude 3.5 Sonnet",
-        "3.5 Haiku"
-      ],
-      "accessType": "api",
-      "amount": 100,
-      "unit": "USD",
-      "amountType": "one-time",
-      "resetInterval": "none",
-      "claimConditions": [
-        "开发者",
-        "符合条件的开发者可获得  API Credits",
-        "符合条件的开发者（学生/开源/特定活动）",
-        "通过官方页面申请并完成身份验证"
-      ],
-      "billingRequirements": "none",
-      "identityVerification": "id",
-      "regionRestrictions": [
-        "全球（部分地区受限）"
-      ],
-      "rateLimits": "适用于 API 调用",
-      "contextWindow": 200000,
-      "toolCalling": true,
-      "apiCompatibility": "anthropic",
-      "status": "active",
-      "verificationStatus": "official",
-      "discoveredAt": "2026-10-25T00:00:00Z",
-      "lastVerifiedAt": "2026-10-25T00:00:00Z",
-      "officialUrl": "https://console.anthropic.com",
-      "sources": [
-        {
-          "url": "https://console.anthropic.com",
-          "label": "Anthropic Console 官方开发者活动",
-          "kind": "official",
-          "verifiedAt": "2026-10-25T00:00:00Z"
-        }
-      ]
-    },
-    {
-      "id": "google:gemini-pro-3m",
-      "platformId": "google",
-      "title": "Gemini Pro 3 个月免费试用",
-      "models": [
-        "Gemini 1.5 Pro",
-        "2.0 Flash",
-        "NotebookLM Plus"
-      ],
-      "accessType": "client",
-      "amount": null,
-      "unit": "Unlimited",
-      "amountType": "one-time",
-      "resetInterval": "none",
-      "claimConditions": [
-        "新用户",
-        "新用户可免费体验 Gemini Pro 高级功能",
-        "新注册 Google 账号（部分地区受限）",
-        "前往 Google One 页面领取"
-      ],
-      "billingRequirements": "card",
-      "identityVerification": "none",
-      "regionRestrictions": [
-        "全球（部分地区受限）"
-      ],
-      "rateLimits": "1M 上下文、NotebookLM Plus 等",
-      "contextWindow": 1000000,
-      "toolCalling": true,
-      "apiCompatibility": "none",
-      "status": "active",
-      "verificationStatus": "official",
-      "discoveredAt": "2026-10-27T00:00:00Z",
-      "lastVerifiedAt": "2026-10-27T00:00:00Z",
-      "officialUrl": "https://one.google.com/explore-plan/gemini-advanced",
-      "sources": [
-        {
-          "url": "https://one.google.com",
-          "label": "Google One 官方活动核验",
-          "kind": "official",
-          "verifiedAt": "2026-10-27T00:00:00Z"
-        }
-      ],
-      "endAt": "2026-12-31T23:59:59Z"
-    },
-    {
-      "id": "openai:chatgpt-plus-14d",
-      "platformId": "openai",
-      "title": "OpenAI 新用户 14 天 Plus 体验",
-      "models": [
-        "GPT-4o",
-        "o1",
-        "Advanced Voice",
-        "DALL·E 3"
-      ],
-      "accessType": "client",
-      "amount": null,
-      "unit": "Unlimited",
-      "amountType": "one-time",
-      "resetInterval": "none",
-      "claimConditions": [
-        "新用户",
-        "限时免费体验 ChatGPT Plus 全部功能",
-        "新注册账号",
-        "访问活动页面注册并激活"
-      ],
-      "billingRequirements": "card",
-      "identityVerification": "none",
-      "regionRestrictions": [
-        "全球（部分地区受限）"
-      ],
-      "rateLimits": "完整 Plus 功能",
-      "contextWindow": 128000,
-      "toolCalling": true,
-      "apiCompatibility": "none",
-      "status": "active",
-      "verificationStatus": "official",
-      "discoveredAt": "2026-10-27T00:00:00Z",
-      "lastVerifiedAt": "2026-10-27T00:00:00Z",
-      "officialUrl": "https://chatgpt.com/overview",
-      "sources": [
-        {
-          "url": "https://openai.com/blog",
-          "label": "官方活动页面当前核验",
-          "kind": "official",
-          "verifiedAt": "2026-10-27T00:00:00Z"
-        }
-      ],
-      "endAt": "2026-11-11T23:59:59Z"
-    },
     {
       "id": "qoder:6c839fb00a42",
       "platformId": "qoder",
@@ -3519,24 +3345,27 @@
       "models": [
         "openllm/deepseek/deepseek-v4.1-flash"
       ],
-      "accessType": "client",
+      "accessType": "api",
       "amount": null,
       "unit": "Unknown",
       "amountType": "monthly",
       "resetInterval": "monthly",
       "claimConditions": [
         "历史报告导入；不是本轮新发现",
-        "本轮核验官方来源：平台月度200万计费单位并非200万等量Tokens;输入输出计费权重不同;250K上下文"
+        "本轮核验官方来源：平台月度200万计费单位并非200万等量Tokens;输入输出计费权重不同;250K上下文",
+        "官方确认 Hosted Gateway 可通过 OpenAI/Anthropic 兼容 API 调用内置模型，免费计划免绑卡",
+        "Free另有每月50M非缓存平台Token上限；内置模型额度按加权单位计费，不等于同量Tokens",
+        "免费计划需要广告Cookie同意；未实测新账号及地区限制"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
-      "apiCompatibility": "unknown",
+      "apiCompatibility": "both",
       "status": "active",
       "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
       "officialUrl": "https://docs.openllm.sh/providers/included",
       "sources": [
         {
@@ -3544,6 +3373,24 @@
           "label": "官方页面当前核验",
           "kind": "official",
           "verifiedAt": "2026-10-28T21:30:43Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
         }
       ],
       "contextWindow": 250000
@@ -3555,24 +3402,27 @@
       "models": [
         "openllm/qwen/qwen3.7-plus"
       ],
-      "accessType": "client",
+      "accessType": "api",
       "amount": null,
       "unit": "Unknown",
       "amountType": "monthly",
       "resetInterval": "monthly",
       "claimConditions": [
         "历史报告导入；不是本轮新发现",
-        "本轮核验官方来源：平台计费单位非Tokens;输入和输出权重不同;250K上下文"
+        "本轮核验官方来源：平台计费单位非Tokens;输入和输出权重不同;250K上下文",
+        "官方确认 Hosted Gateway 可通过 OpenAI/Anthropic 兼容 API 调用内置模型，免费计划免绑卡",
+        "Free另有每月50M非缓存平台Token上限；内置模型额度按加权单位计费，不等于同量Tokens",
+        "免费计划需要广告Cookie同意；未实测新账号及地区限制"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "",
-      "apiCompatibility": "unknown",
+      "apiCompatibility": "both",
       "status": "active",
       "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
       "officialUrl": "https://docs.openllm.sh/providers/included",
       "sources": [
         {
@@ -3580,6 +3430,24 @@
           "label": "官方页面当前核验",
           "kind": "official",
           "verifiedAt": "2026-10-28T21:30:43Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
         }
       ],
       "contextWindow": 250000
@@ -5539,9 +5407,1712 @@
           "verifiedAt": "2026-10-29T11:53:32.277Z"
         }
       ]
+    },
+    {
+      "id": "evomap:bkl0lo",
+      "platformId": "evomap",
+      "title": "EvoX Agent MiniMax M3.1 Flash 限免（10月28–30日）",
+      "models": [
+        "MiniMax M3.1 Flash"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "10月28–30日限时免费；截止具体时刻及时区未公布",
+        "下载 EvoX Beta 桌面客户端，登录后选择 MiniMax M3.1 Flash；不是原生模型 API",
+        "官方 X 原帖403，通过 MiniMax 官方转推镜像及第三方资料核对，尚未实测到账",
+        "免费次数/绑卡/实名/地区/商用条件均未公布"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "未公布免费用量上限",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
+      "officialUrl": "https://evomap.ai/evox/beta",
+      "sources": [
+        {
+          "url": "https://x.com/EvoMapAI/status/2115287529197044084",
+          "label": "EvoMap 官方 X 原帖（直达403，镜像交叉核验）",
+          "kind": "official"
+        },
+        {
+          "url": "https://www.sotwe.com/MiniMax_ai",
+          "label": "MiniMax 官方账号转推镜像",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://evomap.ai/evox/beta",
+          "label": "EvoX 官方 Beta 客户端下载",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://freeai.alexai.top/evox-minimax-m3-1-flash-free-oct28-30/",
+          "label": "第三方活动核验",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ]
+    },
+    {
+      "id": "antdigital-dtmaas:12jmdsw",
+      "platformId": "antdigital-dtmaas",
+      "title": "LingDT-Decision-1.0 4B/27B 决策 API 限免至10月30日",
+      "models": [
+        "LingDT-Decision-1.0 4B",
+        "LingDT-Decision-1.0 27B"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "官方 DTMaaS 模型市场注明限免至2026-10-30，具体时刻/时区未知；输入输出标价¥0/百万Tokens",
+        "用于结构化决策（分类、选择、评分、DAG），不是普通聊天模型",
+        "模型市场可选API调用；注册/绑卡/实名/地区要求未确认",
+        "用量总上限未知；单请求最多32个问题、255个选项"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费请求/Token总量未公布；单请求32问/255选项",
+      "contextWindow": 16000,
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
+      "officialUrl": "https://maas.antdigital.com/models",
+      "sources": [
+        {
+          "url": "https://maas.antdigital.com/",
+          "label": "蚂蚁数科 DTMaaS 官方首页限免公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://maas.antdigital.com/models",
+          "label": "官方模型广场",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.panewslab.com/zh/articles/01a1625e-ad69-718b-b86b-e38791a7111e",
+          "label": "10月22日限免报道",
+          "kind": "other",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ]
+    },
+    {
+      "id": "qoder:1h8szdb",
+      "platformId": "qoder",
+      "title": "Qoder 邀请好友免费奖励：每位有效好友最多150 Credits",
+      "models": [
+        "Qoder coding agent"
+      ],
+      "accessType": "client",
+      "amount": 150,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "2026-10-29开始；现有Qoder Global用户可邀请最多50位有效新用户，每位最多150 Credits（50注册使用+100活跃）",
+        "好友通过邀请链接注册并在7天内开始1个任务/对话得50；7天内累计3天有效使用再得100；第8天发放",
+        "仅收录无需付费的50+100奖励；好友首购订阅的额外1000/500 Credits不计入",
+        "活动结束日期未公布；异常设备/环境不合格；绑卡、实名及地区要求未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "最多50位新用户，每人最多150免费奖励；非每日恢复",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T14:16:03.561Z",
+      "lastVerifiedAt": "2026-10-29T14:16:03.561Z",
+      "officialUrl": "https://docs.qoder.com/events/invite-friends",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/events/invite-friends",
+          "label": "2026-10-29 Qoder 官方邀请奖励规则",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ]
+    },
+    {
+      "id": "sonus:community-boost-r4",
+      "platformId": "sonus",
+      "title": "Community Boost Round 4",
+      "models": [
+        "Sonus"
+      ],
+      "accessType": "client",
+      "amount": 4096,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "无需绑卡",
+        "三日最多 12288",
+        "客户端专用",
+        "社区用户自动发放"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "三日最多 12288",
+      "contextWindow": 256000,
+      "toolCalling": false,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T00:00:00Z",
+      "lastVerifiedAt": "2026-10-29T00:00:00Z",
+      "officialUrl": "https://sonus.dev/boost",
+      "sources": [
+        {
+          "url": "https://sonus.dev",
+          "label": "社区活动公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-10-31T12:49:54.411Z"
+    },
+    {
+      "id": "u2-flash:zero-cost-api",
+      "platformId": "u2-flash",
+      "title": "U2 Flash 限时零费用API",
+      "models": [
+        "U2 Flash"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "limited-unlimited",
+      "resetInterval": "unlimited",
+      "claimConditions": [
+        "无需绑卡",
+        "输入输出免费 · 限时无限量",
+        "原生 API 直连无需审批"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "输入输出免费 · 限时无限量",
+      "contextWindow": 512000,
+      "toolCalling": true,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-28T00:00:00Z",
+      "lastVerifiedAt": "2026-10-28T00:00:00Z",
+      "officialUrl": "https://u2flash.ai/api",
+      "sources": [
+        {
+          "url": "https://u2flash.ai",
+          "label": "官方限时免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-11-01T12:49:54.406Z"
+    },
+    {
+      "id": "anthropic:claude-dev-100",
+      "platformId": "anthropic",
+      "title": "Claude 开发者额度 ",
+      "models": [
+        "Claude 3.5 Sonnet",
+        "3.5 Haiku"
+      ],
+      "accessType": "api",
+      "amount": 100,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "开发者",
+        "符合条件的开发者可获得  API Credits",
+        "符合条件的开发者（学生/开源/特定活动）",
+        "通过官方页面申请并完成身份验证"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "id",
+      "regionRestrictions": [
+        "全球（部分地区受限）"
+      ],
+      "rateLimits": "适用于 API 调用",
+      "contextWindow": 200000,
+      "toolCalling": true,
+      "apiCompatibility": "anthropic",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-25T00:00:00Z",
+      "lastVerifiedAt": "2026-10-25T00:00:00Z",
+      "officialUrl": "https://console.anthropic.com",
+      "sources": [
+        {
+          "url": "https://console.anthropic.com",
+          "label": "Anthropic Console 官方开发者活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-25T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "google:gemini-pro-3m",
+      "platformId": "google",
+      "title": "Gemini Pro 3 个月免费试用",
+      "models": [
+        "Gemini 1.5 Pro",
+        "2.0 Flash",
+        "NotebookLM Plus"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新用户",
+        "新用户可免费体验 Gemini Pro 高级功能",
+        "新注册 Google 账号（部分地区受限）",
+        "前往 Google One 页面领取"
+      ],
+      "billingRequirements": "card",
+      "identityVerification": "none",
+      "regionRestrictions": [
+        "全球（部分地区受限）"
+      ],
+      "rateLimits": "1M 上下文、NotebookLM Plus 等",
+      "contextWindow": 1000000,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-27T00:00:00Z",
+      "lastVerifiedAt": "2026-10-27T00:00:00Z",
+      "officialUrl": "https://one.google.com/explore-plan/gemini-advanced",
+      "sources": [
+        {
+          "url": "https://one.google.com",
+          "label": "Google One 官方活动核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-27T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-12-31T23:59:59Z"
+    },
+    {
+      "id": "openai:chatgpt-plus-14d",
+      "platformId": "openai",
+      "title": "OpenAI 新用户 14 天 Plus 体验",
+      "models": [
+        "GPT-4o",
+        "o1",
+        "Advanced Voice",
+        "DALL·E 3"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "新用户",
+        "限时免费体验 ChatGPT Plus 全部功能",
+        "新注册账号",
+        "访问活动页面注册并激活"
+      ],
+      "billingRequirements": "card",
+      "identityVerification": "none",
+      "regionRestrictions": [
+        "全球（部分地区受限）"
+      ],
+      "rateLimits": "完整 Plus 功能",
+      "contextWindow": 128000,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-27T00:00:00Z",
+      "lastVerifiedAt": "2026-10-27T00:00:00Z",
+      "officialUrl": "https://chatgpt.com/overview",
+      "sources": [
+        {
+          "url": "https://openai.com/blog",
+          "label": "官方活动页面当前核验",
+          "kind": "official",
+          "verifiedAt": "2026-10-27T00:00:00Z"
+        }
+      ],
+      "endAt": "2026-11-11T23:59:59Z"
     }
   ],
   "events": [
+    {
+      "id": "ev_9hq63n",
+      "offerId": null,
+      "platformId": "evomap",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "evomap",
+      "sources": [
+        {
+          "url": "https://x.com/EvoMapAI/status/2115287529197044084",
+          "label": "EvoMap 官方 X 原帖（直达403，镜像交叉核验）",
+          "kind": "official"
+        },
+        {
+          "url": "https://www.sotwe.com/MiniMax_ai",
+          "label": "MiniMax 官方账号转推镜像",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://evomap.ai/evox/beta",
+          "label": "EvoX 官方 Beta 客户端下载",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://freeai.alexai.top/evox-minimax-m3-1-flash-free-oct28-30/",
+          "label": "第三方活动核验",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新平台候选：EvoMap EvoX Agent；无免费模型权益不自动创建 Offer"
+    },
+    {
+      "id": "ev_1f6k9pp",
+      "offerId": null,
+      "platformId": "antdigital-dtmaas",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "antdigital-dtmaas",
+      "sources": [
+        {
+          "url": "https://maas.antdigital.com/",
+          "label": "蚂蚁数科 DTMaaS 官方首页限免公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://maas.antdigital.com/models",
+          "label": "官方模型广场",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.panewslab.com/zh/articles/01a1625e-ad69-718b-b86b-e38791a7111e",
+          "label": "10月22日限免报道",
+          "kind": "other",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新平台候选：蚂蚁数科 DTMaaS；无免费模型权益不自动创建 Offer"
+    },
+    {
+      "id": "ev_ymh8w3",
+      "offerId": null,
+      "platformId": "kolo",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "kolo",
+      "sources": [
+        {
+          "url": "https://github.com/komovaar/kolo",
+          "label": "Kolo 官方仓库及alpha安全提示",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://news.ycombinator.com/from?site=github.com%2Fkomovaar",
+          "label": "10月29日 Show HN",
+          "kind": "forum",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新平台候选：Kolo；无免费模型权益不自动创建 Offer"
+    },
+    {
+      "id": "ev_1kvj9l1",
+      "offerId": "evomap:bkl0lo",
+      "platformId": "evomap",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://x.com/EvoMapAI/status/2115287529197044084",
+          "label": "EvoMap 官方 X 原帖（直达403，镜像交叉核验）",
+          "kind": "official"
+        },
+        {
+          "url": "https://www.sotwe.com/MiniMax_ai",
+          "label": "MiniMax 官方账号转推镜像",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://evomap.ai/evox/beta",
+          "label": "EvoX 官方 Beta 客户端下载",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://freeai.alexai.top/evox-minimax-m3-1-flash-free-oct28-30/",
+          "label": "第三方活动核验",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新发现免费权益：EvoX Agent MiniMax M3.1 Flash 限免（10月28–30日）；未实测账号到账"
+    },
+    {
+      "id": "ev_1c4zaoj",
+      "offerId": "antdigital-dtmaas:12jmdsw",
+      "platformId": "antdigital-dtmaas",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://maas.antdigital.com/",
+          "label": "蚂蚁数科 DTMaaS 官方首页限免公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://maas.antdigital.com/models",
+          "label": "官方模型广场",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.panewslab.com/zh/articles/01a1625e-ad69-718b-b86b-e38791a7111e",
+          "label": "10月22日限免报道",
+          "kind": "other",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新发现免费权益：LingDT-Decision-1.0 4B/27B 决策 API 限免至10月30日；未实测账号到账"
+    },
+    {
+      "id": "ev_91bcqv",
+      "offerId": "qoder:1h8szdb",
+      "platformId": "qoder",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/events/invite-friends",
+          "label": "2026-10-29 Qoder 官方邀请奖励规则",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "新发现免费权益：Qoder 邀请好友免费奖励：每位有效好友最多150 Credits；未实测账号到账"
+    },
+    {
+      "id": "ev_a8n6x0",
+      "offerId": "openllm:9d496c73383d",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "accessType",
+      "previousValue": "client",
+      "currentValue": "api",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_13bvogl",
+      "offerId": "openllm:9d496c73383d",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "billingRequirements",
+      "previousValue": "unknown",
+      "currentValue": "none",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_xbvj2p",
+      "offerId": "openllm:9d496c73383d",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "apiCompatibility",
+      "previousValue": "unknown",
+      "currentValue": "both",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_b2fbw8",
+      "offerId": "openllm:6aef21bc7192",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "accessType",
+      "previousValue": "client",
+      "currentValue": "api",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_dw3h1l",
+      "offerId": "openllm:6aef21bc7192",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "billingRequirements",
+      "previousValue": "unknown",
+      "currentValue": "none",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_wm7ryl",
+      "offerId": "openllm:6aef21bc7192",
+      "platformId": "openllm",
+      "eventType": "conditions-changed",
+      "timestamp": "2026-10-29T14:16:03.561Z",
+      "field": "apiCompatibility",
+      "previousValue": "unknown",
+      "currentValue": "both",
+      "sources": [
+        {
+          "url": "https://docs.openllm.sh/providers/included",
+          "label": "OpenLLM 内置免费模型文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/pricing",
+          "label": "OpenLLM Free 方案与月度上限",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://docs.openllm.sh/",
+          "label": "Hosted Gateway OpenAI/Anthropic 兼容文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        },
+        {
+          "url": "https://www.openllm.sh/",
+          "label": "官方免绑卡及广告同意条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T14:16:03.561Z"
+        }
+      ],
+      "description": "依据官方文档纠正历史分类，不代表新促销"
+    },
+    {
+      "id": "ev_sggbk0",
+      "offerId": null,
+      "platformId": "kilo",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "kilo",
+      "sources": [
+        {
+          "url": "https://kilo.ai/",
+          "label": "平台官方网站",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "新增核实有免费服务的平台：Kilo Code / Kilo Gateway"
+    },
+    {
+      "id": "ev_1hsfp00",
+      "offerId": null,
+      "platformId": "scaleway",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "scaleway",
+      "sources": [
+        {
+          "url": "https://www.scaleway.com/en/generative-apis/",
+          "label": "平台官方网站",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "新增核实有免费服务的平台：Scaleway Generative APIs"
+    },
+    {
+      "id": "ev_pe1mwl",
+      "offerId": "vercel:1p33uow",
+      "platformId": "vercel",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free",
+          "label": "2026-10-16 Vercel 官方免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/beam-free",
+          "label": "Vercel 免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Reflection Beam 1.0 免费推理 API（1M 上下文）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_10gw1zf",
+      "offerId": "vercel:5bcxig",
+      "platformId": "vercel",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/nemotron-3-5-lightning-now-available-on-ai-gateway-for-free",
+          "label": "2026-10-14 Vercel 官方免费公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/nemotron-3.5-lightning-free",
+          "label": "Vercel 免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Nemotron 3.5 Lightning 免费 API（1M 上下文）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_hmftmc",
+      "offerId": "openrouter:14lumsg",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/thinkingmachines/inkling:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Thinking Machines Inkling 免费编码 API（1M，仅 Agent Harness）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_147h4g6",
+      "offerId": "openrouter:ijaxgn",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/thinkingmachines/inkling-small:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Thinking Machines Inkling Small 免费编码 API（1M，仅 Agent Harness）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_12oivun",
+      "offerId": "openrouter:1dobb6d",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/nvidia/nemotron-3.5-super-vl:free",
+          "label": "OpenRouter 官方免费模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Nemotron 3.5 Super VL 免费多模态 API（1M 上下文）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_ip1cf0",
+      "offerId": "kilo:1q889hf",
+      "platformId": "kilo",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://kilo.ai/docs/getting-started/using-kilo-for-free",
+          "label": "Kilo 官方 Auto Free 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://kilo.ai/docs/getting-started/rate-limits-and-costs",
+          "label": "Kilo 官方 200 请求/小时限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://kilo.ai/pricing",
+          "label": "Kilo 官方免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Kilo Auto Free 免费 Coding Agent（每 IP 每小时 200 请求）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_tq7uxn",
+      "offerId": "scaleway:103cack",
+      "platformId": "scaleway",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T11:53:32.277Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.scaleway.com/en/generative-apis/",
+          "label": "官方新用户 100 万 Tokens 免费层",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://www.scaleway.com/en/docs/generative-apis/faq/",
+          "label": "官方超额收费说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        },
+        {
+          "url": "https://www.scaleway.com/en/docs/account/setup-lifecycle/create-an-account/",
+          "label": "官方银行卡与注册流程",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T11:53:32.277Z"
+        }
+      ],
+      "description": "官方资料确认、仓库此前未收录的免费权益：Scaleway 新客户原生 API 免费 100 万 Tokens（需绑卡）；账户实际到账未实测"
+    },
+    {
+      "id": "ev_1qttixk",
+      "platformId": "optracloud",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "OptraCloud",
+      "sources": [
+        {
+          "url": "https://optracloud.com/",
+          "label": "平台官方首页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新发现平台：OptraCloud"
+    },
+    {
+      "id": "ev_v2s5fc",
+      "platformId": "qubico",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "Qubico AI",
+      "sources": [
+        {
+          "url": "https://qubico.ai/",
+          "label": "平台官方首页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新发现平台：Qubico AI"
+    },
+    {
+      "id": "ev_dj6sdl",
+      "platformId": "push-agent",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "Push (MasslessAI)",
+      "sources": [
+        {
+          "url": "https://push.computer/",
+          "label": "平台官方首页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新发现平台：Push (MasslessAI)；客户端免费但不赠模型Token"
+    },
+    {
+      "id": "ev_1h4c06i",
+      "offerId": "optracloud:11jx2ix",
+      "platformId": "optracloud",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://optracloud.com/free.html",
+          "label": "官方免费额度说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        },
+        {
+          "url": "https://optracloud.com/pricing/",
+          "label": "官方定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        },
+        {
+          "url": "https://optracloud.com/docs.html",
+          "label": "官方API及限流文档",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新增官网声明免费权益：OptraCloud 注册免费 150,000,000 输出 Tokens（Qwen3.8-27B）；实际账号到账未实测"
+    },
+    {
+      "id": "ev_z9ela1",
+      "offerId": "qubico:bo7rdp",
+      "platformId": "qubico",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T08:13:47.892Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://qubico.ai/",
+          "label": "官方注册免费额度及定价说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T08:13:47.892Z"
+        }
+      ],
+      "description": "新增官网声明免费权益：Qubico AI 新注册 $0.25 推理 API Credits（6个月有效）；实际账号到账未实测"
+    },
+    {
+      "id": "ev_uh5q3i",
+      "offerId": null,
+      "platformId": "allmodels",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "allmodels",
+      "sources": [
+        {
+          "url": "https://allmodels.io/pricing",
+          "label": "AllModels 官方：注册 $0.25 生产赠额",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：AllModels"
+    },
+    {
+      "id": "ev_16vav36",
+      "offerId": null,
+      "platformId": "kiro",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "kiro",
+      "sources": [
+        {
+          "url": "https://kiro.dev/pricing/",
+          "label": "Kiro 官方 Free 50 Credits/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：Kiro"
+    },
+    {
+      "id": "ev_ig7vi5",
+      "offerId": null,
+      "platformId": "fireworks",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "fireworks",
+      "sources": [
+        {
+          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
+          "label": "Fireworks 官方 $1 Starter Credits 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：Fireworks AI"
+    },
+    {
+      "id": "ev_1wqqb7z",
+      "offerId": null,
+      "platformId": "nvidia-build",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "nvidia-build",
+      "sources": [
+        {
+          "url": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
+          "label": "NVIDIA Build DeepSeek V4.1 Flash 免费开发者 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：NVIDIA Build / NIM API"
+    },
+    {
+      "id": "ev_rsq1ja",
+      "offerId": null,
+      "platformId": "hob",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "hob",
+      "sources": [
+        {
+          "url": "https://github.com/FrigadeHQ/hob",
+          "label": "Hob MIT 开源离线 AI 客户端",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "B 类独立检索发现并核实：Hob"
+    },
+    {
+      "id": "ev_1y2y9sg",
+      "offerId": "allmodels:1aei5gw",
+      "platformId": "allmodels",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://allmodels.io/pricing",
+          "label": "AllModels 官方：注册 $0.25 生产赠额",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：AllModels 新注册 $0.25 生产 API Credits"
+    },
+    {
+      "id": "ev_hjt1pv",
+      "offerId": "kiro:1karlcj",
+      "platformId": "kiro",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://kiro.dev/pricing/",
+          "label": "Kiro 官方 Free 50 Credits/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：Kiro Free 永久每月 50 Coding Credits"
+    },
+    {
+      "id": "ev_1i8wbey",
+      "offerId": "kiro:1dz61h7",
+      "platformId": "kiro",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://kiro.dev/students/",
+          "label": "Kiro Students 官方：合格学生每月1000 Credits一年",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://kiro.dev/blog/students-2026/",
+          "label": "Kiro 官方 2026-09-08 学生计划扩展",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：Kiro Students 合格大学生 12 个月每月 1000 Credits"
+    },
+    {
+      "id": "ev_14cwrx9",
+      "offerId": "fireworks:1sv5x6v",
+      "platformId": "fireworks",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
+          "label": "Fireworks 官方 $1 Starter Credits 说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://docs.fireworks.ai/getting-started/introduction",
+          "label": "Fireworks Serverless 官方 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：Fireworks AI 新注册一次性 $1 Serverless API Credits"
+    },
+    {
+      "id": "ev_ofs1ma",
+      "offerId": "nvidia-build:108pq3y",
+      "platformId": "nvidia-build",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T05:44:57.121Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
+          "label": "NVIDIA Build DeepSeek V4.1 Flash 免费开发者 API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        },
+        {
+          "url": "https://build.nvidia.com/",
+          "label": "NVIDIA Build 免费推理目录",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T05:44:57.121Z"
+        }
+      ],
+      "description": "A类官方来源核实，首次入库：NVIDIA Build 免费开发者推理 API（DeepSeek V4.1 Flash / Nemotron）"
+    },
+    {
+      "id": "ev_1b5jvwb",
+      "offerId": null,
+      "platformId": "strawberry",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "strawberry",
+      "sources": [
+        {
+          "url": "https://strawberrybrowser.com",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Strawberry 1.0 AI Browser"
+    },
+    {
+      "id": "ev_1nv7dkn",
+      "offerId": null,
+      "platformId": "llm7",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "llm7",
+      "sources": [
+        {
+          "url": "https://llm7.io",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 LLM7.io"
+    },
+    {
+      "id": "ev_14041ez",
+      "offerId": null,
+      "platformId": "github-copilot",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "github-copilot",
+      "sources": [
+        {
+          "url": "https://github.com/features/copilot",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 GitHub Copilot"
+    },
+    {
+      "id": "ev_1mhskcf",
+      "offerId": null,
+      "platformId": "mistral-vibe",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "mistral-vibe",
+      "sources": [
+        {
+          "url": "https://mistral.ai/pricing/",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Mistral Vibe"
+    },
+    {
+      "id": "ev_pw5fv7",
+      "offerId": null,
+      "platformId": "google-antigravity",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "google-antigravity",
+      "sources": [
+        {
+          "url": "https://www.antigravity.google/pricing",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Google Antigravity"
+    },
+    {
+      "id": "ev_r4yynj",
+      "offerId": null,
+      "platformId": "bullet",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "bullet",
+      "sources": [
+        {
+          "url": "https://www.codewithbullet.com/",
+          "label": "平台官方主页",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "发现新平台 Bullet Coding Agent"
+    },
+    {
+      "id": "ev_3zykvv",
+      "offerId": "qoder:c2cxjz",
+      "platformId": "qoder",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://docs.qoder.com/events/communityboost",
+          "label": "Qoder 官方 Round4 资格与领取窗口",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Community Boost Round 4 每日4096 SOTA Credits（Sonus）"
+    },
+    {
+      "id": "ev_cawihn",
+      "offerId": "strawberry:1tx7mgb",
+      "platformId": "strawberry",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://strawberrybrowser.com/pricing",
+          "label": "Strawberry 最新官方定价和无绑卡声明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://www.producthunt.com/products/strawberry",
+          "label": "2026-10-26 Product Hunt Strawberry 1.0",
+          "kind": "community",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Strawberry 1.0 Free 每月500 Agent Credits"
+    },
+    {
+      "id": "ev_nzfv39",
+      "offerId": "llm7:1y696pv",
+      "platformId": "llm7",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://llm7.io/",
+          "label": "LLM7 官方免费额度与请求限速",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：LLM7 Free Token API 每日100000 Tokens"
+    },
+    {
+      "id": "ev_anrwv1",
+      "offerId": "github-copilot:hinxh6",
+      "platformId": "github-copilot",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://github.com/features/copilot/plans",
+          "label": "GitHub Copilot 官方 Free 定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://docs.github.com/en/copilot/get-started/plans",
+          "label": "官方免费档资格和自动模型选择",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：GitHub Copilot Free 每月2000代码补全及有限Agent"
+    },
+    {
+      "id": "ev_1b17myf",
+      "offerId": "mistral-vibe:ra6f7h",
+      "platformId": "mistral-vibe",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://mistral.ai/pricing/",
+          "label": "Mistral 官方 Vibe Free 计划",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Mistral Vibe Free 免费编程会话与网页移动端Agent"
+    },
+    {
+      "id": "ev_irzqa6",
+      "offerId": "google-antigravity:m9irde",
+      "platformId": "google-antigravity",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T02:46:39.536Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.antigravity.google/pricing",
+          "label": "Google Antigravity 官方 Individual Free 定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        },
+        {
+          "url": "https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals",
+          "label": "Google 旧 Code Assist 个人版停用公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T02:46:39.536Z"
+        }
+      ],
+      "description": "官方确认新发现：Google Antigravity Individual Free 每周基础Agent额度"
+    },
+    {
+      "id": "ev_8464sg",
+      "offerId": null,
+      "platformId": "akamai-inference",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "akamai-inference",
+      "sources": [
+        {
+          "url": "https://www.akamai.com/newsroom/press-release/akamai-launches-ai-inference-service-and-agent-execution-environment",
+          "label": "Akamai 2026-10-27 发布",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "新平台候选：Akamai Inference，无已核实免费权益"
+    },
+    {
+      "id": "ev_1wpyc9j",
+      "offerId": "openrouter:1lhnzem",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/cohere/north-mini-code:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：North Mini Code 免费编码 API（256K）"
+    },
+    {
+      "id": "ev_1ejteww",
+      "offerId": "openrouter:18llzm6",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Nemotron 3 Ultra 免费 API（1M 上下文）"
+    },
+    {
+      "id": "ev_1ah02r6",
+      "offerId": "openrouter:fcv5so",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/inclusionai/ling-2.6-1t:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Ling 2.6 1T 免费推理 API（262K）"
+    },
+    {
+      "id": "ev_fqrwgl",
+      "offerId": "openrouter:bkg6dk",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/dots-studio/dots-3-note-preview:free",
+          "label": "OpenRouter 官方模型详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "官方免费额度 50 RPD / 20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://openrouter.ai/collections/free-models",
+          "label": "官方免费模型列表",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Dots3 Note Preview 免费 API（512K）"
+    },
+    {
+      "id": "ev_1xp6axf",
+      "offerId": "vercel:gsfjr9",
+      "platformId": "vercel",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-28T23:28:17.906Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://vercel.com/changelog/laya-decision-model-now-available-on-ai-gateway-free-through-october-31",
+          "label": "2026-10-01 Vercel 官方免费期公告",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        },
+        {
+          "url": "https://vercel.com/ai-gateway/models/laya-free",
+          "label": "Vercel 模型定价详情",
+          "kind": "official",
+          "verifiedAt": "2026-10-28T23:28:17.906Z"
+        }
+      ],
+      "description": "官方确认新增：Laya 决策模型 API 免费至 10 月 31 日"
+    },
     {
       "id": "ev_gwuy66",
       "platformId": "google-ai-studio",
@@ -5820,1019 +7391,38 @@
         }
       ],
       "description": "DeepSeek 官方文档核验"
-    },
-    {
-      "id": "ev_8464sg",
-      "offerId": null,
-      "platformId": "akamai-inference",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-28T23:28:17.906Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "akamai-inference",
-      "sources": [
-        {
-          "url": "https://www.akamai.com/newsroom/press-release/akamai-launches-ai-inference-service-and-agent-execution-environment",
-          "label": "Akamai 2026-10-27 发布",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        }
-      ],
-      "description": "新平台候选：Akamai Inference，无已核实免费权益"
-    },
-    {
-      "id": "ev_1wpyc9j",
-      "offerId": "openrouter:1lhnzem",
-      "platformId": "openrouter",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-28T23:28:17.906Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://openrouter.ai/cohere/north-mini-code:free",
-          "label": "OpenRouter 官方模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/pricing",
-          "label": "官方免费额度 50 RPD / 20 RPM",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/collections/free-models",
-          "label": "官方免费模型列表",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        }
-      ],
-      "description": "官方确认新增：North Mini Code 免费编码 API（256K）"
-    },
-    {
-      "id": "ev_1ejteww",
-      "offerId": "openrouter:18llzm6",
-      "platformId": "openrouter",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-28T23:28:17.906Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
-          "label": "OpenRouter 官方模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/pricing",
-          "label": "官方免费额度 50 RPD / 20 RPM",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/collections/free-models",
-          "label": "官方免费模型列表",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        }
-      ],
-      "description": "官方确认新增：Nemotron 3 Ultra 免费 API（1M 上下文）"
-    },
-    {
-      "id": "ev_1ah02r6",
-      "offerId": "openrouter:fcv5so",
-      "platformId": "openrouter",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-28T23:28:17.906Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://openrouter.ai/inclusionai/ling-2.6-1t:free",
-          "label": "OpenRouter 官方模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/pricing",
-          "label": "官方免费额度 50 RPD / 20 RPM",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/collections/free-models",
-          "label": "官方免费模型列表",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        }
-      ],
-      "description": "官方确认新增：Ling 2.6 1T 免费推理 API（262K）"
-    },
-    {
-      "id": "ev_fqrwgl",
-      "offerId": "openrouter:bkg6dk",
-      "platformId": "openrouter",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-28T23:28:17.906Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://openrouter.ai/dots-studio/dots-3-note-preview:free",
-          "label": "OpenRouter 官方模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/pricing",
-          "label": "官方免费额度 50 RPD / 20 RPM",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://openrouter.ai/collections/free-models",
-          "label": "官方免费模型列表",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        }
-      ],
-      "description": "官方确认新增：Dots3 Note Preview 免费 API（512K）"
-    },
-    {
-      "id": "ev_1xp6axf",
-      "offerId": "vercel:gsfjr9",
-      "platformId": "vercel",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-28T23:28:17.906Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://vercel.com/changelog/laya-decision-model-now-available-on-ai-gateway-free-through-october-31",
-          "label": "2026-10-01 Vercel 官方免费期公告",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        },
-        {
-          "url": "https://vercel.com/ai-gateway/models/laya-free",
-          "label": "Vercel 模型定价详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-28T23:28:17.906Z"
-        }
-      ],
-      "description": "官方确认新增：Laya 决策模型 API 免费至 10 月 31 日"
-    },
-    {
-      "id": "ev_1b5jvwb",
-      "offerId": null,
-      "platformId": "strawberry",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "strawberry",
-      "sources": [
-        {
-          "url": "https://strawberrybrowser.com",
-          "label": "平台官方主页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "发现新平台 Strawberry 1.0 AI Browser"
-    },
-    {
-      "id": "ev_1nv7dkn",
-      "offerId": null,
-      "platformId": "llm7",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "llm7",
-      "sources": [
-        {
-          "url": "https://llm7.io",
-          "label": "平台官方主页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "发现新平台 LLM7.io"
-    },
-    {
-      "id": "ev_14041ez",
-      "offerId": null,
-      "platformId": "github-copilot",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "github-copilot",
-      "sources": [
-        {
-          "url": "https://github.com/features/copilot",
-          "label": "平台官方主页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "发现新平台 GitHub Copilot"
-    },
-    {
-      "id": "ev_1mhskcf",
-      "offerId": null,
-      "platformId": "mistral-vibe",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "mistral-vibe",
-      "sources": [
-        {
-          "url": "https://mistral.ai/pricing/",
-          "label": "平台官方主页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "发现新平台 Mistral Vibe"
-    },
-    {
-      "id": "ev_pw5fv7",
-      "offerId": null,
-      "platformId": "google-antigravity",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "google-antigravity",
-      "sources": [
-        {
-          "url": "https://www.antigravity.google/pricing",
-          "label": "平台官方主页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "发现新平台 Google Antigravity"
-    },
-    {
-      "id": "ev_r4yynj",
-      "offerId": null,
-      "platformId": "bullet",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "bullet",
-      "sources": [
-        {
-          "url": "https://www.codewithbullet.com/",
-          "label": "平台官方主页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "发现新平台 Bullet Coding Agent"
-    },
-    {
-      "id": "ev_3zykvv",
-      "offerId": "qoder:c2cxjz",
-      "platformId": "qoder",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://docs.qoder.com/events/communityboost",
-          "label": "Qoder 官方 Round4 资格与领取窗口",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "官方确认新发现：Community Boost Round 4 每日4096 SOTA Credits（Sonus）"
-    },
-    {
-      "id": "ev_cawihn",
-      "offerId": "strawberry:1tx7mgb",
-      "platformId": "strawberry",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://strawberrybrowser.com/pricing",
-          "label": "Strawberry 最新官方定价和无绑卡声明",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        },
-        {
-          "url": "https://www.producthunt.com/products/strawberry",
-          "label": "2026-10-26 Product Hunt Strawberry 1.0",
-          "kind": "community",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "官方确认新发现：Strawberry 1.0 Free 每月500 Agent Credits"
-    },
-    {
-      "id": "ev_nzfv39",
-      "offerId": "llm7:1y696pv",
-      "platformId": "llm7",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://llm7.io/",
-          "label": "LLM7 官方免费额度与请求限速",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "官方确认新发现：LLM7 Free Token API 每日100000 Tokens"
-    },
-    {
-      "id": "ev_anrwv1",
-      "offerId": "github-copilot:hinxh6",
-      "platformId": "github-copilot",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://github.com/features/copilot/plans",
-          "label": "GitHub Copilot 官方 Free 定价",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        },
-        {
-          "url": "https://docs.github.com/en/copilot/get-started/plans",
-          "label": "官方免费档资格和自动模型选择",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "官方确认新发现：GitHub Copilot Free 每月2000代码补全及有限Agent"
-    },
-    {
-      "id": "ev_1b17myf",
-      "offerId": "mistral-vibe:ra6f7h",
-      "platformId": "mistral-vibe",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://mistral.ai/pricing/",
-          "label": "Mistral 官方 Vibe Free 计划",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "官方确认新发现：Mistral Vibe Free 免费编程会话与网页移动端Agent"
-    },
-    {
-      "id": "ev_irzqa6",
-      "offerId": "google-antigravity:m9irde",
-      "platformId": "google-antigravity",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T02:46:39.536Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://www.antigravity.google/pricing",
-          "label": "Google Antigravity 官方 Individual Free 定价",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        },
-        {
-          "url": "https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals",
-          "label": "Google 旧 Code Assist 个人版停用公告",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T02:46:39.536Z"
-        }
-      ],
-      "description": "官方确认新发现：Google Antigravity Individual Free 每周基础Agent额度"
-    },
-    {
-      "id": "ev_uh5q3i",
-      "offerId": null,
-      "platformId": "allmodels",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "allmodels",
-      "sources": [
-        {
-          "url": "https://allmodels.io/pricing",
-          "label": "AllModels 官方：注册 $0.25 生产赠额",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "B 类独立检索发现并核实：AllModels"
-    },
-    {
-      "id": "ev_16vav36",
-      "offerId": null,
-      "platformId": "kiro",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "kiro",
-      "sources": [
-        {
-          "url": "https://kiro.dev/pricing/",
-          "label": "Kiro 官方 Free 50 Credits/月",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "B 类独立检索发现并核实：Kiro"
-    },
-    {
-      "id": "ev_ig7vi5",
-      "offerId": null,
-      "platformId": "fireworks",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "fireworks",
-      "sources": [
-        {
-          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
-          "label": "Fireworks 官方 $1 Starter Credits 说明",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "B 类独立检索发现并核实：Fireworks AI"
-    },
-    {
-      "id": "ev_1wqqb7z",
-      "offerId": null,
-      "platformId": "nvidia-build",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "nvidia-build",
-      "sources": [
-        {
-          "url": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
-          "label": "NVIDIA Build DeepSeek V4.1 Flash 免费开发者 API",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "B 类独立检索发现并核实：NVIDIA Build / NIM API"
-    },
-    {
-      "id": "ev_rsq1ja",
-      "offerId": null,
-      "platformId": "hob",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "platformId",
-      "previousValue": "",
-      "currentValue": "hob",
-      "sources": [
-        {
-          "url": "https://github.com/FrigadeHQ/hob",
-          "label": "Hob MIT 开源离线 AI 客户端",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "B 类独立检索发现并核实：Hob"
-    },
-    {
-      "id": "ev_1y2y9sg",
-      "offerId": "allmodels:1aei5gw",
-      "platformId": "allmodels",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://allmodels.io/pricing",
-          "label": "AllModels 官方：注册 $0.25 生产赠额",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "A类官方来源核实，首次入库：AllModels 新注册 $0.25 生产 API Credits"
-    },
-    {
-      "id": "ev_hjt1pv",
-      "offerId": "kiro:1karlcj",
-      "platformId": "kiro",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://kiro.dev/pricing/",
-          "label": "Kiro 官方 Free 50 Credits/月",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "A类官方来源核实，首次入库：Kiro Free 永久每月 50 Coding Credits"
-    },
-    {
-      "id": "ev_1i8wbey",
-      "offerId": "kiro:1dz61h7",
-      "platformId": "kiro",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://kiro.dev/students/",
-          "label": "Kiro Students 官方：合格学生每月1000 Credits一年",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        },
-        {
-          "url": "https://kiro.dev/blog/students-2026/",
-          "label": "Kiro 官方 2026-09-08 学生计划扩展",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "A类官方来源核实，首次入库：Kiro Students 合格大学生 12 个月每月 1000 Credits"
-    },
-    {
-      "id": "ev_14cwrx9",
-      "offerId": "fireworks:1sv5x6v",
-      "platformId": "fireworks",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
-          "label": "Fireworks 官方 $1 Starter Credits 说明",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        },
-        {
-          "url": "https://docs.fireworks.ai/getting-started/introduction",
-          "label": "Fireworks Serverless 官方 API",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "A类官方来源核实，首次入库：Fireworks AI 新注册一次性 $1 Serverless API Credits"
-    },
-    {
-      "id": "ev_ofs1ma",
-      "offerId": "nvidia-build:108pq3y",
-      "platformId": "nvidia-build",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T05:44:57.121Z",
-      "field": "status",
-      "previousValue": "",
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://build.nvidia.com/deepseek-ai/deepseek-v4.1-flash",
-          "label": "NVIDIA Build DeepSeek V4.1 Flash 免费开发者 API",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        },
-        {
-          "url": "https://build.nvidia.com/",
-          "label": "NVIDIA Build 免费推理目录",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T05:44:57.121Z"
-        }
-      ],
-      "description": "A类官方来源核实，首次入库：NVIDIA Build 免费开发者推理 API（DeepSeek V4.1 Flash / Nemotron）"
-    },
-    {
-      "id": "ev_1qttixk",
-      "platformId": "optracloud",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T08:13:47.892Z",
-      "field": "platform",
-      "previousValue": null,
-      "currentValue": "OptraCloud",
-      "sources": [
-        {
-          "url": "https://optracloud.com/",
-          "label": "平台官方首页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T08:13:47.892Z"
-        }
-      ],
-      "description": "新发现平台：OptraCloud"
-    },
-    {
-      "id": "ev_v2s5fc",
-      "platformId": "qubico",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T08:13:47.892Z",
-      "field": "platform",
-      "previousValue": null,
-      "currentValue": "Qubico AI",
-      "sources": [
-        {
-          "url": "https://qubico.ai/",
-          "label": "平台官方首页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T08:13:47.892Z"
-        }
-      ],
-      "description": "新发现平台：Qubico AI"
-    },
-    {
-      "id": "ev_dj6sdl",
-      "platformId": "push-agent",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T08:13:47.892Z",
-      "field": "platform",
-      "previousValue": null,
-      "currentValue": "Push (MasslessAI)",
-      "sources": [
-        {
-          "url": "https://push.computer/",
-          "label": "平台官方首页",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T08:13:47.892Z"
-        }
-      ],
-      "description": "新发现平台：Push (MasslessAI)；客户端免费但不赠模型Token"
-    },
-    {
-      "id": "ev_1h4c06i",
-      "offerId": "optracloud:11jx2ix",
-      "platformId": "optracloud",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T08:13:47.892Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://optracloud.com/free.html",
-          "label": "官方免费额度说明",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T08:13:47.892Z"
-        },
-        {
-          "url": "https://optracloud.com/pricing/",
-          "label": "官方定价",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T08:13:47.892Z"
-        },
-        {
-          "url": "https://optracloud.com/docs.html",
-          "label": "官方API及限流文档",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T08:13:47.892Z"
-        }
-      ],
-      "description": "新增官网声明免费权益：OptraCloud 注册免费 150,000,000 输出 Tokens（Qwen3.8-27B）；实际账号到账未实测"
-    },
-    {
-      "id": "ev_z9ela1",
-      "offerId": "qubico:bo7rdp",
-      "platformId": "qubico",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T08:13:47.892Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://qubico.ai/",
-          "label": "官方注册免费额度及定价说明",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T08:13:47.892Z"
-        }
-      ],
-      "description": "新增官网声明免费权益：Qubico AI 新注册 $0.25 推理 API Credits（6个月有效）；实际账号到账未实测"
-    },
-    {
-      "id": "ev_sggbk0",
-      "offerId": null,
-      "platformId": "kilo",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "platform",
-      "previousValue": null,
-      "currentValue": "kilo",
-      "sources": [
-        {
-          "url": "https://kilo.ai/",
-          "label": "平台官方网站",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "新增核实有免费服务的平台：Kilo Code / Kilo Gateway"
-    },
-    {
-      "id": "ev_1hsfp00",
-      "offerId": null,
-      "platformId": "scaleway",
-      "eventType": "platform-added",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "platform",
-      "previousValue": null,
-      "currentValue": "scaleway",
-      "sources": [
-        {
-          "url": "https://www.scaleway.com/en/generative-apis/",
-          "label": "平台官方网站",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "新增核实有免费服务的平台：Scaleway Generative APIs"
-    },
-    {
-      "id": "ev_pe1mwl",
-      "offerId": "vercel:1p33uow",
-      "platformId": "vercel",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free",
-          "label": "2026-10-16 Vercel 官方免费公告",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://vercel.com/ai-gateway/models/beam-free",
-          "label": "Vercel 免费模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "官方资料确认、仓库此前未收录的免费权益：Reflection Beam 1.0 免费推理 API（1M 上下文）；账户实际到账未实测"
-    },
-    {
-      "id": "ev_10gw1zf",
-      "offerId": "vercel:5bcxig",
-      "platformId": "vercel",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://vercel.com/changelog/nemotron-3-5-lightning-now-available-on-ai-gateway-for-free",
-          "label": "2026-10-14 Vercel 官方免费公告",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://vercel.com/ai-gateway/models/nemotron-3.5-lightning-free",
-          "label": "Vercel 免费模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "官方资料确认、仓库此前未收录的免费权益：Nemotron 3.5 Lightning 免费 API（1M 上下文）；账户实际到账未实测"
-    },
-    {
-      "id": "ev_hmftmc",
-      "offerId": "openrouter:14lumsg",
-      "platformId": "openrouter",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://openrouter.ai/thinkingmachines/inkling:free",
-          "label": "OpenRouter 官方免费模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://openrouter.ai/pricing",
-          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "官方资料确认、仓库此前未收录的免费权益：Thinking Machines Inkling 免费编码 API（1M，仅 Agent Harness）；账户实际到账未实测"
-    },
-    {
-      "id": "ev_147h4g6",
-      "offerId": "openrouter:ijaxgn",
-      "platformId": "openrouter",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://openrouter.ai/thinkingmachines/inkling-small:free",
-          "label": "OpenRouter 官方免费模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://openrouter.ai/pricing",
-          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "官方资料确认、仓库此前未收录的免费权益：Thinking Machines Inkling Small 免费编码 API（1M，仅 Agent Harness）；账户实际到账未实测"
-    },
-    {
-      "id": "ev_12oivun",
-      "offerId": "openrouter:1dobb6d",
-      "platformId": "openrouter",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://openrouter.ai/nvidia/nemotron-3.5-super-vl:free",
-          "label": "OpenRouter 官方免费模型详情",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://openrouter.ai/pricing",
-          "label": "OpenRouter 官方 50 RPD / 20 RPM 免费档",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "官方资料确认、仓库此前未收录的免费权益：Nemotron 3.5 Super VL 免费多模态 API（1M 上下文）；账户实际到账未实测"
-    },
-    {
-      "id": "ev_ip1cf0",
-      "offerId": "kilo:1q889hf",
-      "platformId": "kilo",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://kilo.ai/docs/getting-started/using-kilo-for-free",
-          "label": "Kilo 官方 Auto Free 说明",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://kilo.ai/docs/getting-started/rate-limits-and-costs",
-          "label": "Kilo 官方 200 请求/小时限制",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://kilo.ai/pricing",
-          "label": "Kilo 官方免费方案",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "官方资料确认、仓库此前未收录的免费权益：Kilo Auto Free 免费 Coding Agent（每 IP 每小时 200 请求）；账户实际到账未实测"
-    },
-    {
-      "id": "ev_tq7uxn",
-      "offerId": "scaleway:103cack",
-      "platformId": "scaleway",
-      "eventType": "offer-created",
-      "timestamp": "2026-10-29T11:53:32.277Z",
-      "field": "status",
-      "previousValue": null,
-      "currentValue": "active",
-      "sources": [
-        {
-          "url": "https://www.scaleway.com/en/generative-apis/",
-          "label": "官方新用户 100 万 Tokens 免费层",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://www.scaleway.com/en/docs/generative-apis/faq/",
-          "label": "官方超额收费说明",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        },
-        {
-          "url": "https://www.scaleway.com/en/docs/account/setup-lifecycle/create-an-account/",
-          "label": "官方银行卡与注册流程",
-          "kind": "official",
-          "verifiedAt": "2026-10-29T11:53:32.277Z"
-        }
-      ],
-      "description": "官方资料确认、仓库此前未收录的免费权益：Scaleway 新客户原生 API 免费 100 万 Tokens（需绑卡）；账户实际到账未实测"
     }
   ],
   "runs": [
     {
-      "id": "run_1djckdi",
-      "startedAt": "2026-10-28T22:13:58.000Z",
-      "completedAt": "2026-10-28T22:15:59.284Z",
+      "id": "run_dxn2sw",
+      "startedAt": "2026-10-29T14:12:47.000Z",
+      "completedAt": "2026-10-29T14:16:03.863Z",
       "status": "success",
       "searchACompleted": true,
       "searchBCompleted": true,
-      "sourcesChecked": 26,
-      "candidatesFound": 11,
-      "offersCreated": 6,
+      "sourcesChecked": 29,
+      "candidatesFound": 9,
+      "offersCreated": 3,
       "offersUpdated": 2,
       "offersExpired": 0,
       "errors": [],
-      "note": "A/B 双独立搜索：48h/7d/30d及长期免费；中文英文官方页、Product Hunt、Hacker News、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X。新发现5个平台6条权益，复核2条既有权益。账号级免费限额未实测；提交记录以 GitHub commit 为准。"
+      "note": "A：中英48h/7d/30d与长期活动搜索；核查Qoder新邀请、EvoX×MiniMax、蚂蚁数科限免、OpenLLM、OpenCode、Copilot、Google、Vercel、Hugging Face、Reddit等。B：独立核查Product Hunt 10/28-29、HN newest/Show HN、GitHub/HF、Reddit、Linux.do、V2EX、X镜像及新平台，Kolo只入候选。EvoMap官方X直达403，按community标记；未实测账号。OpenLLM仅纠正API/绑卡字段。"
     },
     {
-      "id": "run_17r3i4i",
-      "startedAt": "2026-10-28T23:26:20.000Z",
-      "completedAt": "2026-10-28T23:28:17.906Z",
+      "id": "run_muk9c6",
+      "startedAt": "2026-10-29T11:51:33.000Z",
+      "completedAt": "2026-10-29T11:53:32.277Z",
       "status": "success",
       "searchACompleted": true,
       "searchBCompleted": true,
-      "sourcesChecked": 31,
-      "candidatesFound": 13,
-      "offersCreated": 5,
+      "sourcesChecked": 33,
+      "candidatesFound": 12,
+      "offersCreated": 7,
       "offersUpdated": 0,
       "offersExpired": 0,
       "errors": [],
-      "note": "A 免费额度独立检索：48h/7d/30d/长期，官方活动与定价；B 新平台独立检索：Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X 中英检索。新入库 OpenRouter 4 款原生免费 API 与 Vercel Laya 限免；Akamai Inference 新发布但无免费权益，仅平台候选。排除已过期 Vercel MiniMax 10/22、Baseten 10/27、付费订阅专享 OpenAI Pro/Team；Grok iOS Ultra 试用仅社区反馈，Qoder Qwen 延期缺少最新官方确认；Unchained 注册需申请。OpenRouter 50 RPD 为账号共享额度。未实测登录账号限额。"
-    },
-    {
-      "id": "run_503vwf",
-      "startedAt": "2026-10-29T02:44:24.000Z",
-      "completedAt": "2026-10-29T02:46:39.536Z",
-      "status": "success",
-      "searchACompleted": true,
-      "searchBCompleted": true,
-      "sourcesChecked": 26,
-      "candidatesFound": 11,
-      "offersCreated": 6,
-      "offersUpdated": 0,
-      "offersExpired": 0,
-      "errors": [],
-      "note": "独立完成 A：48h/7d/30d及长期有效免费 API/IDE/CLI/客户端活动中英搜索、官方定价与Qoder活动复核；B：Product Hunt 10/26-28、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X及官方新平台检索。新增 Qoder Round4 4096/day、Strawberry 500/月、LLM7 100k/day、Copilot Free、Mistral Vibe Free、Antigravity Free；Bullet 仅候选不伪造模型额度。排除已过期MiniMax M3.1 Flash、付费订阅赠额、未开放Braise公测及高风险无Key转发服务。账号级免费资格未实测。"
-    },
-    {
-      "id": "run_1ix8a1i",
-      "startedAt": "2026-10-29T05:43:05.000Z",
-      "completedAt": "2026-10-29T05:44:57.121Z",
-      "status": "success",
-      "searchACompleted": true,
-      "searchBCompleted": true,
-      "sourcesChecked": 37,
-      "candidatesFound": 11,
-      "offersCreated": 5,
-      "offersUpdated": 0,
-      "offersExpired": 0,
-      "errors": [],
-      "note": "A 独立核查48h/7d/30d及长期免费：中英官方页面、DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude/OpenCode/Qoder/WorkBuddy、Kiro/Fireworks/NVIDIA/Groq/Cerebras；B 独立检索 Product Hunt、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X，发现 AllModels 与 Hob。排除 Kiro 2026-11-01 500 Credits 首升 Pro 需付费订阅升级，以及 Cerebras 2026-07 结束的永久免卡免费档（现$5绑卡30天试用）。新权益是新发现长期仍有效，不代表刚上线；未实测账号到账。"
+      "note": "A：中英独立检索48h/7d/30d及长期免费权益，核查OpenRouter、Vercel、Kilo、Scaleway、Qoder、Hugging Face、Amp及DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude等。B：独立检索Product Hunt 10/28榜、HN newest、GitHub/HF trending、Reddit、Linux.do、V2EX、X与官方新平台，新增Kilo/Scaleway候选及7项权益。排除需付费Pro的Glyph、旧Amp $10/day非新户开放、融资门槛DeepStart、未经核实AgentRouter。未实测账号到账；Kilo仅客户端、Scaleway绑卡且超额计费。"
     },
     {
       "id": "run_1c9b4kb",
@@ -6850,19 +7440,64 @@
       "note": "A：中英检索48h/7d/30d及长期有效免费 API/IDE/CLI/网页客户端，复核DeepSeek、GLM、Kimi、Qwen、MiMo、Gemini、GPT、Claude、Qoder、OpenCode。B：独立检索Product Hunt 10/27-28、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X及新平台。发现OptraCloud官网声明1.5亿输出Token、Qubico $0.25 API；Push仅免费客户端不含模型赠额。Tuna需绑卡排除；Vireonix无Key高风险、SharedLLM beta无法独立验证未入库；Mudroom免费权益不明未入库。新账号实际到账未实测。"
     },
     {
-      "id": "run_muk9c6",
-      "startedAt": "2026-10-29T11:51:33.000Z",
-      "completedAt": "2026-10-29T11:53:32.277Z",
+      "id": "run_1ix8a1i",
+      "startedAt": "2026-10-29T05:43:05.000Z",
+      "completedAt": "2026-10-29T05:44:57.121Z",
       "status": "success",
       "searchACompleted": true,
       "searchBCompleted": true,
-      "sourcesChecked": 33,
-      "candidatesFound": 12,
-      "offersCreated": 7,
+      "sourcesChecked": 37,
+      "candidatesFound": 11,
+      "offersCreated": 5,
       "offersUpdated": 0,
       "offersExpired": 0,
       "errors": [],
-      "note": "A：中英独立检索48h/7d/30d及长期免费权益，核查OpenRouter、Vercel、Kilo、Scaleway、Qoder、Hugging Face、Amp及DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude等。B：独立检索Product Hunt 10/28榜、HN newest、GitHub/HF trending、Reddit、Linux.do、V2EX、X与官方新平台，新增Kilo/Scaleway候选及7项权益。排除需付费Pro的Glyph、旧Amp $10/day非新户开放、融资门槛DeepStart、未经核实AgentRouter。未实测账号到账；Kilo仅客户端、Scaleway绑卡且超额计费。"
+      "note": "A 独立核查48h/7d/30d及长期免费：中英官方页面、DeepSeek/GLM/Kimi/Qwen/MiMo/Gemini/GPT/Claude/OpenCode/Qoder/WorkBuddy、Kiro/Fireworks/NVIDIA/Groq/Cerebras；B 独立检索 Product Hunt、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X，发现 AllModels 与 Hob。排除 Kiro 2026-11-01 500 Credits 首升 Pro 需付费订阅升级，以及 Cerebras 2026-07 结束的永久免卡免费档（现$5绑卡30天试用）。新权益是新发现长期仍有效，不代表刚上线；未实测账号到账。"
+    },
+    {
+      "id": "run_503vwf",
+      "startedAt": "2026-10-29T02:44:24.000Z",
+      "completedAt": "2026-10-29T02:46:39.536Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 26,
+      "candidatesFound": 11,
+      "offersCreated": 6,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "独立完成 A：48h/7d/30d及长期有效免费 API/IDE/CLI/客户端活动中英搜索、官方定价与Qoder活动复核；B：Product Hunt 10/26-28、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X及官方新平台检索。新增 Qoder Round4 4096/day、Strawberry 500/月、LLM7 100k/day、Copilot Free、Mistral Vibe Free、Antigravity Free；Bullet 仅候选不伪造模型额度。排除已过期MiniMax M3.1 Flash、付费订阅赠额、未开放Braise公测及高风险无Key转发服务。账号级免费资格未实测。"
+    },
+    {
+      "id": "run_17r3i4i",
+      "startedAt": "2026-10-28T23:26:20.000Z",
+      "completedAt": "2026-10-28T23:28:17.906Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 31,
+      "candidatesFound": 13,
+      "offersCreated": 5,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A 免费额度独立检索：48h/7d/30d/长期，官方活动与定价；B 新平台独立检索：Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X 中英检索。新入库 OpenRouter 4 款原生免费 API 与 Vercel Laya 限免；Akamai Inference 新发布但无免费权益，仅平台候选。排除已过期 Vercel MiniMax 10/22、Baseten 10/27、付费订阅专享 OpenAI Pro/Team；Grok iOS Ultra 试用仅社区反馈，Qoder Qwen 延期缺少最新官方确认；Unchained 注册需申请。OpenRouter 50 RPD 为账号共享额度。未实测登录账号限额。"
+    },
+    {
+      "id": "run_1djckdi",
+      "startedAt": "2026-10-28T22:13:58.000Z",
+      "completedAt": "2026-10-28T22:15:59.284Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 26,
+      "candidatesFound": 11,
+      "offersCreated": 6,
+      "offersUpdated": 2,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A/B 双独立搜索：48h/7d/30d及长期免费；中文英文官方页、Product Hunt、Hacker News、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X。新发现5个平台6条权益，复核2条既有权益。账号级免费限额未实测；提交记录以 GitHub commit 为准。"
     }
   ]
 }
