@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { Search, LayoutGrid, List, X, ArrowUpDown, Filter, RotateCcw } from 'lucide-react';
+import { useMemo, useState, useEffect } from 'react';
+import { Search, LayoutGrid, List, Flame, X, ArrowUpDown, Filter, RotateCcw } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
@@ -7,12 +7,13 @@ import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { OfferCard } from '@/features/OfferCard';
 import { OfferTableView } from '@/features/OfferTableView';
+import { OfferSwipeDeck } from '@/features/OfferSwipeDeck';
 import { priorityScore } from '@/lib/data/radar';
 import { daysUntil, isPast } from '@/lib/utils/format';
 import type { Offer, RadarData } from '@/lib/data/schema';
 import { useUrlState } from '@/lib/useUrlState';
 
-type View = 'card' | 'list';
+type View = 'card' | 'list' | 'swipe';
 type SortKey = 'discovered' | 'updated' | 'expiring' | 'value' | 'name' | 'verified';
 
 interface Filters {
@@ -125,8 +126,29 @@ const PRESETS: PresetItem[] = [
 
 export function ResourcesApp({ data }: { data: RadarData }) {
   const [filters, setFilters] = useUrlState<Filters>(parseFilters, serializeFilters, DEFAULT_FILTERS);
-  const [view, setView] = useState<View>('card');
+  const [view, setView] = useState<View>(() => {
+    if (typeof window !== 'undefined') {
+      const sp = new URLSearchParams(window.location.search);
+      const v = sp.get('view');
+      if (v === 'swipe' || v === 'list' || v === 'card') return v;
+    }
+    return 'card';
+  });
   const [sort, setSort] = useState<SortKey>('value');
+
+  // Sync view mode to URL query without hard reloading
+  const handleViewChange = (newView: View) => {
+    setView(newView);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      if (newView === 'card') {
+        url.searchParams.delete('view');
+      } else {
+        url.searchParams.set('view', newView);
+      }
+      window.history.replaceState({}, '', url.toString());
+    }
+  };
 
   const platformById = useMemo(() => {
     const m = new Map<string, RadarData['platforms'][number]>();
@@ -253,13 +275,13 @@ export function ResourcesApp({ data }: { data: RadarData }) {
             </SelectContent>
           </Select>
 
-          {/* View switcher: Card View vs Table / List View */}
+          {/* View switcher: Card View vs Table / List View vs Reigns Swipe View */}
           <div className="flex items-center rounded-xl border border-[#1e2a42] bg-[#0e1626] p-1 shadow-inner">
             <button
               type="button"
               aria-label="卡片网格视图"
               aria-pressed={view === 'card'}
-              onClick={() => setView('card')}
+              onClick={() => handleViewChange('card')}
               className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 view === 'card'
                   ? 'bg-blue-600 text-white shadow-sm'
@@ -273,7 +295,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               type="button"
               aria-label="紧凑列表表格视图"
               aria-pressed={view === 'list'}
-              onClick={() => setView('list')}
+              onClick={() => handleViewChange('list')}
               className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 view === 'list'
                   ? 'bg-blue-600 text-white shadow-sm'
@@ -282,6 +304,20 @@ export function ResourcesApp({ data }: { data: RadarData }) {
             >
               <List className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">表格</span>
+            </button>
+            <button
+              type="button"
+              aria-label="王权堆叠滑动视图"
+              aria-pressed={view === 'swipe'}
+              onClick={() => handleViewChange('swipe')}
+              className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                view === 'swipe'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-100'
+              }`}
+            >
+              <Flame className="h-3.5 w-3.5 text-amber-400" />
+              <span className="hidden sm:inline">王权刷卡</span>
             </button>
           </div>
         </div>
@@ -461,6 +497,12 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               清除全部筛选
             </Button>
           }
+        />
+      ) : view === 'swipe' ? (
+        <OfferSwipeDeck
+          offers={results}
+          platformById={platformById}
+          onSwitchView={handleViewChange}
         />
       ) : view === 'card' ? (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
