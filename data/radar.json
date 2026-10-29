@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T20:31:42.405Z",
+  "lastSuccessfulSync": "2026-10-29T23:39:46.543Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1202,6 +1202,42 @@
       "category": "api-relay",
       "firstDiscoveredAt": "2026-10-29T20:31:42.405Z",
       "lastCheckedAt": "2026-10-29T20:31:42.405Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "articul8-bivia",
+      "name": "Articul8 Bivia",
+      "slug": "articul8-bivia",
+      "canonicalDomain": "articul8.ai",
+      "websiteUrl": "https://articul8.ai/bivia",
+      "category": "llm-api",
+      "description": "2026-10-28首发的多模态决策模型，原生API/SDK/MCP/CLI；非通用聊天模型",
+      "firstDiscoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastCheckedAt": "2026-10-29T23:39:46.542Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "adcode",
+      "name": "ADCode by Bluethenics",
+      "slug": "adcode",
+      "canonicalDomain": "adcode.bluethenics.com",
+      "websiteUrl": "https://adcode.bluethenics.com/",
+      "category": "coding-agent",
+      "description": "开源广告支持AI IDE，Windows/Linux桌面可用，macOS未发布，浏览器预览可能暂停",
+      "firstDiscoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastCheckedAt": "2026-10-29T23:39:46.542Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "theysaid",
+      "name": "TheySaid AI User Testing",
+      "slug": "theysaid",
+      "canonicalDomain": "theysaid.io",
+      "websiteUrl": "https://www.theysaid.io/",
+      "category": "application",
+      "description": "TheySaid 4.0 AI辅助用户研究、网页测试与调查，非模型推理API",
+      "firstDiscoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastCheckedAt": "2026-10-29T23:39:46.542Z",
       "trustStatus": "official"
     }
   ],
@@ -6175,6 +6211,189 @@
       ],
       "discoveredAt": "2026-10-29T20:31:42.405Z",
       "lastVerifiedAt": "2026-10-29T20:31:42.405Z"
+    },
+    {
+      "amount": 1000000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "前10000名；速率限制未公布",
+      "contextWindow": null,
+      "toolCalling": null,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "articul8-bivia:launch-1b-20261028",
+      "platformId": "articul8-bivia",
+      "title": "Bivia首发前10000名用户最高10亿输入Tokens免费原生决策API",
+      "models": [
+        "Articul8 Bivia dec-1"
+      ],
+      "accessType": "api",
+      "claimConditions": [
+        "首发前10000名早期用户，官方宣传10亿Tokens免费；剩余名额与实际到账未核实",
+        "注册Articul8并创建BIVIA_API_KEY；不需要订阅",
+        "仅结构化决策、分类与路由，不是普通生成式聊天；0输出Tokens",
+        "绑卡、实名、地区、积分有效期和活动截止日期未确认"
+      ],
+      "officialUrl": "https://articul8.ai/bivia",
+      "sources": [
+        {
+          "url": "https://articul8.ai/bivia",
+          "label": "Articul8 官方Bivia首发10亿Tokens活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
+    },
+    {
+      "amount": 10000000,
+      "unit": "Token",
+      "amountType": "weekly",
+      "resetInterval": "weekly",
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "每账号每周1000万Tokens，受上游限流",
+      "contextWindow": null,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "adcode:heabsy-weekly-10m",
+      "platformId": "adcode",
+      "title": "ADCode内置Heabsy GLM/Qwen/MiMo每周共享1000万免费Tokens",
+      "models": [
+        "GLM 5.3 Flash",
+        "Qwen 3.8",
+        "MiMo（具体版本未确认）"
+      ],
+      "accessType": "client",
+      "claimConditions": [
+        "注册并验证ADCode邮箱，Google/GitHub/邮箱可登录；无需信用卡或API Key",
+        "每账号共享10M Tokens/滚动周，从第一次Heabsy调用开始，不结转；不是每模型分别10M",
+        "Windows/Linux桌面可用，macOS桌面尚未发布，网页预览可能暂停",
+        "仅ADCode内置客户端权益，非独立开放API；仍受共享容量与上下文限制"
+      ],
+      "officialUrl": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
+    },
+    {
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "无个人配额，受上游限流和共享容量限制",
+      "contextWindow": null,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "adcode:tagflow-no-personal-quota",
+      "platformId": "adcode",
+      "title": "ADCode内置Tagflow AI免费Coding Agent无个人Tokens/请求配额",
+      "models": [
+        "Tagflow AI"
+      ],
+      "accessType": "client",
+      "claimConditions": [
+        "免费注册并验证邮箱，无需绑卡或独立模型API Key",
+        "ADCode不设置个人Token/请求/每日/每周配额；不是保证无限可用",
+        "仍受共享服务容量、上游限流和上下文限制",
+        "Windows/Linux桌面可用，macOS桌面未发布，网页预览可能暂停；仅内置客户端权益"
+      ],
+      "officialUrl": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
+    },
+    {
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "每月5次AI用户测试+50份AI调查；1工作空间/1活跃测试",
+      "contextWindow": null,
+      "toolCalling": null,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "theysaid:free-ai-testing-monthly",
+      "platformId": "theysaid",
+      "title": "TheySaid Free每月5次AI用户测试及50份AI调查",
+      "models": [
+        "TheySaid AI Moderator",
+        "TheySaid AI Analytics"
+      ],
+      "accessType": "web",
+      "claimConditions": [
+        "官方$0免费网页方案，免信用卡",
+        "每月5次AI用户测试及50份AI调查；仅1个工作空间、1个活跃测试",
+        "免费测试使用自有参与者，平台招募参与者另收费",
+        "不是LLM推理API，绑卡以外的实名、地区要求未确认"
+      ],
+      "officialUrl": "https://www.theysaid.io/pricing",
+      "sources": [
+        {
+          "url": "https://www.theysaid.io/pricing",
+          "label": "TheySaid 官方免费用户测试方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
     }
   ],
   "events": [
@@ -8326,6 +8545,160 @@
         }
       ],
       "description": "Hugging Face 官方定价 Free Users = None，原$0.10/月已终止；生效日期不明"
+    },
+    {
+      "id": "ev_1s38b1t",
+      "platformId": "articul8-bivia",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "articul8-bivia",
+      "sources": [
+        {
+          "url": "https://articul8.ai/bivia",
+          "label": "Articul8 官方Bivia首发10亿Tokens活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "发现新平台 Articul8 Bivia"
+    },
+    {
+      "id": "ev_1qus51f",
+      "platformId": "adcode",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "adcode",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "发现新平台 ADCode by Bluethenics"
+    },
+    {
+      "id": "ev_1deycf0",
+      "platformId": "theysaid",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "theysaid",
+      "sources": [
+        {
+          "url": "https://www.theysaid.io/pricing",
+          "label": "TheySaid 官方免费用户测试方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "发现新平台 TheySaid AI User Testing"
+    },
+    {
+      "id": "ev_a7xfsl",
+      "platformId": "articul8-bivia",
+      "offerId": "articul8-bivia:launch-1b-20261028",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://articul8.ai/bivia",
+          "label": "Articul8 官方Bivia首发10亿Tokens活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：Bivia首发前10000名用户最高10亿输入Tokens免费原生决策API"
+    },
+    {
+      "id": "ev_1dzatyj",
+      "platformId": "adcode",
+      "offerId": "adcode:heabsy-weekly-10m",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：ADCode内置Heabsy GLM/Qwen/MiMo每周共享1000万免费Tokens"
+    },
+    {
+      "id": "ev_1qv3qoo",
+      "platformId": "adcode",
+      "offerId": "adcode:tagflow-no-personal-quota",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：ADCode内置Tagflow AI免费Coding Agent无个人Tokens/请求配额"
+    },
+    {
+      "id": "ev_jopmwz",
+      "platformId": "theysaid",
+      "offerId": "theysaid:free-ai-testing-monthly",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.theysaid.io/pricing",
+          "label": "TheySaid 官方免费用户测试方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：TheySaid Free每月5次AI用户测试及50份AI调查"
     }
   ],
   "runs": [
@@ -8463,6 +8836,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A/B 双独立搜索：48h/7d/30d及长期免费；中文英文官方页、Product Hunt、Hacker News、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X。新发现5个平台6条权益，复核2条既有权益。账号级免费限额未实测；提交记录以 GitHub commit 为准。"
+    },
+    {
+      "id": "run_1ddza1g",
+      "startedAt": "2026-10-29T23:37:39.000Z",
+      "completedAt": "2026-10-29T23:39:46.543Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 19,
+      "candidatesFound": 6,
+      "offersCreated": 4,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：48小时/7天/30天/长期有效免费额度中英交叉检索，覆盖官方Qoder、OpenCode、GLM、Kimi、Qwen、MiMo、Gemini、GPT、Claude及社区；B：独立检索Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X及新平台。新增Bivia首发10亿输入Tokens（前10000名）、ADCode Heabsy每周1000万Tokens及Tagflow无个人配额、TheySaid每月5次AI用户测试。Bivia决策API非聊天，ADCode客户端专用，TheySaid网页专用；不含付费订阅赠额。HF旧$0.10官方当前Free Users=None，保持ended。MiMo Claw每日3小时免费细则未确认未入库。未实测注册到账。"
     }
   ]
 }
