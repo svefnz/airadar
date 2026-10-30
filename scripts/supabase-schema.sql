@@ -50,14 +50,8 @@ create table if not exists public.user_claims (
 );
 
 -- 如果此前已存在该表，安全更新 check 约束以兼容 'expired'
-do language plpgsql $$
-begin
-  alter table public.user_claims drop constraint if exists user_claims_status_check;
-  alter table public.user_claims add constraint user_claims_status_check check (status in ('claimed', 'ignored', 'expired'));
-exception
-  when others then null;
-end;
-$$;
+alter table public.user_claims drop constraint if exists user_claims_status_check;
+alter table public.user_claims add constraint user_claims_status_check check (status in ('claimed', 'ignored', 'expired'));
 
 create index if not exists idx_user_claims_user_id on public.user_claims(user_id);
 create index if not exists idx_user_claims_user_offer on public.user_claims(user_id, offer_id);
@@ -80,14 +74,12 @@ create policy "Users can delete their own claims" on public.user_claims
 -- 3. 原子性事务清空个人所有数据 RPC (保证 favorites 和 claims 同时删除)
 create or replace function public.clear_my_personal_data()
 returns void
-language plpgsql
-security invoker
 as $$
 begin
   delete from public.user_favorites where user_id = auth.uid();
   delete from public.user_claims where user_id = auth.uid();
 end;
-$$;
+$$ language plpgsql security invoker;
 
 
 -- ==============================================================================
@@ -220,8 +212,6 @@ create policy "Public read for monitor_runs" on public.monitor_runs for select u
 -- ==============================================================================
 create or replace function public.ingest_radar_batch(patch jsonb)
 returns jsonb
-language plpgsql
-security definer
 as $$
 declare
   p jsonb;
@@ -410,4 +400,4 @@ begin
     'timestamp', now_ts
   );
 end;
-$$;
+$$ language plpgsql security definer;
