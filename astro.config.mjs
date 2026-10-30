@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import path from 'node:path';
 
 // 项目子路径(GitHub Pages 项目站点)通过 ASTRO_BASE 环境变量覆盖:
 // 例如仓库名为 ai-radar: ASTRO_BASE=/ai-radar/
@@ -13,6 +14,14 @@ export default defineConfig({
   base,
   integrations: [react()],
   vite: {
+    server: {
+      fs: {
+        allow: [
+          path.resolve(process.cwd(), '../..'),
+          process.cwd(),
+        ],
+      },
+    },
     plugins: [tailwindcss()],
   },
 });
