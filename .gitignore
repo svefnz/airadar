@@ -37,3 +37,7 @@ data/incoming/
 # agent tooling
 .agents/
 
+# local setup guides
+SUPABASE_SETUP.md
+
+

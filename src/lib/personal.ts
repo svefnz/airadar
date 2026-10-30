@@ -1,7 +1,7 @@
 /**
  * 用户个人状态模型与 Supabase 云端数据操作服务
- * - 仅在用户登录后生效，通过 user_id 与稳定 offer_id 关联
- * - RLS 保护：每个 GitHub 用户仅能读写自身数据
+ * - 统一领取状态枚举 (claimed / ignored / expired)
+ * - 明确区分加载成功与网络/权限错误，防止误判为空数据
  */
 import { z } from 'zod';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
@@ -69,12 +69,18 @@ export function getClaim(state: PersonalState, offerId: string): ClaimRecord | u
 // Supabase Cloud Data Layer APIs
 // ============================================================================
 
+export interface FetchCloudResult {
+  data: PersonalState;
+  error: Error | null;
+}
+
 /**
  * 从 Supabase 批量加载指定用户的全部收藏与领取状态
+ * - 显式检查 error，避免网络或权限异常时覆盖为空数据
  */
-export async function fetchCloudPersonal(userId: string): Promise<PersonalState> {
+export async function fetchCloudPersonal(userId: string): Promise<FetchCloudResult> {
   if (!isSupabaseConfigured || !userId) {
-    return emptyPersonal();
+    return { data: emptyPersonal(), error: null };
   }
 
   try {
@@ -82,6 +88,13 @@ export async function fetchCloudPersonal(userId: string): Promise<PersonalState>
       supabase.from('user_favorites').select('offer_id').eq('user_id', userId),
       supabase.from('user_claims').select('offer_id, status, claimed_at, notes').eq('user_id', userId),
     ]);
+
+    if (favsRes.error) {
+      return { data: emptyPersonal(), error: new Error(`加载收藏失败: ${favsRes.error.message}`) };
+    }
+    if (claimsRes.error) {
+      return { data: emptyPersonal(), error: new Error(`加载领取记录失败: ${claimsRes.error.message}`) };
+    }
 
     const favorites = (favsRes.data || []).map((r: { offer_id: string }) => r.offer_id);
     const claims: Record<string, ClaimRecord> = {};
@@ -95,18 +108,21 @@ export async function fetchCloudPersonal(userId: string): Promise<PersonalState>
     }
 
     return {
-      version: 1,
-      favorites,
-      claims,
+      data: {
+        version: 1,
+        favorites,
+        claims,
+      },
+      error: null,
     };
   } catch (err) {
-    console.error('Failed to fetch personal data from Supabase:', err);
-    return emptyPersonal();
+    const message = err instanceof Error ? err.message : '网络连接异常';
+    return { data: emptyPersonal(), error: new Error(message) };
   }
 }
 
 /**
- * 云端添加收藏
+ * 云端添加收藏 (upsert)
  */
 export async function addCloudFavorite(userId: string, offerId: string): Promise<{ error: Error | null }> {
   if (!isSupabaseConfigured || !userId) return { error: null };
@@ -167,11 +183,16 @@ export async function deleteCloudClaim(userId: string, offerId: string): Promise
 }
 
 /**
- * 清空当前用户在云端的所有个人记录
+ * 清空当前用户在云端的所有个人记录 (优先使用原子 RPC 事务)
  */
 export async function clearCloudPersonal(userId: string): Promise<{ error: Error | null }> {
   if (!isSupabaseConfigured || !userId) return { error: null };
   try {
+    // 优先尝试原子 RPC
+    const rpcRes = await supabase.rpc('clear_my_personal_data');
+    if (!rpcRes.error) return { error: null };
+
+    // 降级回退双表删除
     const [delFavs, delClaims] = await Promise.all([
       supabase.from('user_favorites').delete().eq('user_id', userId),
       supabase.from('user_claims').delete().eq('user_id', userId),

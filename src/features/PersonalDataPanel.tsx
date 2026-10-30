@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Trash2, Cloud, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Trash2, Cloud, CheckCircle2, ShieldCheck, AlertCircle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { usePersonal } from '@/lib/usePersonal';
 
 export function PersonalDataPanel() {
-  const { state, clear, loading } = usePersonal();
+  const { state, clear, syncStatus, syncError, retrySync } = usePersonal();
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const claimed = Object.values(state.claims).filter((c) => c.status === 'claimed').length;
@@ -27,10 +27,38 @@ export function PersonalDataPanel() {
         收藏 <span className="font-bold text-white">{state.favorites.length}</span> 项 · 已领取 <span className="font-bold text-emerald-400">{claimed}</span> 项 · 已与您的 GitHub 账号绑定并在 Supabase 云端安全持久化
       </p>
 
+      {/* 明确提示同步失败状态，提供重试按键，坚决不把网络错误误导为空数据 */}
+      {syncStatus === 'error' && (
+        <div className="flex items-center justify-between rounded-lg bg-rose-500/10 border border-rose-500/20 px-2.5 py-1.5 text-[11px] text-rose-300">
+          <span className="flex items-center gap-1 truncate max-w-[200px]" title={syncError || '加载云端数据失败'}>
+            <AlertCircle className="h-3.5 w-3.5 text-rose-400 shrink-0" />
+            <span className="truncate">{syncError || '同步失败'}</span>
+          </span>
+          <button
+            type="button"
+            onClick={retrySync}
+            className="flex items-center gap-1 text-[10px] font-semibold text-rose-400 hover:text-rose-200 cursor-pointer ml-2"
+          >
+            <RefreshCw className="h-3 w-3" /> 重试
+          </button>
+        </div>
+      )}
+
       <div className="flex items-center justify-between pt-1">
         <span className="text-[10px] text-slate-500 flex items-center gap-1">
-          <CheckCircle2 className="h-3 w-3 text-emerald-500" />
-          {loading ? '正在同步云端…' : '云端同步正常'}
+          {syncStatus === 'loading' ? (
+            <span className="flex items-center gap-1 text-blue-400">
+              <RefreshCw className="h-3 w-3 animate-spin" /> 正在同步…
+            </span>
+          ) : syncStatus === 'error' ? (
+            <span className="text-rose-400 flex items-center gap-1">
+              <AlertCircle className="h-3 w-3" /> 同步异常（保留本地缓存）
+            </span>
+          ) : (
+            <span className="flex items-center gap-1 text-emerald-400">
+              <CheckCircle2 className="h-3 w-3" /> 云端同步正常
+            </span>
+          )}
         </span>
 
         <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>

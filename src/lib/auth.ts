@@ -1,50 +1,36 @@
-import { useState, useEffect, useCallback, createContext, useContext } from 'react';
-import type { Session, User } from '@supabase/supabase-js';
+import { useStore } from '@nanostores/react';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { $auth } from '@/lib/store';
 
-export interface AuthState {
-  session: Session | null;
-  user: User | null;
-  loading: boolean;
-  isConfigured: boolean;
-  signInWithGitHub: () => Promise<{ error: Error | null }>;
-  signOut: () => Promise<{ error: Error | null }>;
-}
+export function useAuth() {
+  const state = useStore($auth);
 
-export const AuthContext = createContext<AuthState>({
-  session: null,
-  user: null,
-  loading: true,
-  isConfigured: isSupabaseConfigured,
-  signInWithGitHub: async () => ({ error: null }),
-  signOut: async () => ({ error: null }),
-});
+  const signInWithGitHub = async () => {
+    if (!isSupabaseConfigured) {
+      return { error: new Error('Supabase 环境变量尚未配置') };
+    }
 
-export function useAuth(): AuthState {
-  return useContext(AuthContext);
-}
+    // 采用固定的 origin 规范回调，兼容 GitHub Pages 子路径
+    const redirectTo = typeof window !== 'undefined'
+      ? `${window.location.origin}${window.location.pathname}`
+      : undefined;
 
-/**
- * Direct API helper to initiate GitHub OAuth login
- */
-export async function signInWithGitHub() {
-  if (!isSupabaseConfigured) {
-    return { error: new Error('Supabase 环境变量尚未配置，无法发起 GitHub 登录。') };
-  }
+    return await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo,
+      },
+    });
+  };
 
-  const redirectTo = typeof window !== 'undefined' ? window.location.href : undefined;
-  return await supabase.auth.signInWithOAuth({
-    provider: 'github',
-    options: {
-      redirectTo,
-    },
-  });
-}
+  const signOut = async () => {
+    if (!isSupabaseConfigured) return { error: null };
+    return await supabase.auth.signOut();
+  };
 
-/**
- * Direct API helper to sign out
- */
-export async function signOut() {
-  if (!isSupabaseConfigured) return { error: null };
-  return await supabase.auth.signOut();
+  return {
+    ...state,
+    signInWithGitHub,
+    signOut,
+  };
 }

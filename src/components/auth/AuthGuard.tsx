@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import type { Session, User } from '@supabase/supabase-js';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
-import { AuthContext, signInWithGitHub, signOut } from '@/lib/auth';
+import React, { useEffect } from 'react';
+import { useStore } from '@nanostores/react';
+import { $auth, initAuthListener, initPersonalSync } from '@/lib/store';
 import { LoginView } from '@/components/auth/LoginView';
 import { Loader2 } from 'lucide-react';
 
@@ -10,63 +9,28 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children }: AuthGuardProps) {
-  const [session, setSession] = useState<Session | null>(null);
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, loading, isConfigured } = useStore($auth);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    // 1. Initial get session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    // 2. Subscribe to auth changes (sign in, sign out, token refreshed)
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
+    // 启动全局单例监听（只执行一次）
+    initAuthListener();
+    initPersonalSync();
   }, []);
 
-  const authContextValue = {
-    session,
-    user,
-    loading,
-    isConfigured: isSupabaseConfigured,
-    signInWithGitHub,
-    signOut,
-  };
-
-  return (
-    <AuthContext.Provider value={authContextValue}>
-      {loading ? (
-        // Initializing skeleton / loading indicator
-        <div className="flex min-h-[60vh] w-full items-center justify-center">
-          <div className="flex flex-col items-center gap-3">
-            <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
-            <span className="text-xs text-slate-400">正在验证 GitHub 登录会话…</span>
-          </div>
+  if (loading) {
+    return (
+      <div className="flex min-h-[60vh] w-full items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+          <span className="text-xs text-slate-400">正在验证 GitHub 登录会话…</span>
         </div>
-      ) : user ? (
-        // Authenticated: Render actual website content
-        children
-      ) : (
-        // Unauthenticated: Global Auth Wall interception
-        <LoginView />
-      )}
-    </AuthContext.Provider>
-  );
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginView />;
+  }
+
+  return <>{children}</>;
 }

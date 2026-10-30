@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import React from 'react';
 import { LoginView } from '../../src/components/auth/LoginView';
 import { UserNav } from '../../src/components/auth/UserNav';
-import { AuthContext, type AuthState } from '../../src/lib/auth';
+import { $auth } from '../../src/lib/store';
 
 describe('user-auth: 登录守卫与组件呈现', () => {
   it('未登录时 LoginView 能够正确渲染 GitHub 授权按钮与品牌标题', () => {
@@ -14,7 +14,7 @@ describe('user-auth: 登录守卫与组件呈现', () => {
   });
 
   it('已登录时 UserNav 展示用户 GitHub 昵称与退出登录按钮', () => {
-    const mockAuth: AuthState = {
+    $auth.set({
       session: {
         access_token: 'fake-token',
         refresh_token: 'fake-refresh',
@@ -30,7 +30,7 @@ describe('user-auth: 登录守卫与组件呈现', () => {
           aud: 'authenticated',
           created_at: '2026-01-01T00:00:00Z',
         },
-      },
+      } as any,
       user: {
         id: 'user_123',
         app_metadata: {},
@@ -40,42 +40,26 @@ describe('user-auth: 登录守卫与组件呈现', () => {
         },
         aud: 'authenticated',
         created_at: '2026-01-01T00:00:00Z',
-      },
+      } as any,
       loading: false,
       isConfigured: true,
-      signInWithGitHub: async () => ({ error: null }),
-      signOut: async () => ({ error: null }),
-    };
+    });
 
-    const html = renderToStaticMarkup(
-      React.createElement(
-        AuthContext.Provider,
-        { value: mockAuth },
-        React.createElement(UserNav)
-      )
-    );
+    const html = renderToStaticMarkup(React.createElement(UserNav));
 
     expect(html).toContain('octocat');
     expect(html).toContain('退出登录');
   });
 
   it('未登录时 UserNav 返回空', () => {
-    const mockAuth: AuthState = {
+    $auth.set({
       session: null,
       user: null,
       loading: false,
       isConfigured: true,
-      signInWithGitHub: async () => ({ error: null }),
-      signOut: async () => ({ error: null }),
-    };
+    });
 
-    const html = renderToStaticMarkup(
-      React.createElement(
-        AuthContext.Provider,
-        { value: mockAuth },
-        React.createElement(UserNav)
-      )
-    );
+    const html = renderToStaticMarkup(React.createElement(UserNav));
 
     expect(html).toBe('');
   });
