@@ -29,6 +29,7 @@ import { SafeLink } from '@/components/ui/SafeLink';
 import { usePersonal } from '@/lib/usePersonal';
 import { fmtDate, daysUntil, isWithinDays, fmtAmount } from '@/lib/utils/format';
 import { cn } from '@/lib/utils/cn';
+import { withBase } from '@/lib/utils/url';
 import {
   ACCESS_TYPE_LABELS,
   AMOUNT_TYPE_LABELS,
@@ -86,7 +87,7 @@ function playTone(type: 'swipe' | 'bookmark' | 'undo') {
 
 export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwipeDeckProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [history, setHistory] = useState<Array<{ index: number; action: 'pass' | 'bookmark' }>>([]);
+  const [history, setHistory] = useState<Array<{ index: number; offer: Offer; action: 'pass' | 'bookmark' }>>([]);
   const [inspectOffer, setInspectOffer] = useState<{ offer: Offer; platform: Platform } | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
 
@@ -98,7 +99,7 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
   const dragStartRef = useRef<{ x: number; y: number } | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
 
-  const { isFavorite, toggleFavorite } = usePersonal();
+  const { isFavorite, toggleFavorite, toggleClaim } = usePersonal();
 
   // Reset index when offer list drastically changes (e.g. Filter applied)
   useEffect(() => {
@@ -127,14 +128,25 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
     if (direction === 'right' && !isFavorite(targetOffer.id)) {
       toggleFavorite(targetOffer.id);
     }
+    // If swiped left, mark it as 'ignored' (Pass) and persist to cloud
+    if (direction === 'left') {
+      toggleClaim(targetOffer.id, 'ignored');
+    }
 
     setTimeout(() => {
-      setHistory((prev) => [...prev, { index: currentIndex, action: direction === 'right' ? 'bookmark' : 'pass' }]);
+      setHistory((prev) => [
+        ...prev,
+        {
+          index: currentIndex,
+          offer: targetOffer,
+          action: direction === 'right' ? 'bookmark' : 'pass',
+        },
+      ]);
       setCurrentIndex((prev) => prev + 1);
       setDragOffset({ x: 0, y: 0 });
       setExitDirection(null);
     }, 280);
-  }, [currentIndex, offers, soundEnabled, isFavorite, toggleFavorite]);
+  }, [currentIndex, offers, soundEnabled, isFavorite, toggleFavorite, toggleClaim]);
 
   const undoLast = useCallback(() => {
     if (history.length === 0) return;
@@ -142,11 +154,18 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
     if (!last) return;
     if (soundEnabled) playTone('undo');
 
+    // Revert the action
+    if (last.action === 'bookmark' && isFavorite(last.offer.id)) {
+      toggleFavorite(last.offer.id);
+    } else if (last.action === 'pass') {
+      toggleClaim(last.offer.id, null);
+    }
+
     setHistory((prev) => prev.slice(0, prev.length - 1));
     setCurrentIndex(last.index);
     setDragOffset({ x: 0, y: 0 });
     setExitDirection(null);
-  }, [history, soundEnabled]);
+  }, [history, soundEnabled, isFavorite, toggleFavorite, toggleClaim]);
 
   // Pointer Drag Handlers
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -242,17 +261,6 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
             <RotateCcw className="h-4 w-4" />
             重新洗牌探索
           </button>
-
-          {onSwitchView && (
-            <button
-              type="button"
-              onClick={() => onSwitchView('card')}
-              className="flex items-center gap-2 rounded-xl border border-[#1e2a42] bg-[#10192e] hover:bg-[#16223d] px-5 py-2.5 text-sm font-medium text-slate-200 transition-all cursor-pointer"
-            >
-              <Layers className="h-4 w-4 text-blue-400" />
-              切换卡片网格
-            </button>
-          )}
         </div>
       </div>
     );
@@ -336,8 +344,9 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
 
         {/* Layer 1: Active Interactive Top Card */}
         {currentOffer && currentPlatform && (
-          <div
+          <article
             ref={cardRef}
+            role="article"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -380,9 +389,13 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
                     />
                   </div>
                   <div className="min-w-0">
-                    <span className="font-semibold text-white text-sm block truncate">
+                    <a
+                      href={withBase(`/platforms/${currentPlatform.slug}/`)}
+                      onClick={(e) => e.stopPropagation()}
+                      className="font-semibold text-white hover:text-blue-400 text-sm block truncate transition-colors"
+                    >
                       {currentPlatform.name}
-                    </span>
+                    </a>
                     <span className="text-[11px] text-slate-400 block truncate">
                       {currentPlatform.canonicalDomain}
                     </span>
@@ -400,6 +413,25 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
                       NEW
                     </span>
                   )}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(currentOffer.id);
+                    }}
+                    aria-label={isFavorite(currentOffer.id) ? '取消收藏' : '收藏'}
+                    title={isFavorite(currentOffer.id) ? '取消收藏' : '加入收藏'}
+                    className="p-1 rounded-lg text-slate-400 hover:text-amber-400 transition-colors cursor-pointer"
+                  >
+                    <Star
+                      className={cn(
+                        'h-4 w-4',
+                        isFavorite(currentOffer.id)
+                          ? 'fill-amber-400 text-amber-400'
+                          : 'text-slate-400'
+                      )}
+                    />
+                  </button>
                 </div>
               </div>
 
@@ -503,7 +535,7 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
                 <ArrowRight className="h-3 w-3 text-emerald-400" />
               </span>
             </div>
-          </div>
+          </article>
         )}
       </div>
 

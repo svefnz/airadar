@@ -1,134 +1,97 @@
 import { useMemo, useState, useEffect } from 'react';
-import { Search, LayoutGrid, List, Flame, X, ArrowUpDown, Filter, RotateCcw } from 'lucide-react';
+import {
+  Search,
+  Flame,
+  X,
+  ArrowUpDown,
+  Filter,
+  RotateCcw,
+  Star,
+  CheckCircle2,
+  Inbox,
+  Sparkles,
+} from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { EmptyState } from '@/components/ui/EmptyState';
-import { OfferCard } from '@/features/OfferCard';
-import { OfferTableView } from '@/features/OfferTableView';
 import { OfferSwipeDeck } from '@/features/OfferSwipeDeck';
 import { priorityScore } from '@/lib/data/radar';
 import { daysUntil, isPast } from '@/lib/utils/format';
+import { usePersonal } from '@/lib/usePersonal';
 import type { Offer, RadarData } from '@/lib/data/schema';
 import { useUrlState } from '@/lib/useUrlState';
 
-type View = 'card' | 'list' | 'swipe';
-type SortKey = 'discovered' | 'updated' | 'expiring' | 'value' | 'name' | 'verified';
+type Disposition = 'unprocessed' | 'favorited' | 'passed' | 'all';
+type SortKey = 'value' | 'discovered' | 'updated' | 'expiring' | 'name';
 
 interface Filters {
-  view: View;
   q: string;
-  access: string[]; // api/client/web/unknown
-  amountType: string[]; // one-time/daily/weekly/monthly/limited-unlimited
-  status: string[]; // active/upcoming/ended/paused
-  verification: string[]; // official/community/unverified
-  billing: string[]; // none/card
-  identity: string[]; // id
-  compat: string[]; // openai/anthropic
-  toolCalling: boolean;
-  context: string; // '' | '256k' | '1m'
+  disposition: Disposition;
+  access: string[];
+  amountType: string[];
+  status: string[];
+  billing: string[];
+  identity: string[];
   expiringOnly: boolean;
   longTermOnly: boolean;
+  toolCalling: boolean;
 }
 
 const DEFAULT_FILTERS: Filters = {
-  view: 'card',
   q: '',
+  disposition: 'unprocessed',
   access: [],
   amountType: [],
   status: [],
-  verification: [],
   billing: [],
   identity: [],
-  compat: [],
-  toolCalling: false,
-  context: '',
   expiringOnly: false,
   longTermOnly: false,
+  toolCalling: false,
 };
 
 function parseFilters(search: string): Filters {
   const sp = new URLSearchParams(search);
   const arr = (k: string) => sp.get(k)?.split(',').filter(Boolean) ?? [];
-  const rawView = sp.get('view');
-  const view: View = rawView === 'swipe' || rawView === 'list' ? rawView : 'card';
+  const rawDisp = sp.get('disposition');
+  const disposition: Disposition =
+    rawDisp === 'favorited' || rawDisp === 'passed' || rawDisp === 'all'
+      ? rawDisp
+      : 'unprocessed';
+
   return {
-    view,
     q: sp.get('q') ?? '',
+    disposition,
     access: arr('access'),
     amountType: arr('amount'),
     status: arr('status'),
-    verification: arr('verification'),
     billing: arr('billing'),
     identity: arr('identity'),
-    compat: arr('compat'),
-    toolCalling: sp.get('tool') === '1',
-    context: sp.get('context') ?? '',
     expiringOnly: sp.get('expiring') === '1',
     longTermOnly: sp.get('longterm') === '1',
+    toolCalling: sp.get('tool') === '1',
   };
 }
 
 function serializeFilters(f: Filters): string {
   const sp = new URLSearchParams();
-  if (f.view && f.view !== 'card') sp.set('view', f.view);
   if (f.q) sp.set('q', f.q);
-  const setArr = (k: string, v: string[]) => { if (v.length) sp.set(k, v.join(',')); };
+  if (f.disposition && f.disposition !== 'unprocessed') sp.set('disposition', f.disposition);
+  const setArr = (k: string, v: string[]) => {
+    if (v.length) sp.set(k, v.join(','));
+  };
   setArr('access', f.access);
   setArr('amount', f.amountType);
   setArr('status', f.status);
-  setArr('verification', f.verification);
   setArr('billing', f.billing);
   setArr('identity', f.identity);
-  setArr('compat', f.compat);
-  if (f.toolCalling) sp.set('tool', '1');
-  if (f.context) sp.set('context', f.context);
   if (f.expiringOnly) sp.set('expiring', '1');
   if (f.longTermOnly) sp.set('longterm', '1');
+  if (f.toolCalling) sp.set('tool', '1');
   const s = sp.toString();
   return s ? `?${s}` : '';
 }
-
-interface PresetItem {
-  id: string;
-  label: string;
-  desc: string;
-  apply: Partial<Filters>;
-}
-
-const PRESETS: PresetItem[] = [
-  {
-    id: 'beginner',
-    label: '🔥 新手无门槛',
-    desc: '无需绑卡 · 注册即用',
-    apply: { billing: ['none'], amountType: ['one-time'] },
-  },
-  {
-    id: 'developer',
-    label: '⚡ 开发者 API',
-    desc: '原生 API · Tool Calling',
-    apply: { access: ['api'], toolCalling: true },
-  },
-  {
-    id: 'long-context',
-    label: '📚 1M 超长上下文',
-    desc: '百万级 Tokens 处理',
-    apply: { context: '1m' },
-  },
-  {
-    id: 'expiring',
-    label: '⏰ 临期捡漏',
-    desc: '14 天内即将截止',
-    apply: { expiringOnly: true },
-  },
-  {
-    id: 'long-term',
-    label: '🌟 长期稳定免费',
-    desc: '每日恢复 / 周期可用',
-    apply: { longTermOnly: true },
-  },
-];
 
 export function ResourcesApp({ data }: { data: RadarData }) {
   const [hydrated, setHydrated] = useState(false);
@@ -137,9 +100,8 @@ export function ResourcesApp({ data }: { data: RadarData }) {
   }, []);
 
   const [filters, setFilters] = useUrlState<Filters>(parseFilters, serializeFilters, DEFAULT_FILTERS);
-  const view = filters.view;
-  const setView = (v: View) => setFilters({ ...filters, view: v });
   const [sort, setSort] = useState<SortKey>('value');
+  const { isFavorite, state } = usePersonal();
 
   const platformById = useMemo(() => {
     const m = new Map<string, RadarData['platforms'][number]>();
@@ -149,6 +111,21 @@ export function ResourcesApp({ data }: { data: RadarData }) {
 
   const results = useMemo(() => {
     let list = data.offers;
+
+    // 1. 个人处理状态过滤（收件箱归零流）
+    if (filters.disposition === 'unprocessed') {
+      list = list.filter((o) => {
+        const isFav = isFavorite(o.id);
+        const claim = state.claims[o.id]?.status;
+        return !isFav && claim !== 'ignored' && claim !== 'claimed';
+      });
+    } else if (filters.disposition === 'favorited') {
+      list = list.filter((o) => isFavorite(o.id));
+    } else if (filters.disposition === 'passed') {
+      list = list.filter((o) => state.claims[o.id]?.status === 'ignored');
+    }
+
+    // 2. 文本搜索
     const q = filters.q.trim().toLowerCase();
     if (q) {
       list = list.filter((o) => {
@@ -159,24 +136,27 @@ export function ResourcesApp({ data }: { data: RadarData }) {
         return hay.includes(q);
       });
     }
+
+    // 3. 维度筛选
     if (filters.access.length) list = list.filter((o) => filters.access.includes(o.accessType));
     if (filters.amountType.length) list = list.filter((o) => filters.amountType.includes(o.amountType));
     if (filters.status.length) list = list.filter((o) => filters.status.includes(o.status));
-    if (filters.verification.length) list = list.filter((o) => filters.verification.includes(o.verificationStatus));
     if (filters.billing.length) list = list.filter((o) => filters.billing.includes(o.billingRequirements));
     if (filters.identity.length) list = list.filter((o) => filters.identity.includes(o.identityVerification));
-    if (filters.compat.length) {
-      list = list.filter((o) => {
-        const c = o.apiCompatibility;
-        return filters.compat.some((k) => k === 'openai' ? c === 'openai' || c === 'both' : k === 'anthropic' ? c === 'anthropic' || c === 'both' : false);
-      });
-    }
     if (filters.toolCalling) list = list.filter((o) => o.toolCalling === true);
-    if (filters.context === '256k') list = list.filter((o) => (o.contextWindow ?? 0) >= 256_000);
-    if (filters.context === '1m') list = list.filter((o) => (o.contextWindow ?? 0) >= 1_000_000);
     if (filters.expiringOnly) list = list.filter((o) => o.status === 'active' && o.endAt && (daysUntil(o.endAt) ?? 999) <= 14);
-    if (filters.longTermOnly) list = list.filter((o) => !o.endAt || isPast(o.endAt) === false && o.endAt !== undefined && daysUntil(o.endAt)! > 60 || o.amountType === 'daily' || o.amountType === 'weekly' || o.amountType === 'monthly');
+    if (filters.longTermOnly) {
+      list = list.filter(
+        (o) =>
+          !o.endAt ||
+          (isPast(o.endAt) === false && o.endAt !== undefined && daysUntil(o.endAt)! > 60) ||
+          o.amountType === 'daily' ||
+          o.amountType === 'weekly' ||
+          o.amountType === 'monthly'
+      );
+    }
 
+    // 4. 排序
     const sorted = [...list];
     switch (sort) {
       case 'discovered':
@@ -187,12 +167,9 @@ export function ResourcesApp({ data }: { data: RadarData }) {
         break;
       case 'expiring':
         sorted.sort((a, b) => {
-          const d = (x: Offer) => x.endAt ? Date.parse(x.endAt) : Number.MAX_SAFE_INTEGER;
+          const d = (x: Offer) => (x.endAt ? Date.parse(x.endAt) : Number.MAX_SAFE_INTEGER);
           return d(a) - d(b);
         });
-        break;
-      case 'verified':
-        sorted.sort((a, b) => Date.parse(b.lastVerifiedAt) - Date.parse(a.lastVerifiedAt));
         break;
       case 'name':
         sorted.sort((a, b) => {
@@ -205,36 +182,30 @@ export function ResourcesApp({ data }: { data: RadarData }) {
         sorted.sort((a, b) => priorityScore(b) - priorityScore(a));
     }
     return sorted;
-  }, [data, filters, sort, platformById]);
+  }, [data, filters, sort, platformById, isFavorite, state.claims]);
 
   const set = (patch: Partial<Filters>) => setFilters({ ...filters, ...patch });
 
-  const activeFiltersCount = useMemo(() => {
-    let count = 0;
-    if (filters.q) count++;
-    count += filters.access.length;
-    count += filters.amountType.length;
-    count += filters.status.length;
-    count += filters.verification.length;
-    count += filters.billing.length;
-    count += filters.identity.length;
-    count += filters.compat.length;
-    if (filters.toolCalling) count++;
-    if (filters.context) count++;
-    if (filters.expiringOnly) count++;
-    if (filters.longTermOnly) count++;
-    return count;
-  }, [filters]);
+  // 统计数据
+  const favoriteCount = useMemo(
+    () => data.offers.filter((o) => isFavorite(o.id)).length,
+    [data.offers, isFavorite]
+  );
+  const passedCount = useMemo(
+    () => data.offers.filter((o) => state.claims[o.id]?.status === 'ignored').length,
+    [data.offers, state.claims]
+  );
 
   return (
-    <div className="space-y-5" data-hydrated={hydrated ? 'true' : undefined}>
-      {/* Search and Tool Bar */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
+    <div className="space-y-4" data-hydrated={hydrated ? 'true' : undefined}>
+      {/* 极简顶层控制栏 */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center justify-between">
+        {/* 搜索框 */}
+        <div className="relative flex-1 max-w-md">
           <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <Input
-            className="pl-10 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-slate-100 placeholder:text-slate-500 focus-visible:border-blue-500 focus-visible:ring-1 focus-visible:ring-blue-500 text-sm"
-            placeholder="搜索平台 / 模型 / 活动 / 域名…"
+            className="pl-10 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-slate-100 placeholder:text-slate-500 focus-visible:border-blue-500 text-xs"
+            placeholder="搜索平台 / 模型 / 域名 / 权益…"
             value={filters.q}
             onChange={(e) => set({ q: e.target.value })}
             aria-label="搜索资源"
@@ -250,295 +221,193 @@ export function ResourcesApp({ data }: { data: RadarData }) {
           )}
         </div>
 
+        {/* 排序与重置 */}
         <div className="flex items-center gap-2">
-          {/* Sort selector */}
-          <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
-            <SelectTrigger className="w-40 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-slate-200 text-xs font-medium" aria-label="排序方式">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-[#10192e] border-slate-800 text-slate-200 text-xs">
-              <SelectItem value="value">按领取价值</SelectItem>
-              <SelectItem value="discovered">最近发现</SelectItem>
-              <SelectItem value="updated">最近更新</SelectItem>
-              <SelectItem value="expiring">即将过期</SelectItem>
-              <SelectItem value="verified">最近核验</SelectItem>
-              <SelectItem value="name">平台名称</SelectItem>
-            </SelectContent>
-          </Select>
-
-          {/* View switcher: Card View vs Table / List View vs Reigns Swipe View */}
-          <div className="flex items-center rounded-xl border border-[#1e2a42] bg-[#0e1626] p-1 shadow-inner">
-            <button
-              type="button"
-              aria-label="卡片网格视图"
-              aria-pressed={view === 'card'}
-              onClick={() => setView('card')}
-              className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                view === 'card'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-100'
-              }`}
-            >
-              <LayoutGrid className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">卡片</span>
-            </button>
-            <button
-              type="button"
-              aria-label="紧凑列表表格视图"
-              aria-pressed={view === 'list'}
-              onClick={() => setView('list')}
-              className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                view === 'list'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-100'
-              }`}
-            >
-              <List className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">表格</span>
-            </button>
-            <button
-              type="button"
-              aria-label="王权堆叠滑动视图"
-              aria-pressed={view === 'swipe'}
-              onClick={() => setView('swipe')}
-              className={`inline-flex h-8 px-2.5 items-center gap-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                view === 'swipe'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-100'
-              }`}
-            >
-              <Flame className="h-3.5 w-3.5 text-amber-400" />
-              <span className="hidden sm:inline">王权刷卡</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick Presets Bar */}
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="text-xs font-semibold text-slate-400 mr-1 flex items-center gap-1">
-          <span>快捷场景:</span>
-        </span>
-        {PRESETS.map((preset) => {
-          const isActive =
-            preset.id === 'beginner'
-              ? filters.billing.includes('none') && filters.amountType.includes('one-time')
-              : preset.id === 'developer'
-              ? filters.access.includes('api') && filters.toolCalling
-              : preset.id === 'long-context'
-              ? filters.context === '1m'
-              : preset.id === 'expiring'
-              ? filters.expiringOnly
-              : preset.id === 'long-term'
-              ? filters.longTermOnly
-              : false;
-
-          return (
-            <button
-              key={preset.id}
-              type="button"
-              onClick={() => {
-                if (isActive) {
-                  setFilters({ ...DEFAULT_FILTERS, q: filters.q, view: filters.view });
-                } else {
-                  setFilters({ ...DEFAULT_FILTERS, q: filters.q, view: filters.view, ...preset.apply });
-                }
-              }}
-              className={`group flex items-center gap-2 rounded-xl border px-3 py-1.5 text-xs transition-all cursor-pointer ${
-                isActive
-                  ? 'border-blue-500 bg-blue-600 text-white font-semibold shadow-md shadow-blue-500/20'
-                  : 'border-[#1e2a42] bg-[#0c1220]/80 text-slate-300 hover:border-slate-600 hover:bg-[#121c2e]'
-              }`}
-            >
-              <span>{preset.label}</span>
-              <span className={`text-[10px] hidden sm:inline ${isActive ? 'text-blue-100' : 'text-slate-500 group-hover:text-slate-400'}`}>
-                {preset.desc}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Filter Chips Container */}
-      <div className="rounded-2xl border border-[#1e2a42] bg-[#0c1220]/95 p-4 space-y-3 shadow-lg">
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 text-xs">
-          <FilterGroup label="接入方式">
-            {['api', 'client', 'web', 'unknown'].map((k) => (
-              <Chip
-                key={k}
-                active={filters.access.includes(k)}
-                onClick={() => toggleArr('access', k)}
-                label={{ api: '原生 API', client: '客户端专用', web: '网页专用', unknown: '接入方式不确定' }[k]!}
-              />
-            ))}
-          </FilterGroup>
-
-          <FilterGroup label="额度周期">
-            {(
-              [
-                ['one-time', '免费注册赠额'],
-                ['daily', '每日恢复'],
-                ['weekly', '每周恢复'],
-                ['monthly', '每月恢复'],
-                ['limited-unlimited', '限时免费'],
-              ] as [string, string][]
-            ).map(([k, l]) => (
-              <Chip
-                key={k}
-                active={filters.amountType.includes(k)}
-                onClick={() => toggleArr('amountType', k)}
-                label={l}
-              />
-            ))}
-          </FilterGroup>
-
-          <FilterGroup label="状态">
-            {(
-              [
-                ['active', '有效'],
-                ['upcoming', '即将开始'],
-                ['ended', '已过期'],
-                ['paused', '暂停'],
-              ] as [string, string][]
-            ).map(([k, l]) => (
-              <Chip
-                key={k}
-                active={filters.status.includes(k)}
-                onClick={() => toggleArr('status', k)}
-                label={l}
-              />
-            ))}
-          </FilterGroup>
-
-          <FilterGroup label="可信度">
-            {(
-              [
-                ['official', '官方确认'],
-                ['community', '社区实测'],
-                ['unverified', '待核实'],
-              ] as [string, string][]
-            ).map(([k, l]) => (
-              <Chip
-                key={k}
-                active={filters.verification.includes(k)}
-                onClick={() => toggleArr('verification', k)}
-                label={l}
-              />
-            ))}
-          </FilterGroup>
-
-          <FilterGroup label="领取门槛">
-            <Chip active={filters.billing.includes('none')} onClick={() => toggleArr('billing', 'none')} label="无需绑卡" />
-            <Chip active={filters.identity.includes('id')} onClick={() => toggleArr('identity', 'id')} label="需要实名认证" />
-          </FilterGroup>
-
-          <FilterGroup label="接口兼容">
-            <Chip active={filters.compat.includes('openai')} onClick={() => toggleArr('compat', 'openai')} label="OpenAI 兼容" />
-            <Chip active={filters.compat.includes('anthropic')} onClick={() => toggleArr('compat', 'anthropic')} label="Anthropic 兼容" />
-            <Chip active={filters.toolCalling} onClick={() => set({ toolCalling: !filters.toolCalling })} label="Tool Calling" />
-          </FilterGroup>
-
-          <FilterGroup label="上下文">
-            <Chip active={filters.context === '256k'} onClick={() => set({ context: filters.context === '256k' ? '' : '256k' })} label="256K+" />
-            <Chip active={filters.context === '1m'} onClick={() => set({ context: filters.context === '1m' ? '' : '1m' })} label="1M+" />
-          </FilterGroup>
-        </div>
-
-        {/* Footer of filter section */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#1a2336] text-xs">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Switch checked={filters.expiringOnly} onCheckedChange={(v) => set({ expiringOnly: v })} aria-label="仅看即将过期" />
-              <span className="text-slate-300">即将过期 (14天内)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Switch checked={filters.longTermOnly} onCheckedChange={(v) => set({ longTermOnly: v })} aria-label="仅看长期免费" />
-              <span className="text-slate-300">长期有效</span>
-            </div>
+          <div className="flex items-center gap-1.5 text-xs text-slate-400">
+            <ArrowUpDown className="h-3.5 w-3.5 text-slate-400" />
+            <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
+              <SelectTrigger className="w-32 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-xs text-slate-200">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-[#0b1020] border-[#1e2a42] text-slate-200">
+                <SelectItem value="value">推荐价值优先</SelectItem>
+                <SelectItem value="discovered">最新发现优先</SelectItem>
+                <SelectItem value="expiring">即将截止优先</SelectItem>
+                <SelectItem value="updated">最新核验优先</SelectItem>
+                <SelectItem value="name">平台名称 A-Z</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
-          {activeFiltersCount > 0 && (
-            <button
-              type="button"
+          {(filters.q ||
+            filters.disposition !== 'unprocessed' ||
+            filters.access.length > 0 ||
+            filters.billing.length > 0 ||
+            filters.expiringOnly ||
+            filters.longTermOnly) && (
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => setFilters(DEFAULT_FILTERS)}
-              className="inline-flex items-center gap-1 text-slate-400 hover:text-blue-400 cursor-pointer"
+              className="h-10 text-xs text-slate-400 hover:text-white hover:bg-slate-800"
             >
-              <RotateCcw className="h-3.5 w-3.5" />
-              <span>重置全部筛选 ({activeFiltersCount})</span>
-            </button>
+              <RotateCcw className="h-3.5 w-3.5 mr-1" /> 重置
+            </Button>
           )}
         </div>
       </div>
 
-      {/* Results Header Count */}
-      <div className="flex items-center justify-between px-1">
-        <p className="text-xs text-slate-400">
-          共发现 <span className="font-bold text-white tabular">{results.length}</span> 个 AI 免费活动
-        </p>
+      {/* 状态与属性过滤芯片组 */}
+      <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#182338]/60">
+        {/* 处理状态芯片 (收件箱归零) */}
+        <div className="flex items-center gap-1.5 bg-[#0b1120] p-1 rounded-xl border border-[#182338]">
+          <button
+            type="button"
+            onClick={() => set({ disposition: 'unprocessed' })}
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              filters.disposition === 'unprocessed'
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30 font-bold'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Inbox className="h-3.5 w-3.5" />
+            <span>未处理 (候选)</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => set({ disposition: 'favorited' })}
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              filters.disposition === 'favorited'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 font-bold'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Star className="h-3.5 w-3.5 text-amber-300" />
+            <span>已收藏 ({favoriteCount})</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => set({ disposition: 'passed' })}
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              filters.disposition === 'passed'
+                ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30 font-bold'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <X className="h-3.5 w-3.5" />
+            <span>已跳过 ({passedCount})</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => set({ disposition: 'all' })}
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              filters.disposition === 'all'
+                ? 'bg-slate-700 text-white font-bold'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            全部
+          </button>
+        </div>
+
+        <div className="h-4 w-[1px] bg-slate-800 mx-1 hidden sm:block" />
+
+        {/* 关键属性标签过滤 */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          <FilterChip
+            active={filters.access.includes('api')}
+            onClick={() =>
+              set({
+                access: filters.access.includes('api') ? [] : ['api'],
+              })
+            }
+            label="原生 API"
+          />
+          <FilterChip
+            active={filters.billing.includes('none')}
+            onClick={() =>
+              set({
+                billing: filters.billing.includes('none') ? [] : ['none'],
+              })
+            }
+            label="无需绑卡"
+          />
+          <FilterChip
+            active={filters.identity.includes('none')}
+            onClick={() =>
+              set({
+                identity: filters.identity.includes('none') ? [] : ['none'],
+              })
+            }
+            label="免实名"
+          />
+          <FilterChip
+            active={filters.expiringOnly}
+            onClick={() => set({ expiringOnly: !filters.expiringOnly })}
+            label="14天内临期"
+          />
+          <FilterChip
+            active={filters.longTermOnly}
+            onClick={() => set({ longTermOnly: !filters.longTermOnly })}
+            label="长期稳定恢复"
+          />
+        </div>
       </div>
 
-      {/* Main Content Area */}
-      {results.length === 0 ? (
-        <EmptyState
-          icon={<Search className="h-8 w-8 text-slate-500" />}
-          title="没有匹配的资源"
-          hint="尝试减少筛选条件，或重置搜索词。"
-          action={
-            <Button size="sm" variant="outline" onClick={() => setFilters({ ...DEFAULT_FILTERS, view: filters.view })} className="border-slate-700 text-slate-200">
-              清除全部筛选
-            </Button>
-          }
-        />
-      ) : view === 'swipe' ? (
-        <OfferSwipeDeck
-          offers={results}
-          platformById={platformById}
-          onSwitchView={setView}
-        />
-      ) : view === 'card' ? (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {results.map((o) => (
-            <OfferCard key={o.id} offer={o} platform={platformById.get(o.platformId)!} />
-          ))}
-        </div>
-      ) : (
-        <OfferTableView
-          offers={results}
-          platformById={platformById}
-          onSortToggle={() => setSort(sort === 'value' ? 'expiring' : 'value')}
-        />
-      )}
-    </div>
-  );
-
-  type ArrKey = 'access' | 'amountType' | 'status' | 'verification' | 'billing' | 'identity' | 'compat';
-  function toggleArr(key: ArrKey, value: string) {
-    const cur = filters[key] as string[];
-    set({ [key]: cur.includes(value) ? cur.filter((x) => x !== value) : [...cur, value] } as Partial<Filters>);
-  }
-}
-
-function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-2">
-      <span className="text-slate-400 text-[11px] font-medium shrink-0">{label}:</span>
-      <div className="flex flex-wrap items-center gap-1.5">{children}</div>
+      {/* 沉浸式王权刷卡视图呈现 */}
+      <div className="pt-2">
+        {results.length === 0 ? (
+          <EmptyState
+            title={
+              filters.disposition === 'unprocessed'
+                ? '🎉 当前未处理卡片已全部清空！'
+                : '未找到符合条件的活动'
+            }
+            hint={
+              filters.disposition === 'unprocessed'
+                ? '您已完成了全部候选权益的决策。可切换至「已收藏」或「已跳过」查看历史，或重置搜索条件。'
+                : '尝试切换或清除上方筛选芯片以寻找更多权益。'
+            }
+            action={
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setFilters(DEFAULT_FILTERS)}
+                className="text-xs border-[#1e2a42] bg-[#0c1220] hover:bg-slate-800 text-slate-300"
+              >
+                重置所有筛选
+              </Button>
+            }
+          />
+        ) : (
+          <OfferSwipeDeck offers={results} platformById={platformById} />
+        )}
+      </div>
     </div>
   );
 }
 
-function Chip({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {
+function FilterChip({
+  active,
+  onClick,
+  label,
+}: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+}) {
   return (
     <button
       type="button"
-      aria-pressed={active}
       onClick={onClick}
-      className={
-        'rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-all cursor-pointer ' +
-        (active
-          ? 'border border-blue-500 bg-blue-600/25 text-blue-300 font-semibold shadow-xs'
-          : 'border border-[#223048] bg-[#111827]/70 text-slate-400 hover:border-slate-600 hover:text-slate-200')
-      }
+      className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer border ${
+        active
+          ? 'bg-blue-600/20 border-blue-500 text-blue-300 font-semibold'
+          : 'bg-[#0c1220] border-[#1e2a42] text-slate-400 hover:text-white hover:border-slate-700'
+      }`}
     >
       {label}
     </button>

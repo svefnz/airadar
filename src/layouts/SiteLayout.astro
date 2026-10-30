@@ -11,9 +11,11 @@ interface Props {
   description?: string;
 }
 
+let radarData;
 let demoCount = 0;
 try {
-  demoCount = loadRadar().offers.filter((o) => o.demo).length;
+  radarData = loadRadar();
+  demoCount = radarData.offers.filter((o) => o.demo).length;
 } catch {
   demoCount = 0;
 }
@@ -31,9 +33,8 @@ const { title, description } = Astro.props;
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <script set:html={themeInitScript} />
   </head>
-  <body class="min-h-screen">
-    <!-- 官方 shadcn Sidebar 整页布局: SidebarProvider + Sidebar + SidebarInset -->
-    <AppShell client:load pathname={Astro.url.pathname} demoCount={demoCount}>
+  <body class="min-h-screen bg-[#080d1a]">
+    <AppShell client:load pathname={Astro.url.pathname} demoCount={demoCount} data={radarData}>
       <slot />
     </AppShell>
 
