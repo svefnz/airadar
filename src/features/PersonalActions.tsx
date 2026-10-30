@@ -72,8 +72,11 @@ export function PersonalActions({ offerId }: { offerId: string }) {
         </form>
       )}
 
-      {claim?.claimedAt && <span className="text-[10px] text-muted-foreground">领取于 {claim.claimedAt.slice(0, 10)}</span>}
+      {claim?.status === 'claimed' && claim.claimedAt && (
+        <span className="text-[10px] text-muted-foreground">领取于 {claim.claimedAt.slice(0, 10)}</span>
+      )}
       {claim?.status === 'ignored' && <span className="text-[10px] text-muted-foreground">{CLAIM_STATUS_LABELS.ignored}</span>}
+      {claim?.status === 'expired' && <span className="text-[10px] text-muted-foreground">{CLAIM_STATUS_LABELS.expired}</span>}
     </div>
   );
 }

@@ -164,7 +164,7 @@ export async function saveCloudClaim(
       user_id: userId,
       offer_id: offerId,
       status: claim.status,
-      claimed_at: claim.claimedAt || new Date().toISOString(),
+      claimed_at: claim.status === 'claimed' ? (claim.claimedAt || new Date().toISOString()) : null,
       notes: claim.note || '',
       updated_at: new Date().toISOString(),
     },

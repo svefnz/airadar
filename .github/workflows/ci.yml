@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [supabase-db-update, radar-update]
 
 # 最小权限: 仅 pages 与 id-token 用于部署; contents 只读
 permissions:
@@ -50,7 +52,7 @@ jobs:
         run: pnpm check
 
       - name: Sync latest radar data from Supabase
-        run: pnpm exec tsx scripts/sync-radar-from-supabase.ts || true
+        run: pnpm exec tsx scripts/sync-radar-from-supabase.ts
 
       - name: Data schema & business validation
         run: pnpm validate

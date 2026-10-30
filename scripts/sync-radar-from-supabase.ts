@@ -45,8 +45,8 @@ async function sync() {
   const [platformsRes, offersRes, eventsRes, runsRes] = await Promise.all([
     supabase.from('platforms').select('*').order('name'),
     supabase.from('offers').select('*').order('discovered_at', { ascending: false }),
-    supabase.from('radar_events').select('*').order('timestamp', { ascending: false }).limit(200),
-    supabase.from('monitor_runs').select('*').order('started_at', { ascending: false }).limit(50),
+    supabase.from('radar_events').select('*').order('timestamp', { ascending: true }),
+    supabase.from('monitor_runs').select('*').order('started_at', { ascending: true }),
   ]);
 
   if (platformsRes.error) {
@@ -169,5 +169,6 @@ async function sync() {
 }
 
 sync().catch((err) => {
-  console.warn(`⚠️ 同步遇到警告/失败，保持本地文件不变: ${err.message}`);
+  console.error(`❌ 同步异常终止: ${err.message}`);
+  process.exit(1);
 });

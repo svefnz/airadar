@@ -2,6 +2,17 @@
 -- AI Free Radar - Supabase Database Initialization & Security Hardening
 -- ==============================================================================
 
+-- 0. 安全补丁：撤销数据库自带特权触发器函数的不必要权限
+do $$
+begin
+  if exists (select 1 from pg_proc where proname = 'rls_auto_enable') then
+    execute 'revoke all on function public.rls_auto_enable() from public, anon, authenticated;';
+  end if;
+exception
+  when others then null;
+end $$;
+
+
 -- 1. 用户个人收藏表 (user_favorites)
 create table if not exists public.user_favorites (
   id uuid default gen_random_uuid() primary key,
@@ -16,40 +27,42 @@ create index if not exists idx_user_favorites_offer_id on public.user_favorites(
 
 alter table public.user_favorites enable row level security;
 
--- 策略：支持 SELECT, INSERT, UPDATE, DELETE (满足 upsert 冲突更新需求)
+-- 策略优化：采用 (select auth.uid()) 避免逐行重复计算提升性能
 drop policy if exists "Users can view their own favorites" on public.user_favorites;
 create policy "Users can view their own favorites" on public.user_favorites
-  for select using (auth.uid() = user_id);
+  for select using ((select auth.uid()) = user_id);
 
 drop policy if exists "Users can insert their own favorites" on public.user_favorites;
 create policy "Users can insert their own favorites" on public.user_favorites
-  for insert with check (auth.uid() = user_id);
+  for insert with check ((select auth.uid()) = user_id);
 
 drop policy if exists "Users can update their own favorites" on public.user_favorites;
 create policy "Users can update their own favorites" on public.user_favorites
-  for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+  for update using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
 
 drop policy if exists "Users can delete their own favorites" on public.user_favorites;
 create policy "Users can delete their own favorites" on public.user_favorites
-  for delete using (auth.uid() = user_id);
+  for delete using ((select auth.uid()) = user_id);
 
 
 -- 2. 用户个人领取状态与备忘录表 (user_claims)
--- 解耦备注与领取状态：status 允许为 NULL（仅填写备注场景）
+-- 解耦备注与领取状态：status 允许为 NULL，claimed_at 允许为 NULL
 create table if not exists public.user_claims (
   id uuid default gen_random_uuid() primary key,
   user_id uuid references auth.users(id) on delete cascade not null,
   offer_id text not null,
   status text check (status is null or status in ('claimed', 'ignored', 'expired')),
-  claimed_at timestamp with time zone default now(),
+  claimed_at timestamp with time zone,
   notes text default '',
   created_at timestamp with time zone default now() not null,
   updated_at timestamp with time zone default now() not null,
   unique (user_id, offer_id)
 );
 
--- 安全更新现有约束以兼容 status 为 null（解耦备注与状态）
+-- 安全更新现有约束：兼容 status 为 null，移除 claimed_at 强制非空与默认值
 alter table public.user_claims alter column status drop not null;
+alter table public.user_claims alter column claimed_at drop default;
+alter table public.user_claims alter column claimed_at drop not null;
 alter table public.user_claims drop constraint if exists user_claims_status_check;
 alter table public.user_claims add constraint user_claims_status_check check (status is null or status in ('claimed', 'ignored', 'expired'));
 
@@ -60,15 +73,15 @@ alter table public.user_claims enable row level security;
 
 drop policy if exists "Users can view their own claims" on public.user_claims;
 create policy "Users can view their own claims" on public.user_claims
-  for select using (auth.uid() = user_id);
+  for select using ((select auth.uid()) = user_id);
 
 drop policy if exists "Users can manage their own claims" on public.user_claims;
 create policy "Users can manage their own claims" on public.user_claims
-  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+  for all using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
 
 drop policy if exists "Users can delete their own claims" on public.user_claims;
 create policy "Users can delete their own claims" on public.user_claims
-  for delete using (auth.uid() = user_id);
+  for delete using ((select auth.uid()) = user_id);
 
 
 -- 3. 原子性事务清空个人所有数据 RPC (固定 search_path 与权限收紧)
@@ -211,14 +224,14 @@ drop policy if exists "Public read for monitor_runs" on public.monitor_runs;
 create policy "Public read for monitor_runs" on public.monitor_runs for select using (true);
 
 
--- 4.5 公共雷达表权限收紧：严格只读，禁止匿名及普通用户 DML 篡改
-revoke insert, update, delete, truncate on public.platforms, public.offers, public.radar_events, public.monitor_runs from anon, authenticated;
+-- 4.5 公共雷达表权限彻底收紧：清退公共角色所有写入与触发特权，仅授予只读 SELECT
+revoke all on public.platforms, public.offers, public.radar_events, public.monitor_runs from public, anon, authenticated;
 grant select on public.platforms, public.offers, public.radar_events, public.monitor_runs to anon, authenticated;
 grant all on public.platforms, public.offers, public.radar_events, public.monitor_runs to service_role;
 
 
 -- ==============================================================================
--- 5. ChatGPT 自动化写入 RPC (严格权限、语义去重、增量局部更新与证据合并)
+-- 5. ChatGPT 自动化写入 RPC (严格身份校验、复合身份防误合并、自动差异事件生成)
 -- ==============================================================================
 create or replace function public.ingest_radar_batch(patch jsonb)
 returns jsonb
@@ -237,16 +250,38 @@ declare
   incoming_title text;
   merged_sources jsonb;
   src_item jsonb;
+  new_title text;
+  new_models jsonb;
+  new_access_type text;
+  new_amount numeric;
+  new_unit text;
+  new_amount_type text;
+  new_reset_interval text;
+  new_claim_conditions jsonb;
+  new_billing_req text;
+  new_identity_ver text;
+  new_region_res jsonb;
+  new_rate_limits text;
+  new_context_win integer;
+  new_tool_calling boolean;
+  new_api_compat text;
+  new_end_at timestamptz;
+  new_credit_exp timestamptz;
+  new_status text;
+  new_ver_status text;
+  new_official_url text;
+  has_diff boolean;
   platforms_created int := 0;
   platforms_updated int := 0;
   offers_created int := 0;
   offers_updated int := 0;
+  offers_unchanged int := 0;
   offers_ended int := 0;
   events_count int := 0;
   now_ts timestamptz := now();
   claim_role text;
 begin
-  -- 严格权限防御：仅允许 service_role 身份执行写入，严禁 NULL 或匿名/普通用户执行
+  -- 严格权限防御：仅允许 service_role 身份执行写入，严禁 NULL、anon 或普通登录用户执行
   claim_role := coalesce(nullif(current_setting('request.jwt.claims', true), '')::jsonb->>'role', current_user);
   if claim_role is null or claim_role <> 'service_role' then
     raise exception 'Permission denied: service_role required for ingest_radar_batch (got: %)', claim_role;
@@ -312,14 +347,22 @@ begin
       incoming_title := coalesce(o->>'title', '');
       target_offer_id := o->>'id';
 
-      -- 语义匹配与 ID 查找：优先按 ID 匹配，找不到则按 (platform_id + 标题规范化) 进行语义去重
-      select * into existing_rec from public.offers
-      where (target_offer_id is not null and id = target_offer_id)
-         or (target_platform_id is not null and platform_id = target_platform_id and lower(trim(title)) = lower(trim(incoming_title)))
-      limit 1;
+      -- 严格稳定身份匹配：
+      -- 若提供了 ID 则优先且仅按 ID 精确匹配；若未提供 ID，则综合（平台 + 接入方式 + 额度单位 + 标题规范化）进行复合语义去重，绝不错误合并不同活动
+      existing_rec := null;
+      if target_offer_id is not null then
+        select * into existing_rec from public.offers where id = target_offer_id limit 1;
+      else
+        select * into existing_rec from public.offers
+        where platform_id = target_platform_id
+          and access_type = coalesce(o->>'accessType', o->>'access_type', 'api')
+          and unit = coalesce(o->>'unit', 'Credit')
+          and lower(trim(title)) = lower(trim(incoming_title))
+        limit 1;
+      end if;
 
       if existing_rec.id is not null then
-        -- 证据合并：保留历史证据并加入新证据（按 URL 去重）
+        -- 证据合并：保留历史证据并按 URL 去重合并新证据
         merged_sources := coalesce(existing_rec.sources, '[]'::jsonb);
         if (o ? 'sources') and jsonb_typeof(o->'sources') = 'array' then
           for src_item in select * from jsonb_array_elements(o->'sources') loop
@@ -329,35 +372,149 @@ begin
           end loop;
         end if;
 
-        -- 局部增量更新：严格只更新明确提供的字段，支持有依据将 amount 置 null
-        update public.offers set
-          title = case when (o ? 'title') then o->>'title' else existing_rec.title end,
-          models = case when (o ? 'models') then coalesce(o->'models', '[]'::jsonb) else existing_rec.models end,
-          access_type = case when (o ? 'accessType' or o ? 'access_type') then coalesce(o->>'accessType', o->>'access_type') else existing_rec.access_type end,
-          amount = case when (o ? 'amount') then (case when o->>'amount' is null or o->>'amount' = 'null' then null else (o->>'amount')::numeric end) else existing_rec.amount end,
-          unit = case when (o ? 'unit') then o->>'unit' else existing_rec.unit end,
-          amount_type = case when (o ? 'amountType' or o ? 'amount_type') then coalesce(o->>'amountType', o->>'amount_type') else existing_rec.amount_type end,
-          reset_interval = case when (o ? 'resetInterval' or o ? 'reset_interval') then coalesce(o->>'resetInterval', o->>'reset_interval') else existing_rec.reset_interval end,
-          claim_conditions = case when (o ? 'claimConditions' or o ? 'claim_conditions') then coalesce(o->'claimConditions', o->'claim_conditions') else existing_rec.claim_conditions end,
-          billing_requirements = case when (o ? 'billingRequirements' or o ? 'billing_requirements') then coalesce(o->>'billingRequirements', o->>'billing_requirements') else existing_rec.billing_requirements end,
-          identity_verification = case when (o ? 'identityVerification' or o ? 'identity_verification') then coalesce(o->>'identityVerification', o->>'identity_verification') else existing_rec.identity_verification end,
-          region_restrictions = case when (o ? 'regionRestrictions' or o ? 'region_restrictions') then coalesce(o->'regionRestrictions', o->'region_restrictions') else existing_rec.region_restrictions end,
-          rate_limits = case when (o ? 'rateLimits' or o ? 'rate_limits') then coalesce(o->>'rateLimits', o->>'rate_limits') else existing_rec.rate_limits end,
-          context_window = case when (o ? 'contextWindow') then (case when o->>'contextWindow' is null or o->>'contextWindow' = 'null' then null else (o->>'contextWindow')::integer end) else existing_rec.context_window end,
-          tool_calling = case when (o ? 'toolCalling') then (case when o->>'toolCalling' is null or o->>'toolCalling' = 'null' then null else (o->>'toolCalling')::boolean end) else existing_rec.tool_calling end,
-          api_compatibility = case when (o ? 'apiCompatibility' or o ? 'api_compatibility') then coalesce(o->>'apiCompatibility', o->>'api_compatibility') else existing_rec.api_compatibility end,
-          end_at = case when (o ? 'endAt') then (case when o->>'endAt' is null or o->>'endAt' = 'null' then null else (o->>'endAt')::timestamptz end) else existing_rec.end_at end,
-          credit_expires_at = case when (o ? 'creditExpiresAt') then (case when o->>'creditExpiresAt' is null or o->>'creditExpiresAt' = 'null' then null else (o->>'creditExpiresAt')::timestamptz end) else existing_rec.credit_expires_at end,
-          status = case when (o ? 'status') then o->>'status' else existing_rec.status end,
-          verification_status = case when (o ? 'verificationStatus' or o ? 'verification_status') then coalesce(o->>'verificationStatus', o->>'verification_status') else existing_rec.verification_status end,
-          official_url = case when (o ? 'officialUrl' or o ? 'official_url') then coalesce(o->>'officialUrl', o->>'official_url') else existing_rec.official_url end,
-          sources = merged_sources,
-          last_verified_at = coalesce((o->>'lastVerifiedAt')::timestamptz, (o->>'last_verified_at')::timestamptz, now_ts),
-          updated_at = now_ts
-        where id = existing_rec.id;
-        offers_updated := offers_updated + 1;
+        -- 提取目标字段值（只针对明确提交的字段赋值，其余保留现有数据库历史值）
+        new_title := case when (o ? 'title') then o->>'title' else existing_rec.title end;
+        new_models := case when (o ? 'models') then coalesce(o->'models', '[]'::jsonb) else existing_rec.models end;
+        new_access_type := case when (o ? 'accessType' or o ? 'access_type') then coalesce(o->>'accessType', o->>'access_type') else existing_rec.access_type end;
+        new_amount := case when (o ? 'amount') then (case when o->>'amount' is null or o->>'amount' = 'null' then null else (o->>'amount')::numeric end) else existing_rec.amount end;
+        new_unit := case when (o ? 'unit') then o->>'unit' else existing_rec.unit end;
+        new_amount_type := case when (o ? 'amountType' or o ? 'amount_type') then coalesce(o->>'amountType', o->>'amount_type') else existing_rec.amount_type end;
+        new_reset_interval := case when (o ? 'resetInterval' or o ? 'reset_interval') then coalesce(o->>'resetInterval', o->>'reset_interval') else existing_rec.reset_interval end;
+        new_claim_conditions := case when (o ? 'claimConditions' or o ? 'claim_conditions') then coalesce(o->'claimConditions', o->'claim_conditions') else existing_rec.claim_conditions end;
+        new_billing_req := case when (o ? 'billingRequirements' or o ? 'billing_requirements') then coalesce(o->>'billingRequirements', o->>'billing_requirements') else existing_rec.billing_requirements end;
+        new_identity_ver := case when (o ? 'identityVerification' or o ? 'identity_verification') then coalesce(o->>'identityVerification', o->>'identity_verification') else existing_rec.identity_verification end;
+        new_region_res := case when (o ? 'regionRestrictions' or o ? 'region_restrictions') then coalesce(o->'regionRestrictions', o->'region_restrictions') else existing_rec.region_restrictions end;
+        new_rate_limits := case when (o ? 'rateLimits' or o ? 'rate_limits') then coalesce(o->>'rateLimits', o->>'rate_limits') else existing_rec.rate_limits end;
+        new_context_win := case when (o ? 'contextWindow') then (case when o->>'contextWindow' is null or o->>'contextWindow' = 'null' then null else (o->>'contextWindow')::integer end) else existing_rec.context_window end;
+        new_tool_calling := case when (o ? 'toolCalling') then (case when o->>'toolCalling' is null or o->>'toolCalling' = 'null' then null else (o->>'toolCalling')::boolean end) else existing_rec.tool_calling end;
+        new_api_compat := case when (o ? 'apiCompatibility' or o ? 'api_compatibility') then coalesce(o->>'apiCompatibility', o->>'api_compatibility') else existing_rec.api_compatibility end;
+        new_end_at := case when (o ? 'endAt') then (case when o->>'endAt' is null or o->>'endAt' = 'null' then null else (o->>'endAt')::timestamptz end) else existing_rec.end_at end;
+        new_credit_exp := case when (o ? 'creditExpiresAt') then (case when o->>'creditExpiresAt' is null or o->>'creditExpiresAt' = 'null' then null else (o->>'creditExpiresAt')::timestamptz end) else existing_rec.credit_expires_at end;
+        new_status := case when (o ? 'status') then o->>'status' else existing_rec.status end;
+        new_ver_status := case when (o ? 'verificationStatus' or o ? 'verification_status') then coalesce(o->>'verificationStatus', o->>'verification_status') else existing_rec.verification_status end;
+        new_official_url := case when (o ? 'officialUrl' or o ? 'official_url') then coalesce(o->>'officialUrl', o->>'official_url') else existing_rec.official_url end;
+
+        has_diff := false;
+
+        -- 差异比对 1: 额度或单位变更
+        if (new_amount is distinct from existing_rec.amount) or (new_unit is distinct from existing_rec.unit) then
+          has_diff := true;
+          insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, previous_value, current_value, sources, description)
+          values (
+            'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
+            existing_rec.id, existing_rec.platform_id, 'amount-changed', now_ts, 'amount',
+            coalesce(existing_rec.amount::text, '0') || ' ' || existing_rec.unit,
+            coalesce(new_amount::text, '0') || ' ' || new_unit,
+            coalesce(o->'sources', '[]'::jsonb),
+            '额度由 ' || coalesce(existing_rec.amount::text, '未确定') || ' 调整为 ' || coalesce(new_amount::text, '未确定')
+          );
+          events_count := events_count + 1;
+        end if;
+
+        -- 差异比对 2: 状态变更
+        if new_status is distinct from existing_rec.status then
+          has_diff := true;
+          insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, previous_value, current_value, sources, description)
+          values (
+            'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
+            existing_rec.id, existing_rec.platform_id, 'status-changed', now_ts, 'status',
+            existing_rec.status, new_status,
+            coalesce(o->'sources', '[]'::jsonb),
+            '活动状态由「' || existing_rec.status || '」变更为「' || new_status || '」'
+          );
+          events_count := events_count + 1;
+        end if;
+
+        -- 差异比对 3: 截止日期变动
+        if new_end_at is distinct from existing_rec.end_at then
+          has_diff := true;
+          insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, previous_value, current_value, sources, description)
+          values (
+            'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
+            existing_rec.id, existing_rec.platform_id, 'deadline-extended', now_ts, 'endAt',
+            coalesce(existing_rec.end_at::text, '未设定'), coalesce(new_end_at::text, '未设定'),
+            coalesce(o->'sources', '[]'::jsonb),
+            '活动截止时间调整为 ' || coalesce(new_end_at::text, '未设定')
+          );
+          events_count := events_count + 1;
+        end if;
+
+        -- 差异比对 4: 模型列表变动
+        if new_models is distinct from existing_rec.models then
+          has_diff := true;
+          insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, previous_value, current_value, sources, description)
+          values (
+            'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
+            existing_rec.id, existing_rec.platform_id, 'model-changed', now_ts, 'models',
+            existing_rec.models::text, new_models::text,
+            coalesce(o->'sources', '[]'::jsonb),
+            '支持模型列表变动'
+          );
+          events_count := events_count + 1;
+        end if;
+
+        -- 差异比对 5: 领取条件/接入方式变更
+        if (new_access_type is distinct from existing_rec.access_type) or
+           (new_billing_req is distinct from existing_rec.billing_requirements) or
+           (new_identity_ver is distinct from existing_rec.identity_verification) or
+           (new_claim_conditions is distinct from existing_rec.claim_conditions) then
+          has_diff := true;
+          insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, sources, description)
+          values (
+            'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
+            existing_rec.id, existing_rec.platform_id, 'conditions-changed', now_ts, 'conditions',
+            coalesce(o->'sources', '[]'::jsonb),
+            '权益领取门槛与接入方式调整'
+          );
+          events_count := events_count + 1;
+        end if;
+
+        -- 差异比对 6: 其他字段变动
+        if (new_title is distinct from existing_rec.title) or
+           (new_official_url is distinct from existing_rec.official_url) or
+           (new_ver_status is distinct from existing_rec.verification_status) or
+           (new_amount_type is distinct from existing_rec.amount_type) or
+           (new_reset_interval is distinct from existing_rec.reset_interval) then
+          has_diff := true;
+        end if;
+
+        if jsonb_array_length(merged_sources) > jsonb_array_length(coalesce(existing_rec.sources, '[]'::jsonb)) then
+          has_diff := true;
+        end if;
+
+        -- 只有字段确实变动才执行 UPDATE，避免伪更新
+        if has_diff then
+          update public.offers set
+            title = new_title,
+            models = new_models,
+            access_type = new_access_type,
+            amount = new_amount,
+            unit = new_unit,
+            amount_type = new_amount_type,
+            reset_interval = new_reset_interval,
+            claim_conditions = new_claim_conditions,
+            billing_requirements = new_billing_req,
+            identity_verification = new_identity_ver,
+            region_restrictions = new_region_res,
+            rate_limits = new_rate_limits,
+            context_window = new_context_win,
+            tool_calling = new_tool_calling,
+            api_compatibility = new_api_compat,
+            end_at = new_end_at,
+            credit_expires_at = new_credit_exp,
+            status = new_status,
+            verification_status = new_ver_status,
+            official_url = new_official_url,
+            sources = merged_sources,
+            last_verified_at = coalesce((o->>'lastVerifiedAt')::timestamptz, (o->>'last_verified_at')::timestamptz, now_ts),
+            updated_at = now_ts
+          where id = existing_rec.id;
+          offers_updated := offers_updated + 1;
+        else
+          offers_unchanged := offers_unchanged + 1;
+        end if;
       else
-        -- 新增活动 (严格使用 enums.ts 规范默认值)
+        -- 新增活动
         if target_offer_id is null then
           target_offer_id := 'off_' || target_platform_id || '_' || substr(md5(incoming_title), 1, 8);
         end if;
@@ -417,7 +574,7 @@ begin
     end loop;
   end if;
 
-  -- 3. 标记结束的活动 (ends) -> 统一规范为 'ended' 状态并追加事件
+  -- 3. 标记结束的活动 (ends) -> 统一置为 'ended' 状态并追加事件
   if patch ? 'ends' and jsonb_typeof(patch->'ends') = 'array' then
     for end_item in select * from jsonb_array_elements(patch->'ends') loop
       target_offer_id := coalesce(end_item->>'offerId', end_item->>'offer_id');
@@ -471,9 +628,13 @@ begin
     end loop;
   end if;
 
-  -- 5. 记录监控运行 (兼容单对象 'run' 和数组 'runs')
+  -- 5. 记录监控运行：强制要求调用方提供真实 status，严禁默认伪造 success
   if patch ? 'run' and jsonb_typeof(patch->'run') = 'object' then
     run_item := patch->'run';
+    if not (run_item ? 'status') or (run_item->>'status' not in ('success', 'partial', 'failed')) then
+      raise exception 'Monitor run requires valid explicit status: success | partial | failed';
+    end if;
+
     insert into public.monitor_runs (
       id, started_at, completed_at, status, search_a_completed, search_b_completed,
       sources_checked, candidates_found, offers_created, offers_updated,
@@ -482,9 +643,9 @@ begin
       coalesce(run_item->>'id', 'run_' || to_char(now_ts, 'YYYYMMDD_HH24MISS')),
       coalesce((run_item->>'startedAt')::timestamptz, (run_item->>'started_at')::timestamptz, now_ts),
       case when run_item ? 'completedAt' then (run_item->>'completedAt')::timestamptz else now_ts end,
-      coalesce(run_item->>'status', 'success'),
-      coalesce((run_item->>'searchACompleted')::boolean, (run_item->>'search_a_completed')::boolean, true),
-      coalesce((run_item->>'searchBCompleted')::boolean, (run_item->>'search_b_completed')::boolean, true),
+      run_item->>'status',
+      coalesce((run_item->>'searchACompleted')::boolean, (run_item->>'search_a_completed')::boolean, false),
+      coalesce((run_item->>'searchBCompleted')::boolean, (run_item->>'search_b_completed')::boolean, false),
       coalesce((run_item->>'sourcesChecked')::integer, 0),
       coalesce((run_item->>'candidatesFound')::integer, 0),
       coalesce((run_item->>'offersCreated')::integer, offers_created),
@@ -499,6 +660,10 @@ begin
 
   if patch ? 'runs' and jsonb_typeof(patch->'runs') = 'array' then
     for run_item in select * from jsonb_array_elements(patch->'runs') loop
+      if not (run_item ? 'status') or (run_item->>'status' not in ('success', 'partial', 'failed')) then
+        raise exception 'Monitor run requires valid explicit status: success | partial | failed';
+      end if;
+
       insert into public.monitor_runs (
         id, started_at, completed_at, status, search_a_completed, search_b_completed,
         sources_checked, candidates_found, offers_created, offers_updated,
@@ -507,9 +672,9 @@ begin
         coalesce(run_item->>'id', 'run_' || to_char(now_ts, 'YYYYMMDD_HH24MISS')),
         coalesce((run_item->>'startedAt')::timestamptz, (run_item->>'started_at')::timestamptz, now_ts),
         case when run_item ? 'completedAt' then (run_item->>'completedAt')::timestamptz else now_ts end,
-        coalesce(run_item->>'status', 'success'),
-        coalesce((run_item->>'searchACompleted')::boolean, (run_item->>'search_a_completed')::boolean, true),
-        coalesce((run_item->>'searchBCompleted')::boolean, (run_item->>'search_b_completed')::boolean, true),
+        run_item->>'status',
+        coalesce((run_item->>'searchACompleted')::boolean, (run_item->>'search_a_completed')::boolean, false),
+        coalesce((run_item->>'searchBCompleted')::boolean, (run_item->>'search_b_completed')::boolean, false),
         coalesce((run_item->>'sourcesChecked')::integer, 0),
         coalesce((run_item->>'candidatesFound')::integer, 0),
         coalesce((run_item->>'offersCreated')::integer, 0),
@@ -529,6 +694,7 @@ begin
     'platforms_updated', platforms_updated,
     'offers_created', offers_created,
     'offers_updated', offers_updated,
+    'offers_unchanged', offers_unchanged,
     'offers_ended', offers_ended,
     'events_created', events_count,
     'timestamp', now_ts
