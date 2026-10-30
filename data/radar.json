@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-30T02:41:32.814Z",
+  "lastSuccessfulSync": "2026-10-30T05:49:07.086Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1275,6 +1275,54 @@
       "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
       "lastCheckedAt": "2026-10-30T02:41:32.814Z",
       "trustStatus": "official"
+    },
+    {
+      "id": "standard-compute",
+      "name": "Standard Compute",
+      "slug": "standard-compute",
+      "canonicalDomain": "standardcompute.com",
+      "websiteUrl": "https://standardcompute.com/free-trial",
+      "description": "OpenAI/Anthropic兼容模型路由API，符合资格新用户可申请$0.25免绑卡试用",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "unchained-code",
+      "name": "Unchained Code",
+      "slug": "unchained-code",
+      "canonicalDomain": "unchainedcode.dev",
+      "websiteUrl": "https://unchainedcode.dev/",
+      "description": "网页/Mac/CLI Coding Agent，官网声明每日10免费构建Credits，当前邀请制Beta",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "atelier",
+      "name": "Atelier",
+      "slug": "atelier",
+      "canonicalDomain": "appsbymo.app",
+      "websiteUrl": "https://appsbymo.app/atelier/",
+      "description": "macOS Coding Agent项目管理与会话交接客户端，7天免绑卡试用，不赠模型额度",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "hallmonitor",
+      "name": "Hall Monitor",
+      "slug": "hallmonitor",
+      "canonicalDomain": "github.com",
+      "websiteUrl": "https://github.com/hiteshbandhu/hallmonitor",
+      "description": "近期Product Hunt展示的免费开源Coding Agent会话监控工具，不赠模型推理额度",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "community"
     }
   ],
   "offers": [
@@ -6608,6 +6656,117 @@
       ],
       "contextWindow": 32768,
       "toolCalling": false
+    },
+    {
+      "platformId": "standard-compute",
+      "title": "新账户申请$0.25免费Coding API试用（资格审核）",
+      "models": [],
+      "accessType": "api",
+      "amount": 0.25,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "注册新账号后在Dashboard选择Activate申请试用；资格及可用性由平台审核",
+        "无需付费订阅或绑卡；额度耗尽后停止调用，不自动续费",
+        "支持OpenAI Chat Completions与Anthropic Messages；具体试用可用模型以Dashboard为准",
+        "实名、地区及赠额有效期未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "依账户与模型限制，具体未公布",
+      "apiCompatibility": "both",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://standardcompute.com/free-trial",
+      "sources": [
+        {
+          "url": "https://standardcompute.com/free-trial",
+          "label": "官方试用条款：$0.25新账号资格审核、免绑卡、一次性",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "id": "standard-compute:74iy0k",
+      "discoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastVerifiedAt": "2026-10-30T05:49:07.086Z"
+    },
+    {
+      "platformId": "unchained-code",
+      "title": "邀请制Beta每日10个免费构建Credits（获邀情况待核实）",
+      "models": [
+        "DeepSeek（动态）",
+        "Qwen（动态）",
+        "GLM（动态）",
+        "Kimi（动态）",
+        "MiniMax（动态）"
+      ],
+      "accessType": "client",
+      "amount": 10,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "Invite-only Beta，须提交邮箱等待邀请码，非即时开放注册",
+        "官网声明每日10个免费Build Credits及免费聊天；免费档含广告",
+        "网页/Mac/CLI客户端内部使用，不是独立开放模型API",
+        "免绑卡、Google OAuth；实名、地区、重置时刻及邀请发放未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "每日10个Build Credits；聊天不限消息但共享容量限制未公布",
+      "apiCompatibility": "none",
+      "status": "unknown",
+      "verificationStatus": "official",
+      "officialUrl": "https://unchainedcode.dev/",
+      "sources": [
+        {
+          "url": "https://unchainedcode.dev/",
+          "label": "官网免费档每日10构建Credits；当前邀请制Beta",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "id": "unchained-code:193vas",
+      "discoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastVerifiedAt": "2026-10-30T05:49:07.086Z"
+    },
+    {
+      "platformId": "atelier",
+      "title": "Atelier Mac Coding Agent工作台7天完整功能免费试用",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "官网下载后可免费试用7天完整功能，无账户无绑卡",
+        "仅macOS 14+；试用结束后需一次性购买",
+        "管理Claude Code、Codex等Agent，需自有订阅或API；不附赠模型Tokens",
+        "实名和地区限制未公布"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "免费试用7天，模型调用消耗自有额度",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://appsbymo.app/atelier/",
+      "sources": [
+        {
+          "url": "https://appsbymo.app/atelier/",
+          "label": "官方7天完整功能免绑卡试用",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "id": "atelier:kt1vl6",
+      "discoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastVerifiedAt": "2026-10-30T05:49:07.086Z"
     }
   ],
   "events": [
@@ -9067,6 +9226,123 @@
         }
       ],
       "description": "本轮A类核验新增：Qwen3Guard-Gen-8B免费内容安全审核API（匿名2RPM）"
+    },
+    {
+      "id": "ev_1w1h5gu",
+      "platformId": "standard-compute",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://standardcompute.com/free-trial",
+          "label": "官方试用条款：$0.25新账号资格审核、免绑卡、一次性",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Standard Compute；不推断免费模型API。"
+    },
+    {
+      "id": "ev_dcisty",
+      "platformId": "unchained-code",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://unchainedcode.dev/",
+          "label": "官网免费档每日10构建Credits；当前邀请制Beta",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Unchained Code；不推断免费模型API。"
+    },
+    {
+      "id": "ev_1h0jsm1",
+      "platformId": "atelier",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://appsbymo.app/atelier/",
+          "label": "官方7天完整功能免绑卡试用",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Atelier；不推断免费模型API。"
+    },
+    {
+      "id": "ev_1kuvme4",
+      "platformId": "hallmonitor",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://www.producthunt.com/products/hallmonitor",
+          "label": "Product Hunt近期发布，免费开源Agent会话监控",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Hall Monitor；不推断免费模型API。"
+    },
+    {
+      "id": "ev_1xaofnn",
+      "offerId": "standard-compute:74iy0k",
+      "platformId": "standard-compute",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://standardcompute.com/free-trial",
+          "label": "官方试用条款：$0.25新账号资格审核、免绑卡、一次性",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "新发现权益：新账户申请$0.25免费Coding API试用（资格审核）；未实测个人账号到账。"
+    },
+    {
+      "id": "ev_145thcu",
+      "offerId": "unchained-code:193vas",
+      "platformId": "unchained-code",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "unknown",
+      "sources": [
+        {
+          "url": "https://unchainedcode.dev/",
+          "label": "官网免费档每日10构建Credits；当前邀请制Beta",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "新发现权益：邀请制Beta每日10个免费构建Credits（获邀情况待核实）；未实测个人账号到账。"
+    },
+    {
+      "id": "ev_1kev69i",
+      "offerId": "atelier:kt1vl6",
+      "platformId": "atelier",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://appsbymo.app/atelier/",
+          "label": "官方7天完整功能免绑卡试用",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "新发现权益：Atelier Mac Coding Agent工作台7天完整功能免费试用；未实测个人账号到账。"
     }
   ],
   "runs": [
@@ -9234,6 +9510,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "独立完成A（48h/7d/30d及长期中英交叉免费额度、官方定价、客户端与API）与B（Product Hunt/HN/GitHub/HF/Reddit/Linux.do/V2EX/X及官方新平台）搜索。新增国内WorkBuddy 500积分/月、Hy3社区实测限免、OVH匿名Qwen3.8试用与官方Qwen3Guard免费API；Inferock仅新平台候选，不赠推理额度。已排除Amp暂停Free及不确定赠额；未实测个人账号注册到账；正式OVH Key API收费。"
+    },
+    {
+      "id": "run_20261030t054649z_nfmfcq",
+      "startedAt": "2026-10-30T05:46:49.000Z",
+      "completedAt": "2026-10-30T05:49:07.086Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 24,
+      "candidatesFound": 7,
+      "offersCreated": 3,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：独立中英交叉检索48h/7d/30d/长期免费API、模型、IDE/CLI客户端，核查Qoder/DeepSeek/OpenCode/Vercel/Cloudflare等官方资料；B：独立检索Product Hunt/HN/GitHub/HF/Reddit/Linux.do/V2EX/X近期新平台。新增Standard Compute一次性$0.25 API试用（资格审核）、Unchained Code邀请制每日10构建Credits（status=unknown）、Atelier 7天客户端试用；Hall Monitor仅新平台候选。Mistral Large 4开源权重不等于免费云API。未实测到账。"
     }
   ]
 }
