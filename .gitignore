@@ -33,3 +33,6 @@ data/incoming/
 # worktrees
 .worktrees/
 
+# agent tooling
+.agents/
+
