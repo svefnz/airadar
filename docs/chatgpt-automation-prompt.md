@@ -147,15 +147,18 @@
 
 ---
 
-## 5. 自动触发 GitHub Pages 重新部署（可选但推荐）
+## 5. 触发 GitHub Pages 重新构建部署（标准闭环流程）
 
-在成功调用 Supabase RPC 写入后，若本次有新增平台或活动变动（`offers_created > 0 || offers_updated > 0 || offers_ended > 0`），可调用 GitHub API 触发页面重新构建：
+在成功调用 Supabase RPC 写入后，检查 RPC 返回结果中的变动计数：
+若 `(platforms_created + platforms_updated + offers_created + offers_updated + offers_ended) > 0`，立即调用 GitHub API 触发页面拉取最新数据并重新构建部署：
+
 - **Method**：`POST`
 - **URL**：`https://api.github.com/repos/svefnz/airadar/dispatches`
 - **Headers**：
   ```http
   Accept: application/vnd.github.v3+json
   Authorization: Bearer <GITHUB_PERSONAL_ACCESS_TOKEN>
+  Content-Type: application/json
   ```
 - **Body**：
   ```json
@@ -163,7 +166,7 @@
     "event_type": "radar-update"
   }
   ```
-> 也可以在 Supabase 控制台的 Database Webhooks 中配置在 `offers` 变更时自动调用上述 GitHub Webhook。
+> 若本次巡检无任何实质变化（变动计数均为 0），**无需**调用此接口，避免浪费 GitHub Actions 编译配额。
 
 ---
 
