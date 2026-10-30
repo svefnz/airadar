@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { patchSchema, offerSchema } from '../../src/lib/data/schema';
+import { patchSchema, offerSchema, platformSchema } from '../../src/lib/data/schema';
 import { RUN_STATUSES, OFFER_STATUSES } from '../../src/lib/data/enums';
 import { claimRecordSchema } from '../../src/lib/personal';
 
@@ -168,5 +168,21 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
     };
 
     expect(() => patchSchema.parse(invalidEnd)).toThrow();
+  });
+
+  it('platformSchema 必须包含合法 http/https 协议的 websiteUrl', () => {
+    const invalidPlatform = {
+      id: 'plat_invalid',
+      name: 'Invalid Platform',
+      slug: 'invalid-platform',
+      canonicalDomain: 'invalid.com',
+      websiteUrl: 'not-a-valid-url',
+      firstDiscoveredAt: '2026-10-30T18:00:00Z',
+      lastCheckedAt: '2026-10-30T18:00:00Z',
+      category: 'llm-api' as const,
+      trustStatus: 'official' as const,
+    };
+
+    expect(() => platformSchema.parse(invalidPlatform)).toThrow();
   });
 });

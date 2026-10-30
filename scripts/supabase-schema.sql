@@ -270,6 +270,12 @@ declare
   new_official_url text;
   has_diff boolean;
   has_platform_diff boolean;
+  target_platform_name text;
+  target_platform_desc text;
+  target_platform_cat text;
+  target_platform_url text;
+  target_platform_trust text;
+  target_platform_logo text;
   platforms_created int := 0;
   platforms_updated int := 0;
   offers_created int := 0;
@@ -307,12 +313,18 @@ begin
         raise exception 'Platform requires non-empty id or slug';
       end if;
 
-      -- 服务端枚举校验
+      -- 服务端枚举与格式校验
       if (p ? 'category') and (p->>'category' not in ('llm-api', 'agent-platform', 'coding-agent', 'api-relay', 'dev-tool', 'application', 'other')) then
         raise exception 'Invalid platform category: % (platform: %)', p->>'category', target_platform_id;
       end if;
       if (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') not in ('official', 'community', 'unverified') then
         raise exception 'Invalid platform trustStatus: % (platform: %)', coalesce(p->>'trustStatus', p->>'trust_status'), target_platform_id;
+      end if;
+      if (p ? 'websiteUrl' or p ? 'website_url') then
+        target_platform_url := coalesce(p->>'websiteUrl', p->>'website_url');
+        if target_platform_url is not null and target_platform_url !~* '^https?://' then
+          raise exception 'Invalid platform websiteUrl: % (platform: %)', target_platform_url, target_platform_id;
+        end if;
       end if;
 
       select * into existing_platform from public.platforms
@@ -320,23 +332,31 @@ begin
       limit 1;
 
       if existing_platform.id is not null then
-        has_platform_diff := false;
-        if (p ? 'name') and (p->>'name' is distinct from existing_platform.name) then has_platform_diff := true; end if;
-        if (p ? 'description') and (p->>'description' is distinct from existing_platform.description) then has_platform_diff := true; end if;
-        if (p ? 'category') and (p->>'category' is distinct from existing_platform.category) then has_platform_diff := true; end if;
-        if (p ? 'websiteUrl' or p ? 'website_url') and (coalesce(p->>'websiteUrl', p->>'website_url') is distinct from existing_platform.website_url) then has_platform_diff := true; end if;
-        if (p ? 'trustStatus' or p ? 'trust_status') and (coalesce(p->>'trustStatus', p->>'trust_status') is distinct from existing_platform.trust_status) then has_platform_diff := true; end if;
-        if (p ? 'logoUrl' or p ? 'logo_url') and (coalesce(p->>'logoUrl', p->>'logo_url') is distinct from existing_platform.logo_url) then has_platform_diff := true; end if;
+        -- 计算根据写入逻辑处理后的实际目标值
+        target_platform_name := coalesce(p->>'name', existing_platform.name);
+        target_platform_desc := case when (p ? 'description') and (p->>'description' <> '') then p->>'description' else existing_platform.description end;
+        target_platform_cat := case when (p ? 'category') then coalesce(p->>'category', existing_platform.category) else existing_platform.category end;
+        target_platform_url := coalesce(p->>'websiteUrl', p->>'website_url', existing_platform.website_url);
+        target_platform_trust := case when (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') <> 'unverified' then coalesce(p->>'trustStatus', p->>'trust_status') else existing_platform.trust_status end;
+        target_platform_logo := case when (p ? 'logoUrl' or p ? 'logo_url') then coalesce(p->>'logoUrl', p->>'logo_url') else existing_platform.logo_url end;
+
+        -- 依据最终实际写入值与现有值进行精准比对，避免伪更新
+        has_platform_diff := (target_platform_name is distinct from existing_platform.name)
+          or (target_platform_desc is distinct from existing_platform.description)
+          or (target_platform_cat is distinct from existing_platform.category)
+          or (target_platform_url is distinct from existing_platform.website_url)
+          or (target_platform_trust is distinct from existing_platform.trust_status)
+          or (target_platform_logo is distinct from existing_platform.logo_url);
 
         if has_platform_diff then
           update public.platforms set
-            name = coalesce(p->>'name', existing_platform.name),
-            description = case when (p ? 'description') and (p->>'description' <> '') then p->>'description' else existing_platform.description end,
-            category = case when (p ? 'category') then coalesce(p->>'category', existing_platform.category) else existing_platform.category end,
-            website_url = coalesce(p->>'websiteUrl', p->>'website_url', existing_platform.website_url),
+            name = target_platform_name,
+            description = target_platform_desc,
+            category = target_platform_cat,
+            website_url = target_platform_url,
             last_checked_at = coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
-            trust_status = case when (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') <> 'unverified' then coalesce(p->>'trustStatus', p->>'trust_status') else existing_platform.trust_status end,
-            logo_url = case when (p ? 'logoUrl' or p ? 'logo_url') then coalesce(p->>'logoUrl', p->>'logo_url') else existing_platform.logo_url end,
+            trust_status = target_platform_trust,
+            logo_url = target_platform_logo,
             updated_at = now_ts
           where id = existing_platform.id;
           platforms_updated := platforms_updated + 1;
@@ -347,6 +367,12 @@ begin
           where id = existing_platform.id;
         end if;
       else
+        -- 新建平台分支：强制要求有效 websiteUrl
+        target_platform_url := coalesce(p->>'websiteUrl', p->>'website_url');
+        if target_platform_url is null or trim(target_platform_url) = '' or target_platform_url !~* '^https?://' then
+          raise exception 'Creating platform % requires a valid websiteUrl starting with http:// or https:// (got: %)', target_platform_id, coalesce(target_platform_url, 'null');
+        end if;
+
         insert into public.platforms (
           id, name, slug, canonical_domain, website_url, description,
           category, launch_date, first_discovered_at, last_checked_at,
@@ -356,7 +382,7 @@ begin
           coalesce(p->>'name', target_platform_id),
           coalesce(p->>'slug', target_platform_id),
           coalesce(p->>'canonicalDomain', p->>'canonical_domain', ''),
-          coalesce(p->>'websiteUrl', p->>'website_url', ''),
+          target_platform_url,
           coalesce(p->>'description', ''),
           coalesce(p->>'category', 'llm-api'),
           case when p ? 'launchDate' then (p->>'launchDate')::timestamptz else null end,

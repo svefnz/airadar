@@ -128,7 +128,15 @@ select public.ingest_radar_batch('{ ...补丁数据... }'::jsonb);
   "ends": [
     {
       "offerId": "off_some_expired_id",
-      "reason": "官方宣布活动已截止"
+      "reason": "官方宣布活动已截止",
+      "timestamp": "2026-10-30T18:00:00Z",
+      "sources": [
+        {
+          "url": "https://platform.example.com/announcement",
+          "label": "官方截止公告",
+          "kind": "official"
+        }
+      ]
     }
   ],
   "run": {
@@ -153,7 +161,7 @@ select public.ingest_radar_batch('{ ...补丁数据... }'::jsonb);
 2. **新增记录严格校验**：新增活动强制要求提供完整规格与至少一条有效证据，严禁无来源录入；
 3. **幂等更新**：数据库会自动比对字段，只有字段确实变动才算更新并累加 `offers_updated`；未变动时只记录 `offers_unchanged`，不产生脏事件；
 4. **运行状态校验**：监控记录标记为 `status = 'success'` 时，必须确认 `searchACompleted` 与 `searchBCompleted` 均为 `true`，否则拒绝写入；
-5. **活动下线**：`ends` 列表中的活动会自动将状态更新为 `'ended'`；
+5. **活动下线**：`ends` 列表中的活动会自动将状态更新为 `'ended'`，下线时强制要求提供至少一条证据来源（`sources` 数组不能留空）；
 6. **信源证据合并**：若新补丁提交了新证据，数据库会自动与历史证据按 URL 去重合并，完整保留溯源链路。
 
 ---
