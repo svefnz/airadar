@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T14:16:03.863Z",
+  "lastSuccessfulSync": "2026-10-30T02:41:32.814Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -455,8 +455,8 @@
       "description": "从本会话的历史监控回答汇总；仅经过单独复核的权益标记为官方确认。",
       "category": "llm-api",
       "firstDiscoveredAt": "2026-10-28T21:30:43Z",
-      "lastCheckedAt": "2026-10-28T21:30:43Z",
-      "trustStatus": "unverified"
+      "lastCheckedAt": "2026-10-29T17:54:07.272Z",
+      "trustStatus": "official"
     },
     {
       "id": "orca",
@@ -1142,6 +1142,138 @@
       "category": "coding-agent",
       "firstDiscoveredAt": "2026-10-28T00:00:00Z",
       "lastCheckedAt": "2026-10-28T21:30:43Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "workato",
+      "name": "Workato",
+      "slug": "workato",
+      "canonicalDomain": "workato.com",
+      "websiteUrl": "https://www.workato.com/free",
+      "description": "Agent/MCP 与工作流自动化平台；免费 50K 平台 Credits（非模型 Tokens）",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastCheckedAt": "2026-10-29T17:54:07.272Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "agentgrid",
+      "name": "AgentGrid.io",
+      "slug": "agentgrid",
+      "canonicalDomain": "agentgrid.io",
+      "websiteUrl": "https://agentgrid.io",
+      "description": "2026年10月新推出的多 Agent 协作工作区；Free 100 artifacts、无限 Agent 席位，不附赠推理额度",
+      "category": "agent-platform",
+      "firstDiscoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastCheckedAt": "2026-10-29T17:54:07.272Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "haimaker",
+      "name": "Haimaker",
+      "slug": "haimaker",
+      "canonicalDomain": "haimaker.ai",
+      "websiteUrl": "https://haimaker.ai/free/",
+      "description": "多模型API网关，提供GLM-5.3、DeepSeek V4.1 Flash、MiniMax M3免绑卡限免",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastCheckedAt": "2026-10-29T20:31:42.405Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "tokenharbor",
+      "name": "Token Harbor",
+      "slug": "tokenharbor",
+      "canonicalDomain": "tokenharbor.ai",
+      "websiteUrl": "https://tokenharbor.ai/pricing",
+      "description": "OpenAI兼容模型网关；DeepSeek与MiMo免费路由每7日滚动恢复，免费路由需主动同意数据留存",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastCheckedAt": "2026-10-29T20:31:42.405Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "botscanner",
+      "name": "Botscanner / AutoBench Router",
+      "slug": "botscanner",
+      "canonicalDomain": "botscanner.ai",
+      "websiteUrl": "https://botscanner.ai/",
+      "description": "AutoBench智能模型路由器2026-10-29 Beta首发，新账号凭邀请码领取$1，兼容OpenAI API",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastCheckedAt": "2026-10-29T20:31:42.405Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "articul8-bivia",
+      "name": "Articul8 Bivia",
+      "slug": "articul8-bivia",
+      "canonicalDomain": "articul8.ai",
+      "websiteUrl": "https://articul8.ai/bivia",
+      "category": "llm-api",
+      "description": "2026-10-28首发的多模态决策模型，原生API/SDK/MCP/CLI；非通用聊天模型",
+      "firstDiscoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastCheckedAt": "2026-10-29T23:39:46.542Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "adcode",
+      "name": "ADCode by Bluethenics",
+      "slug": "adcode",
+      "canonicalDomain": "adcode.bluethenics.com",
+      "websiteUrl": "https://adcode.bluethenics.com/",
+      "category": "coding-agent",
+      "description": "开源广告支持AI IDE，Windows/Linux桌面可用，macOS未发布，浏览器预览可能暂停",
+      "firstDiscoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastCheckedAt": "2026-10-29T23:39:46.542Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "theysaid",
+      "name": "TheySaid AI User Testing",
+      "slug": "theysaid",
+      "canonicalDomain": "theysaid.io",
+      "websiteUrl": "https://www.theysaid.io/",
+      "category": "application",
+      "description": "TheySaid 4.0 AI辅助用户研究、网页测试与调查，非模型推理API",
+      "firstDiscoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastCheckedAt": "2026-10-29T23:39:46.542Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "workbuddy-cn",
+      "name": "WorkBuddy / CodeBuddy 国内版",
+      "slug": "workbuddy-cn",
+      "canonicalDomain": "workbuddy.cn",
+      "websiteUrl": "https://www.workbuddy.cn/pricing/",
+      "description": "国内体验版500积分/月，与国际版分开；CodeBuddy与WorkBuddy共享国内账户积分",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastCheckedAt": "2026-10-30T02:41:32.814Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "ovhcloud",
+      "name": "OVHcloud AI Endpoints",
+      "slug": "ovhcloud",
+      "canonicalDomain": "ovhcloud.com",
+      "websiteUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
+      "description": "匿名模型体验有每IP每模型2 RPM限速；正式带Key API按Token计费",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastCheckedAt": "2026-10-30T02:41:32.814Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "inferock",
+      "name": "Inferock",
+      "slug": "inferock",
+      "canonicalDomain": "inferock.ai",
+      "websiteUrl": "https://inferock.ai/pricing/",
+      "description": "2026年10月推出的免费BYOK推理可观测性平台；不附赠确定额度的推理Tokens",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastCheckedAt": "2026-10-30T02:41:32.814Z",
       "trustStatus": "official"
     }
   ],
@@ -2720,26 +2852,36 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史报告称50次每日且20RPM;模型在线状态待核"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
       "sources": [
         {
           "url": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Xing4.0 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
-      ]
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "openrouter:08da1b6e7205",
@@ -2754,27 +2896,38 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称10月31日下线;共享免费池日限制须核实"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测",
+        "官方页面标注2026年10月31日下线，未公布准确时刻",
+        "Poolside 免费端点可能用于模型训练，请勿提交私密代码"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/poolside/laguna-s-2.1:free",
       "sources": [
         {
           "url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Laguna S 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
       ],
-      "endAt": "2026-10-31T00:00:00Z"
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "openrouter:c8f19e9a56c9",
@@ -2789,27 +2942,38 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称10月31日下线;限额不是单模型独享"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测",
+        "官方页面标注2026年10月31日下线，未公布准确时刻",
+        "Poolside 免费端点可能用于模型训练，请勿提交私密代码"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
       "sources": [
         {
           "url": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Laguna XS 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
       ],
-      "endAt": "2026-10-31T00:00:00Z"
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "openrouter:c4ee00fd187d",
@@ -2824,26 +2988,36 @@
       "amountType": "daily",
       "resetInterval": "daily",
       "claimConditions": [
-        "历史报告导入；不是本轮新发现",
-        "仅来自本会话旧报告；本轮尚未确认当前权益：历史称262K上下文且Tool Calling;当前模型状态待核"
+        "官方免费端点，OpenRouter 免费账号可创建 API Key 使用",
+        "50次/日、20 RPM 属于账号共享额度，并非单模型独享",
+        "用户实际到账/调用未实测"
       ],
-      "billingRequirements": "unknown",
+      "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
-      "rateLimits": "",
-      "apiCompatibility": "unknown",
-      "status": "unknown",
-      "verificationStatus": "unverified",
+      "rateLimits": "账号所有 :free 模型共享50 RPD/20 RPM（免充值）",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
       "discoveredAt": "2026-10-28T21:30:43Z",
-      "lastVerifiedAt": "2026-10-28T21:30:43Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
       "officialUrl": "https://openrouter.ai/recursive/flint-v1.0:free",
       "sources": [
         {
           "url": "https://openrouter.ai/recursive/flint-v1.0:free",
-          "label": "历史会话来源链接（内容待重核）",
-          "kind": "other"
+          "label": "Recursive Flint 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
         }
-      ]
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
     },
     {
       "id": "agentfoundry:acefda803657",
@@ -4121,17 +4295,18 @@
       "claimConditions": [
         "免费账户每月自动获得 $0.10 Inference Providers 路由额度",
         "只限 HF Routed Requests；自带推理商 Key 不享受此额度",
-        "超出需购买 Credits，额度可能调整"
+        "超出需购买 Credits，额度可能调整",
+        "2026-10-29 官方定价显示 Free Users 月度额度 None，原$0.10赠额已不再适用；具体取消日期未公布"
       ],
       "billingRequirements": "none",
       "identityVerification": "unknown",
       "regionRestrictions": [],
       "rateLimits": "按各模型价格消耗；官方标注 subject to change",
       "apiCompatibility": "openai",
-      "status": "active",
+      "status": "ended",
       "verificationStatus": "official",
       "discoveredAt": "2026-10-28T22:15:59.283Z",
-      "lastVerifiedAt": "2026-10-28T22:15:59.283Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z",
       "officialUrl": "https://huggingface.co/docs/inference-providers/pricing",
       "sources": [
         {
@@ -4139,6 +4314,12 @@
           "label": "Hugging Face 官方推理额度",
           "kind": "official",
           "verifiedAt": "2026-10-28T22:15:59.283Z"
+        },
+        {
+          "url": "https://huggingface.co/docs/inference-providers/pricing",
+          "label": "官方最新价格：Free Users 月度额度 None；需要购买 Credits",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
         }
       ]
     },
@@ -5759,6 +5940,674 @@
         }
       ],
       "endAt": "2026-11-11T23:59:59Z"
+    },
+    {
+      "id": "workato:1p8rxvr",
+      "platformId": "workato",
+      "title": "Workato Free 注册一次性 50,000 平台 Credits",
+      "models": [],
+      "accessType": "web",
+      "amount": 50000,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "Workato Free 自助注册（工作邮箱或 SSO）",
+        "无需信用卡",
+        "平台 Credits 用于 Tasks、API Calls、Rows、Genie actions；不是 LLM Token",
+        "一次性额度，不按月恢复；有效期/地区/实名未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "各功能独立按平台 Credits 计费",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://www.workato.com/free",
+      "sources": [
+        {
+          "url": "https://www.workato.com/free",
+          "label": "Workato 官方 50K 一次性 Credits 免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://docs.workato.com/en/pricing/self-service/self-service.html",
+          "label": "Workato Credits 计费用途",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ]
+    },
+    {
+      "id": "agentgrid:5wfnj0",
+      "platformId": "agentgrid",
+      "title": "AgentGrid.io 免费协作工作区（100 artifacts、无限 Agent 席位）",
+      "models": [],
+      "accessType": "web",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "免费方案每团队100 artifacts；此单位无法用 Schema 数额字段表达",
+        "无限 Agent 席位；URL/Figma 成功导入合计5次；文件导入上限50MiB、1000文件",
+        "连接 Claude/Codex/Hermes 等需自有模型权限，不赠推理 Token",
+        "需要登录；绑卡/实名/地区未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "100 artifacts/团队；5次 URL/Figma 成功导入",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://agentgrid.io/docs/help/limits",
+      "sources": [
+        {
+          "url": "https://agentgrid.io/docs/help/limits",
+          "label": "AgentGrid Free 100 artifacts、5 imports",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://agentgrid.io/connect",
+          "label": "AgentGrid 免费 Agent 接入说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ]
+    },
+    {
+      "id": "openrouter:1dr4ux0",
+      "platformId": "openrouter",
+      "title": "OpenRouter Gemma 4 26B A4B 免费多模态 API（262K）",
+      "models": [
+        "google/gemma-4-26b-a4b-it:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册 OpenRouter 免费账号并创建 API Key；无需充值或绑卡",
+        "50次/日、20 RPM 为所有 :free 模型账号共享，并非该模型独享",
+        "具体有效期未公布；账号实际可用额度未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费账号共享50 RPD/20 RPM；购买≥$10 后额度提高不属于免费福利",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
+          "label": "Gemma 4 26B A4B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
+    },
+    {
+      "id": "openrouter:dt6hhw",
+      "platformId": "openrouter",
+      "title": "OpenRouter Gemma 4 31B 免费多模态编码 API（262K）",
+      "models": [
+        "google/gemma-4-31b-it:free"
+      ],
+      "accessType": "api",
+      "amount": 50,
+      "unit": "Request",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "注册 OpenRouter 免费账号并创建 API Key；无需充值或绑卡",
+        "50次/日、20 RPM 为所有 :free 模型账号共享，并非该模型独享",
+        "具体有效期未公布；账号实际可用额度未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "免费账号共享50 RPD/20 RPM；购买≥$10 后额度提高不属于免费福利",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T17:54:07.272Z",
+      "lastVerifiedAt": "2026-10-29T17:54:07.272Z",
+      "officialUrl": "https://openrouter.ai/google/gemma-4-31b-it:free",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-31b-it:free",
+          "label": "Gemma 4 31B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
+    },
+    {
+      "id": "haimaker:free-wave-20261029",
+      "platformId": "haimaker",
+      "title": "Haimaker 三款1M上下文编码模型免绑卡API限免至11月1日",
+      "models": [
+        "z-ai/glm-5.3",
+        "deepseek/deepseek-v4.1-flash",
+        "minimax/minimax-m3"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "免费注册获取API Key，免绑卡、无需充值",
+        "免费总次数/Token额度未公布",
+        "官方当前页也有 Between Waves 历史文案，未实测新账号实际调用"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "共享容量，可能429/503，付费请求优先；无公开固定RPD/RPM",
+      "contextWindow": 1048576,
+      "apiCompatibility": "both",
+      "endAt": "2026-11-01T14:00:00Z",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://haimaker.ai/free/",
+      "sources": [
+        {
+          "url": "https://haimaker.ai/free/",
+          "label": "Haimaker 官方3款限免模型、11月1日14:00 UTC截止、无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z"
+    },
+    {
+      "id": "tokenharbor:free-weekly-api",
+      "platformId": "tokenharbor",
+      "title": "Token Harbor 每7日恢复免费API：DeepSeek V4.1 Flash和MiMo V2.6 Flash",
+      "models": [
+        "deepseek-v4.1-flash:free",
+        "mimo-v2.6-flash:free"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "weekly",
+      "resetInterval": "weekly",
+      "claimConditions": [
+        "免费注册创建API Key，无需绑卡",
+        "首个免费请求启动滚动7×24小时周期；额度为共享价值计量，实际数字未公布",
+        "免费路由需在仪表盘手动启用并同意数据政策；服务方人员可能读取免费请求，第三方模型提供商可能用于训练",
+        "TH-Rudder也列入免费方案但官方说明主要为网页聊天，不作为本API权益承诺"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "共享价值额度耗尽即暂停，仪表盘百分比显示；无保证固定RPD/RPM",
+      "contextWindow": 1048576,
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://tokenharbor.ai/pricing",
+      "sources": [
+        {
+          "url": "https://tokenharbor.ai/pricing",
+          "label": "官方免费档每7日恢复且无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/deepseek-v4.1-flash:free",
+          "label": "官方 DeepSeek V4.1 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/mimo-v2.6-flash:free",
+          "label": "官方 MiMo V2.6 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z"
+    },
+    {
+      "id": "botscanner:autobench-beta-1usd",
+      "platformId": "botscanner",
+      "title": "AutoBench Beta Router 新注册 $1 免费 API Credits（需邀请码）",
+      "models": [
+        "autobench/beta-cost",
+        "autobench/beta-balanced",
+        "autobench/beta-quality"
+      ],
+      "accessType": "api",
+      "amount": 1,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "Botscanner 官方首页需先申请$1免费邀请码，再邮箱注册，非无条件自动到账",
+        "官网确认无需信用卡；实名、地区和邀请码审核条件未确认",
+        "免费账号仅开放 Cost 路由，Balanced/Quality 需 Tier 1，不能默认赠额可使用",
+        "底层路由选 DeepSeek V4 Flash、GPT-5.6 Luna、GPT-5.6 Sol，不支持锁定模型"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "一次性$1；实际消耗依路由选型与请求，未实测到账",
+      "apiCompatibility": "openai",
+      "startAt": "2026-10-29T00:00:00Z",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://botscanner.ai/",
+      "sources": [
+        {
+          "url": "https://botscanner.ai/",
+          "label": "官方$1邀请码及免绑卡、Cost档与API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://huggingface.co/blog/PeterKruger/autobench-beta-router",
+          "label": "作者2026-10-29首发公告、$1赠额、兼容API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "discoveredAt": "2026-10-29T20:31:42.405Z",
+      "lastVerifiedAt": "2026-10-29T20:31:42.405Z"
+    },
+    {
+      "amount": 1000000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "前10000名；速率限制未公布",
+      "contextWindow": null,
+      "toolCalling": null,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "articul8-bivia:launch-1b-20261028",
+      "platformId": "articul8-bivia",
+      "title": "Bivia首发前10000名用户最高10亿输入Tokens免费原生决策API",
+      "models": [
+        "Articul8 Bivia dec-1"
+      ],
+      "accessType": "api",
+      "claimConditions": [
+        "首发前10000名早期用户，官方宣传10亿Tokens免费；剩余名额与实际到账未核实",
+        "注册Articul8并创建BIVIA_API_KEY；不需要订阅",
+        "仅结构化决策、分类与路由，不是普通生成式聊天；0输出Tokens",
+        "绑卡、实名、地区、积分有效期和活动截止日期未确认"
+      ],
+      "officialUrl": "https://articul8.ai/bivia",
+      "sources": [
+        {
+          "url": "https://articul8.ai/bivia",
+          "label": "Articul8 官方Bivia首发10亿Tokens活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
+    },
+    {
+      "amount": 10000000,
+      "unit": "Token",
+      "amountType": "weekly",
+      "resetInterval": "weekly",
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "每账号每周1000万Tokens，受上游限流",
+      "contextWindow": null,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "adcode:heabsy-weekly-10m",
+      "platformId": "adcode",
+      "title": "ADCode内置Heabsy GLM/Qwen/MiMo每周共享1000万免费Tokens",
+      "models": [
+        "GLM 5.3 Flash",
+        "Qwen 3.8",
+        "MiMo（具体版本未确认）"
+      ],
+      "accessType": "client",
+      "claimConditions": [
+        "注册并验证ADCode邮箱，Google/GitHub/邮箱可登录；无需信用卡或API Key",
+        "每账号共享10M Tokens/滚动周，从第一次Heabsy调用开始，不结转；不是每模型分别10M",
+        "Windows/Linux桌面可用，macOS桌面尚未发布，网页预览可能暂停",
+        "仅ADCode内置客户端权益，非独立开放API；仍受共享容量与上下文限制"
+      ],
+      "officialUrl": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
+    },
+    {
+      "amount": null,
+      "unit": "Unlimited",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "无个人配额，受上游限流和共享容量限制",
+      "contextWindow": null,
+      "toolCalling": true,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "adcode:tagflow-no-personal-quota",
+      "platformId": "adcode",
+      "title": "ADCode内置Tagflow AI免费Coding Agent无个人Tokens/请求配额",
+      "models": [
+        "Tagflow AI"
+      ],
+      "accessType": "client",
+      "claimConditions": [
+        "免费注册并验证邮箱，无需绑卡或独立模型API Key",
+        "ADCode不设置个人Token/请求/每日/每周配额；不是保证无限可用",
+        "仍受共享服务容量、上游限流和上下文限制",
+        "Windows/Linux桌面可用，macOS桌面未发布，网页预览可能暂停；仅内置客户端权益"
+      ],
+      "officialUrl": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
+    },
+    {
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "每月5次AI用户测试+50份AI调查；1工作空间/1活跃测试",
+      "contextWindow": null,
+      "toolCalling": null,
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-29T23:39:46.542Z",
+      "lastVerifiedAt": "2026-10-29T23:39:46.542Z",
+      "id": "theysaid:free-ai-testing-monthly",
+      "platformId": "theysaid",
+      "title": "TheySaid Free每月5次AI用户测试及50份AI调查",
+      "models": [
+        "TheySaid AI Moderator",
+        "TheySaid AI Analytics"
+      ],
+      "accessType": "web",
+      "claimConditions": [
+        "官方$0免费网页方案，免信用卡",
+        "每月5次AI用户测试及50份AI调查；仅1个工作空间、1个活跃测试",
+        "免费测试使用自有参与者，平台招募参与者另收费",
+        "不是LLM推理API，绑卡以外的实名、地区要求未确认"
+      ],
+      "officialUrl": "https://www.theysaid.io/pricing",
+      "sources": [
+        {
+          "url": "https://www.theysaid.io/pricing",
+          "label": "TheySaid 官方免费用户测试方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ]
+    },
+    {
+      "id": "workbuddy-cn:free-monthly-500",
+      "platformId": "workbuddy-cn",
+      "title": "国内版体验版每月500积分",
+      "models": [
+        "Auto",
+        "Hy3",
+        "GLM",
+        "Kimi",
+        "DeepSeek"
+      ],
+      "accessType": "client",
+      "amount": 500,
+      "unit": "Credit",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "免费注册国内体验版，WorkBuddy与CodeBuddy共享积分池",
+        "每月500积分、周期结束不结转；客户端模型权限依当前活动",
+        "正式体验版CLI访问未开放，不是模型API；绑卡/实名地区细节未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "500积分/月，部分补全及模型选择功能限免",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.workbuddy.cn/pricing/",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing",
+          "label": "官方国内版500积分/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ]
+    },
+    {
+      "id": "workbuddy-cn:hy3-free-until-20261031",
+      "platformId": "workbuddy-cn",
+      "title": "Hy3客户端限时0积分调用至10月31日",
+      "models": [
+        "Hy3"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "仅国内CodeBuddy/WorkBuddy客户端，非原生API",
+        "2026-10-28社区实测x0.00倍率、5次调用无积分消耗",
+        "媒体转述活动至2026-10-31北京时间，具体结束时刻未确认",
+        "免费次数未公布，高峰可能排队；登录方式微信/手机号"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "次数未知，社区实测客户端x0.00",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.workbuddy.cn/pricing/",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model",
+          "label": "官方模型列表Hy3",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/codebuddy",
+          "label": "2026-10-28社区实测Hy3不扣积分，限免至10月31日",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ]
+    },
+    {
+      "id": "ovhcloud:qwen38-anonymous-2rpm",
+      "platformId": "ovhcloud",
+      "title": "Qwen3.8-27B匿名免注册体验每模型每IP 2 RPM",
+      "models": [
+        "Qwen3.8-27B"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "无需注册的匿名试用通道，社区2026-10-20调用成功",
+        "官方匿名限制每IP每模型2 RPM；总额度及截止未知",
+        "带API Key的正式生产调用按€0.4/M输入、€2.7/M输出收费，不能视作免费生产API",
+        "地区/长期开放保证未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "匿名2 RPM/模型/IP；鉴权API按Token收费",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+          "label": "官方Qwen3.8匿名2RPM和正式API价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/ovhcloud-ai-endpoints",
+          "label": "社区2026-10-20实测匿名Qwen3.8调用成功",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
+    },
+    {
+      "id": "ovhcloud:qwen3guard8b-free",
+      "platformId": "ovhcloud",
+      "title": "Qwen3Guard-Gen-8B免费内容安全审核API（匿名2RPM）",
+      "models": [
+        "Qwen3Guard-Gen-8B"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "官方标价Free，内容安全分类而非Coding模型",
+        "匿名每IP每模型2次/分钟，超限429",
+        "没有公开每日总量、恢复周期及截止日期；实名/地区未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "匿名2 RPM/模型/IP",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-guard-gen-8b/",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-guard-gen-8b/",
+          "label": "官方Qwen3Guard标价Free及匿名2RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "contextWindow": 32768,
+      "toolCalling": false
     }
   ],
   "events": [
@@ -7391,9 +8240,866 @@
         }
       ],
       "description": "DeepSeek 官方文档核验"
+    },
+    {
+      "id": "ev_4kmqgx",
+      "offerId": null,
+      "platformId": "workato",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "workato",
+      "sources": [
+        {
+          "url": "https://www.workato.com/free",
+          "label": "Workato 官方 50K 一次性 Credits 免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://docs.workato.com/en/pricing/self-service/self-service.html",
+          "label": "Workato Credits 计费用途",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "独立新平台发现：Workato"
+    },
+    {
+      "id": "ev_bk5c81",
+      "offerId": null,
+      "platformId": "agentgrid",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "agentgrid",
+      "sources": [
+        {
+          "url": "https://agentgrid.io/docs/help/limits",
+          "label": "AgentGrid Free 100 artifacts、5 imports",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://agentgrid.io/connect",
+          "label": "AgentGrid 免费 Agent 接入说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "独立新平台发现：AgentGrid.io"
+    },
+    {
+      "id": "ev_15nd8m8",
+      "offerId": "workato:1p8rxvr",
+      "platformId": "workato",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.workato.com/free",
+          "label": "Workato 官方 50K 一次性 Credits 免费方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://docs.workato.com/en/pricing/self-service/self-service.html",
+          "label": "Workato Credits 计费用途",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：Workato Free 注册一次性 50,000 平台 Credits"
+    },
+    {
+      "id": "ev_1vmc6uj",
+      "offerId": "agentgrid:5wfnj0",
+      "platformId": "agentgrid",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://agentgrid.io/docs/help/limits",
+          "label": "AgentGrid Free 100 artifacts、5 imports",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://agentgrid.io/connect",
+          "label": "AgentGrid 免费 Agent 接入说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：AgentGrid.io 免费协作工作区（100 artifacts、无限 Agent 席位）"
+    },
+    {
+      "id": "ev_1wfjil5",
+      "offerId": "openrouter:1dr4ux0",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
+          "label": "Gemma 4 26B A4B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：OpenRouter Gemma 4 26B A4B 免费多模态 API（262K）"
+    },
+    {
+      "id": "ev_1s4ysle",
+      "offerId": "openrouter:dt6hhw",
+      "platformId": "openrouter",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/google/gemma-4-31b-it:free",
+          "label": "Gemma 4 31B 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "新发现仍可领取的官方免费权益：OpenRouter Gemma 4 31B 免费多模态编码 API（262K）"
+    },
+    {
+      "id": "ev_1bgzy1f",
+      "offerId": "openrouter:f1392a0041eb",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
+          "label": "Xing4.0 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_nddphg",
+      "offerId": "openrouter:f1392a0041eb",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/xingchen-agi/xing4.0-29b-a4b:free",
+          "label": "Xing4.0 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_1utyd02",
+      "offerId": "openrouter:08da1b6e7205",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
+          "label": "Laguna S 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；10月31日下线；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_qmwxl5",
+      "offerId": "openrouter:08da1b6e7205",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
+          "label": "Laguna S 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_13l91g4",
+      "offerId": "openrouter:c8f19e9a56c9",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
+          "label": "Laguna XS 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；10月31日下线；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_9su9w3",
+      "offerId": "openrouter:c8f19e9a56c9",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/poolside/laguna-xs-2.1:free",
+          "label": "Laguna XS 2.1 免费端点；10月31日下线",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_j3prp0",
+      "offerId": "openrouter:c4ee00fd187d",
+      "platformId": "openrouter",
+      "eventType": "status-changed",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "status",
+      "previousValue": "unknown",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/recursive/flint-v1.0:free",
+          "label": "Recursive Flint 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方确认当前免费；50 RPD/20 RPM账号共享"
+    },
+    {
+      "id": "ev_hjypzb",
+      "offerId": "openrouter:c4ee00fd187d",
+      "platformId": "openrouter",
+      "eventType": "verified",
+      "timestamp": "2026-10-29T17:54:07.272Z",
+      "field": "verificationStatus",
+      "previousValue": "unverified",
+      "currentValue": "official",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/recursive/flint-v1.0:free",
+          "label": "Recursive Flint 免费端点",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        },
+        {
+          "url": "https://openrouter.ai/pricing",
+          "label": "OpenRouter Free 定价、50 RPD 与20 RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T17:54:07.272Z"
+        }
+      ],
+      "description": "官方模型页及官方定价页交叉核验"
+    },
+    {
+      "id": "ev_1bp7qdn",
+      "platformId": "haimaker",
+      "offerId": null,
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "haimaker",
+      "sources": [
+        {
+          "url": "https://haimaker.ai/free/",
+          "label": "Haimaker 官方3款限免模型、11月1日14:00 UTC截止、无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "B类主动发现 Haimaker，已核实官方免费权益"
+    },
+    {
+      "id": "ev_1pwl0lo",
+      "platformId": "tokenharbor",
+      "offerId": null,
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "tokenharbor",
+      "sources": [
+        {
+          "url": "https://tokenharbor.ai/pricing",
+          "label": "官方免费档每7日恢复且无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/deepseek-v4.1-flash:free",
+          "label": "官方 DeepSeek V4.1 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/mimo-v2.6-flash:free",
+          "label": "官方 MiMo V2.6 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "B类主动发现 Token Harbor，已核实官方免费权益"
+    },
+    {
+      "id": "ev_1q4tq10",
+      "platformId": "botscanner",
+      "offerId": null,
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "platform",
+      "previousValue": null,
+      "currentValue": "botscanner",
+      "sources": [
+        {
+          "url": "https://botscanner.ai/",
+          "label": "官方$1邀请码及免绑卡、Cost档与API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://huggingface.co/blog/PeterKruger/autobench-beta-router",
+          "label": "作者2026-10-29首发公告、$1赠额、兼容API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "B类主动发现 Botscanner / AutoBench Router，已核实官方免费权益"
+    },
+    {
+      "id": "ev_wfq6d8",
+      "platformId": "haimaker",
+      "offerId": "haimaker:free-wave-20261029",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://haimaker.ai/free/",
+          "label": "Haimaker 官方3款限免模型、11月1日14:00 UTC截止、无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "新增官方页面证实的权益：Haimaker 三款1M上下文编码模型免绑卡API限免至11月1日；未实测实际领取"
+    },
+    {
+      "id": "ev_1y4njk5",
+      "platformId": "tokenharbor",
+      "offerId": "tokenharbor:free-weekly-api",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://tokenharbor.ai/pricing",
+          "label": "官方免费档每7日恢复且无需绑卡",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/deepseek-v4.1-flash:free",
+          "label": "官方 DeepSeek V4.1 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://tokenharbor.ai/models/mimo-v2.6-flash:free",
+          "label": "官方 MiMo V2.6 Flash 免费 API 1M",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "新增官方页面证实的权益：Token Harbor 每7日恢复免费API：DeepSeek V4.1 Flash和MiMo V2.6 Flash；未实测实际领取"
+    },
+    {
+      "id": "ev_c01w8a",
+      "platformId": "botscanner",
+      "offerId": "botscanner:autobench-beta-1usd",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": null,
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://botscanner.ai/",
+          "label": "官方$1邀请码及免绑卡、Cost档与API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        },
+        {
+          "url": "https://huggingface.co/blog/PeterKruger/autobench-beta-router",
+          "label": "作者2026-10-29首发公告、$1赠额、兼容API",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "新增官方页面证实的权益：AutoBench Beta Router 新注册 $1 免费 API Credits（需邀请码）；未实测实际领取"
+    },
+    {
+      "id": "ev_16blc4l",
+      "platformId": "huggingface",
+      "offerId": "huggingface:2u0e6v",
+      "eventType": "offer-ended",
+      "timestamp": "2026-10-29T20:31:42.405Z",
+      "field": "status",
+      "previousValue": "active",
+      "currentValue": "ended",
+      "sources": [
+        {
+          "url": "https://huggingface.co/docs/inference-providers/pricing",
+          "label": "官方最新价格：Free Users 月度额度 None；需要购买 Credits",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T20:31:42.405Z"
+        }
+      ],
+      "description": "Hugging Face 官方定价 Free Users = None，原$0.10/月已终止；生效日期不明"
+    },
+    {
+      "id": "ev_1s38b1t",
+      "platformId": "articul8-bivia",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "articul8-bivia",
+      "sources": [
+        {
+          "url": "https://articul8.ai/bivia",
+          "label": "Articul8 官方Bivia首发10亿Tokens活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "发现新平台 Articul8 Bivia"
+    },
+    {
+      "id": "ev_1qus51f",
+      "platformId": "adcode",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "adcode",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "发现新平台 ADCode by Bluethenics"
+    },
+    {
+      "id": "ev_1deycf0",
+      "platformId": "theysaid",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "platformId",
+      "previousValue": "",
+      "currentValue": "theysaid",
+      "sources": [
+        {
+          "url": "https://www.theysaid.io/pricing",
+          "label": "TheySaid 官方免费用户测试方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "发现新平台 TheySaid AI User Testing"
+    },
+    {
+      "id": "ev_a7xfsl",
+      "platformId": "articul8-bivia",
+      "offerId": "articul8-bivia:launch-1b-20261028",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://articul8.ai/bivia",
+          "label": "Articul8 官方Bivia首发10亿Tokens活动",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：Bivia首发前10000名用户最高10亿输入Tokens免费原生决策API"
+    },
+    {
+      "id": "ev_1dzatyj",
+      "platformId": "adcode",
+      "offerId": "adcode:heabsy-weekly-10m",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：ADCode内置Heabsy GLM/Qwen/MiMo每周共享1000万免费Tokens"
+    },
+    {
+      "id": "ev_1qv3qoo",
+      "platformId": "adcode",
+      "offerId": "adcode:tagflow-no-personal-quota",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://adcode.bluethenics.com/docs/free-ai-without-the-meter",
+          "label": "ADCode 官方每周免费AI额度",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/pricing",
+          "label": "ADCode 官方免费价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        },
+        {
+          "url": "https://adcode.bluethenics.com/docs/whats-new-october-2026",
+          "label": "ADCode 10月版本发布与平台限制",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：ADCode内置Tagflow AI免费Coding Agent无个人Tokens/请求配额"
+    },
+    {
+      "id": "ev_jopmwz",
+      "platformId": "theysaid",
+      "offerId": "theysaid:free-ai-testing-monthly",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-29T23:39:46.542Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.theysaid.io/pricing",
+          "label": "TheySaid 官方免费用户测试方案",
+          "kind": "official",
+          "verifiedAt": "2026-10-29T23:39:46.542Z"
+        }
+      ],
+      "description": "官方核验新增权益：TheySaid Free每月5次AI用户测试及50份AI调查"
+    },
+    {
+      "id": "ev_e9pm97",
+      "platformId": "workbuddy-cn",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "platform",
+      "previousValue": "",
+      "currentValue": "WorkBuddy / CodeBuddy 国内版",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮B类主动发现：国内体验版500积分/月，与国际版分开；CodeBuddy与WorkBuddy共享国内账户积分"
+    },
+    {
+      "id": "ev_15ew9t8",
+      "platformId": "ovhcloud",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "platform",
+      "previousValue": "",
+      "currentValue": "OVHcloud AI Endpoints",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+          "label": "官方Qwen3.8匿名2RPM和正式API价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮B类主动发现：匿名模型体验有每IP每模型2 RPM限速；正式带Key API按Token计费"
+    },
+    {
+      "id": "ev_s2nv1z",
+      "platformId": "inferock",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "platform",
+      "previousValue": "",
+      "currentValue": "Inferock",
+      "sources": [
+        {
+          "url": "https://inferock.ai/pricing/",
+          "label": "官方Inferock Watch免费，但推理需自有密钥且上游收费",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮B类主动发现：2026年10月推出的免费BYOK推理可观测性平台；不附赠确定额度的推理Tokens"
+    },
+    {
+      "id": "ev_43btr7",
+      "offerId": "workbuddy-cn:free-monthly-500",
+      "platformId": "workbuddy-cn",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing",
+          "label": "官方国内版500积分/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：国内版体验版每月500积分"
+    },
+    {
+      "id": "ev_1qvzmp5",
+      "offerId": "workbuddy-cn:hy3-free-until-20261031",
+      "platformId": "workbuddy-cn",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model",
+          "label": "官方模型列表Hy3",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/codebuddy",
+          "label": "2026-10-28社区实测Hy3不扣积分，限免至10月31日",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：Hy3客户端限时0积分调用至10月31日"
+    },
+    {
+      "id": "ev_34itne",
+      "offerId": "ovhcloud:qwen38-anonymous-2rpm",
+      "platformId": "ovhcloud",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+          "label": "官方Qwen3.8匿名2RPM和正式API价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/ovhcloud-ai-endpoints",
+          "label": "社区2026-10-20实测匿名Qwen3.8调用成功",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：Qwen3.8-27B匿名免注册体验每模型每IP 2 RPM"
+    },
+    {
+      "id": "ev_xs27xa",
+      "offerId": "ovhcloud:qwen3guard8b-free",
+      "platformId": "ovhcloud",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-guard-gen-8b/",
+          "label": "官方Qwen3Guard标价Free及匿名2RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：Qwen3Guard-Gen-8B免费内容安全审核API（匿名2RPM）"
     }
   ],
   "runs": [
+    {
+      "id": "run_eih1z5",
+      "startedAt": "2026-10-29T20:29:29.000Z",
+      "completedAt": "2026-10-29T20:31:42.405Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 32,
+      "candidatesFound": 9,
+      "offersCreated": 3,
+      "offersUpdated": 1,
+      "offersExpired": 1,
+      "errors": [],
+      "note": "A: 中英双语搜索近48h/7d/30d和长期免费，核实Haimaker、Token Harbor、Qoder、OpenCode、Hugging Face等官方权益。B: 独立检索Product Hunt 10/28、HN newest、GitHub、Hugging Face 10/29首发、Reddit、Linux.do、V2EX、X及官方公告。新增3个平台3项权益；HF免费账号$0.10/月官方已取消。MetaHarness无赠送模型额度，AgentRouter$25签到缺少可靠官方证据未收录。未登录实测到账。"
+    },
+    {
+      "id": "run_r7pphd",
+      "startedAt": "2026-10-29T17:51:52.000Z",
+      "completedAt": "2026-10-29T17:54:07.274Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 25,
+      "candidatesFound": 11,
+      "offersCreated": 4,
+      "offersUpdated": 4,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：独立中英搜索48h/7d/30d与长期免费，官方核查 OpenRouter、Workato、Amp、OpenCode、Vercel 等；B：独立检索 Product Hunt、HN、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X 近7–30天新平台，AgentGrid 入库。新增 Workato 50K 平台Credits、AgentGrid 100 artifacts 免费档、Gemma4两款原生免费API；官方复核4条OpenRouter历史待核实权益，Poolside两款10月31日下线但未给出具体时刻。排除 Amp 历史$10/日新用户不可领、AgentRouter高额签到缺少官方确认。未实测账号。"
+    },
     {
       "id": "run_dxn2sw",
       "startedAt": "2026-10-29T14:12:47.000Z",
@@ -7498,6 +9204,36 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A/B 双独立搜索：48h/7d/30d及长期免费；中文英文官方页、Product Hunt、Hacker News、GitHub、Hugging Face、Reddit、Linux.do、V2EX、X。新发现5个平台6条权益，复核2条既有权益。账号级免费限额未实测；提交记录以 GitHub commit 为准。"
+    },
+    {
+      "id": "run_1ddza1g",
+      "startedAt": "2026-10-29T23:37:39.000Z",
+      "completedAt": "2026-10-29T23:39:46.543Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 19,
+      "candidatesFound": 6,
+      "offersCreated": 4,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：48小时/7天/30天/长期有效免费额度中英交叉检索，覆盖官方Qoder、OpenCode、GLM、Kimi、Qwen、MiMo、Gemini、GPT、Claude及社区；B：独立检索Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X及新平台。新增Bivia首发10亿输入Tokens（前10000名）、ADCode Heabsy每周1000万Tokens及Tagflow无个人配额、TheySaid每月5次AI用户测试。Bivia决策API非聊天，ADCode客户端专用，TheySaid网页专用；不含付费订阅赠额。HF旧$0.10官方当前Free Users=None，保持ended。MiMo Claw每日3小时免费细则未确认未入库。未实测注册到账。"
+    },
+    {
+      "id": "run_20261030t023922z_r11",
+      "startedAt": "2026-10-30T02:39:22.000Z",
+      "completedAt": "2026-10-30T02:41:32.814Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 27,
+      "candidatesFound": 10,
+      "offersCreated": 4,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "独立完成A（48h/7d/30d及长期中英交叉免费额度、官方定价、客户端与API）与B（Product Hunt/HN/GitHub/HF/Reddit/Linux.do/V2EX/X及官方新平台）搜索。新增国内WorkBuddy 500积分/月、Hy3社区实测限免、OVH匿名Qwen3.8试用与官方Qwen3Guard免费API；Inferock仅新平台候选，不赠推理额度。已排除Amp暂停Free及不确定赠额；未实测个人账号注册到账；正式OVH Key API收费。"
     }
   ]
 }
