@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-29T23:39:46.543Z",
+  "lastSuccessfulSync": "2026-10-30T02:41:32.814Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1238,6 +1238,42 @@
       "description": "TheySaid 4.0 AI辅助用户研究、网页测试与调查，非模型推理API",
       "firstDiscoveredAt": "2026-10-29T23:39:46.542Z",
       "lastCheckedAt": "2026-10-29T23:39:46.542Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "workbuddy-cn",
+      "name": "WorkBuddy / CodeBuddy 国内版",
+      "slug": "workbuddy-cn",
+      "canonicalDomain": "workbuddy.cn",
+      "websiteUrl": "https://www.workbuddy.cn/pricing/",
+      "description": "国内体验版500积分/月，与国际版分开；CodeBuddy与WorkBuddy共享国内账户积分",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastCheckedAt": "2026-10-30T02:41:32.814Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "ovhcloud",
+      "name": "OVHcloud AI Endpoints",
+      "slug": "ovhcloud",
+      "canonicalDomain": "ovhcloud.com",
+      "websiteUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
+      "description": "匿名模型体验有每IP每模型2 RPM限速；正式带Key API按Token计费",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastCheckedAt": "2026-10-30T02:41:32.814Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "inferock",
+      "name": "Inferock",
+      "slug": "inferock",
+      "canonicalDomain": "inferock.ai",
+      "websiteUrl": "https://inferock.ai/pricing/",
+      "description": "2026年10月推出的免费BYOK推理可观测性平台；不附赠确定额度的推理Tokens",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastCheckedAt": "2026-10-30T02:41:32.814Z",
       "trustStatus": "official"
     }
   ],
@@ -6394,6 +6430,184 @@
           "verifiedAt": "2026-10-29T23:39:46.542Z"
         }
       ]
+    },
+    {
+      "id": "workbuddy-cn:free-monthly-500",
+      "platformId": "workbuddy-cn",
+      "title": "国内版体验版每月500积分",
+      "models": [
+        "Auto",
+        "Hy3",
+        "GLM",
+        "Kimi",
+        "DeepSeek"
+      ],
+      "accessType": "client",
+      "amount": 500,
+      "unit": "Credit",
+      "amountType": "monthly",
+      "resetInterval": "monthly",
+      "claimConditions": [
+        "免费注册国内体验版，WorkBuddy与CodeBuddy共享积分池",
+        "每月500积分、周期结束不结转；客户端模型权限依当前活动",
+        "正式体验版CLI访问未开放，不是模型API；绑卡/实名地区细节未实测"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "500积分/月，部分补全及模型选择功能限免",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.workbuddy.cn/pricing/",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing",
+          "label": "官方国内版500积分/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ]
+    },
+    {
+      "id": "workbuddy-cn:hy3-free-until-20261031",
+      "platformId": "workbuddy-cn",
+      "title": "Hy3客户端限时0积分调用至10月31日",
+      "models": [
+        "Hy3"
+      ],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "仅国内CodeBuddy/WorkBuddy客户端，非原生API",
+        "2026-10-28社区实测x0.00倍率、5次调用无积分消耗",
+        "媒体转述活动至2026-10-31北京时间，具体结束时刻未确认",
+        "免费次数未公布，高峰可能排队；登录方式微信/手机号"
+      ],
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "次数未知，社区实测客户端x0.00",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.workbuddy.cn/pricing/",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model",
+          "label": "官方模型列表Hy3",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/codebuddy",
+          "label": "2026-10-28社区实测Hy3不扣积分，限免至10月31日",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ]
+    },
+    {
+      "id": "ovhcloud:qwen38-anonymous-2rpm",
+      "platformId": "ovhcloud",
+      "title": "Qwen3.8-27B匿名免注册体验每模型每IP 2 RPM",
+      "models": [
+        "Qwen3.8-27B"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "无需注册的匿名试用通道，社区2026-10-20调用成功",
+        "官方匿名限制每IP每模型2 RPM；总额度及截止未知",
+        "带API Key的正式生产调用按€0.4/M输入、€2.7/M输出收费，不能视作免费生产API",
+        "地区/长期开放保证未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "匿名2 RPM/模型/IP；鉴权API按Token收费",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "community",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+          "label": "官方Qwen3.8匿名2RPM和正式API价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/ovhcloud-ai-endpoints",
+          "label": "社区2026-10-20实测匿名Qwen3.8调用成功",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "contextWindow": 262144,
+      "toolCalling": true
+    },
+    {
+      "id": "ovhcloud:qwen3guard8b-free",
+      "platformId": "ovhcloud",
+      "title": "Qwen3Guard-Gen-8B免费内容安全审核API（匿名2RPM）",
+      "models": [
+        "Qwen3Guard-Gen-8B"
+      ],
+      "accessType": "api",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "unknown",
+      "resetInterval": "unknown",
+      "claimConditions": [
+        "官方标价Free，内容安全分类而非Coding模型",
+        "匿名每IP每模型2次/分钟，超限429",
+        "没有公开每日总量、恢复周期及截止日期；实名/地区未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "匿名2 RPM/模型/IP",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "discoveredAt": "2026-10-30T02:41:32.814Z",
+      "lastVerifiedAt": "2026-10-30T02:41:32.814Z",
+      "officialUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-guard-gen-8b/",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-guard-gen-8b/",
+          "label": "官方Qwen3Guard标价Free及匿名2RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "contextWindow": 32768,
+      "toolCalling": false
     }
   ],
   "events": [
@@ -8699,6 +8913,160 @@
         }
       ],
       "description": "官方核验新增权益：TheySaid Free每月5次AI用户测试及50份AI调查"
+    },
+    {
+      "id": "ev_e9pm97",
+      "platformId": "workbuddy-cn",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "platform",
+      "previousValue": "",
+      "currentValue": "WorkBuddy / CodeBuddy 国内版",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮B类主动发现：国内体验版500积分/月，与国际版分开；CodeBuddy与WorkBuddy共享国内账户积分"
+    },
+    {
+      "id": "ev_15ew9t8",
+      "platformId": "ovhcloud",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "platform",
+      "previousValue": "",
+      "currentValue": "OVHcloud AI Endpoints",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+          "label": "官方Qwen3.8匿名2RPM和正式API价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮B类主动发现：匿名模型体验有每IP每模型2 RPM限速；正式带Key API按Token计费"
+    },
+    {
+      "id": "ev_s2nv1z",
+      "platformId": "inferock",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "platform",
+      "previousValue": "",
+      "currentValue": "Inferock",
+      "sources": [
+        {
+          "url": "https://inferock.ai/pricing/",
+          "label": "官方Inferock Watch免费，但推理需自有密钥且上游收费",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮B类主动发现：2026年10月推出的免费BYOK推理可观测性平台；不附赠确定额度的推理Tokens"
+    },
+    {
+      "id": "ev_43btr7",
+      "offerId": "workbuddy-cn:free-monthly-500",
+      "platformId": "workbuddy-cn",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing",
+          "label": "官方国内版500积分/月",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：国内版体验版每月500积分"
+    },
+    {
+      "id": "ev_1qvzmp5",
+      "offerId": "workbuddy-cn:hy3-free-until-20261031",
+      "platformId": "workbuddy-cn",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.workbuddy.cn/pricing/",
+          "label": "官方国内体验版每月500积分",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model",
+          "label": "官方模型列表Hy3",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/codebuddy",
+          "label": "2026-10-28社区实测Hy3不扣积分，限免至10月31日",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：Hy3客户端限时0积分调用至10月31日"
+    },
+    {
+      "id": "ev_34itne",
+      "offerId": "ovhcloud:qwen38-anonymous-2rpm",
+      "platformId": "ovhcloud",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-3-8-27b/",
+          "label": "官方Qwen3.8匿名2RPM和正式API价格",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        },
+        {
+          "url": "https://freetokens.fyi/channels/ovhcloud-ai-endpoints",
+          "label": "社区2026-10-20实测匿名Qwen3.8调用成功",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：Qwen3.8-27B匿名免注册体验每模型每IP 2 RPM"
+    },
+    {
+      "id": "ev_xs27xa",
+      "offerId": "ovhcloud:qwen3guard8b-free",
+      "platformId": "ovhcloud",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T02:41:32.814Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/qwen-guard-gen-8b/",
+          "label": "官方Qwen3Guard标价Free及匿名2RPM",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T02:41:32.814Z"
+        }
+      ],
+      "description": "本轮A类核验新增：Qwen3Guard-Gen-8B免费内容安全审核API（匿名2RPM）"
     }
   ],
   "runs": [
@@ -8851,6 +9219,21 @@
       "offersExpired": 0,
       "errors": [],
       "note": "A：48小时/7天/30天/长期有效免费额度中英交叉检索，覆盖官方Qoder、OpenCode、GLM、Kimi、Qwen、MiMo、Gemini、GPT、Claude及社区；B：独立检索Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X及新平台。新增Bivia首发10亿输入Tokens（前10000名）、ADCode Heabsy每周1000万Tokens及Tagflow无个人配额、TheySaid每月5次AI用户测试。Bivia决策API非聊天，ADCode客户端专用，TheySaid网页专用；不含付费订阅赠额。HF旧$0.10官方当前Free Users=None，保持ended。MiMo Claw每日3小时免费细则未确认未入库。未实测注册到账。"
+    },
+    {
+      "id": "run_20261030t023922z_r11",
+      "startedAt": "2026-10-30T02:39:22.000Z",
+      "completedAt": "2026-10-30T02:41:32.814Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 27,
+      "candidatesFound": 10,
+      "offersCreated": 4,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "独立完成A（48h/7d/30d及长期中英交叉免费额度、官方定价、客户端与API）与B（Product Hunt/HN/GitHub/HF/Reddit/Linux.do/V2EX/X及官方新平台）搜索。新增国内WorkBuddy 500积分/月、Hy3社区实测限免、OVH匿名Qwen3.8试用与官方Qwen3Guard免费API；Inferock仅新平台候选，不赠推理额度。已排除Amp暂停Free及不确定赠额；未实测个人账号注册到账；正式OVH Key API收费。"
     }
   ]
 }
