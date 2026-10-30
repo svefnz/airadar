@@ -199,12 +199,12 @@ export function ResourcesApp({ data }: { data: RadarData }) {
   return (
     <div className="space-y-4" data-hydrated={hydrated ? 'true' : undefined}>
       {/* 极简顶层控制栏 */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center justify-between">
+      <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center justify-between">
         {/* 搜索框 */}
         <div className="relative flex-1 max-w-md">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input
-            className="pl-10 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-slate-100 placeholder:text-slate-500 focus-visible:border-blue-500 text-xs"
+            className="pl-9 h-9 rounded-md bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-border text-xs shadow-xs"
             placeholder="搜索平台 / 模型 / 域名 / 权益…"
             value={filters.q}
             onChange={(e) => set({ q: e.target.value })}
@@ -214,22 +214,22 @@ export function ResourcesApp({ data }: { data: RadarData }) {
             <button
               type="button"
               onClick={() => set({ q: '' })}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-0.5 rounded"
             >
-              <X className="h-4 w-4" />
+              <X className="h-3.5 w-3.5" />
             </button>
           )}
         </div>
 
         {/* 排序与重置 */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <ArrowUpDown className="h-3.5 w-3.5 text-slate-400" />
+        <div className="flex items-center gap-2 justify-between sm:justify-end">
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <ArrowUpDown className="h-3.5 w-3.5 text-muted-foreground" />
             <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
-              <SelectTrigger className="w-32 h-10 rounded-xl bg-[#0e1626] border-[#1e2a42] text-xs text-slate-200">
+              <SelectTrigger className="w-32 h-9 rounded-md bg-card border-border text-xs text-foreground shadow-xs">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#0b1020] border-[#1e2a42] text-slate-200">
+              <SelectContent className="bg-popover border-border text-foreground">
                 <SelectItem value="value">推荐价值优先</SelectItem>
                 <SelectItem value="discovered">最新发现优先</SelectItem>
                 <SelectItem value="expiring">即将截止优先</SelectItem>
@@ -249,7 +249,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
               variant="ghost"
               size="sm"
               onClick={() => setFilters(DEFAULT_FILTERS)}
-              className="h-10 text-xs text-slate-400 hover:text-white hover:bg-slate-800"
+              className="h-9 px-2 text-xs text-muted-foreground hover:text-foreground hover:bg-muted"
             >
               <RotateCcw className="h-3.5 w-3.5 mr-1" /> 重置
             </Button>
@@ -257,17 +257,17 @@ export function ResourcesApp({ data }: { data: RadarData }) {
         </div>
       </div>
 
-      {/* 状态与属性过滤芯片组 */}
-      <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#182338]/60">
+      {/* 状态与属性过滤芯片组 (Notion 属性过滤条) */}
+      <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border">
         {/* 处理状态芯片 (收件箱归零) */}
-        <div className="flex items-center gap-1.5 bg-[#0b1120] p-1 rounded-xl border border-[#182338]">
+        <div className="flex items-center gap-1 bg-muted/60 p-0.5 rounded-md border border-border shrink-0">
           <button
             type="button"
             onClick={() => set({ disposition: 'unprocessed' })}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 rounded text-xs transition-all cursor-pointer flex items-center gap-1.5 ${
               filters.disposition === 'unprocessed'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30 font-bold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-card text-foreground font-medium shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
             }`}
           >
             <Inbox className="h-3.5 w-3.5" />
@@ -277,46 +277,46 @@ export function ResourcesApp({ data }: { data: RadarData }) {
           <button
             type="button"
             onClick={() => set({ disposition: 'favorited' })}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 rounded text-xs transition-all cursor-pointer flex items-center gap-1.5 ${
               filters.disposition === 'favorited'
-                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 font-bold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-card text-foreground font-medium shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
             }`}
           >
-            <Star className="h-3.5 w-3.5 text-amber-300" />
+            <Star className="h-3.5 w-3.5 text-warn fill-warn/20" />
             <span>已收藏 ({favoriteCount})</span>
           </button>
 
           <button
             type="button"
             onClick={() => set({ disposition: 'passed' })}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-2.5 py-1 rounded text-xs transition-all cursor-pointer flex items-center gap-1.5 ${
               filters.disposition === 'passed'
-                ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30 font-bold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-card text-foreground font-medium shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
             }`}
           >
-            <X className="h-3.5 w-3.5" />
+            <X className="h-3.5 w-3.5 text-bad" />
             <span>已跳过 ({passedCount})</span>
           </button>
 
           <button
             type="button"
             onClick={() => set({ disposition: 'all' })}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-2.5 py-1 rounded text-xs transition-all cursor-pointer ${
               filters.disposition === 'all'
-                ? 'bg-slate-700 text-white font-bold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-card text-foreground font-medium shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
             }`}
           >
             全部
           </button>
         </div>
 
-        <div className="h-4 w-[1px] bg-slate-800 mx-1 hidden sm:block" />
+        <div className="h-4 w-[1px] bg-border mx-0.5 hidden sm:block" />
 
         {/* 关键属性标签过滤 */}
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex flex-wrap items-center gap-1">
           <FilterChip
             active={filters.access.includes('api')}
             onClick={() =>
@@ -376,7 +376,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
                 variant="outline"
                 size="sm"
                 onClick={() => setFilters(DEFAULT_FILTERS)}
-                className="text-xs border-[#1e2a42] bg-[#0c1220] hover:bg-slate-800 text-slate-300"
+                className="text-xs border-border bg-card hover:bg-muted text-foreground"
               >
                 重置所有筛选
               </Button>
@@ -403,10 +403,10 @@ function FilterChip({
     <button
       type="button"
       onClick={onClick}
-      className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer border ${
+      className={`px-2 py-0.5 rounded text-xs font-normal transition-all cursor-pointer border ${
         active
-          ? 'bg-blue-600/20 border-blue-500 text-blue-300 font-semibold'
-          : 'bg-[#0c1220] border-[#1e2a42] text-slate-400 hover:text-white hover:border-slate-700'
+          ? 'bg-muted text-foreground border-border font-medium shadow-xs'
+          : 'bg-transparent border-transparent text-muted-foreground hover:bg-muted/50 hover:text-foreground'
       }`}
     >
       {label}

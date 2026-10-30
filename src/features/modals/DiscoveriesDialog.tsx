@@ -42,27 +42,27 @@ export function DiscoveriesDialog({ open, onOpenChange, data }: DiscoveriesDialo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-[#0b1020] border-[#1e2a42] text-slate-100 p-6">
-        <DialogHeader className="border-b border-[#182338] pb-4">
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-blue-600/20 text-blue-400">
-              <Sparkles className="h-5 w-5" />
+      <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-popover border-border text-foreground p-5 sm:p-6 shadow-md rounded-xl">
+        <DialogHeader className="border-b border-border pb-3.5">
+          <div className="flex items-center gap-2.5">
+            <span className="p-1.5 rounded-md bg-muted text-foreground">
+              <Sparkles className="h-4 w-4 text-primary" />
             </span>
             <div>
-              <DialogTitle className="text-lg font-bold text-white">新平台发现</DialogTitle>
-              <DialogDescription className="text-xs text-slate-400">
+              <DialogTitle className="text-base sm:text-lg font-semibold text-foreground">新平台发现</DialogTitle>
+              <DialogDescription className="text-xs text-muted-foreground">
                 最近 30 天主动雷达发现的新 AI 平台（共 {discovered.length} 个）
               </DialogDescription>
             </div>
           </div>
           <div className="mt-3">
             <div className="relative">
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
               <Input
                 placeholder="搜索新平台名称或描述..."
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                className="pl-9 bg-[#080d1a] border-[#1e2a42] text-xs h-9 text-slate-200"
+                className="pl-9 bg-card border-border text-xs h-9 text-foreground placeholder:text-muted-foreground shadow-xs"
               />
             </div>
           </div>
@@ -71,7 +71,7 @@ export function DiscoveriesDialog({ open, onOpenChange, data }: DiscoveriesDialo
         <div className="space-y-6 pt-2">
           <section className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+              <h3 className="text-xs font-semibold text-foreground flex items-center gap-2">
                 最近 7 天发现
                 <Badge variant="outline" className={badgeTone('accent')}>
                   {last7.length}
@@ -79,7 +79,7 @@ export function DiscoveriesDialog({ open, onOpenChange, data }: DiscoveriesDialo
               </h3>
             </div>
             {last7.length === 0 ? (
-              <p className="text-xs text-slate-500 py-3 text-center">暂无 7 天内新发现平台</p>
+              <p className="text-xs text-muted-foreground py-3 text-center">暂无 7 天内新发现平台</p>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {last7.map((p) => (
@@ -91,7 +91,7 @@ export function DiscoveriesDialog({ open, onOpenChange, data }: DiscoveriesDialo
 
           <section className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+              <h3 className="text-xs font-semibold text-foreground flex items-center gap-2">
                 8–30 天前发现
                 <Badge variant="outline" className={badgeTone('neutral')}>
                   {last30.length}
@@ -99,7 +99,7 @@ export function DiscoveriesDialog({ open, onOpenChange, data }: DiscoveriesDialo
               </h3>
             </div>
             {last30.length === 0 ? (
-              <p className="text-xs text-slate-500 py-3 text-center">暂无 8–30 天前新发现平台</p>
+              <p className="text-xs text-muted-foreground py-3 text-center">暂无 8–30 天前新发现平台</p>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {last30.map((p) => (

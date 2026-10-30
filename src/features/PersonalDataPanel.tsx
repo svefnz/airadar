@@ -67,10 +67,10 @@ export function PersonalDataPanel() {
               <Trash2 className="h-3 w-3 mr-1" /> 清空记录
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-[#101726] border-[#1e2a42] text-white">
+          <DialogContent className="bg-popover border-border text-foreground shadow-md rounded-xl">
             <DialogHeader>
-              <DialogTitle className="text-white">清空云端个人记录？</DialogTitle>
-              <DialogDescription className="text-slate-400 text-xs">
+              <DialogTitle className="text-foreground">清空云端个人记录？</DialogTitle>
+              <DialogDescription className="text-muted-foreground text-xs">
                 将彻底删除您在云端保存的全部收藏、已领取状态与专属备忘录。公共雷达信源不受任何影响。此操作不可逆。
               </DialogDescription>
             </DialogHeader>

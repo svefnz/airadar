@@ -18,15 +18,15 @@ export function PlatformRow({ data, platform }: { data: RadarData; platform: Pla
   const st = statusOf(data, platform);
   const offers = data.offers.filter((o) => o.platformId === platform.id);
   return (
-    <div className="rounded-2xl border border-[#1e2a42] bg-[#0c1220]/90 p-4 transition-all hover:border-blue-500/30">
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="flex items-center gap-3 min-w-0">
+    <div className="rounded-xl border border-border bg-card p-3.5 sm:p-4 shadow-xs transition-colors hover:border-muted-foreground/30">
+      <div className="flex flex-col gap-2.5">
+        <div className="flex flex-wrap items-start justify-between gap-2.5">
+          <div className="flex items-center gap-2.5 min-w-0">
             <BrandLogo platformId={platform.id} platformName={platform.name} size="md" />
             <div>
               <a
                 href={withBase(`/platforms/${platform.slug}/`)}
-                className="text-base font-bold text-white hover:text-blue-400 transition-colors"
+                className="text-sm font-semibold text-foreground hover:underline transition-colors"
               >
                 {platform.name}
               </a>
@@ -45,25 +45,25 @@ export function PlatformRow({ data, platform }: { data: RadarData; platform: Pla
               </div>
             </div>
           </div>
-          <div className="text-right text-[11px] text-slate-400">
+          <div className="text-right text-[11px] text-muted-foreground">
             <p>发现于 {fmtDate(platform.firstDiscoveredAt)}</p>
             {platform.launchDate && <p>官方上线 {fmtDate(platform.launchDate)}</p>}
           </div>
         </div>
         {platform.description && (
-          <p className="line-clamp-2 text-xs text-slate-300 leading-relaxed">
+          <p className="line-clamp-2 text-xs text-muted-foreground leading-relaxed">
             {platform.description}
           </p>
         )}
         {offers.length > 0 && (
-          <div className="border-t border-[#182338] pt-2.5 text-xs text-slate-400 flex flex-wrap gap-2">
+          <div className="border-t border-border pt-2 text-xs text-muted-foreground flex flex-wrap gap-1.5">
             {offers.map((o) => (
               <a
                 key={o.id}
                 href={withBase(`/platforms/${platform.slug}/#${o.id}`)}
-                className="inline-flex items-center gap-1.5 rounded-md bg-[#131d30] border border-[#1e2a42] px-2.5 py-1 text-slate-300 hover:text-blue-300 hover:border-blue-500/40 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-md bg-muted border border-border px-2 py-0.5 text-xs text-foreground hover:bg-muted/80 transition-colors"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 <span className="truncate max-w-xs">{o.title}</span>
               </a>
             ))}

@@ -234,17 +234,16 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
   if (currentIndex >= offers.length) {
     const bookmarkedCount = history.filter((h) => h.action === 'bookmark').length;
     return (
-      <div className="relative mx-auto flex max-w-xl flex-col items-center justify-center rounded-3xl border border-[#1e2a42] bg-gradient-to-b from-[#101726] to-[#0a0e18] p-8 text-center shadow-2xl">
-        <div className="relative mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400">
-          <Sparkles className="h-10 w-10 text-blue-400 animate-pulse" />
-          <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl animate-pulse" />
+      <div className="relative mx-auto flex max-w-lg flex-col items-center justify-center rounded-xl border border-border bg-card p-6 sm:p-8 text-center shadow-xs">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted border border-border text-foreground">
+          <Sparkles className="h-7 w-7 text-primary" />
         </div>
 
-        <h3 className="text-2xl font-bold tracking-tight text-white mb-2">
+        <h3 className="text-xl font-bold tracking-tight text-foreground mb-2">
           🎉 本轮雷达卡片已全部探索完毕！
         </h3>
-        <p className="text-sm text-slate-400 max-w-md mb-6 leading-relaxed">
-          你已完成全部 <span className="font-semibold text-slate-200">{offers.length}</span> 个 AI 资源的王权决策探索，共收藏加星了 <span className="font-bold text-emerald-400">{bookmarkedCount}</span> 个优质限免福利。
+        <p className="text-xs sm:text-sm text-muted-foreground max-w-md mb-6 leading-relaxed">
+          你已完成全部 <span className="font-medium text-foreground">{offers.length}</span> 个 AI 资源的决策，共收藏加星了 <span className="font-semibold text-ok">{bookmarkedCount}</span> 个限免福利。
         </p>
 
         {/* Action Buttons */}
@@ -256,9 +255,9 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
               setHistory([]);
               setDragOffset({ x: 0, y: 0 });
             }}
-            className="flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/30 transition-all cursor-pointer hover:scale-105 active:scale-95"
+            className="flex items-center gap-1.5 rounded-md bg-foreground text-background hover:bg-foreground/90 px-4 py-2 text-xs font-medium shadow-xs transition-colors cursor-pointer"
           >
-            <RotateCcw className="h-4 w-4" />
+            <RotateCcw className="h-3.5 w-3.5" />
             重新洗牌探索
           </button>
         </div>
@@ -279,24 +278,24 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
   }
 
   return (
-    <div className="relative mx-auto flex w-full max-w-lg flex-col items-center select-none pt-2 pb-6">
+    <div className="relative mx-auto flex w-full max-w-md flex-col items-center select-none pt-1 pb-4">
       {/* Top Controller Header */}
-      <div className="flex w-full items-center justify-between px-2 mb-4 text-xs text-slate-400">
+      <div className="flex w-full items-center justify-between px-2 mb-3 text-xs text-muted-foreground">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-2.5 py-0.5 text-blue-300 font-semibold">
-            <Flame className="h-3.5 w-3.5 text-amber-400" />
+          <span className="inline-flex items-center gap-1 rounded-md border border-border bg-muted px-2 py-0.5 text-foreground text-xs font-medium">
+            <Flame className="h-3 w-3 text-warn" />
             王权探索模式
           </span>
-          <span>
+          <span className="text-xs font-mono">
             {currentIndex + 1} / {offers.length}
           </span>
         </div>
 
         {/* Progress bar */}
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block h-1.5 w-24 rounded-full bg-slate-800 overflow-hidden">
+        <div className="flex items-center gap-2.5">
+          <div className="hidden sm:block h-1.5 w-20 rounded-full bg-muted overflow-hidden">
             <div
-              className="h-full bg-blue-500 transition-all duration-300"
+              className="h-full bg-foreground transition-all duration-300"
               style={{ width: `${((currentIndex + 1) / offers.length) * 100}%` }}
             />
           </div>
@@ -304,22 +303,22 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
           <button
             type="button"
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#1e2a42] bg-[#0e1626] text-slate-400 hover:text-white transition-colors cursor-pointer"
+            className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
             title={soundEnabled ? '音效开启' : '音效关闭'}
           >
-            {soundEnabled ? <Volume2 className="h-3.5 w-3.5 text-blue-400" /> : <VolumeX className="h-3.5 w-3.5 text-slate-500" />}
+            {soundEnabled ? <Volume2 className="h-3.5 w-3.5 text-foreground" /> : <VolumeX className="h-3.5 w-3.5 text-muted-foreground" />}
           </button>
         </div>
       </div>
 
-      {/* 3D Stack Container */}
-      <div className="relative h-[530px] w-full max-w-[420px] perspective-[1000px] flex items-center justify-center">
+      {/* 3D Stack Container: 响应式高度适配移动端 */}
+      <div className="relative h-[465px] sm:h-[505px] w-full max-w-[390px] sm:max-w-[420px] perspective-[1000px] flex items-center justify-center">
         {/* Layer 3: Deep Background Card */}
         {nextOffer2 && (
           <div
-            className="pointer-events-none absolute inset-0 rounded-2xl border border-[#172136] bg-[#0c1220] p-5 opacity-40 shadow-xl transition-all duration-300"
+            className="pointer-events-none absolute inset-0 rounded-xl border border-border bg-card/50 p-4 opacity-40 shadow-xs transition-all duration-300"
             style={{
-              transform: 'scale(0.88) translateY(36px)',
+              transform: 'scale(0.9) translateY(24px)',
               zIndex: 10,
             }}
           />
@@ -328,16 +327,15 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
         {/* Layer 2: Next Card In Line */}
         {nextOffer1 && (
           <div
-            className="pointer-events-none absolute inset-0 rounded-2xl border border-[#1e2a42] bg-[#0f1728] p-5 opacity-80 shadow-2xl transition-all duration-300"
+            className="pointer-events-none absolute inset-0 rounded-xl border border-border bg-card/80 p-4 opacity-80 shadow-xs transition-all duration-300"
             style={{
-              transform: `scale(${0.94 + Math.min(Math.abs(dragOffset.x) / 1200, 0.05)}) translateY(${20 - Math.min(Math.abs(dragOffset.x) / 30, 16)}px)`,
+              transform: `scale(${0.95 + Math.min(Math.abs(dragOffset.x) / 1200, 0.04)}) translateY(${14 - Math.min(Math.abs(dragOffset.x) / 30, 10)}px)`,
               zIndex: 20,
             }}
           >
-            {/* Ambient tease of next card */}
-            <div className="flex items-center justify-between opacity-50 mb-3">
-              <span className="text-xs font-medium text-slate-400">下一张预备</span>
-              <span className="text-xs text-slate-500">{nextOffer1.title}</span>
+            <div className="flex items-center justify-between opacity-50 mb-2">
+              <span className="text-[11px] font-medium text-muted-foreground">下一张预备</span>
+              <span className="text-[11px] text-muted-foreground truncate max-w-[180px]">{nextOffer1.title}</span>
             </div>
           </div>
         )}
@@ -358,20 +356,20 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
               touchAction: 'none',
             }}
             className={cn(
-              'absolute inset-0 flex flex-col justify-between rounded-2xl border bg-[#101726] p-5 shadow-2xl cursor-grab active:cursor-grabbing backdrop-blur-md',
-              dragOffset.x > 30 ? 'border-emerald-500/50 shadow-emerald-950/20' : dragOffset.x < -30 ? 'border-rose-500/50 shadow-rose-950/20' : 'border-[#1e2a42]'
+              'absolute inset-0 flex flex-col justify-between rounded-xl border bg-card p-4 sm:p-5 shadow-xs cursor-grab active:cursor-grabbing select-none transition-colors',
+              dragOffset.x > 30 ? 'border-ok/60' : dragOffset.x < -30 ? 'border-bad/60' : 'border-border'
             )}
           >
-            {/* Reigns Decision Stamps Overlays */}
+            {/* Notion Decision Tags Overlays */}
             <div
-              className="pointer-events-none absolute left-6 top-6 z-40 rounded-xl border-2 border-emerald-400 bg-emerald-950/80 px-4 py-1.5 font-black tracking-wider text-emerald-300 shadow-xl backdrop-blur-md -rotate-12 transition-opacity"
+              className="pointer-events-none absolute left-4 top-4 z-40 rounded-md border border-ok bg-card/95 px-3 py-1 text-xs font-semibold tracking-wide text-ok shadow-sm -rotate-6 transition-opacity"
               style={{ opacity: bookmarkOpacity }}
             >
               ⭐️ 收藏领取 (KEEP)
             </div>
 
             <div
-              className="pointer-events-none absolute right-6 top-6 z-40 rounded-xl border-2 border-rose-500 bg-rose-950/80 px-4 py-1.5 font-black tracking-wider text-rose-300 shadow-xl backdrop-blur-md rotate-12 transition-opacity"
+              className="pointer-events-none absolute right-4 top-4 z-40 rounded-md border border-bad bg-card/95 px-3 py-1 text-xs font-semibold tracking-wide text-bad shadow-sm rotate-6 transition-opacity"
               style={{ opacity: passOpacity }}
             >
               ✕ 暂不考虑 (PASS)
@@ -379,37 +377,37 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
 
             {/* Top Header */}
             <div>
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#131d31] border border-[#1e2a42]">
+              <div className="flex items-center justify-between gap-2.5 mb-2.5">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-muted border border-border">
                     <BrandLogo
                       platformId={currentPlatform.id}
                       platformName={currentPlatform.name}
-                      className="h-6 w-6"
+                      className="h-5 w-5"
                     />
                   </div>
                   <div className="min-w-0">
                     <a
                       href={withBase(`/platforms/${currentPlatform.slug}/`)}
                       onClick={(e) => e.stopPropagation()}
-                      className="font-semibold text-white hover:text-blue-400 text-sm block truncate transition-colors"
+                      className="font-semibold text-foreground hover:underline text-xs sm:text-sm block truncate"
                     >
                       {currentPlatform.name}
                     </a>
-                    <span className="text-[11px] text-slate-400 block truncate">
+                    <span className="text-[11px] text-muted-foreground block truncate">
                       {currentPlatform.canonicalDomain}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 shrink-0">
+                <div className="flex items-center gap-1 shrink-0">
                   {currentOffer.verificationStatus === 'official' && (
-                    <span className="rounded-full bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
-                      官方活动
+                    <span className="rounded bg-muted border border-border px-1.5 py-0.5 text-[10px] font-medium text-foreground">
+                      官方
                     </span>
                   )}
                   {isWithinDays(currentOffer.discoveredAt, 7) && (
-                    <span className="rounded-full bg-blue-500/10 border border-blue-500/30 px-2 py-0.5 text-[10px] font-semibold text-blue-400">
+                    <span className="rounded bg-primary/10 border border-primary/20 px-1.5 py-0.5 text-[10px] font-medium text-primary">
                       NEW
                     </span>
                   )}
@@ -421,14 +419,14 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
                     }}
                     aria-label={isFavorite(currentOffer.id) ? '取消收藏' : '收藏'}
                     title={isFavorite(currentOffer.id) ? '取消收藏' : '加入收藏'}
-                    className="p-1 rounded-lg text-slate-400 hover:text-amber-400 transition-colors cursor-pointer"
+                    className="p-1 rounded text-muted-foreground hover:text-warn transition-colors cursor-pointer"
                   >
                     <Star
                       className={cn(
                         'h-4 w-4',
                         isFavorite(currentOffer.id)
-                          ? 'fill-amber-400 text-amber-400'
-                          : 'text-slate-400'
+                          ? 'fill-warn text-warn'
+                          : 'text-muted-foreground'
                       )}
                     />
                   </button>
@@ -436,21 +434,21 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
               </div>
 
               {/* Title & Tagline */}
-              <h4 className="text-base font-bold text-white line-clamp-1 mb-1">
+              <h4 className="text-sm sm:text-base font-bold text-foreground line-clamp-1 mb-1">
                 {currentOffer.title}
               </h4>
-              <p className="text-xs text-slate-400 line-clamp-1 mb-3">
+              <p className="text-xs text-muted-foreground line-clamp-1 mb-2.5">
                 {currentOffer.claimConditions[0] ?? currentPlatform.description ?? '限时免费体验官方核心权益'}
               </p>
 
               {/* Tag Chips Row */}
-              <div className="flex flex-wrap gap-1.5 mb-3.5">
-                <span className="inline-flex items-center gap-1 rounded-md bg-[#131d31] border border-[#1e2a42] px-2 py-0.5 text-[10px] text-slate-300">
-                  <User className="h-3 w-3 text-slate-400" />
+              <div className="flex flex-wrap gap-1 mb-2.5">
+                <span className="inline-flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                  <User className="h-3 w-3" />
                   {currentOffer.claimConditions.some((c) => /新注册|新用户/i.test(c)) ? '新用户' : '全员可用'}
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
-                  <Zap className="h-3 w-3 text-emerald-400" />
+                <span className="inline-flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium text-ok">
+                  <Zap className="h-3 w-3" />
                   {currentOffer.amount !== null && currentOffer.amount !== undefined
                     ? fmtAmount(currentOffer.amount, currentOffer.unit)
                     : currentOffer.amountType === 'daily'
@@ -458,20 +456,20 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
                     : '免费体验'}
                 </span>
                 {currentOffer.billingRequirements === 'none' ? (
-                  <span className="inline-flex items-center gap-1 rounded-md bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 text-[10px] text-purple-300">
-                    <Shield className="h-3 w-3 text-purple-400" />
+                  <span className="inline-flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                    <Shield className="h-3 w-3" />
                     无需信用卡
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 text-[10px] text-amber-300">
-                    <CreditCard className="h-3 w-3 text-amber-400" />
-                    需绑定支付方式
+                  <span className="inline-flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[10px] text-warn">
+                    <CreditCard className="h-3 w-3" />
+                    需绑卡
                   </span>
                 )}
               </div>
 
               {/* Brand Showcase Banner */}
-              <div className="mb-3.5">
+              <div className="mb-2.5">
                 <BrandBanner
                   offer={currentOffer}
                   platform={currentPlatform}
@@ -479,33 +477,33 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
               </div>
 
               {/* Metadata list */}
-              <div className="space-y-2 rounded-xl bg-[#0c1220]/70 border border-[#1a243a] p-3 text-xs">
-                <div className="flex items-center justify-between text-slate-300">
-                  <span className="text-slate-400 text-[11px] flex items-center gap-1">
-                    <Globe className="h-3 w-3 text-slate-500" />
+              <div className="space-y-1.5 rounded-lg bg-muted/40 border border-border p-2.5 text-xs">
+                <div className="flex items-center justify-between text-muted-foreground">
+                  <span className="text-[11px] flex items-center gap-1">
+                    <Globe className="h-3 w-3 text-muted-foreground" />
                     可用地区
                   </span>
-                  <span className="truncate max-w-[200px] font-medium text-right text-[11px]">
+                  <span className="truncate max-w-[180px] font-medium text-right text-foreground text-[11px]">
                     {currentOffer.regionRestrictions.length === 0 ? '全球可用' : currentOffer.regionRestrictions.join(', ')}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-slate-300">
-                  <span className="text-slate-400 text-[11px] flex items-center gap-1">
-                    <Zap className="h-3 w-3 text-slate-500" />
+                <div className="flex items-center justify-between text-muted-foreground">
+                  <span className="text-[11px] flex items-center gap-1">
+                    <Zap className="h-3 w-3 text-muted-foreground" />
                     包含内容
                   </span>
-                  <span className="truncate max-w-[200px] font-medium text-right text-[11px]">
+                  <span className="truncate max-w-[180px] font-medium text-right text-foreground text-[11px]">
                     {currentOffer.models.length ? currentOffer.models.slice(0, 2).join(', ') : '完整高级功能与权益'}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-slate-300">
-                  <span className="text-slate-400 text-[11px] flex items-center gap-1">
-                    <Clock className="h-3 w-3 text-slate-500" />
+                <div className="flex items-center justify-between text-muted-foreground">
+                  <span className="text-[11px] flex items-center gap-1">
+                    <Clock className="h-3 w-3 text-muted-foreground" />
                     截止时效
                   </span>
                   <span className={cn(
                     'font-medium text-right text-[11px]',
-                    currentOffer.endAt && daysUntil(currentOffer.endAt)! <= 3 ? 'text-amber-400 font-bold' : 'text-slate-300'
+                    currentOffer.endAt && daysUntil(currentOffer.endAt)! <= 3 ? 'text-warn font-semibold' : 'text-foreground'
                   )}>
                     {currentOffer.endAt ? `${fmtDate(currentOffer.endAt)} 截止` : '长期有效'}
                   </span>
@@ -514,9 +512,9 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
             </div>
 
             {/* Bottom Action Hint */}
-            <div className="pt-2 border-t border-[#182338] flex items-center justify-between text-[11px] text-slate-400">
-              <span className="flex items-center gap-1 text-slate-400">
-                <ArrowLeft className="h-3 w-3 text-rose-400" />
+            <div className="pt-2 border-t border-border flex items-center justify-between text-[11px] text-muted-foreground">
+              <span className="flex items-center gap-1">
+                <ArrowLeft className="h-3 w-3 text-bad" />
                 左滑忽略
               </span>
               <button
@@ -525,22 +523,22 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
                   e.stopPropagation();
                   setInspectOffer({ offer: currentOffer, platform: currentPlatform });
                 }}
-                className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-medium cursor-pointer"
+                className="inline-flex items-center gap-1 text-foreground hover:underline font-medium cursor-pointer"
               >
-                查看完整证据与API
+                查看完整信息
                 <ChevronRight className="h-3 w-3" />
               </button>
-              <span className="flex items-center gap-1 text-slate-400">
+              <span className="flex items-center gap-1">
                 右滑收藏
-                <ArrowRight className="h-3 w-3 text-emerald-400" />
+                <ArrowRight className="h-3 w-3 text-ok" />
               </span>
             </div>
           </article>
         )}
       </div>
 
-      {/* Reigns Arcade Action Controls */}
-      <div className="mt-6 flex items-center justify-center gap-4">
+      {/* Reigns Action Controls (Notion 极简工具栏) */}
+      <div className="mt-4 flex items-center justify-center gap-2 sm:gap-3">
         {/* Undo Button */}
         <button
           type="button"
@@ -549,13 +547,13 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
           aria-label="撤销上一张 (Z)"
           title="撤销上一张卡片 (快捷键: Z / Backspace)"
           className={cn(
-            'flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-all cursor-pointer hover:scale-110 active:scale-95',
+            'flex h-9 w-9 items-center justify-center rounded-md border shadow-xs transition-colors cursor-pointer',
             history.length > 0
-              ? 'border-[#223352] bg-[#111a2e] text-slate-300 hover:text-white hover:border-blue-500'
-              : 'border-[#172236] bg-[#0c1220] text-slate-600 cursor-not-allowed opacity-50'
+              ? 'border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted'
+              : 'border-border/60 bg-muted/40 text-muted-foreground/40 cursor-not-allowed'
           )}
         >
-          <RotateCcw className="h-5 w-5" />
+          <RotateCcw className="h-4 w-4" />
         </button>
 
         {/* Pass (Swipe Left) Button */}
@@ -564,9 +562,10 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
           onClick={() => triggerSwipe('left')}
           aria-label="向左滑：暂不考虑 (A / ←)"
           title="向左滑：暂不考虑 (快捷键: A / ←)"
-          className="group flex h-14 w-14 items-center justify-center rounded-full border border-rose-500/40 bg-gradient-to-br from-rose-950/60 to-rose-900/30 text-rose-400 shadow-xl shadow-rose-950/30 hover:border-rose-400 hover:text-rose-200 transition-all cursor-pointer hover:scale-110 active:scale-95"
+          className="flex h-9 px-3.5 items-center justify-center gap-1.5 rounded-md border border-border bg-card text-bad hover:bg-bad-bg/60 text-xs font-medium shadow-xs transition-colors cursor-pointer"
         >
-          <X className="h-7 w-7 transition-transform group-hover:rotate-90" />
+          <X className="h-4 w-4" />
+          <span>跳过</span>
         </button>
 
         {/* Inspect / Detail Drawer Button */}
@@ -579,9 +578,10 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
           }}
           aria-label="查看活动详情 (空格 / 回车)"
           title="查看完整技术指标与代码示例 (快捷键: 空格 / 回车)"
-          className="flex h-12 w-12 items-center justify-center rounded-full border border-blue-500/30 bg-[#101b33] text-blue-400 shadow-lg hover:border-blue-400 hover:text-blue-200 transition-all cursor-pointer hover:scale-110 active:scale-95"
+          className="flex h-9 px-3 items-center justify-center gap-1 rounded-md border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted text-xs font-medium shadow-xs transition-colors cursor-pointer"
         >
-          <Info className="h-5 w-5" />
+          <Info className="h-3.5 w-3.5" />
+          <span>详情</span>
         </button>
 
         {/* Bookmark / Star (Swipe Right) Button */}
@@ -590,26 +590,27 @@ export function OfferSwipeDeck({ offers, platformById, onSwitchView }: OfferSwip
           onClick={() => triggerSwipe('right')}
           aria-label="向右滑：收藏领取 (D / →)"
           title="向右滑：收藏领取 (快捷键: D / →)"
-          className="group flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/40 bg-gradient-to-br from-emerald-950/60 to-emerald-900/30 text-emerald-400 shadow-xl shadow-emerald-950/30 hover:border-emerald-400 hover:text-emerald-200 transition-all cursor-pointer hover:scale-110 active:scale-95"
+          className="flex h-9 px-3.5 items-center justify-center gap-1.5 rounded-md border border-border bg-card text-ok hover:bg-ok-bg/60 text-xs font-medium shadow-xs transition-colors cursor-pointer"
         >
-          <Star className="h-7 w-7 transition-transform group-hover:scale-125" />
+          <Star className="h-4 w-4 fill-ok/20" />
+          <span>收藏</span>
         </button>
       </div>
 
       {/* Keyboard Shortcuts Guide Footnote */}
-      <div className="mt-4 flex items-center justify-center gap-4 text-[11px] text-slate-500">
+      <div className="mt-3 hidden sm:flex items-center justify-center gap-3 text-[11px] text-muted-foreground">
         <span>键盘快捷键:</span>
         <span className="flex items-center gap-1">
-          <kbd className="rounded border border-slate-700 bg-slate-900 px-1 py-0.5 font-mono text-[10px] text-slate-400">←</kbd> 或 <kbd className="rounded border border-slate-700 bg-slate-900 px-1 py-0.5 font-mono text-[10px] text-slate-400">A</kbd> 忽略
+          <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">←</kbd> 或 <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">A</kbd> 忽略
         </span>
         <span className="flex items-center gap-1">
-          <kbd className="rounded border border-slate-700 bg-slate-900 px-1 py-0.5 font-mono text-[10px] text-slate-400">→</kbd> 或 <kbd className="rounded border border-slate-700 bg-slate-900 px-1 py-0.5 font-mono text-[10px] text-slate-400">D</kbd> 收藏
+          <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">→</kbd> 或 <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">D</kbd> 收藏
         </span>
         <span className="flex items-center gap-1">
-          <kbd className="rounded border border-slate-700 bg-slate-900 px-1 py-0.5 font-mono text-[10px] text-slate-400">Space</kbd> 详情
+          <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">Space</kbd> 详情
         </span>
         <span className="flex items-center gap-1">
-          <kbd className="rounded border border-slate-700 bg-slate-900 px-1 py-0.5 font-mono text-[10px] text-slate-400">Z</kbd> 撤销
+          <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">Z</kbd> 撤销
         </span>
       </div>
 

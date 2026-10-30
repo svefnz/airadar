@@ -72,30 +72,30 @@ export function OfferTableView({ offers, platformById, onSortToggle }: OfferTabl
 
   return (
     <>
-      <div className="relative rounded-2xl border border-[#1e2a42] bg-[#0c1220] overflow-hidden shadow-2xl">
+      <div className="relative rounded-xl border border-border bg-card overflow-hidden shadow-xs">
         {/* Batch action toolbar when rows selected */}
         {checkedIds.size > 0 && (
-          <div className="flex items-center justify-between border-b border-blue-500/30 bg-blue-950/40 px-4 py-2.5 text-xs text-blue-200">
+          <div className="flex items-center justify-between border-b border-border bg-muted px-4 py-2 text-xs text-foreground">
             <span className="font-medium">已选择 {checkedIds.size} 项活动</span>
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={batchFavorite}
-                className="rounded-md bg-blue-900/60 hover:bg-blue-800 px-2.5 py-1 text-xs text-white border border-blue-700/60 cursor-pointer"
+                className="rounded-md bg-card hover:bg-muted px-2.5 py-1 text-xs text-foreground border border-border cursor-pointer shadow-xs"
               >
                 批量收藏
               </button>
               <button
                 type="button"
                 onClick={batchClaim}
-                className="rounded-md bg-emerald-900/60 hover:bg-emerald-800 px-2.5 py-1 text-xs text-emerald-200 border border-emerald-700/60 cursor-pointer"
+                className="rounded-md bg-foreground text-background hover:bg-foreground/90 px-2.5 py-1 text-xs font-medium cursor-pointer shadow-xs"
               >
                 批量标记已领取
               </button>
               <button
                 type="button"
                 onClick={() => setCheckedIds(new Set())}
-                className="text-slate-400 hover:text-slate-200 cursor-pointer text-xs ml-2"
+                className="text-muted-foreground hover:text-foreground cursor-pointer text-xs ml-1"
               >
                 取消选择
               </button>
@@ -107,7 +107,7 @@ export function OfferTableView({ offers, platformById, onSortToggle }: OfferTabl
           <table className="w-full text-left border-collapse min-w-[880px]">
             {/* Table Header */}
             <thead>
-              <tr className="border-b border-[#1e2a42] bg-[#0f172a]/90 text-[11px] font-semibold text-slate-400 select-none">
+              <tr className="border-b border-border bg-muted/50 text-[11px] font-medium text-muted-foreground select-none">
                 <th className="w-10 px-4 py-3 text-center">
                   <input
                     type="checkbox"

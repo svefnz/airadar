@@ -129,30 +129,29 @@ export function DashboardApp({ data }: { data: RadarData }) {
         </div>
       )}
 
-      {/* 突出主行动入口 (Hero CTA Banner) */}
-      <div className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-r from-blue-950/60 via-[#0c1428] to-indigo-950/40 p-6 sm:p-8 shadow-2xl">
-        <div className="absolute right-0 top-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
-        <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 px-3 py-1 text-xs font-semibold text-blue-400">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>智能触感卡牌流</span>
+      {/* 突出主行动入口 (Hero CTA Banner: Notion Callout 风格) */}
+      <div className="relative rounded-xl border border-border bg-card p-5 sm:p-6 shadow-xs transition-colors">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div className="space-y-1.5 max-w-xl">
+            <div className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
+              <Sparkles className="h-3 w-3 text-primary" />
+              <span>智能手势卡牌流</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-lg sm:text-xl font-bold text-foreground tracking-tight">
               收录 {data.platforms.length} 个 AI 平台 · {stats.activeOffers} 个实时可用额度
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              支持左滑跳过、右滑收藏、上滑详阅。基于收件箱零待办机制，已处理条目自动隐去，专属呈现最新未读福利。
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              支持左滑跳过、右滑收藏、上滑详阅。基于收件箱零待办机制，已处理条目自动隐去，专注呈现最新未读福利。
             </p>
           </div>
           <div className="shrink-0">
             <Button
-              size="lg"
+              size="default"
               onClick={() => window.location.assign(withBase('/resources/'))}
-              className="w-full sm:w-auto h-12 px-6 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center gap-2 group cursor-pointer"
+              className="w-full sm:w-auto h-9 px-4 rounded-md bg-foreground text-background hover:bg-foreground/90 font-medium text-xs shadow-xs transition-colors flex items-center justify-center gap-1.5 group cursor-pointer"
             >
               <span>进入资源库 (刷卡探索)</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
             </Button>
           </div>
         </div>
@@ -161,10 +160,10 @@ export function DashboardApp({ data }: { data: RadarData }) {
       {/* 纯数据可视化大屏网格 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* 近 30 天新增趋势 */}
-        <Card className="border-[#1e2a42] bg-[#0c1220]/90">
+        <Card className="border-border bg-card shadow-xs">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-blue-400" />
+            <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-primary" />
               近 30 天新发现趋势
             </CardTitle>
           </CardHeader>
@@ -174,10 +173,10 @@ export function DashboardApp({ data }: { data: RadarData }) {
         </Card>
 
         {/* 接入方式占比 */}
-        <Card className="border-[#1e2a42] bg-[#0c1220]/90">
+        <Card className="border-border bg-card shadow-xs">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
-              <Zap className="h-4 w-4 text-emerald-400" />
+            <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+              <Zap className="h-4 w-4 text-ok" />
               API / 客户端 / 网页 占比
             </CardTitle>
           </CardHeader>
@@ -187,25 +186,25 @@ export function DashboardApp({ data }: { data: RadarData }) {
         </Card>
 
         {/* 额度恢复周期分布 */}
-        <Card className="border-[#1e2a42] bg-[#0c1220]/90">
+        <Card className="border-border bg-card shadow-xs">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-bold text-white">额度恢复周期分布</CardTitle>
+            <CardTitle className="text-sm font-semibold text-foreground">额度恢复周期分布</CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-4">
             {resetDist.length === 0 ? (
-              <p className="py-8 text-center text-xs text-slate-500">暂无数据</p>
+              <p className="py-8 text-center text-xs text-muted-foreground">暂无数据</p>
             ) : (
               <ul className="space-y-2 pt-1">
                 {resetDist.map((r) => (
                   <li key={r.label} className="flex items-center gap-2 text-xs">
-                    <span className="w-24 shrink-0 text-slate-400">{r.label}</span>
-                    <div className="h-2 flex-1 overflow-hidden rounded bg-[#182338]">
+                    <span className="w-24 shrink-0 text-muted-foreground">{r.label}</span>
+                    <div className="h-2 flex-1 overflow-hidden rounded bg-muted">
                       <div
                         className="h-full rounded"
                         style={{ width: `${(r.value / (active.length || 1)) * 100}%`, background: r.color }}
                       />
                     </div>
-                    <span className="tabular w-8 text-right text-slate-200 font-semibold">{r.value}</span>
+                    <span className="tabular w-8 text-right text-foreground font-medium">{r.value}</span>
                   </li>
                 ))}
               </ul>
@@ -214,9 +213,9 @@ export function DashboardApp({ data }: { data: RadarData }) {
         </Card>
 
         {/* 活动状态分布 */}
-        <Card className="border-[#1e2a42] bg-[#0c1220]/90">
+        <Card className="border-border bg-card shadow-xs">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-bold text-white">全量活动状态分布</CardTitle>
+            <CardTitle className="text-sm font-semibold text-foreground">全量活动状态分布</CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-4">
             <div className="flex flex-wrap gap-2 pt-2">
@@ -234,13 +233,13 @@ export function DashboardApp({ data }: { data: RadarData }) {
                       : k === 'paused'
                       ? 'warn'
                       : 'neutral'
-                  )} px-3 py-1 text-xs`}
+                  )} px-2.5 py-0.5 text-xs font-normal`}
                 >
                   {k} · {v}
                 </Badge>
               ))}
             </div>
-            <p className="mt-4 text-[11px] text-slate-500">
+            <p className="mt-4 text-[11px] text-muted-foreground">
               数据经由自动探针校验，已失效活动自动归入 ended 历史存档。
             </p>
           </CardContent>
@@ -264,19 +263,19 @@ function StatCard({
   tone?: 'neutral' | 'ok' | 'warn';
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[#1e2a42] bg-[#0c1220]/90 p-4 shadow-lg transition-all hover:border-blue-500/30">
-      <div className="flex items-center gap-2 text-slate-400">
-        <span className="p-1 rounded-md bg-[#182338] text-blue-400">{icon}</span>
-        <span className="text-xs font-medium text-slate-300">{label}</span>
+    <div className="rounded-lg border border-border bg-card p-3.5 sm:p-4 shadow-xs transition-colors hover:border-muted-foreground/30">
+      <div className="flex items-center gap-2 text-muted-foreground">
+        <span className="p-1 rounded bg-muted text-foreground">{icon}</span>
+        <span className="text-xs font-normal text-muted-foreground">{label}</span>
       </div>
       <p
-        className={`mt-2 text-2xl font-black tabular tracking-tight ${
-          tone === 'ok' ? 'text-emerald-400' : tone === 'warn' ? 'text-amber-400' : 'text-white'
+        className={`mt-2 text-xl sm:text-2xl font-bold tabular tracking-tight ${
+          tone === 'ok' ? 'text-ok' : tone === 'warn' ? 'text-warn' : 'text-foreground'
         }`}
       >
         {value}
       </p>
-      {sub && <p className="mt-1 text-[11px] text-slate-400">{sub}</p>}
+      {sub && <p className="mt-1 text-[11px] text-muted-foreground truncate">{sub}</p>}
     </div>
   );
 }

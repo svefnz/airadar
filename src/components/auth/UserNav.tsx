@@ -12,20 +12,20 @@ export function UserNav() {
   const username = metadata.user_name || metadata.preferred_username || user.email?.split('@')[0] || 'GitHub 用户';
 
   return (
-    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-      <div className="flex items-center gap-1.5 sm:gap-2 rounded-xl border border-[#1e2a42] bg-[#0e1626] px-2 sm:px-2.5 py-1 shrink-0">
+    <div className="flex items-center gap-1.5 shrink-0">
+      <div className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2 py-1 text-xs text-foreground shrink-0 hover:bg-muted/50 transition-colors">
         {avatarUrl ? (
           <img
             src={avatarUrl}
             alt={username}
-            className="h-5 w-5 rounded-full border border-slate-700 object-cover shrink-0"
+            className="h-4 w-4 rounded-full border border-border object-cover shrink-0"
           />
         ) : (
-          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-800 text-slate-300 shrink-0">
-            <UserIcon className="h-3 w-3" />
+          <div className="flex h-4 w-4 items-center justify-center rounded-full bg-muted text-muted-foreground shrink-0">
+            <UserIcon className="h-2.5 w-2.5" />
           </div>
         )}
-        <span className="text-xs font-medium text-slate-200 max-w-[80px] sm:max-w-[120px] truncate shrink-0">
+        <span className="text-xs font-medium text-foreground max-w-[80px] sm:max-w-[120px] truncate shrink-0">
           {username}
         </span>
       </div>
@@ -35,9 +35,9 @@ export function UserNav() {
         onClick={() => signOut()}
         title="退出 GitHub 登录"
         aria-label="退出登录"
-        className="flex h-8 w-8 items-center justify-center rounded-xl border border-[#1e2a42] bg-[#0e1626] text-slate-400 hover:border-rose-500/50 hover:bg-rose-950/20 hover:text-rose-400 transition-colors cursor-pointer shrink-0"
+        className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-muted-foreground hover:border-destructive/40 hover:bg-destructive/10 hover:text-destructive transition-colors cursor-pointer shrink-0"
       >
-        <LogOut className="h-4 w-4" />
+        <LogOut className="h-3.5 w-3.5" />
       </button>
     </div>
   );

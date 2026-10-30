@@ -123,7 +123,7 @@ export function OfferCard({ offer, platform }: OfferCardProps) {
 
   return (
     <>
-      <article className="group relative flex flex-col justify-between rounded-2xl border border-[#1e2a42] bg-[#101726]/95 p-5 shadow-xl shadow-black/25 hover:border-blue-500/40 hover:shadow-blue-500/5 transition-all duration-200">
+      <article className="group relative flex flex-col justify-between rounded-xl border border-border bg-card p-4 sm:p-5 shadow-xs hover:border-muted-foreground/30 transition-colors">
         <div>
           {/* Header Row: Logo + Platform Name + Badges + Favorite Star */}
           <div className="flex items-center justify-between gap-3">
@@ -260,7 +260,7 @@ export function OfferCard({ offer, platform }: OfferCardProps) {
         </div>
 
         {/* Card Footer: Discovery / Expiry Dates + 查看详情 Button */}
-        <div className="mt-5 pt-3.5 border-t border-[#1e2a42]/90 flex items-center justify-between gap-2">
+        <div className="mt-4 pt-3 border-t border-border flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
             <Clock className="h-3.5 w-3.5 shrink-0" />
             <span>{fmtDate(offer.discoveredAt)} 发现</span>

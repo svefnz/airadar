@@ -35,52 +35,48 @@ export function LoginView() {
   };
 
   return (
-    <div className="flex min-h-[72vh] w-full items-center justify-center px-4 py-12">
-      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-[#1e2a42] bg-gradient-to-b from-[#101726] to-[#090d16] p-8 text-center shadow-2xl backdrop-blur-xl">
-        {/* Ambient Top Glow */}
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-blue-500/20 blur-3xl" />
-
+    <div className="flex min-h-[68vh] w-full items-center justify-center px-4 py-8">
+      <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 sm:p-8 text-center shadow-sm transition-colors">
         {/* Radar Brand Icon */}
-        <div className="relative mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-500/30 bg-blue-500/10 shadow-inner">
-          <Sparkles className="h-8 w-8 text-blue-400 animate-pulse" />
-          <div className="absolute inset-0 rounded-2xl bg-blue-500/10 blur-md" />
+        <div className="relative mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-muted text-foreground">
+          <Sparkles className="h-6 w-6 text-primary" />
         </div>
 
         {/* Title & Tagline */}
-        <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+        <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
           AI Free Radar
         </h2>
-        <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+        <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
           全球主流 AI 免费额度 · 原生 API 限免与开发者权益雷达
         </p>
 
         {/* Security / Notice Badge */}
-        <div className="my-6 rounded-2xl border border-[#1b263d] bg-[#0c1220]/80 p-4 text-left">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-200">
-            <KeyRound className="h-4 w-4 text-emerald-400" />
+        <div className="my-5 rounded-lg border border-border bg-muted/40 p-3.5 text-left text-xs">
+          <div className="flex items-center gap-1.5 font-medium text-foreground">
+            <KeyRound className="h-3.5 w-3.5 text-ok" />
             <span>私密多端云同步系统</span>
           </div>
-          <p className="mt-1 text-[11px] text-slate-400 leading-normal">
+          <p className="mt-1 text-[11px] text-muted-foreground leading-normal">
             本项目已升级为全站云端资产雷达，仅支持 GitHub OAuth 授权登录。登录后自动同步您的专属收藏、领取标记与备忘录，数据受到 Supabase 行级安全（RLS）严格保护。
           </p>
         </div>
 
         {/* Missing Env Configuration Warning */}
         {!isConfigured && (
-          <div className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 text-left text-xs text-amber-300">
-            <div className="flex items-center gap-2 font-bold mb-1">
-              <ShieldAlert className="h-4 w-4" />
+          <div className="mb-5 rounded-lg border border-warn/30 bg-warn-bg p-3 text-left text-xs text-warn">
+            <div className="flex items-center gap-1.5 font-medium mb-1">
+              <ShieldAlert className="h-3.5 w-3.5" />
               <span>尚未配置 Supabase 环境变量</span>
             </div>
-            <p className="text-[11px] text-amber-200/80 leading-relaxed">
-              请在项目的 <code className="rounded bg-black/40 px-1 py-0.5">.env</code> 文件中配置 <code className="rounded bg-black/40 px-1 py-0.5">PUBLIC_SUPABASE_URL</code> 和 <code className="rounded bg-black/40 px-1 py-0.5">PUBLIC_SUPABASE_ANON_KEY</code>。
+            <p className="text-[11px] leading-relaxed">
+              请在项目的 <code className="rounded bg-muted px-1 py-0.5">.env</code> 文件中配置 <code className="rounded bg-muted px-1 py-0.5">PUBLIC_SUPABASE_URL</code> 和 <code className="rounded bg-muted px-1 py-0.5">PUBLIC_SUPABASE_ANON_KEY</code>。
             </p>
           </div>
         )}
 
         {/* Error Alert */}
         {errorMessage && (
-          <div className="mb-5 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300 text-left">
+          <div className="mb-4 rounded-lg border border-bad/30 bg-bad-bg p-2.5 text-xs text-bad text-left">
             {errorMessage}
           </div>
         )}
@@ -90,12 +86,12 @@ export function LoginView() {
           type="button"
           onClick={handleLogin}
           disabled={submitting || !isConfigured}
-          className="group relative flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-sm font-bold text-black shadow-lg transition-all hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+          className="group relative flex w-full items-center justify-center gap-2 rounded-md bg-foreground text-background px-4 py-2.5 text-xs font-semibold shadow-xs transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
         >
           {submitting ? (
-            <Loader2 className="h-5 w-5 animate-spin text-black" />
+            <Loader2 className="h-4 w-4 animate-spin text-background" />
           ) : (
-            <GitHubIcon className="h-5 w-5 text-black transition-transform group-hover:scale-110" />
+            <GitHubIcon className="h-4 w-4 text-background" />
           )}
           <span>使用 GitHub 授权登录</span>
         </button>

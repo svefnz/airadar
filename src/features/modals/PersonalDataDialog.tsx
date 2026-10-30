@@ -31,15 +31,15 @@ export function PersonalDataDialog({ open, onOpenChange }: PersonalDataDialogPro
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-md bg-[#0b1020] border-[#1e2a42] text-slate-100 p-6">
-          <DialogHeader className="border-b border-[#182338] pb-4">
-            <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-blue-600/20 text-blue-400">
-                <Cloud className="h-5 w-5" />
+        <DialogContent className="max-w-md bg-popover border-border text-foreground p-5 sm:p-6 shadow-md rounded-xl">
+          <DialogHeader className="border-b border-border pb-3.5">
+            <div className="flex items-center gap-2.5">
+              <span className="p-1.5 rounded-md bg-muted text-foreground">
+                <Cloud className="h-4 w-4" />
               </span>
               <div>
-                <DialogTitle className="text-lg font-bold text-white">云端个人资产</DialogTitle>
-                <DialogDescription className="text-xs text-slate-400">
+                <DialogTitle className="text-base sm:text-lg font-semibold text-foreground">云端个人资产</DialogTitle>
+                <DialogDescription className="text-xs text-muted-foreground">
                   与您的 GitHub 账号绑定并在 Supabase 云端安全持久化
                 </DialogDescription>
               </div>
@@ -48,41 +48,41 @@ export function PersonalDataDialog({ open, onOpenChange }: PersonalDataDialogPro
 
           <div className="space-y-4 pt-2 text-xs">
             <div className="grid grid-cols-3 gap-2">
-              <div className="rounded-xl border border-[#1e2a42] bg-[#080d1a] p-3 text-center">
-                <span className="text-slate-400 text-[11px]">收藏</span>
-                <p className="mt-1 text-xl font-black text-white">{state.favorites.length}</p>
+              <div className="rounded-lg border border-border bg-card p-3 text-center shadow-xs">
+                <span className="text-muted-foreground text-[11px]">收藏</span>
+                <p className="mt-1 text-xl font-bold text-foreground">{state.favorites.length}</p>
               </div>
-              <div className="rounded-xl border border-[#1e2a42] bg-[#080d1a] p-3 text-center">
-                <span className="text-slate-400 text-[11px]">已跳过(Pass)</span>
-                <p className="mt-1 text-xl font-black text-slate-300">{ignored}</p>
+              <div className="rounded-lg border border-border bg-card p-3 text-center shadow-xs">
+                <span className="text-muted-foreground text-[11px]">已跳过(Pass)</span>
+                <p className="mt-1 text-xl font-bold text-muted-foreground">{ignored}</p>
               </div>
-              <div className="rounded-xl border border-[#1e2a42] bg-[#080d1a] p-3 text-center">
-                <span className="text-slate-400 text-[11px]">已领取</span>
-                <p className="mt-1 text-xl font-black text-emerald-400">{claimed}</p>
+              <div className="rounded-lg border border-border bg-card p-3 text-center shadow-xs">
+                <span className="text-muted-foreground text-[11px]">已领取</span>
+                <p className="mt-1 text-xl font-bold text-ok">{claimed}</p>
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#182338] bg-[#080d1a] p-3 space-y-2">
+            <div className="rounded-lg border border-border bg-card p-3 space-y-2 text-foreground shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">云端同步状态</span>
+                <span className="text-muted-foreground">云端同步状态</span>
                 {syncStatus === 'loading' ? (
-                  <span className="flex items-center gap-1 text-blue-400 font-semibold">
+                  <span className="flex items-center gap-1 text-primary font-medium">
                     <RefreshCw className="h-3 w-3 animate-spin" /> 正在同步…
                   </span>
                 ) : syncStatus === 'error' ? (
-                  <span className="flex items-center gap-1 text-rose-400 font-semibold">
+                  <span className="flex items-center gap-1 text-bad font-medium">
                     <AlertCircle className="h-3 w-3" /> 同步异常
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1 text-emerald-400 font-semibold">
+                  <span className="flex items-center gap-1 text-ok font-medium">
                     <CheckCircle2 className="h-3.5 w-3.5" /> 实时加密同步中
                   </span>
                 )}
               </div>
               {syncStatus === 'error' && (
-                <div className="flex items-center justify-between text-rose-300 text-[11px] pt-1">
+                <div className="flex items-center justify-between text-bad text-[11px] pt-1">
                   <span className="truncate max-w-[240px]">{syncError || '网络错误'}</span>
-                  <Button size="sm" variant="ghost" onClick={retrySync} className="h-6 text-xs text-rose-400 hover:text-rose-200">
+                  <Button size="sm" variant="ghost" onClick={retrySync} className="h-6 text-xs text-bad hover:text-bad/80">
                     <RefreshCw className="h-3 w-3 mr-1" /> 重试
                   </Button>
                 </div>
@@ -94,7 +94,7 @@ export function PersonalDataDialog({ open, onOpenChange }: PersonalDataDialogPro
                 variant="outline"
                 size="sm"
                 onClick={() => setConfirmClearOpen(true)}
-                className="text-rose-400 border-rose-500/30 hover:bg-rose-500/10 text-xs"
+                className="text-bad border-bad/30 hover:bg-bad-bg/60 text-xs"
               >
                 <Trash2 className="h-3.5 w-3.5 mr-1.5" /> 清空个人云端数据
               </Button>
@@ -104,12 +104,12 @@ export function PersonalDataDialog({ open, onOpenChange }: PersonalDataDialogPro
       </Dialog>
 
       <Dialog open={confirmClearOpen} onOpenChange={setConfirmClearOpen}>
-        <DialogContent className="max-w-sm bg-[#0b1020] border-rose-500/40 text-slate-100 p-6">
+        <DialogContent className="max-w-sm bg-popover border-border text-foreground p-5 sm:p-6 shadow-md rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-base font-bold text-rose-400 flex items-center gap-2">
+            <DialogTitle className="text-sm sm:text-base font-semibold text-bad flex items-center gap-2">
               <AlertCircle className="h-4 w-4" /> 确认清空个人数据？
             </DialogTitle>
-            <DialogDescription className="text-xs text-slate-400">
+            <DialogDescription className="text-xs text-muted-foreground mt-1">
               此操作将永久清空您在云端的全部收藏、跳过标记与个人备忘录，操作不可撤回。
             </DialogDescription>
           </DialogHeader>

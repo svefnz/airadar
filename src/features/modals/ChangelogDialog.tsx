@@ -18,15 +18,15 @@ interface ChangelogDialogProps {
 export function ChangelogDialog({ open, onOpenChange, data }: ChangelogDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-[#0b1020] border-[#1e2a42] text-slate-100 p-6">
-        <DialogHeader className="border-b border-[#182338] pb-4">
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-indigo-600/20 text-indigo-400">
-              <History className="h-5 w-5" />
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-popover border-border text-foreground p-5 sm:p-6 shadow-md rounded-xl">
+        <DialogHeader className="border-b border-border pb-3.5">
+          <div className="flex items-center gap-2.5">
+            <span className="p-1.5 rounded-md bg-muted text-foreground">
+              <History className="h-4 w-4" />
             </span>
             <div>
-              <DialogTitle className="text-lg font-bold text-white">变更记录时间线</DialogTitle>
-              <DialogDescription className="text-xs text-slate-400">
+              <DialogTitle className="text-base sm:text-lg font-semibold text-foreground">变更记录时间线</DialogTitle>
+              <DialogDescription className="text-xs text-muted-foreground">
                 可追溯每一次额度调整、到期延期、活动下线及原始信源证据
               </DialogDescription>
             </div>
