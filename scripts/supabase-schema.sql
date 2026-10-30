@@ -50,13 +50,14 @@ create table if not exists public.user_claims (
 );
 
 -- 如果此前已存在该表，安全更新 check 约束以兼容 'expired'
-do $$
+do language plpgsql $$
 begin
   alter table public.user_claims drop constraint if exists user_claims_status_check;
   alter table public.user_claims add constraint user_claims_status_check check (status in ('claimed', 'ignored', 'expired'));
 exception
   when others then null;
-end $$;
+end;
+$$;
 
 create index if not exists idx_user_claims_user_id on public.user_claims(user_id);
 create index if not exists idx_user_claims_user_offer on public.user_claims(user_id, offer_id);
