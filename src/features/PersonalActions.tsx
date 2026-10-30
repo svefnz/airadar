@@ -64,7 +64,7 @@ export function PersonalActions({ offerId }: { offerId: string }) {
           <input
             value={noteDraft}
             onChange={(e) => setNoteDraft(e.target.value)}
-            placeholder="备注（仅本浏览器）"
+            placeholder="云端专属备忘录…"
             className="h-7 w-full rounded border border-edge-strong bg-surface px-2 text-xs focus:outline-2 focus:outline-accent"
             autoFocus
           />

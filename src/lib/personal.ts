@@ -1,12 +1,10 @@
 /**
- * 用户个人状态(localStorage)。
- * - 仅存在于当前浏览器, 不写入公共数据, 不自动跨设备同步
- * - 版本化信封: 未来升级时通过 migrate 兼容
- * - 稳定 Offer ID 关联
+ * 用户个人状态模型与 Supabase 云端数据操作服务
+ * - 仅在用户登录后生效，通过 user_id 与稳定 offer_id 关联
+ * - RLS 保护：每个 GitHub 用户仅能读写自身数据
  */
 import { z } from 'zod';
-
-export const PERSONAL_STORAGE_KEY = 'ai-radar:personal:v1';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export const CLAIM_STATUSES = ['claimed', 'ignored', 'expired'] as const;
 export type ClaimStatus = (typeof CLAIM_STATUSES)[number];
@@ -40,52 +38,6 @@ export function emptyPersonal(): PersonalState {
   return { version: 1, favorites: [], claims: {} };
 }
 
-/** 迁移旧版本(当前仅 v1; 未来升版时在此逐级转换) */
-export function migratePersonal(raw: unknown): PersonalState | null {
-  if (typeof raw !== 'object' || raw === null) return null;
-  const obj = raw as Record<string, unknown>;
-  const version = typeof obj.version === 'number' ? obj.version : 1;
-  if (version > 1) return null; // 未来版本数据, 拒绝读取, 避免损坏(在 UI 上提示)
-  const parsed = personalSchema.safeParse(raw);
-  return parsed.success ? parsed.data : null;
-}
-
-/** 读取个人状态, 任何异常回退为空状态 */
-export function loadPersonal(storage: Storage = window.localStorage): PersonalState {
-  try {
-    const raw = storage.getItem(PERSONAL_STORAGE_KEY);
-    if (!raw) return emptyPersonal();
-    return migratePersonal(JSON.parse(raw)) ?? emptyPersonal();
-  } catch {
-    return emptyPersonal();
-  }
-}
-
-export function savePersonal(state: PersonalState, storage: Storage = window.localStorage): void {
-  storage.setItem(PERSONAL_STORAGE_KEY, JSON.stringify(state));
-}
-
-export function clearPersonal(storage: Storage = window.localStorage): void {
-  storage.removeItem(PERSONAL_STORAGE_KEY);
-}
-
-/** 导出为可下载 JSON 文本 */
-export function exportPersonal(state: PersonalState): string {
-  return JSON.stringify(state, null, 2);
-}
-
-/** 导入解析: 返回 {ok, state?, error?} */
-export function parsePersonalImport(text: string): { ok: true; state: PersonalState } | { ok: false; error: string } {
-  try {
-    const json = JSON.parse(text) as unknown;
-    const migrated = migratePersonal(json);
-    if (!migrated) return { ok: false, error: '文件格式不支持或版本过新' };
-    return { ok: true, state: migrated };
-  } catch {
-    return { ok: false, error: '不是合法的 JSON 文件' };
-  }
-}
-
 export function isFavorite(state: PersonalState, offerId: string): boolean {
   return state.favorites.includes(offerId);
 }
@@ -100,9 +52,134 @@ export function toggleFavorite(state: PersonalState, offerId: string): PersonalS
 }
 
 export function setClaim(state: PersonalState, offerId: string, claim: ClaimRecord): PersonalState {
-  return { ...state, claims: { ...state.claims, [offerId]: claim } };
+  return {
+    ...state,
+    claims: {
+      ...state.claims,
+      [offerId]: claim,
+    },
+  };
 }
 
 export function getClaim(state: PersonalState, offerId: string): ClaimRecord | undefined {
   return state.claims[offerId];
+}
+
+// ============================================================================
+// Supabase Cloud Data Layer APIs
+// ============================================================================
+
+/**
+ * 从 Supabase 批量加载指定用户的全部收藏与领取状态
+ */
+export async function fetchCloudPersonal(userId: string): Promise<PersonalState> {
+  if (!isSupabaseConfigured || !userId) {
+    return emptyPersonal();
+  }
+
+  try {
+    const [favsRes, claimsRes] = await Promise.all([
+      supabase.from('user_favorites').select('offer_id').eq('user_id', userId),
+      supabase.from('user_claims').select('offer_id, status, claimed_at, notes').eq('user_id', userId),
+    ]);
+
+    const favorites = (favsRes.data || []).map((r: { offer_id: string }) => r.offer_id);
+    const claims: Record<string, ClaimRecord> = {};
+
+    for (const r of (claimsRes.data || []) as Array<{ offer_id: string; status: ClaimStatus; claimed_at: string; notes?: string }>) {
+      claims[r.offer_id] = {
+        status: r.status,
+        claimedAt: r.claimed_at,
+        note: r.notes || undefined,
+      };
+    }
+
+    return {
+      version: 1,
+      favorites,
+      claims,
+    };
+  } catch (err) {
+    console.error('Failed to fetch personal data from Supabase:', err);
+    return emptyPersonal();
+  }
+}
+
+/**
+ * 云端添加收藏
+ */
+export async function addCloudFavorite(userId: string, offerId: string): Promise<{ error: Error | null }> {
+  if (!isSupabaseConfigured || !userId) return { error: null };
+  const { error } = await supabase.from('user_favorites').upsert(
+    { user_id: userId, offer_id: offerId },
+    { onConflict: 'user_id,offer_id' }
+  );
+  return { error: error ? new Error(error.message) : null };
+}
+
+/**
+ * 云端移除收藏
+ */
+export async function removeCloudFavorite(userId: string, offerId: string): Promise<{ error: Error | null }> {
+  if (!isSupabaseConfigured || !userId) return { error: null };
+  const { error } = await supabase
+    .from('user_favorites')
+    .delete()
+    .eq('user_id', userId)
+    .eq('offer_id', offerId);
+  return { error: error ? new Error(error.message) : null };
+}
+
+/**
+ * 云端保存领取状态与备忘录
+ */
+export async function saveCloudClaim(
+  userId: string,
+  offerId: string,
+  claim: ClaimRecord
+): Promise<{ error: Error | null }> {
+  if (!isSupabaseConfigured || !userId) return { error: null };
+  const { error } = await supabase.from('user_claims').upsert(
+    {
+      user_id: userId,
+      offer_id: offerId,
+      status: claim.status,
+      claimed_at: claim.claimedAt || new Date().toISOString(),
+      notes: claim.note || '',
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id,offer_id' }
+  );
+  return { error: error ? new Error(error.message) : null };
+}
+
+/**
+ * 云端删除领取标记
+ */
+export async function deleteCloudClaim(userId: string, offerId: string): Promise<{ error: Error | null }> {
+  if (!isSupabaseConfigured || !userId) return { error: null };
+  const { error } = await supabase
+    .from('user_claims')
+    .delete()
+    .eq('user_id', userId)
+    .eq('offer_id', offerId);
+  return { error: error ? new Error(error.message) : null };
+}
+
+/**
+ * 清空当前用户在云端的所有个人记录
+ */
+export async function clearCloudPersonal(userId: string): Promise<{ error: Error | null }> {
+  if (!isSupabaseConfigured || !userId) return { error: null };
+  try {
+    const [delFavs, delClaims] = await Promise.all([
+      supabase.from('user_favorites').delete().eq('user_id', userId),
+      supabase.from('user_claims').delete().eq('user_id', userId),
+    ]);
+    if (delFavs.error) throw delFavs.error;
+    if (delClaims.error) throw delClaims.error;
+    return { error: null };
+  } catch (err) {
+    return { error: err instanceof Error ? err : new Error('清空云端数据失败') };
+  }
 }

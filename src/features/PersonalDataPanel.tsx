@@ -1,102 +1,69 @@
-import { useRef, useState } from 'react';
-import { Download, Upload, Trash2, UserRound } from 'lucide-react';
+import { useState } from 'react';
+import { Trash2, Cloud, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { toast } from 'sonner';
 import { usePersonal } from '@/lib/usePersonal';
 
 export function PersonalDataPanel() {
-  const { state, clear, exportText, importFromText } = usePersonal();
-  const fileRef = useRef<HTMLInputElement>(null);
-  const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(null);
+  const { state, clear, loading } = usePersonal();
   const [confirmOpen, setConfirmOpen] = useState(false);
-
-  const doExport = () => {
-    const blob = new Blob([exportText()], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `ai-radar-personal-${new Date().toISOString().slice(0, 10)}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success('个人记录已导出');
-  };
-
-  const doImport = async (file: File) => {
-    const text = await file.text();
-    const r = importFromText(text);
-    if (r.ok) {
-      setStatus({ ok: true, msg: '导入成功，已合并到当前浏览器' });
-      toast.success('导入成功');
-    } else {
-      setStatus({ ok: false, msg: r.error ?? '导入失败' });
-      toast.error(r.error ?? '导入失败');
-    }
-  };
 
   const claimed = Object.values(state.claims).filter((c) => c.status === 'claimed').length;
 
   return (
-    <div className="border-t border-edge px-5 py-4 space-y-3">
-      <p className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-        <UserRound className="h-3.5 w-3.5" /> 个人数据（localStorage）
+    <div className="border-t border-[#182338] px-5 py-4 space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-300">
+          <Cloud className="h-3.5 w-3.5 text-blue-400" />
+          <span>云端个人资产</span>
+        </p>
+        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400 border border-emerald-500/20">
+          <ShieldCheck className="h-3 w-3" />
+          多端实时同步
+        </span>
+      </div>
+
+      <p className="text-[11px] leading-4 text-slate-400">
+        收藏 <span className="font-bold text-white">{state.favorites.length}</span> 项 · 已领取 <span className="font-bold text-emerald-400">{claimed}</span> 项 · 已与您的 GitHub 账号绑定并在 Supabase 云端安全持久化
       </p>
-      <p className="text-[11px] leading-4 text-muted-foreground">
-        收藏 {state.favorites.length} 项 · 已领取 {claimed} 项 · 仅保存在当前浏览器，不同设备不自动同步
-      </p>
-      <div className="flex flex-wrap gap-1.5">
-        <Button size="sm" variant="outline" onClick={doExport}>
-          <Download className="h-3 w-3" /> 导出
-        </Button>
-        <Button size="sm" variant="outline" onClick={() => fileRef.current?.click()}>
-          <Upload className="h-3 w-3" /> 导入
-        </Button>
+
+      <div className="flex items-center justify-between pt-1">
+        <span className="text-[10px] text-slate-500 flex items-center gap-1">
+          <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+          {loading ? '正在同步云端…' : '云端同步正常'}
+        </span>
+
         <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
           <DialogTrigger asChild>
-            <Button size="sm" variant="destructive">
-              <Trash2 className="h-3 w-3" /> 清除
+            <Button size="sm" variant="destructive" className="h-7 text-xs bg-rose-600/20 border border-rose-500/30 text-rose-300 hover:bg-rose-600 hover:text-white">
+              <Trash2 className="h-3 w-3 mr-1" /> 清空记录
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="bg-[#101726] border-[#1e2a42] text-white">
             <DialogHeader>
-              <DialogTitle>清除个人记录？</DialogTitle>
-              <DialogDescription>
-                将删除本浏览器中的收藏、领取状态与备注（localStorage），公共数据不受影响。此操作不可撤销。
+              <DialogTitle className="text-white">清空云端个人记录？</DialogTitle>
+              <DialogDescription className="text-slate-400 text-xs">
+                将彻底删除您在云端保存的全部收藏、已领取状态与专属备忘录。公共雷达信源不受任何影响。此操作不可逆。
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter>
-              <Button size="sm" variant="outline" onClick={() => setConfirmOpen(false)}>
+            <DialogFooter className="gap-2">
+              <Button size="sm" variant="outline" onClick={() => setConfirmOpen(false)} className="border-slate-700 text-slate-300">
                 取消
               </Button>
               <Button
                 size="sm"
                 variant="destructive"
                 onClick={() => {
-                  clear();
+                  void clear();
                   setConfirmOpen(false);
-                  setStatus({ ok: true, msg: '已清除个人记录' });
-                  toast.success('已清除个人记录');
                 }}
               >
-                确认清除
+                确认清空
               </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
-      <input
-        ref={fileRef}
-        type="file"
-        accept="application/json,.json"
-        className="hidden"
-        aria-label="导入个人记录文件"
-        onChange={(e) => {
-          const f = e.target.files?.[0];
-          if (f) void doImport(f);
-          e.target.value = '';
-        }}
-      />
-      {status && <p className={`text-[11px] ${status.ok ? 'text-ok' : 'text-bad'}`}>{status.msg}</p>}
     </div>
   );
 }
