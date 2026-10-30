@@ -128,6 +128,13 @@ alter table public.platforms enable row level security;
 drop policy if exists "Public read for platforms" on public.platforms;
 create policy "Public read for platforms" on public.platforms for select using (true);
 
+alter table public.platforms drop constraint if exists chk_platforms_slug_format;
+alter table public.platforms add constraint chk_platforms_slug_format check (slug ~ '^[a-z0-9][a-z0-9-]*$');
+alter table public.platforms drop constraint if exists chk_platforms_canonical_domain_len;
+alter table public.platforms add constraint chk_platforms_canonical_domain_len check (length(canonical_domain) >= 3);
+alter table public.platforms drop constraint if exists chk_platforms_website_url_format;
+alter table public.platforms add constraint chk_platforms_website_url_format check (website_url ~* '^https?://');
+
 
 -- 4.2 活动福利表 (offers)
 create table if not exists public.offers (
@@ -170,6 +177,9 @@ create index if not exists idx_offers_discovered_at on public.offers(discovered_
 alter table public.offers enable row level security;
 drop policy if exists "Public read for offers" on public.offers;
 create policy "Public read for offers" on public.offers for select using (true);
+
+alter table public.offers drop constraint if exists chk_offers_amount_nonnegative;
+alter table public.offers add constraint chk_offers_amount_nonnegative check (amount is null or amount >= 0);
 
 
 -- 4.3 变更事件表 (radar_events)
@@ -271,6 +281,8 @@ declare
   has_diff boolean;
   has_platform_diff boolean;
   target_platform_name text;
+  target_platform_slug text;
+  target_platform_domain text;
   target_platform_desc text;
   target_platform_cat text;
   target_platform_url text;
@@ -313,6 +325,11 @@ begin
         raise exception 'Platform requires non-empty id or slug';
       end if;
 
+      target_platform_slug := coalesce(p->>'slug', target_platform_id);
+      if target_platform_slug !~ '^[a-z0-9][a-z0-9-]*$' then
+        raise exception 'Platform slug is invalid: % (must match ^[a-z0-9][a-z0-9-]*$)', target_platform_slug;
+      end if;
+
       -- 服务端枚举与格式校验
       if (p ? 'category') and (p->>'category' not in ('llm-api', 'agent-platform', 'coding-agent', 'api-relay', 'dev-tool', 'application', 'other')) then
         raise exception 'Invalid platform category: % (platform: %)', p->>'category', target_platform_id;
@@ -322,13 +339,19 @@ begin
       end if;
       if (p ? 'websiteUrl' or p ? 'website_url') then
         target_platform_url := coalesce(p->>'websiteUrl', p->>'website_url');
-        if target_platform_url is not null and target_platform_url !~* '^https?://' then
+        if target_platform_url is not null and target_platform_url !~* '^https?://[a-zA-Z0-9][-a-zA-Z0-9.]*\.[a-zA-Z]{2,}' then
           raise exception 'Invalid platform websiteUrl: % (platform: %)', target_platform_url, target_platform_id;
+        end if;
+      end if;
+      if (p ? 'canonicalDomain' or p ? 'canonical_domain') then
+        target_platform_domain := coalesce(p->>'canonicalDomain', p->>'canonical_domain');
+        if target_platform_domain is not null and length(trim(target_platform_domain)) < 3 then
+          raise exception 'Invalid platform canonicalDomain: % (platform: %)', target_platform_domain, target_platform_id;
         end if;
       end if;
 
       select * into existing_platform from public.platforms
-      where id = target_platform_id or slug = target_platform_id or (canonical_domain <> '' and canonical_domain = coalesce(p->>'canonicalDomain', p->>'canonical_domain'))
+      where id = target_platform_id or slug = target_platform_slug or (canonical_domain <> '' and canonical_domain = coalesce(p->>'canonicalDomain', p->>'canonical_domain'))
       limit 1;
 
       if existing_platform.id is not null then
@@ -336,6 +359,7 @@ begin
         target_platform_name := coalesce(p->>'name', existing_platform.name);
         target_platform_desc := case when (p ? 'description') and (p->>'description' <> '') then p->>'description' else existing_platform.description end;
         target_platform_cat := case when (p ? 'category') then coalesce(p->>'category', existing_platform.category) else existing_platform.category end;
+        target_platform_domain := coalesce(p->>'canonicalDomain', p->>'canonical_domain', existing_platform.canonical_domain);
         target_platform_url := coalesce(p->>'websiteUrl', p->>'website_url', existing_platform.website_url);
         target_platform_trust := case when (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') <> 'unverified' then coalesce(p->>'trustStatus', p->>'trust_status') else existing_platform.trust_status end;
         target_platform_logo := case when (p ? 'logoUrl' or p ? 'logo_url') then coalesce(p->>'logoUrl', p->>'logo_url') else existing_platform.logo_url end;
@@ -344,6 +368,7 @@ begin
         has_platform_diff := (target_platform_name is distinct from existing_platform.name)
           or (target_platform_desc is distinct from existing_platform.description)
           or (target_platform_cat is distinct from existing_platform.category)
+          or (target_platform_domain is distinct from existing_platform.canonical_domain)
           or (target_platform_url is distinct from existing_platform.website_url)
           or (target_platform_trust is distinct from existing_platform.trust_status)
           or (target_platform_logo is distinct from existing_platform.logo_url);
@@ -353,6 +378,7 @@ begin
             name = target_platform_name,
             description = target_platform_desc,
             category = target_platform_cat,
+            canonical_domain = target_platform_domain,
             website_url = target_platform_url,
             last_checked_at = coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
             trust_status = target_platform_trust,
@@ -367,10 +393,15 @@ begin
           where id = existing_platform.id;
         end if;
       else
-        -- 新建平台分支：强制要求有效 websiteUrl
+        -- 新建平台分支：强制要求有效 websiteUrl 和 canonicalDomain
         target_platform_url := coalesce(p->>'websiteUrl', p->>'website_url');
-        if target_platform_url is null or trim(target_platform_url) = '' or target_platform_url !~* '^https?://' then
+        if target_platform_url is null or trim(target_platform_url) = '' or target_platform_url !~* '^https?://[a-zA-Z0-9][-a-zA-Z0-9.]*\.[a-zA-Z]{2,}' then
           raise exception 'Creating platform % requires a valid websiteUrl starting with http:// or https:// (got: %)', target_platform_id, coalesce(target_platform_url, 'null');
+        end if;
+
+        target_platform_domain := coalesce(p->>'canonicalDomain', p->>'canonical_domain');
+        if target_platform_domain is null or length(trim(target_platform_domain)) < 3 then
+          raise exception 'Creating platform % requires canonicalDomain with at least 3 characters (got: %)', target_platform_id, coalesce(target_platform_domain, 'null');
         end if;
 
         insert into public.platforms (
@@ -380,8 +411,8 @@ begin
         ) values (
           target_platform_id,
           coalesce(p->>'name', target_platform_id),
-          coalesce(p->>'slug', target_platform_id),
-          coalesce(p->>'canonicalDomain', p->>'canonical_domain', ''),
+          target_platform_slug,
+          target_platform_domain,
           target_platform_url,
           coalesce(p->>'description', ''),
           coalesce(p->>'category', 'llm-api'),
@@ -449,17 +480,25 @@ begin
         raise exception 'Invalid verificationStatus: %', coalesce(o->>'verificationStatus', o->>'verification_status');
       end if;
 
+      -- 额度非负校验
+      if (o ? 'amount') and (o->>'amount' is not null) and (o->>'amount' <> 'null') and ((o->>'amount')::numeric < 0) then
+        raise exception 'Offer amount cannot be negative: % (offer: %)', o->>'amount', coalesce(target_offer_id, incoming_title);
+      end if;
+
       -- 证据 sources 结构校验（若传入）
       if (o ? 'sources') then
         if jsonb_typeof(o->'sources') <> 'array' then
           raise exception 'Offer sources must be an array (offer: %)', coalesce(target_offer_id, incoming_title);
         end if;
         for src_item in select * from jsonb_array_elements(o->'sources') loop
-          if (src_item->>'url' is null or trim(src_item->>'url') = '') then
-            raise exception 'Source requires non-empty url (offer: %)', coalesce(target_offer_id, incoming_title);
+          if (src_item->>'url' is null or trim(src_item->>'url') = '' or src_item->>'url' !~* '^https?://[a-zA-Z0-9][-a-zA-Z0-9.]*\.[a-zA-Z]{2,}') then
+            raise exception 'Source requires a valid http(s) url (got: %, offer: %)', coalesce(src_item->>'url', 'null'), coalesce(target_offer_id, incoming_title);
           end if;
-          if (src_item ? 'kind') and (src_item->>'kind' not in ('official', 'community', 'forum', 'other')) then
-            raise exception 'Invalid source kind: %', src_item->>'kind';
+          if (src_item->>'label' is null or trim(src_item->>'label') = '') then
+            raise exception 'Source requires non-empty label (offer: %)', coalesce(target_offer_id, incoming_title);
+          end if;
+          if (src_item->>'kind' is null or src_item->>'kind' not in ('official', 'community', 'forum', 'other')) then
+            raise exception 'Source requires valid kind (official, community, forum, other; got: %, offer: %)', coalesce(src_item->>'kind', 'null'), coalesce(target_offer_id, incoming_title);
           end if;
         end loop;
       end if;
@@ -674,6 +713,9 @@ begin
         if not (o ? 'accessType' or o ? 'access_type') then
           raise exception 'New offer requires explicit accessType (offer: %)', incoming_title;
         end if;
+        if not (o ? 'amount') then
+          raise exception 'New offer requires explicit amount (numeric value >= 0 or null) (offer: %)', incoming_title;
+        end if;
         if not (o ? 'unit') then
           raise exception 'New offer requires explicit unit (offer: %)', incoming_title;
         end if;
@@ -761,6 +803,17 @@ begin
         if not (end_item ? 'sources') or jsonb_typeof(end_item->'sources') <> 'array' or jsonb_array_length(end_item->'sources') = 0 then
           raise exception 'Ending offer % requires at least one source (sources array cannot be empty)', target_offer_id;
         end if;
+        for src_item in select * from jsonb_array_elements(end_item->'sources') loop
+          if (src_item->>'url' is null or trim(src_item->>'url') = '' or src_item->>'url' !~* '^https?://[a-zA-Z0-9][-a-zA-Z0-9.]*\.[a-zA-Z]{2,}') then
+            raise exception 'Source in ends requires a valid http(s) url (got: %, offer: %)', coalesce(src_item->>'url', 'null'), target_offer_id;
+          end if;
+          if (src_item->>'label' is null or trim(src_item->>'label') = '') then
+            raise exception 'Source in ends requires non-empty label (offer: %)', target_offer_id;
+          end if;
+          if (src_item->>'kind' is null or src_item->>'kind' not in ('official', 'community', 'forum', 'other')) then
+            raise exception 'Source in ends requires valid kind (official, community, forum, other; got: %, offer: %)', coalesce(src_item->>'kind', 'null'), target_offer_id;
+          end if;
+        end loop;
 
         select * into existing_rec from public.offers where id = target_offer_id limit 1;
         if existing_rec.id is not null and existing_rec.status <> 'ended' then
@@ -869,9 +922,9 @@ begin
         coalesce((run_item->>'searchBCompleted')::boolean, (run_item->>'search_b_completed')::boolean, false),
         coalesce((run_item->>'sourcesChecked')::integer, 0),
         coalesce((run_item->>'candidatesFound')::integer, 0),
-        coalesce((run_item->>'offersCreated')::integer, 0),
-        coalesce((run_item->>'offersUpdated')::integer, 0),
-        coalesce((run_item->>'offersExpired')::integer, 0),
+        coalesce((run_item->>'offersCreated')::integer, offers_created),
+        coalesce((run_item->>'offersUpdated')::integer, offers_updated),
+        coalesce((run_item->>'offersExpired')::integer, offers_ended),
         coalesce(run_item->'errors', '[]'::jsonb),
         run_item->>'repositoryCommit',
         run_item->>'note'

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { patchSchema, offerSchema, platformSchema } from '../../src/lib/data/schema';
+import { patchSchema, offerSchema, platformSchema, sourceSchema } from '../../src/lib/data/schema';
 import { RUN_STATUSES, OFFER_STATUSES } from '../../src/lib/data/enums';
 import { claimRecordSchema } from '../../src/lib/personal';
 
@@ -184,5 +184,110 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
     };
 
     expect(() => platformSchema.parse(invalidPlatform)).toThrow();
+  });
+
+  it('patchSchema 能够兼容单个 run 并自动归一化为 runs 数组', () => {
+    const patchWithSingleRun = {
+      schemaVersion: 1,
+      generatedAt: '2026-10-30T18:00:00Z',
+      run: {
+        id: 'run_legacy_single',
+        startedAt: '2026-10-30T18:00:00Z',
+        completedAt: '2026-10-30T18:02:00Z',
+        status: 'success' as const,
+        searchACompleted: true,
+        searchBCompleted: true,
+      },
+    };
+
+    const parsed = patchSchema.parse(patchWithSingleRun);
+    expect(parsed.runs).toHaveLength(1);
+    expect(parsed.runs[0]?.id).toBe('run_legacy_single');
+  });
+
+  it('sourceSchema 强制要求合法 URL、非空 label 与有效 kind 枚举', () => {
+    // 缺失 label
+    expect(() =>
+      sourceSchema.parse({
+        url: 'https://example.com/source',
+        label: '',
+        kind: 'official',
+      }),
+    ).toThrow();
+
+    // 非法 kind
+    expect(() =>
+      sourceSchema.parse({
+        url: 'https://example.com/source',
+        label: 'Source',
+        kind: 'unsupported-kind',
+      }),
+    ).toThrow();
+
+    // 非 http(s) URL
+    expect(() =>
+      sourceSchema.parse({
+        url: 'ftp://example.com/source',
+        label: 'Source',
+        kind: 'official',
+      }),
+    ).toThrow();
+  });
+
+  it('platformSchema 强制 slug 必须只包含小写字母数字连字符且 canonicalDomain 长度至少为 3', () => {
+    const invalidSlug = {
+      id: 'plat_invalid_slug',
+      name: 'Platform',
+      slug: 'Invalid_Slug!',
+      canonicalDomain: 'valid.com',
+      websiteUrl: 'https://valid.com',
+      firstDiscoveredAt: '2026-10-30T18:00:00Z',
+      lastCheckedAt: '2026-10-30T18:00:00Z',
+      category: 'llm-api' as const,
+      trustStatus: 'official' as const,
+    };
+    expect(() => platformSchema.parse(invalidSlug)).toThrow();
+
+    const shortDomain = {
+      id: 'plat_short_domain',
+      name: 'Platform',
+      slug: 'valid-slug',
+      canonicalDomain: 'ab',
+      websiteUrl: 'https://valid.com',
+      firstDiscoveredAt: '2026-10-30T18:00:00Z',
+      lastCheckedAt: '2026-10-30T18:00:00Z',
+      category: 'llm-api' as const,
+      trustStatus: 'official' as const,
+    };
+    expect(() => platformSchema.parse(shortDomain)).toThrow();
+  });
+
+  it('offerSchema 严格拒绝负数额度 (amount >= 0)', () => {
+    const negativeAmountOffer = {
+      id: 'off_negative_amount',
+      platformId: 'test-platform',
+      title: '负数额度活动',
+      accessType: 'api' as const,
+      amount: -100,
+      unit: 'USD' as const,
+      amountType: 'one-time' as const,
+      resetInterval: 'none' as const,
+      billingRequirements: 'none' as const,
+      identityVerification: 'none' as const,
+      apiCompatibility: 'openai' as const,
+      status: 'active' as const,
+      verificationStatus: 'official' as const,
+      discoveredAt: '2026-10-30T18:00:00Z',
+      lastVerifiedAt: '2026-10-30T18:00:00Z',
+      sources: [
+        {
+          url: 'https://example.com/source',
+          label: '来源',
+          kind: 'official' as const,
+        },
+      ],
+    };
+
+    expect(() => offerSchema.parse(negativeAmountOffer)).toThrow();
   });
 });

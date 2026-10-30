@@ -139,15 +139,28 @@ export const endOfferPatchSchema = z.object({
 });
 export type EndOfferPatch = z.infer<typeof endOfferPatchSchema>;
 
-export const patchSchema = z.object({
-  schemaVersion: z.literal(SCHEMA_VERSION),
-  generatedAt: isoDate,
-  source: z.string().default('chatgpt-automation'),
-  note: z.string().optional(),
-  platforms: z.array(platformSchema).default([]),
-  upserts: z.array(offerPatchSchema).default([]),
-  ends: z.array(endOfferPatchSchema).default([]),
-  events: z.array(eventSchema).default([]),
-  runs: z.array(monitorRunSchema).default([]),
-});
+export const patchSchema = z
+  .object({
+    schemaVersion: z.literal(SCHEMA_VERSION),
+    generatedAt: isoDate,
+    source: z.string().default('chatgpt-automation'),
+    note: z.string().optional(),
+    platforms: z.array(platformSchema).default([]),
+    upserts: z.array(offerPatchSchema).default([]),
+    ends: z.array(endOfferPatchSchema).default([]),
+    events: z.array(eventSchema).default([]),
+    runs: z.array(monitorRunSchema).default([]),
+    run: monitorRunSchema.optional(),
+  })
+  .transform((data) => {
+    const runs = [...data.runs];
+    if (data.run && runs.length === 0) {
+      runs.push(data.run);
+    }
+    const { run: _, ...rest } = data;
+    return {
+      ...rest,
+      runs,
+    };
+  });
 export type RadarPatch = z.infer<typeof patchSchema>;

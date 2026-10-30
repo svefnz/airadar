@@ -86,6 +86,7 @@ select public.ingest_radar_batch('{ ...补丁数据... }'::jsonb);
 ```json
 {
   "schemaVersion": 1,
+  "generatedAt": "2026-10-30T18:00:00Z",
   "platforms": [
     {
       "id": "deepseek",
@@ -139,20 +140,22 @@ select public.ingest_radar_batch('{ ...补丁数据... }'::jsonb);
       ]
     }
   ],
-  "run": {
-    "id": "run_20261030_180000",
-    "startedAt": "2026-10-30T18:00:00Z",
-    "completedAt": "2026-10-30T18:03:00Z",
-    "status": "success",
-    "searchACompleted": true,
-    "searchBCompleted": true,
-    "sourcesChecked": 16,
-    "candidatesFound": 2,
-    "offersCreated": 1,
-    "offersUpdated": 0,
-    "offersExpired": 0,
-    "note": "例行巡检完成"
-  }
+  "runs": [
+    {
+      "id": "run_20261030_180000",
+      "startedAt": "2026-10-30T18:00:00Z",
+      "completedAt": "2026-10-30T18:03:00Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 16,
+      "candidatesFound": 2,
+      "offersCreated": 1,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "note": "例行巡检完成"
+    }
+  ]
 }
 ```
 
