@@ -36,6 +36,11 @@ drop policy if exists "Users can delete their own favorites" on public.user_favo
 create policy "Users can manage their own favorites" on public.user_favorites
   for all using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
 
+-- 撤销不必要的危险特权（TRUNCATE/TRIGGER/REFERENCES），遵循最小特权原则
+revoke truncate, trigger, references on public.user_favorites from public, anon, authenticated;
+grant select, insert, update, delete on public.user_favorites to authenticated;
+grant all on public.user_favorites to service_role;
+
 
 -- 2. 用户个人领取状态与备忘录表 (user_claims)
 -- 解耦备注与领取状态：status 允许为 NULL，claimed_at 允许为 NULL
@@ -70,6 +75,11 @@ drop policy if exists "Users can update their own claims" on public.user_claims;
 drop policy if exists "Users can delete their own claims" on public.user_claims;
 create policy "Users can manage their own claims" on public.user_claims
   for all using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+
+-- 撤销不必要的危险特权（TRUNCATE/TRIGGER/REFERENCES），遵循最小特权原则
+revoke truncate, trigger, references on public.user_claims from public, anon, authenticated;
+grant select, insert, update, delete on public.user_claims to authenticated;
+grant all on public.user_claims to service_role;
 
 
 -- 3. 原子性事务清空个人所有数据 RPC (固定 search_path 与权限收紧)
@@ -269,10 +279,10 @@ declare
   now_ts timestamptz := now();
   claim_role text;
 begin
-  -- 严格权限防御：仅允许 service_role 身份执行写入，严禁 NULL、anon 或普通登录用户执行
+  -- 严格权限防御：允许受信任的服务端执行角色（service_role JWT 角色、或 postgres / supabase_admin 直连角色），严禁 NULL、anon 或普通用户执行
   claim_role := coalesce(nullif(current_setting('request.jwt.claims', true), '')::jsonb->>'role', current_user);
-  if claim_role is null or claim_role <> 'service_role' then
-    raise exception 'Permission denied: service_role required for ingest_radar_batch (got: %)', claim_role;
+  if claim_role is null or claim_role not in ('service_role', 'postgres', 'supabase_admin') then
+    raise exception 'Permission denied: trusted server role required for ingest_radar_batch (got: %)', claim_role;
   end if;
 
   -- 校验 Schema 版本（如有提供）
@@ -345,21 +355,22 @@ begin
       incoming_title := trim(coalesce(o->>'title', ''));
       target_offer_id := o->>'id';
 
-      -- 服务端 Schema 严格校验
-      if target_platform_id is null or target_platform_id = '' then
-        raise exception 'Offer missing required platformId';
+      -- 严格稳定身份匹配：
+      -- 若提供了 ID 则优先按 ID 精确匹配；若未提供 ID，则综合（平台 + 接入方式 + 额度单位 + 重置周期 + 标题规范化）复合去重
+      existing_rec := null;
+      if target_offer_id is not null and trim(target_offer_id) <> '' then
+        select * into existing_rec from public.offers where id = target_offer_id limit 1;
+      elsif target_platform_id is not null and incoming_title <> '' then
+        select * into existing_rec from public.offers
+        where platform_id = target_platform_id
+          and access_type = coalesce(o->>'accessType', o->>'access_type', 'api')
+          and unit = coalesce(o->>'unit', 'Credit')
+          and reset_interval = coalesce(o->>'resetInterval', o->>'reset_interval', 'none')
+          and lower(trim(title)) = lower(trim(incoming_title))
+        limit 1;
       end if;
-      if not exists (select 1 from public.platforms where id = target_platform_id or slug = target_platform_id) then
-        raise exception 'Platform not found: %', target_platform_id;
-      end if;
-      -- 规范为真实 platform.id
-      select id into target_platform_id from public.platforms where id = target_platform_id or slug = target_platform_id limit 1;
 
-      if incoming_title = '' then
-        raise exception 'Offer title cannot be empty (platform: %)', target_platform_id;
-      end if;
-
-      -- 严格枚举值校验
+      -- 严格枚举值校验（若传入该字段，绝不允许非法值）
       if (o ? 'accessType' or o ? 'access_type') and coalesce(o->>'accessType', o->>'access_type') not in ('api', 'client', 'web', 'unknown') then
         raise exception 'Invalid accessType: %', coalesce(o->>'accessType', o->>'access_type');
       end if;
@@ -388,14 +399,14 @@ begin
         raise exception 'Invalid verificationStatus: %', coalesce(o->>'verificationStatus', o->>'verification_status');
       end if;
 
-      -- 证据 sources 结构校验
+      -- 证据 sources 结构校验（若传入）
       if (o ? 'sources') then
         if jsonb_typeof(o->'sources') <> 'array' then
-          raise exception 'Offer sources must be an array (platform: %, title: %)', target_platform_id, incoming_title;
+          raise exception 'Offer sources must be an array (offer: %)', coalesce(target_offer_id, incoming_title);
         end if;
         for src_item in select * from jsonb_array_elements(o->'sources') loop
           if (src_item->>'url' is null or trim(src_item->>'url') = '') then
-            raise exception 'Source requires non-empty url (offer: %)', incoming_title;
+            raise exception 'Source requires non-empty url (offer: %)', coalesce(target_offer_id, incoming_title);
           end if;
           if (src_item ? 'kind') and (src_item->>'kind' not in ('official', 'community', 'forum', 'other')) then
             raise exception 'Invalid source kind: %', src_item->>'kind';
@@ -403,23 +414,9 @@ begin
         end loop;
       end if;
 
-      -- 严格稳定身份匹配：
-      -- 若提供了 ID 则优先且仅按 ID 精确匹配；若未提供 ID，则综合（平台 + 接入方式 + 额度单位 + 重置周期 + 标题规范化）复合去重，绝不错误合并不同活动
-      existing_rec := null;
-      if target_offer_id is not null and trim(target_offer_id) <> '' then
-        select * into existing_rec from public.offers where id = target_offer_id limit 1;
-      else
-        select * into existing_rec from public.offers
-        where platform_id = target_platform_id
-          and access_type = coalesce(o->>'accessType', o->>'access_type', 'api')
-          and unit = coalesce(o->>'unit', 'Credit')
-          and reset_interval = coalesce(o->>'resetInterval', o->>'reset_interval', 'none')
-          and lower(trim(title)) = lower(trim(incoming_title))
-        limit 1;
-      end if;
-
       if existing_rec.id is not null then
-        -- 证据合并：保留历史证据并按 URL 去重合并新证据
+        -- 【分支 A：现有活动局部更新 (Patch)】
+        -- 允许只提交变更字段，未提交字段沿用数据库中已有记录，不强制要求 title / platformId
         merged_sources := coalesce(existing_rec.sources, '[]'::jsonb);
         if (o ? 'sources') and jsonb_typeof(o->'sources') = 'array' then
           for src_item in select * from jsonb_array_elements(o->'sources') loop
@@ -429,8 +426,7 @@ begin
           end loop;
         end if;
 
-        -- 提取目标字段值（只针对明确提交的字段赋值，其余保留现有数据库历史值）
-        new_title := case when (o ? 'title') then o->>'title' else existing_rec.title end;
+        new_title := case when (o ? 'title') and trim(o->>'title') <> '' then trim(o->>'title') else existing_rec.title end;
         new_models := case when (o ? 'models') then coalesce(o->'models', '[]'::jsonb) else existing_rec.models end;
         new_access_type := case when (o ? 'accessType' or o ? 'access_type') then coalesce(o->>'accessType', o->>'access_type') else existing_rec.access_type end;
         new_amount := case when (o ? 'amount') then (case when o->>'amount' is null or o->>'amount' = 'null' then null else (o->>'amount')::numeric end) else existing_rec.amount end;
@@ -453,17 +449,17 @@ begin
 
         has_diff := false;
 
-        -- 差异比对 1: 额度或单位变更
+        -- 差异比对 1: 额度或单位变更（清晰区分 null 为未知额度，绝不格式化为 0）
         if (new_amount is distinct from existing_rec.amount) or (new_unit is distinct from existing_rec.unit) then
           has_diff := true;
           insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, previous_value, current_value, sources, description)
           values (
             'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
             existing_rec.id, existing_rec.platform_id, 'amount-changed', now_ts, 'amount',
-            coalesce(existing_rec.amount::text, '0') || ' ' || existing_rec.unit,
-            coalesce(new_amount::text, '0') || ' ' || new_unit,
+            coalesce(existing_rec.amount::text, '未知') || ' ' || existing_rec.unit,
+            coalesce(new_amount::text, '未知') || ' ' || new_unit,
             coalesce(o->'sources', '[]'::jsonb),
-            '额度由 ' || coalesce(existing_rec.amount::text, '未确定') || ' 调整为 ' || coalesce(new_amount::text, '未确定')
+            '额度由 ' || coalesce(existing_rec.amount::text, '未确认') || ' 调整为 ' || coalesce(new_amount::text, '未确认')
           );
           events_count := events_count + 1;
         end if;
@@ -603,9 +599,44 @@ begin
           offers_unchanged := offers_unchanged + 1;
         end if;
       else
-        -- 新增活动：必须具备至少 1 个证据来源，拒绝凭空臆造
+        -- 【分支 B：新增活动 (Insert)】
+        -- 严格要求提供完整规格，拒绝静默赋予默认值造成不完整数据
+        if target_platform_id is null or target_platform_id = '' then
+          raise exception 'New offer missing required platformId';
+        end if;
+        if not exists (select 1 from public.platforms where id = target_platform_id or slug = target_platform_id) then
+          raise exception 'Platform not found: %', target_platform_id;
+        end if;
+        select id into target_platform_id from public.platforms where id = target_platform_id or slug = target_platform_id limit 1;
+
+        if incoming_title = '' then
+          raise exception 'New offer requires non-empty title (platform: %)', target_platform_id;
+        end if;
+
         if not (o ? 'sources') or jsonb_typeof(o->'sources') <> 'array' or jsonb_array_length(o->'sources') = 0 then
           raise exception 'New offer requires at least one source (platform: %, title: %)', target_platform_id, incoming_title;
+        end if;
+
+        if not (o ? 'accessType' or o ? 'access_type') then
+          raise exception 'New offer requires explicit accessType (offer: %)', incoming_title;
+        end if;
+        if not (o ? 'unit') then
+          raise exception 'New offer requires explicit unit (offer: %)', incoming_title;
+        end if;
+        if not (o ? 'amountType' or o ? 'amount_type') then
+          raise exception 'New offer requires explicit amountType (offer: %)', incoming_title;
+        end if;
+        if not (o ? 'resetInterval' or o ? 'reset_interval') then
+          raise exception 'New offer requires explicit resetInterval (offer: %)', incoming_title;
+        end if;
+        if not (o ? 'billingRequirements' or o ? 'billing_requirements') then
+          raise exception 'New offer requires explicit billingRequirements (offer: %)', incoming_title;
+        end if;
+        if not (o ? 'identityVerification' or o ? 'identity_verification') then
+          raise exception 'New offer requires explicit identityVerification (offer: %)', incoming_title;
+        end if;
+        if not (o ? 'apiCompatibility' or o ? 'api_compatibility') then
+          raise exception 'New offer requires explicit apiCompatibility (offer: %)', incoming_title;
         end if;
 
         if target_offer_id is null or trim(target_offer_id) = '' then
@@ -624,19 +655,19 @@ begin
           target_platform_id,
           incoming_title,
           coalesce(o->'models', '[]'::jsonb),
-          coalesce(o->>'accessType', o->>'access_type', 'api'),
+          coalesce(o->>'accessType', o->>'access_type'),
           case when (o->>'amount') is not null and (o->>'amount') <> 'null' then (o->>'amount')::numeric else null end,
-          coalesce(o->>'unit', 'Credit'),
-          coalesce(o->>'amountType', o->>'amount_type', 'one-time'),
-          coalesce(o->>'resetInterval', o->>'reset_interval', 'none'),
+          o->>'unit',
+          coalesce(o->>'amountType', o->>'amount_type'),
+          coalesce(o->>'resetInterval', o->>'reset_interval'),
           coalesce(o->'claimConditions', o->'claim_conditions', '[]'::jsonb),
-          coalesce(o->>'billingRequirements', o->>'billing_requirements', 'none'),
-          coalesce(o->>'identityVerification', o->>'identity_verification', 'none'),
+          coalesce(o->>'billingRequirements', o->>'billing_requirements'),
+          coalesce(o->>'identityVerification', o->>'identity_verification'),
           coalesce(o->'regionRestrictions', o->'region_restrictions', '[]'::jsonb),
           coalesce(o->>'rateLimits', o->>'rate_limits', ''),
           case when (o->>'contextWindow') is not null and (o->>'contextWindow') <> 'null' then (o->>'contextWindow')::integer else null end,
           case when (o->>'toolCalling') is not null and (o->>'toolCalling') <> 'null' then (o->>'toolCalling')::boolean else null end,
-          coalesce(o->>'apiCompatibility', o->>'api_compatibility', 'openai'),
+          coalesce(o->>'apiCompatibility', o->>'api_compatibility'),
           case when o ? 'startAt' then (o->>'startAt')::timestamptz else null end,
           case when o ? 'endAt' then (o->>'endAt')::timestamptz else null end,
           case when o ? 'creditExpiresAt' then (o->>'creditExpiresAt')::timestamptz else null end,
@@ -645,7 +676,7 @@ begin
           coalesce((o->>'discoveredAt')::timestamptz, (o->>'discovered_at')::timestamptz, now_ts),
           coalesce((o->>'lastVerifiedAt')::timestamptz, (o->>'last_verified_at')::timestamptz, now_ts),
           coalesce(o->>'officialUrl', o->>'official_url'),
-          coalesce(o->'sources', '[]'::jsonb),
+          o->'sources',
           coalesce((o->>'demo')::boolean, false),
           now_ts, now_ts
         );
@@ -659,7 +690,7 @@ begin
           'offer-created',
           now_ts,
           '新增活动「' || incoming_title || '」',
-          coalesce(o->'sources', '[]'::jsonb)
+          o->'sources'
         );
         offers_created := offers_created + 1;
         events_count := events_count + 1;
@@ -728,6 +759,11 @@ begin
       raise exception 'Monitor run requires valid explicit status: success | partial | failed';
     end if;
 
+    -- 状态约束：标记为 success 时，必须确认已同时完成双向检索 (Search A + Search B)
+    if (run_item->>'status' = 'success') and not (coalesce((run_item->>'searchACompleted')::boolean, (run_item->>'search_a_completed')::boolean, false) and coalesce((run_item->>'searchBCompleted')::boolean, (run_item->>'search_b_completed')::boolean, false)) then
+      raise exception 'Monitor run marked as success requires both searchACompleted and searchBCompleted to be true';
+    end if;
+
     insert into public.monitor_runs (
       id, started_at, completed_at, status, search_a_completed, search_b_completed,
       sources_checked, candidates_found, offers_created, offers_updated,
@@ -755,6 +791,10 @@ begin
     for run_item in select * from jsonb_array_elements(patch->'runs') loop
       if not (run_item ? 'status') or (run_item->>'status' not in ('success', 'partial', 'failed')) then
         raise exception 'Monitor run requires valid explicit status: success | partial | failed';
+      end if;
+
+      if (run_item->>'status' = 'success') and not (coalesce((run_item->>'searchACompleted')::boolean, (run_item->>'search_a_completed')::boolean, false) and coalesce((run_item->>'searchBCompleted')::boolean, (run_item->>'search_b_completed')::boolean, false)) then
+        raise exception 'Monitor run marked as success requires both searchACompleted and searchBCompleted to be true';
       end if;
 
       insert into public.monitor_runs (
@@ -795,6 +835,6 @@ begin
 end;
 $$ language plpgsql security definer;
 
--- 权限完全收紧：仅赋予 service_role 调用权限，彻底阻断匿名与普通用户
+-- 权限完全收紧：仅赋予受信任角色调用权限，彻底阻断匿名与普通登录用户
 revoke all on function public.ingest_radar_batch(jsonb) from public, anon, authenticated;
-grant execute on function public.ingest_radar_batch(jsonb) to service_role;
+grant execute on function public.ingest_radar_batch(jsonb) to service_role, postgres;

@@ -191,6 +191,7 @@ function applyOfferPatch(data: RadarData, patch: OfferPatch, now: string, summar
   }
 
   // 新建
+  if (!patch.platformId) throw new Error('创建新活动缺少必需字段 platformId');
   if (!patch.title) throw new Error(`创建活动缺少 title (platformId=${patch.platformId})`);
   const key = offerDedupeKey({
     platformDomain: platform.canonicalDomain,

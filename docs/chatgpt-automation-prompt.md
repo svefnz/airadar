@@ -60,9 +60,9 @@
 
 ## 4. 写入协议（调用 Supabase RPC 接口）
 
-完成搜索并核实后，构造增量补丁（Patch），直接调用 Supabase REST RPC 接口：
+完成搜索并核实后，构造增量补丁（Patch）。根据你当前连接器可用的工具，选择以下**任一种**方式调用：
 
-### 4.1 接口请求规范
+### 方式 A：HTTP REST API 调用（推荐）
 - **Method**：`POST`
 - **URL**：`https://<YOUR_PROJECT_ID>.supabase.co/rest/v1/rpc/ingest_radar_batch`
 - **Headers**：
@@ -71,102 +71,105 @@
   apikey: <SUPABASE_SERVICE_ROLE_KEY>
   Authorization: Bearer <SUPABASE_SERVICE_ROLE_KEY>
   ```
-- **Body 格式**：
+- **Body**：
+  ```json
+  { "patch": { ...补丁数据... } }
+  ```
+
+### 方式 B：SQL 工具直连调用（若使用 Supabase SQL 执行工具）
+直接执行 SQL：
+```sql
+select public.ingest_radar_batch('{ ...补丁数据... }'::jsonb);
+```
+
+### 4.1 补丁数据结构（Patch Payload）
 ```json
 {
-  "patch": {
-    "schemaVersion": 1,
-    "platforms": [
-      {
-        "id": "deepseek",
-        "name": "DeepSeek",
-        "slug": "deepseek",
-        "canonicalDomain": "deepseek.com",
-        "websiteUrl": "https://www.deepseek.com",
-        "description": "国产开源高性价比大模型",
-        "category": "llm-api",
-        "trustStatus": "official"
-      }
-    ],
-    "upserts": [
-      {
-        "id": "off_deepseek_free_tokens",
-        "platformId": "deepseek",
-        "title": "新用户注册赠送 500 万 Tokens",
-        "models": ["deepseek-chat", "deepseek-coder"],
-        "accessType": "api",
-        "amount": 5000000,
-        "unit": "Token",
-        "amountType": "one-time",
-        "resetInterval": "none",
-        "billingRequirements": "none",
-        "identityVerification": "none",
-        "regionRestrictions": [],
-        "apiCompatibility": "openai",
-        "status": "active",
-        "verificationStatus": "official",
-        "officialUrl": "https://platform.deepseek.com",
-        "sources": [
-          {
-            "url": "https://platform.deepseek.com/pricing",
-            "label": "DeepSeek 官方新手赠额说明",
-            "kind": "official"
-          }
-        ]
-      }
-    ],
-    "ends": [
-      {
-        "offerId": "off_some_expired_id",
-        "reason": "官方宣布活动已截止"
-      }
-    ],
-    "run": {
-      "id": "run_20261030_180000",
-      "startedAt": "2026-10-30T18:00:00Z",
-      "completedAt": "2026-10-30T18:03:00Z",
-      "status": "success",
-      "searchACompleted": true,
-      "searchBCompleted": true,
-      "sourcesChecked": 16,
-      "candidatesFound": 2,
-      "offersCreated": 1,
-      "offersUpdated": 0,
-      "offersExpired": 0,
-      "note": "例行巡检完成"
+  "schemaVersion": 1,
+  "platforms": [
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "slug": "deepseek",
+      "canonicalDomain": "deepseek.com",
+      "websiteUrl": "https://www.deepseek.com",
+      "description": "国产开源高性价比大模型",
+      "category": "llm-api",
+      "trustStatus": "official"
     }
+  ],
+  "upserts": [
+    {
+      "id": "off_deepseek_free_tokens",
+      "platformId": "deepseek",
+      "title": "新用户注册赠送 500 万 Tokens",
+      "models": ["deepseek-chat", "deepseek-coder"],
+      "accessType": "api",
+      "amount": 5000000,
+      "unit": "Token",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://platform.deepseek.com",
+      "sources": [
+        {
+          "url": "https://platform.deepseek.com/pricing",
+          "label": "DeepSeek 官方新手赠额说明",
+          "kind": "official"
+        }
+      ]
+    }
+  ],
+  "ends": [
+    {
+      "offerId": "off_some_expired_id",
+      "reason": "官方宣布活动已截止"
+    }
+  ],
+  "run": {
+    "id": "run_20261030_180000",
+    "startedAt": "2026-10-30T18:00:00Z",
+    "completedAt": "2026-10-30T18:03:00Z",
+    "status": "success",
+    "searchACompleted": true,
+    "searchBCompleted": true,
+    "sourcesChecked": 16,
+    "candidatesFound": 2,
+    "offersCreated": 1,
+    "offersUpdated": 0,
+    "offersExpired": 0,
+    "note": "例行巡检完成"
   }
 }
 ```
 
 ### 4.2 数据库后端自动处理机制
-1. **幂等更新**：数据库会自动比对字段，只有字段确实变动才算更新并累加 `offers_updated`；未变动时只记录 `offers_unchanged`，不产生脏事件；
-2. **自动生成变更事件**：若现有活动的额度、状态、模型或截止时间变动，数据库会自动向 `radar_events` 表生成对应的差异事件；
-3. **活动下线**：`ends` 列表中的活动会自动将状态更新为 `'ended'`；
-4. **信源证据合并**：若新补丁提交了新证据，数据库会自动与历史证据按 URL 去重合并，完整保留溯源链路。
+1. **现有活动支持局部更新**：已存在 ID 的活动允许只提交变更字段，未提交字段安全保留历史值；
+2. **新增记录严格校验**：新增活动强制要求提供完整规格与至少一条有效证据，严禁无来源录入；
+3. **幂等更新**：数据库会自动比对字段，只有字段确实变动才算更新并累加 `offers_updated`；未变动时只记录 `offers_unchanged`，不产生脏事件；
+4. **运行状态校验**：监控记录标记为 `status = 'success'` 时，必须确认 `searchACompleted` 与 `searchBCompleted` 均为 `true`，否则拒绝写入；
+5. **活动下线**：`ends` 列表中的活动会自动将状态更新为 `'ended'`；
+6. **信源证据合并**：若新补丁提交了新证据，数据库会自动与历史证据按 URL 去重合并，完整保留溯源链路。
 
 ---
 
-## 5. 触发 GitHub Pages 重新构建部署（标准闭环流程）
+## 5. 触发 GitHub Pages 重新构建部署（双重保障）
 
-在成功调用 Supabase RPC 写入后，检查 RPC 返回结果中的变动计数：
-若 `(platforms_created + platforms_updated + offers_created + offers_updated + offers_ended) > 0`，立即调用 GitHub API 触发页面拉取最新数据并重新构建部署：
-
-- **Method**：`POST`
-- **URL**：`https://api.github.com/repos/svefnz/airadar/dispatches`
-- **Headers**：
+- **即时触发**：若你的 ChatGPT 连接器具备调用 GitHub API 权限，在成功调用 RPC 且变动计数 `(created + updated + ended) > 0` 时，调用：
   ```http
-  Accept: application/vnd.github.v3+json
+  POST https://api.github.com/repos/svefnz/airadar/dispatches
   Authorization: Bearer <GITHUB_PERSONAL_ACCESS_TOKEN>
+  Accept: application/vnd.github.v3+json
   Content-Type: application/json
+
+  { "event_type": "radar-update" }
   ```
-- **Body**：
-  ```json
-  {
-    "event_type": "radar-update"
-  }
-  ```
-> 若本次巡检无任何实质变化（变动计数均为 0），**无需**调用此接口，避免浪费 GitHub Actions 编译配额。
+- **自动兜底同步**：即使没有配置 GitHub API 权限，GitHub Actions 也已配置每 2 小时自动定时轮询同步 Supabase 生产数据库并构建发布，数据库的变动最迟在下一周期自动上线，无需担心链路阻塞。
 
 ---
 

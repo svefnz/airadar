@@ -125,4 +125,24 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
 
     expect(() => offerSchema.parse(invalidOffer)).toThrow();
   });
+
+  it('增量补丁支持仅提交需要修改的局部字段 (Partial Updates)', () => {
+    const partialPatch = {
+      schemaVersion: 1,
+      generatedAt: '2026-10-30T18:00:00Z',
+      upserts: [
+        {
+          id: 'off_deepseek_free_tokens',
+          status: 'ended' as const,
+        },
+      ],
+    };
+
+    const parsed = patchSchema.parse(partialPatch);
+    const item = parsed.upserts[0];
+    expect(item?.id).toBe('off_deepseek_free_tokens');
+    expect(item?.status).toBe('ended');
+    expect(item?.title).toBeUndefined();
+    expect(item?.platformId).toBeUndefined();
+  });
 });

@@ -124,10 +124,10 @@ export const radarSchema = z.object({
 });
 export type RadarData = z.infer<typeof radarSchema>;
 
-/** 增量补丁: ChatGPT 连接器/工具的写入协议 */
+/** 增量补丁: ChatGPT 连接器/工具的写入协议，支持基于已有 ID 的局部更新 */
 export const offerPatchSchema = offerSchema.partial().extend({
   id: z.string().optional(),
-  platformId: z.string(),
+  platformId: z.string().optional(),
 });
 export type OfferPatch = z.infer<typeof offerPatchSchema>;
 

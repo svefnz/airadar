@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [supabase-db-update, radar-update]
+  schedule:
+    - cron: '15 */2 * * *' # 每 2 小时定时兜底同步 Supabase 数据库最新数据并重新构建部署
 
 # 最小权限: 仅 pages 与 id-token 用于部署; contents 只读
 permissions:
