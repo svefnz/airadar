@@ -25,9 +25,9 @@ env:
   # - 其他仓库名(项目站点) → '/<repo>/'
   ASTRO_BASE: ${{ vars.ASTRO_BASE || (endsWith(github.event.repository.name, '.github.io') && '/') || format('/{0}/', github.event.repository.name) }}
   SITE_URL: ${{ vars.SITE_URL || (endsWith(github.event.repository.name, '.github.io') && format('https://{0}/', github.event.repository.name)) || format('https://{0}.github.io/{1}/', github.repository_owner, github.event.repository.name) }}
-  PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
-  PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_PUBLISHABLE_KEY || vars.PUBLIC_SUPABASE_PUBLISHABLE_KEY || secrets.PUBLIC_SUPABASE_ANON_KEY || vars.PUBLIC_SUPABASE_ANON_KEY }}
-  PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PUBLIC_SUPABASE_PUBLISHABLE_KEY || vars.PUBLIC_SUPABASE_PUBLISHABLE_KEY || secrets.PUBLIC_SUPABASE_ANON_KEY || vars.PUBLIC_SUPABASE_ANON_KEY }}
+  PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL || 'https://iqfuxhpsfbfsfjhyqffo.supabase.co' }}
+  PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_PUBLISHABLE_KEY || vars.PUBLIC_SUPABASE_PUBLISHABLE_KEY || secrets.PUBLIC_SUPABASE_ANON_KEY || vars.PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy_anon_key_for_e2e_tests' }}
+  PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PUBLIC_SUPABASE_PUBLISHABLE_KEY || vars.PUBLIC_SUPABASE_PUBLISHABLE_KEY || secrets.PUBLIC_SUPABASE_ANON_KEY || vars.PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy_anon_key_for_e2e_tests' }}
 
 jobs:
   verify-build:

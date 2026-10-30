@@ -27,6 +27,7 @@ import {
   AMOUNT_TYPE_LABELS,
   TRUST_STATUS_LABELS,
 } from '@/lib/data/enums';
+import { withBase } from '@/lib/utils/url';
 import type { Offer, Platform } from '@/lib/data/schema';
 
 interface OfferCardProps {
@@ -130,7 +131,7 @@ export function OfferCard({ offer, platform }: OfferCardProps) {
               <BrandLogo platformId={platform.id} platformName={platform.name} size="md" />
               <div className="flex items-center gap-2 flex-wrap">
                 <a
-                  href={`/platforms/${platform.slug}/`}
+                  href={withBase(`/platforms/${platform.slug}/`)}
                   className="text-base font-bold text-slate-100 hover:text-blue-400 transition-colors"
                 >
                   {platform.name}

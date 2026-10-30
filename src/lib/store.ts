@@ -36,18 +36,6 @@ export function initAuthListener() {
   if (typeof window === 'undefined' || isAuthInitialized) return;
   isAuthInitialized = true;
 
-  // E2E / 自动化测试环境模拟 GitHub OAuth 登录会话
-  if (typeof window !== 'undefined' && (window as any).__MOCK_AUTH_SESSION__) {
-    const mock = (window as any).__MOCK_AUTH_SESSION__;
-    $auth.set({
-      session: mock.session ?? null,
-      user: mock.user ?? null,
-      loading: false,
-      isConfigured: true,
-    });
-    return;
-  }
-
   if (!isSupabaseConfigured) {
     $auth.setKey('loading', false);
     return;
@@ -134,15 +122,6 @@ export async function loadCloudData(userId: string) {
   $personal.setKey('syncStatus', 'loading');
   $personal.setKey('errorMessage', null);
 
-  if (typeof window !== 'undefined' && (window as any).__MOCK_AUTH_SESSION__) {
-    $personal.set({
-      data: (window as any).__MOCK_PERSONAL_DATA__ || emptyPersonal(),
-      syncStatus: 'success',
-      errorMessage: null,
-    });
-    return;
-  }
-
   const result = await fetchCloudPersonal(userId);
   // 请求过期校验与当前活跃用户校验：防止已退出或切换用户后异步数据晚到回写
   if (seq !== currentFetchSeq || $auth.get().user?.id !== userId) return;
@@ -176,10 +155,6 @@ export async function toggleFavoriteAction(offerId: string): Promise<boolean> {
     : [...current.favorites, offerId];
 
   $personal.setKey('data', { ...current, favorites: nextFavorites });
-
-  if (typeof window !== 'undefined' && (window as any).__MOCK_AUTH_SESSION__) {
-    return true;
-  }
 
   const { error } = isFav
     ? await removeCloudFavorite(user.id, offerId)
@@ -224,10 +199,6 @@ export async function toggleClaimAction(offerId: string, status: ClaimRecord['st
   }
 
   $personal.setKey('data', { ...current, claims: nextClaims });
-
-  if (typeof window !== 'undefined' && (window as any).__MOCK_AUTH_SESSION__) {
-    return true;
-  }
 
   const { error } = nextClaim
     ? await saveCloudClaim(user.id, offerId, nextClaim)
@@ -278,10 +249,6 @@ export async function setNoteAction(offerId: string, note: string): Promise<bool
 
   $personal.setKey('data', { ...current, claims: nextClaims });
 
-  if (typeof window !== 'undefined' && (window as any).__MOCK_AUTH_SESSION__) {
-    return true;
-  }
-
   const { error } = nextClaim
     ? await saveCloudClaim(user.id, offerId, nextClaim)
     : await deleteCloudClaim(user.id, offerId);
@@ -307,10 +274,6 @@ export async function clearAllPersonalAction(): Promise<boolean> {
 
   const current = $personal.get().data;
   $personal.setKey('data', emptyPersonal());
-
-  if (typeof window !== 'undefined' && (window as any).__MOCK_AUTH_SESSION__) {
-    return true;
-  }
 
   const { error } = await clearCloudPersonal(user.id);
   if (error) {

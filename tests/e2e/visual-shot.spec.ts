@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { loginAsTestUser } from './helpers/auth';
+import { appUrl } from './helpers/url';
 
 test.beforeEach(async ({ page }) => {
   await loginAsTestUser(page);
@@ -17,7 +18,7 @@ test('截图: 首页/资源库/平台详情(浅色+深色)', async ({ page }, te
     ['/resources/', true],
   ];
   for (const [path, dark] of shots) {
-    await page.goto(path);
+    await page.goto(appUrl(path));
     if (dark) {
       await page.evaluate(() => document.documentElement.classList.add('dark'));
     }

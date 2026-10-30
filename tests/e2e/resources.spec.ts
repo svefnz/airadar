@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { loginAsTestUser, waitForHydration } from './helpers/auth';
+import { appUrl } from './helpers/url';
 
 const radar = JSON.parse(readFileSync('data/radar.json', 'utf8'));
 const firstPlatform = radar.platforms[0];
@@ -11,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('资源库: 搜索过滤并同步 URL', async ({ page }) => {
-  await page.goto('/resources/');
+  await page.goto(appUrl('/resources/'));
   await waitForHydration(page);
   await expect(page.locator('article').first()).toBeVisible();
 
@@ -37,7 +38,7 @@ test('资源库: 搜索过滤并同步 URL', async ({ page }) => {
 });
 
 test('资源库: 筛选芯片可组合、可清除', async ({ page }) => {
-  await page.goto('/resources/');
+  await page.goto(appUrl('/resources/'));
   await waitForHydration(page);
   await expect(page.locator('article').first()).toBeVisible();
   const before = await page.locator('article').count();
@@ -57,7 +58,7 @@ test('资源库: 筛选芯片可组合、可清除', async ({ page }) => {
 });
 
 test('资源库: 视图切换与排序', async ({ page }) => {
-  await page.goto('/resources/');
+  await page.goto(appUrl('/resources/'));
   await waitForHydration(page);
   await expect(page.locator('article').first()).toBeVisible();
   await page.getByRole('button', { name: /紧凑列表表格视图/ }).click();
