@@ -27,22 +27,14 @@ create index if not exists idx_user_favorites_offer_id on public.user_favorites(
 
 alter table public.user_favorites enable row level security;
 
--- 策略优化：采用 (select auth.uid()) 避免逐行重复计算提升性能
+-- 策略优化：采用 (select auth.uid()) 避免逐行重复计算提升性能，合并单条 ALL 策略消除重复策略告警
+drop policy if exists "Users can manage their own favorites" on public.user_favorites;
 drop policy if exists "Users can view their own favorites" on public.user_favorites;
-create policy "Users can view their own favorites" on public.user_favorites
-  for select using ((select auth.uid()) = user_id);
-
 drop policy if exists "Users can insert their own favorites" on public.user_favorites;
-create policy "Users can insert their own favorites" on public.user_favorites
-  for insert with check ((select auth.uid()) = user_id);
-
 drop policy if exists "Users can update their own favorites" on public.user_favorites;
-create policy "Users can update their own favorites" on public.user_favorites
-  for update using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
-
 drop policy if exists "Users can delete their own favorites" on public.user_favorites;
-create policy "Users can delete their own favorites" on public.user_favorites
-  for delete using ((select auth.uid()) = user_id);
+create policy "Users can manage their own favorites" on public.user_favorites
+  for all using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
 
 
 -- 2. 用户个人领取状态与备忘录表 (user_claims)
@@ -71,17 +63,13 @@ create index if not exists idx_user_claims_user_offer on public.user_claims(user
 
 alter table public.user_claims enable row level security;
 
-drop policy if exists "Users can view their own claims" on public.user_claims;
-create policy "Users can view their own claims" on public.user_claims
-  for select using ((select auth.uid()) = user_id);
-
 drop policy if exists "Users can manage their own claims" on public.user_claims;
+drop policy if exists "Users can view their own claims" on public.user_claims;
+drop policy if exists "Users can insert their own claims" on public.user_claims;
+drop policy if exists "Users can update their own claims" on public.user_claims;
+drop policy if exists "Users can delete their own claims" on public.user_claims;
 create policy "Users can manage their own claims" on public.user_claims
   for all using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
-
-drop policy if exists "Users can delete their own claims" on public.user_claims;
-create policy "Users can delete their own claims" on public.user_claims
-  for delete using ((select auth.uid()) = user_id);
 
 
 -- 3. 原子性事务清空个人所有数据 RPC (固定 search_path 与权限收紧)
@@ -231,7 +219,7 @@ grant all on public.platforms, public.offers, public.radar_events, public.monito
 
 
 -- ==============================================================================
--- 5. ChatGPT 自动化写入 RPC (严格身份校验、复合身份防误合并、自动差异事件生成)
+-- 5. ChatGPT 自动化写入 RPC (严格身份校验、复合身份防误合并、完整差异比对与服务端校验)
 -- ==============================================================================
 create or replace function public.ingest_radar_batch(patch jsonb)
 returns jsonb
@@ -296,46 +284,56 @@ begin
   if patch ? 'platforms' and jsonb_typeof(patch->'platforms') = 'array' then
     for p in select * from jsonb_array_elements(patch->'platforms') loop
       target_platform_id := coalesce(p->>'id', p->>'slug');
-      if target_platform_id is not null then
-        select * into existing_platform from public.platforms
-        where id = target_platform_id or slug = target_platform_id or (canonical_domain <> '' and canonical_domain = coalesce(p->>'canonicalDomain', p->>'canonical_domain'))
-        limit 1;
+      if target_platform_id is null or trim(target_platform_id) = '' then
+        raise exception 'Platform requires non-empty id or slug';
+      end if;
 
-        if existing_platform.id is not null then
-          update public.platforms set
-            name = coalesce(p->>'name', existing_platform.name),
-            description = case when (p ? 'description') and (p->>'description' <> '') then p->>'description' else existing_platform.description end,
-            category = case when (p ? 'category') then coalesce(p->>'category', existing_platform.category) else existing_platform.category end,
-            website_url = coalesce(p->>'websiteUrl', p->>'website_url', existing_platform.website_url),
-            last_checked_at = coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
-            trust_status = case when (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') <> 'unverified' then coalesce(p->>'trustStatus', p->>'trust_status') else existing_platform.trust_status end,
-            logo_url = case when (p ? 'logoUrl' or p ? 'logo_url') then coalesce(p->>'logoUrl', p->>'logo_url') else existing_platform.logo_url end,
-            updated_at = now_ts
-          where id = existing_platform.id;
-          platforms_updated := platforms_updated + 1;
-        else
-          insert into public.platforms (
-            id, name, slug, canonical_domain, website_url, description,
-            category, launch_date, first_discovered_at, last_checked_at,
-            trust_status, logo_url, demo, created_at, updated_at
-          ) values (
-            target_platform_id,
-            coalesce(p->>'name', target_platform_id),
-            coalesce(p->>'slug', target_platform_id),
-            coalesce(p->>'canonicalDomain', p->>'canonical_domain', ''),
-            coalesce(p->>'websiteUrl', p->>'website_url', ''),
-            coalesce(p->>'description', ''),
-            coalesce(p->>'category', 'llm-api'),
-            case when p ? 'launchDate' then (p->>'launchDate')::timestamptz else null end,
-            coalesce((p->>'firstDiscoveredAt')::timestamptz, (p->>'first_discovered_at')::timestamptz, now_ts),
-            coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
-            coalesce(p->>'trustStatus', p->>'trust_status', 'unverified'),
-            coalesce(p->>'logoUrl', p->>'logo_url'),
-            coalesce((p->>'demo')::boolean, false),
-            now_ts, now_ts
-          );
-          platforms_created := platforms_created + 1;
-        end if;
+      -- 服务端枚举校验
+      if (p ? 'category') and (p->>'category' not in ('llm-api', 'agent-platform', 'coding-agent', 'api-relay', 'dev-tool', 'application', 'other')) then
+        raise exception 'Invalid platform category: % (platform: %)', p->>'category', target_platform_id;
+      end if;
+      if (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') not in ('official', 'community', 'unverified') then
+        raise exception 'Invalid platform trustStatus: % (platform: %)', coalesce(p->>'trustStatus', p->>'trust_status'), target_platform_id;
+      end if;
+
+      select * into existing_platform from public.platforms
+      where id = target_platform_id or slug = target_platform_id or (canonical_domain <> '' and canonical_domain = coalesce(p->>'canonicalDomain', p->>'canonical_domain'))
+      limit 1;
+
+      if existing_platform.id is not null then
+        update public.platforms set
+          name = coalesce(p->>'name', existing_platform.name),
+          description = case when (p ? 'description') and (p->>'description' <> '') then p->>'description' else existing_platform.description end,
+          category = case when (p ? 'category') then coalesce(p->>'category', existing_platform.category) else existing_platform.category end,
+          website_url = coalesce(p->>'websiteUrl', p->>'website_url', existing_platform.website_url),
+          last_checked_at = coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
+          trust_status = case when (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') <> 'unverified' then coalesce(p->>'trustStatus', p->>'trust_status') else existing_platform.trust_status end,
+          logo_url = case when (p ? 'logoUrl' or p ? 'logo_url') then coalesce(p->>'logoUrl', p->>'logo_url') else existing_platform.logo_url end,
+          updated_at = now_ts
+        where id = existing_platform.id;
+        platforms_updated := platforms_updated + 1;
+      else
+        insert into public.platforms (
+          id, name, slug, canonical_domain, website_url, description,
+          category, launch_date, first_discovered_at, last_checked_at,
+          trust_status, logo_url, demo, created_at, updated_at
+        ) values (
+          target_platform_id,
+          coalesce(p->>'name', target_platform_id),
+          coalesce(p->>'slug', target_platform_id),
+          coalesce(p->>'canonicalDomain', p->>'canonical_domain', ''),
+          coalesce(p->>'websiteUrl', p->>'website_url', ''),
+          coalesce(p->>'description', ''),
+          coalesce(p->>'category', 'llm-api'),
+          case when p ? 'launchDate' then (p->>'launchDate')::timestamptz else null end,
+          coalesce((p->>'firstDiscoveredAt')::timestamptz, (p->>'first_discovered_at')::timestamptz, now_ts),
+          coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
+          coalesce(p->>'trustStatus', p->>'trust_status', 'unverified'),
+          coalesce(p->>'logoUrl', p->>'logo_url'),
+          coalesce((p->>'demo')::boolean, false),
+          now_ts, now_ts
+        );
+        platforms_created := platforms_created + 1;
       end if;
     end loop;
   end if;
@@ -344,19 +342,78 @@ begin
   if patch ? 'upserts' and jsonb_typeof(patch->'upserts') = 'array' then
     for o in select * from jsonb_array_elements(patch->'upserts') loop
       target_platform_id := coalesce(o->>'platformId', o->>'platform_id');
-      incoming_title := coalesce(o->>'title', '');
+      incoming_title := trim(coalesce(o->>'title', ''));
       target_offer_id := o->>'id';
 
+      -- 服务端 Schema 严格校验
+      if target_platform_id is null or target_platform_id = '' then
+        raise exception 'Offer missing required platformId';
+      end if;
+      if not exists (select 1 from public.platforms where id = target_platform_id or slug = target_platform_id) then
+        raise exception 'Platform not found: %', target_platform_id;
+      end if;
+      -- 规范为真实 platform.id
+      select id into target_platform_id from public.platforms where id = target_platform_id or slug = target_platform_id limit 1;
+
+      if incoming_title = '' then
+        raise exception 'Offer title cannot be empty (platform: %)', target_platform_id;
+      end if;
+
+      -- 严格枚举值校验
+      if (o ? 'accessType' or o ? 'access_type') and coalesce(o->>'accessType', o->>'access_type') not in ('api', 'client', 'web', 'unknown') then
+        raise exception 'Invalid accessType: %', coalesce(o->>'accessType', o->>'access_type');
+      end if;
+      if (o ? 'unit') and (o->>'unit' not in ('USD', 'CNY', 'Token', 'Credit', 'Point', 'Request', 'Message', 'Call', 'Unlimited', 'Unknown')) then
+        raise exception 'Invalid unit: %', o->>'unit';
+      end if;
+      if (o ? 'amountType' or o ? 'amount_type') and coalesce(o->>'amountType', o->>'amount_type') not in ('one-time', 'daily', 'weekly', 'monthly', 'fixed-period', 'limited-unlimited', 'unknown') then
+        raise exception 'Invalid amountType: %', coalesce(o->>'amountType', o->>'amount_type');
+      end if;
+      if (o ? 'resetInterval' or o ? 'reset_interval') and coalesce(o->>'resetInterval', o->>'reset_interval') not in ('none', 'daily', 'weekly', 'monthly', 'periodic', 'unlimited', 'unknown') then
+        raise exception 'Invalid resetInterval: %', coalesce(o->>'resetInterval', o->>'reset_interval');
+      end if;
+      if (o ? 'billingRequirements' or o ? 'billing_requirements') and coalesce(o->>'billingRequirements', o->>'billing_requirements') not in ('none', 'card', 'trial', 'unknown') then
+        raise exception 'Invalid billingRequirements: %', coalesce(o->>'billingRequirements', o->>'billing_requirements');
+      end if;
+      if (o ? 'identityVerification' or o ? 'identity_verification') and coalesce(o->>'identityVerification', o->>'identity_verification') not in ('none', 'phone', 'id', 'unknown') then
+        raise exception 'Invalid identityVerification: %', coalesce(o->>'identityVerification', o->>'identity_verification');
+      end if;
+      if (o ? 'apiCompatibility' or o ? 'api_compatibility') and coalesce(o->>'apiCompatibility', o->>'api_compatibility') not in ('openai', 'anthropic', 'both', 'none', 'unknown') then
+        raise exception 'Invalid apiCompatibility: %', coalesce(o->>'apiCompatibility', o->>'api_compatibility');
+      end if;
+      if (o ? 'status') and (o->>'status' not in ('active', 'upcoming', 'ended', 'paused', 'unknown')) then
+        raise exception 'Invalid status (use ended instead of expired): %', o->>'status';
+      end if;
+      if (o ? 'verificationStatus' or o ? 'verification_status') and coalesce(o->>'verificationStatus', o->>'verification_status') not in ('official', 'community', 'unverified') then
+        raise exception 'Invalid verificationStatus: %', coalesce(o->>'verificationStatus', o->>'verification_status');
+      end if;
+
+      -- 证据 sources 结构校验
+      if (o ? 'sources') then
+        if jsonb_typeof(o->'sources') <> 'array' then
+          raise exception 'Offer sources must be an array (platform: %, title: %)', target_platform_id, incoming_title;
+        end if;
+        for src_item in select * from jsonb_array_elements(o->'sources') loop
+          if (src_item->>'url' is null or trim(src_item->>'url') = '') then
+            raise exception 'Source requires non-empty url (offer: %)', incoming_title;
+          end if;
+          if (src_item ? 'kind') and (src_item->>'kind' not in ('official', 'community', 'forum', 'other')) then
+            raise exception 'Invalid source kind: %', src_item->>'kind';
+          end if;
+        end loop;
+      end if;
+
       -- 严格稳定身份匹配：
-      -- 若提供了 ID 则优先且仅按 ID 精确匹配；若未提供 ID，则综合（平台 + 接入方式 + 额度单位 + 标题规范化）进行复合语义去重，绝不错误合并不同活动
+      -- 若提供了 ID 则优先且仅按 ID 精确匹配；若未提供 ID，则综合（平台 + 接入方式 + 额度单位 + 重置周期 + 标题规范化）复合去重，绝不错误合并不同活动
       existing_rec := null;
-      if target_offer_id is not null then
+      if target_offer_id is not null and trim(target_offer_id) <> '' then
         select * into existing_rec from public.offers where id = target_offer_id limit 1;
       else
         select * into existing_rec from public.offers
         where platform_id = target_platform_id
           and access_type = coalesce(o->>'accessType', o->>'access_type', 'api')
           and unit = coalesce(o->>'unit', 'Credit')
+          and reset_interval = coalesce(o->>'resetInterval', o->>'reset_interval', 'none')
           and lower(trim(title)) = lower(trim(incoming_title))
         limit 1;
       end if;
@@ -439,7 +496,21 @@ begin
           events_count := events_count + 1;
         end if;
 
-        -- 差异比对 4: 模型列表变动
+        -- 差异比对 4: 额度有效期变动 (creditExpiresAt)
+        if new_credit_exp is distinct from existing_rec.credit_expires_at then
+          has_diff := true;
+          insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, previous_value, current_value, sources, description)
+          values (
+            'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
+            existing_rec.id, existing_rec.platform_id, 'deadline-extended', now_ts, 'creditExpiresAt',
+            coalesce(existing_rec.credit_expires_at::text, '未设定'), coalesce(new_credit_exp::text, '未设定'),
+            coalesce(o->'sources', '[]'::jsonb),
+            '额度有效期调整为 ' || coalesce(new_credit_exp::text, '未设定')
+          );
+          events_count := events_count + 1;
+        end if;
+
+        -- 差异比对 5: 模型列表变动
         if new_models is distinct from existing_rec.models then
           has_diff := true;
           insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, previous_value, current_value, sources, description)
@@ -453,23 +524,40 @@ begin
           events_count := events_count + 1;
         end if;
 
-        -- 差异比对 5: 领取条件/接入方式变更
+        -- 差异比对 6: 技术规格变动 (上下文长度/Tool Calling/API兼容性/速率限制)
+        if (new_context_win is distinct from existing_rec.context_window) or
+           (new_tool_calling is distinct from existing_rec.tool_calling) or
+           (new_api_compat is distinct from existing_rec.api_compatibility) or
+           (new_rate_limits is distinct from existing_rec.rate_limits) then
+          has_diff := true;
+          insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, sources, description)
+          values (
+            'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
+            existing_rec.id, existing_rec.platform_id, 'model-changed', now_ts, 'capabilities',
+            coalesce(o->'sources', '[]'::jsonb),
+            '模型能力与技术规格变动 (上下文/工具调用/API兼容性/速率限制)'
+          );
+          events_count := events_count + 1;
+        end if;
+
+        -- 差异比对 7: 门槛、条件与地区限制变更
         if (new_access_type is distinct from existing_rec.access_type) or
            (new_billing_req is distinct from existing_rec.billing_requirements) or
            (new_identity_ver is distinct from existing_rec.identity_verification) or
-           (new_claim_conditions is distinct from existing_rec.claim_conditions) then
+           (new_claim_conditions is distinct from existing_rec.claim_conditions) or
+           (new_region_res is distinct from existing_rec.region_restrictions) then
           has_diff := true;
           insert into public.radar_events (id, offer_id, platform_id, event_type, timestamp, field, sources, description)
           values (
             'evt_' || substr(md5(random()::text || clock_timestamp()::text), 1, 16),
             existing_rec.id, existing_rec.platform_id, 'conditions-changed', now_ts, 'conditions',
             coalesce(o->'sources', '[]'::jsonb),
-            '权益领取门槛与接入方式调整'
+            '权益门槛、实名/绑卡条件或地区限制调整'
           );
           events_count := events_count + 1;
         end if;
 
-        -- 差异比对 6: 其他字段变动
+        -- 差异比对 8: 其他元数据字段变动
         if (new_title is distinct from existing_rec.title) or
            (new_official_url is distinct from existing_rec.official_url) or
            (new_ver_status is distinct from existing_rec.verification_status) or
@@ -478,11 +566,12 @@ begin
           has_diff := true;
         end if;
 
+        -- 差异比对 9: 新增证据来源
         if jsonb_array_length(merged_sources) > jsonb_array_length(coalesce(existing_rec.sources, '[]'::jsonb)) then
           has_diff := true;
         end if;
 
-        -- 只有字段确实变动才执行 UPDATE，避免伪更新
+        -- 只有字段确实变动才执行 UPDATE，避免伪更新与无意义的 offers_updated 递增
         if has_diff then
           update public.offers set
             title = new_title,
@@ -514,8 +603,12 @@ begin
           offers_unchanged := offers_unchanged + 1;
         end if;
       else
-        -- 新增活动
-        if target_offer_id is null then
+        -- 新增活动：必须具备至少 1 个证据来源，拒绝凭空臆造
+        if not (o ? 'sources') or jsonb_typeof(o->'sources') <> 'array' or jsonb_array_length(o->'sources') = 0 then
+          raise exception 'New offer requires at least one source (platform: %, title: %)', target_platform_id, incoming_title;
+        end if;
+
+        if target_offer_id is null or trim(target_offer_id) = '' then
           target_offer_id := 'off_' || target_platform_id || '_' || substr(md5(incoming_title), 1, 8);
         end if;
 
@@ -705,3 +798,41 @@ $$ language plpgsql security definer;
 -- 权限完全收紧：仅赋予 service_role 调用权限，彻底阻断匿名与普通用户
 revoke all on function public.ingest_radar_batch(jsonb) from public, anon, authenticated;
 grant execute on function public.ingest_radar_batch(jsonb) to service_role;
+
+
+-- ==============================================================================
+-- 6. GitHub Actions 自动构建触发器 (Supabase pg_net -> GitHub repository_dispatch)
+-- ==============================================================================
+create or replace function public.dispatch_github_radar_build(
+  repo_owner text,
+  repo_name text,
+  github_token text,
+  event_type text default 'supabase-db-update'
+)
+returns bigint
+set search_path = public, pg_temp
+as $$
+declare
+  request_id bigint;
+begin
+  -- 利用 Supabase 原生 pg_net 扩展发送异步安全 HTTP POST 触发 GitHub Actions 编译部署
+  select net.http_post(
+    url := 'https://api.github.com/repos/' || repo_owner || '/' || repo_name || '/dispatches',
+    headers := jsonb_build_object(
+      'Authorization', 'Bearer ' || github_token,
+      'Accept', 'application/vnd.github.v3+json',
+      'User-Agent', 'Supabase-Ingest-Radar',
+      'Content-Type', 'application/json'
+    ),
+    body := jsonb_build_object(
+      'event_type', event_type,
+      'client_payload', jsonb_build_object('triggered_by', 'supabase_dispatch', 'timestamp', now())
+    )
+  ) into request_id;
+
+  return request_id;
+end;
+$$ language plpgsql security definer;
+
+revoke all on function public.dispatch_github_radar_build(text, text, text, text) from public, anon, authenticated;
+grant execute on function public.dispatch_github_radar_build(text, text, text, text) to service_role;

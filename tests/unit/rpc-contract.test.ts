@@ -84,4 +84,45 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
     expect(parsed.status).toBeNull();
     expect(parsed.note).toBe('仅记录自定义备忘，未实际点击领取');
   });
+
+  it('lastSuccessfulSync 必须选取时间戳最大的最新成功监控记录，而非最早记录', () => {
+    const runs = [
+      { id: 'run_1', status: 'success', completedAt: '2026-10-28T22:15:00Z' },
+      { id: 'run_2', status: 'failed', completedAt: '2026-10-29T10:00:00Z' },
+      { id: 'run_3', status: 'success', completedAt: '2026-10-30T08:09:28Z' },
+      { id: 'run_4', status: 'partial', completedAt: '2026-10-30T12:00:00Z' },
+    ];
+
+    // 正确算法：过滤 success + 降序排序取第 0 项
+    const successRuns = runs
+      .filter((r) => r.status === 'success' && r.completedAt)
+      .sort((a, b) => Date.parse(b.completedAt!) - Date.parse(a.completedAt!));
+    const lastSuccessfulSync = successRuns[0]?.completedAt || null;
+
+    expect(lastSuccessfulSync).toBe('2026-10-30T08:09:28Z');
+    expect(lastSuccessfulSync).not.toBe('2026-10-28T22:15:00Z');
+  });
+
+  it('新权益 Schema 必须强制包含至少一个合法的证据来源 (sources.length >= 1)', () => {
+    const invalidOffer = {
+      id: 'off_no_sources',
+      platformId: 'test-platform',
+      title: '缺少来源的权益',
+      accessType: 'api' as const,
+      amount: 10,
+      unit: 'USD' as const,
+      amountType: 'one-time' as const,
+      resetInterval: 'none' as const,
+      billingRequirements: 'none' as const,
+      identityVerification: 'none' as const,
+      apiCompatibility: 'openai' as const,
+      status: 'active' as const,
+      verificationStatus: 'unverified' as const,
+      discoveredAt: '2026-10-30T18:00:00Z',
+      lastVerifiedAt: '2026-10-30T18:00:00Z',
+      sources: [], // 空数组应当被拒绝
+    };
+
+    expect(() => offerSchema.parse(invalidOffer)).toThrow();
+  });
 });

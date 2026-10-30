@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "check": "tsc --noEmit",
     "validate": "tsx scripts/validate.ts",
+    "sync:supabase": "tsx scripts/sync-radar-from-supabase.ts",
     "merge": "tsx scripts/merge.ts",
     "check-duplicates": "tsx scripts/check-duplicates.ts",
     "generate-demo": "tsx scripts/generate-demo.ts",

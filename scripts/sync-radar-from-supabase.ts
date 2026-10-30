@@ -6,7 +6,7 @@
  * - 本地没有 Supabase 配置时安全跳过，回退保留本地 radar.json
  */
 import { existsSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import type { RadarData } from '../src/lib/data/schema';
 import { radarSchema, SCHEMA_VERSION } from '../src/lib/data/schema';
 
@@ -39,30 +39,59 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: { persistSession: false },
 });
 
-async function sync() {
-  console.log('📡 正在从 Supabase 拉取最新公共雷达数据...');
+/**
+ * 分页拉取数据表全量行，避免受 Supabase / PostgREST 默认 1000 行上限截断
+ */
+async function fetchAllRows<T = any>(
+  client: SupabaseClient,
+  table: string,
+  orderColumn: string,
+  ascending = true,
+  pageSize = 1000
+): Promise<T[]> {
+  const allRows: T[] = [];
+  let from = 0;
+  while (true) {
+    const to = from + pageSize - 1;
+    const { data, error, count } = await client
+      .from(table)
+      .select('*', { count: 'exact' })
+      .order(orderColumn, { ascending })
+      .range(from, to);
 
-  const [platformsRes, offersRes, eventsRes, runsRes] = await Promise.all([
-    supabase.from('platforms').select('*').order('name'),
-    supabase.from('offers').select('*').order('discovered_at', { ascending: false }),
-    supabase.from('radar_events').select('*').order('timestamp', { ascending: true }),
-    supabase.from('monitor_runs').select('*').order('started_at', { ascending: true }),
+    if (error) {
+      throw new Error(`拉取表 ${table} (range ${from}-${to}) 失败: ${error.message}`);
+    }
+    if (!data || data.length === 0) {
+      break;
+    }
+    allRows.push(...(data as T[]));
+    if (count !== null && allRows.length >= count) {
+      break;
+    }
+    if (data.length < pageSize) {
+      break;
+    }
+    from += pageSize;
+  }
+  return allRows;
+}
+
+async function sync() {
+  console.log('📡 正在从 Supabase 拉取最新公共雷达数据 (带自动分页)...');
+
+  const [rawPlatforms, rawOffers, rawEvents, rawRuns] = await Promise.all([
+    fetchAllRows(supabase, 'platforms', 'name', true),
+    fetchAllRows(supabase, 'offers', 'discovered_at', false),
+    fetchAllRows(supabase, 'radar_events', 'timestamp', true),
+    fetchAllRows(supabase, 'monitor_runs', 'started_at', true),
   ]);
 
-  if (platformsRes.error) {
-    throw new Error(`拉取 platforms 失败: ${platformsRes.error.message}`);
-  }
-  if (offersRes.error) {
-    throw new Error(`拉取 offers 失败: ${offersRes.error.message}`);
-  }
-  if (eventsRes.error) {
-    throw new Error(`拉取 radar_events 失败: ${eventsRes.error.message}`);
-  }
-  if (runsRes.error) {
-    throw new Error(`拉取 monitor_runs 失败: ${runsRes.error.message}`);
-  }
+  console.log(
+    `✅ 成功拉取：${rawPlatforms.length} 个平台、${rawOffers.length} 项权益、${rawEvents.length} 条事件、${rawRuns.length} 次监控记录`
+  );
 
-  const platforms = (platformsRes.data || []).map((p) => ({
+  const platforms = (rawPlatforms || []).map((p) => ({
     id: p.id,
     name: p.name,
     slug: p.slug,
@@ -78,7 +107,7 @@ async function sync() {
     demo: p.demo || undefined,
   }));
 
-  const offers = (offersRes.data || []).map((o) => ({
+  const offers = (rawOffers || []).map((o) => ({
     id: o.id,
     platformId: o.platform_id,
     title: o.title,
@@ -108,7 +137,7 @@ async function sync() {
     demo: o.demo || undefined,
   }));
 
-  const events = (eventsRes.data || []).map((e) => ({
+  const events = (rawEvents || []).map((e) => ({
     id: e.id,
     offerId: e.offer_id || null,
     platformId: e.platform_id || undefined,
@@ -121,7 +150,7 @@ async function sync() {
     description: e.description || '',
   }));
 
-  const runs = (runsRes.data || []).map((r) => ({
+  const runs = (rawRuns || []).map((r) => ({
     id: r.id,
     startedAt: r.started_at,
     completedAt: r.completed_at || undefined,
@@ -138,9 +167,11 @@ async function sync() {
     note: r.note || undefined,
   }));
 
-  // 可靠派生 lastSuccessfulSync：从最新成功的监控运行中取 completedAt
-  const latestSuccessRun = runs.find((r) => r.status === 'success' && r.completedAt);
-  const lastSuccessfulSync = latestSuccessRun?.completedAt || null;
+  // 可靠派生 lastSuccessfulSync：从最新成功的监控运行中取 completedAt (按 completedAt 降序排，选取最新完成时间)
+  const successRuns = runs
+    .filter((r) => r.status === 'success' && r.completedAt)
+    .sort((a, b) => Date.parse(b.completedAt!) - Date.parse(a.completedAt!));
+  const lastSuccessfulSync = successRuns[0]?.completedAt || null;
 
   const radarData: RadarData = {
     schemaVersion: SCHEMA_VERSION,
