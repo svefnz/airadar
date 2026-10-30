@@ -7,8 +7,14 @@ const supabaseUrl: string =
   '';
 
 const supabaseAnonKey: string =
-  (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_SUPABASE_ANON_KEY) ||
-  (typeof process !== 'undefined' && process.env?.PUBLIC_SUPABASE_ANON_KEY) ||
+  (typeof import.meta !== 'undefined' &&
+    (import.meta.env?.PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+      import.meta.env?.PUBLIC_SUPABASE_ANON_KEY ||
+      import.meta.env?.PUBLIC_SUPABASE_KEY)) ||
+  (typeof process !== 'undefined' &&
+    (process.env?.PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+      process.env?.PUBLIC_SUPABASE_ANON_KEY ||
+      process.env?.PUBLIC_SUPABASE_KEY)) ||
   '';
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
