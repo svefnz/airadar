@@ -139,7 +139,20 @@ describe('merge: 场景 F 活动结束/恢复', () => {
   it('ends 操作标记 ended 并生成 offer-ended 事件', () => {
     const first = applyPatch(baseData(), patch({ upserts: [newOffer()] }), NOW);
     const offerId = first.data.offers[0]!.id;
-    const second = applyPatch(first.data, patch({ ends: [{ offerId, reason: '官方下线', timestamp: NOW, sources: [] }] }), NOW);
+    const second = applyPatch(
+      first.data,
+      patch({
+        ends: [
+          {
+            offerId,
+            reason: '官方下线',
+            timestamp: NOW,
+            sources: [{ url: 'https://example.com/end-announcement', label: '下线公告', kind: 'official' }],
+          },
+        ],
+      }),
+      NOW,
+    );
     expect(second.data.offers[0]!.status).toBe('ended');
     expect(second.summary.offersEnded).toBe(1);
     expect(second.data.events.some((e) => e.eventType === 'offer-ended')).toBe(true);
@@ -148,7 +161,20 @@ describe('merge: 场景 F 活动结束/恢复', () => {
   it('结束的活动可通过 upsert 恢复为 active', () => {
     const first = applyPatch(baseData(), patch({ upserts: [newOffer()] }), NOW);
     const offerId = first.data.offers[0]!.id;
-    const ended = applyPatch(first.data, patch({ ends: [{ offerId, reason: '', timestamp: NOW, sources: [] }] }), NOW);
+    const ended = applyPatch(
+      first.data,
+      patch({
+        ends: [
+          {
+            offerId,
+            reason: '',
+            timestamp: NOW,
+            sources: [{ url: 'https://example.com/end-proof', label: '结束凭证', kind: 'official' }],
+          },
+        ],
+      }),
+      NOW,
+    );
     const resumed = applyPatch(ended.data, patch({ upserts: [newOffer({ status: 'active' })] }), NOW);
     expect(resumed.data.offers[0]!.status).toBe('active');
     expect(resumed.data.events.some((e) => e.eventType === 'offer-resumed' && e.currentValue === 'active')).toBe(true);

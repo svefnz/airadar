@@ -53,6 +53,13 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
           offerId: 'off_old_1',
           reason: '活动已结束',
           timestamp: '2026-10-30T18:00:00Z',
+          sources: [
+            {
+              url: 'https://test.com/announcement',
+              label: 'Announcement',
+              kind: 'official' as const,
+            },
+          ],
         },
       ],
       events: [],
@@ -144,5 +151,22 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
     expect(item?.status).toBe('ended');
     expect(item?.title).toBeUndefined();
     expect(item?.platformId).toBeUndefined();
+  });
+
+  it('下线活动 ends 必须提供至少一条证据来源 (sources.length >= 1)', () => {
+    const invalidEnd = {
+      schemaVersion: 1,
+      generatedAt: '2026-10-30T18:00:00Z',
+      ends: [
+        {
+          offerId: 'off_no_sources',
+          reason: '缺少证据的下线',
+          timestamp: '2026-10-30T18:00:00Z',
+          sources: [],
+        },
+      ],
+    };
+
+    expect(() => patchSchema.parse(invalidEnd)).toThrow();
   });
 });

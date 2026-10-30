@@ -269,6 +269,7 @@ declare
   new_ver_status text;
   new_official_url text;
   has_diff boolean;
+  has_platform_diff boolean;
   platforms_created int := 0;
   platforms_updated int := 0;
   offers_created int := 0;
@@ -277,17 +278,25 @@ declare
   offers_ended int := 0;
   events_count int := 0;
   now_ts timestamptz := now();
-  claim_role text;
+  jwt_role text;
 begin
-  -- 严格权限防御：允许受信任的服务端执行角色（service_role JWT 角色、或 postgres / supabase_admin 直连角色），严禁 NULL、anon 或普通用户执行
-  claim_role := coalesce(nullif(current_setting('request.jwt.claims', true), '')::jsonb->>'role', current_user);
-  if claim_role is null or claim_role not in ('service_role', 'postgres', 'supabase_admin') then
-    raise exception 'Permission denied: trusted server role required for ingest_radar_batch (got: %)', claim_role;
+  -- 严格权限防御：
+  -- 1. REST 请求时，检查 JWT 声明必须为 service_role；
+  -- 2. SQL 直连时（无 JWT 声明），检查实际会话发起者 session_user（而非 SECURITY DEFINER 切换后的 current_user），仅允许 postgres 或 supabase_admin
+  jwt_role := nullif(current_setting('request.jwt.claims', true), '')::jsonb->>'role';
+  if jwt_role is not null then
+    if jwt_role <> 'service_role' then
+      raise exception 'Permission denied: service_role required for REST calls to ingest_radar_batch (got: %)', jwt_role;
+    end if;
+  else
+    if session_user not in ('postgres', 'supabase_admin') then
+      raise exception 'Permission denied: trusted server session required for ingest_radar_batch (got session_user: %)', session_user;
+    end if;
   end if;
 
-  -- 校验 Schema 版本（如有提供）
-  if patch ? 'schemaVersion' and (patch->>'schemaVersion')::int <> 1 then
-    raise exception 'Unsupported schema version: %', patch->>'schemaVersion';
+  -- 强制要求 schemaVersion 且必须为 1，拒绝缺失或非法版本
+  if not (patch ? 'schemaVersion') or (patch->>'schemaVersion')::int <> 1 then
+    raise exception 'Missing or unsupported schema version: % (expected: 1)', coalesce(patch->>'schemaVersion', 'null');
   end if;
 
   -- 1. 合并平台 (platforms)
@@ -311,17 +320,32 @@ begin
       limit 1;
 
       if existing_platform.id is not null then
-        update public.platforms set
-          name = coalesce(p->>'name', existing_platform.name),
-          description = case when (p ? 'description') and (p->>'description' <> '') then p->>'description' else existing_platform.description end,
-          category = case when (p ? 'category') then coalesce(p->>'category', existing_platform.category) else existing_platform.category end,
-          website_url = coalesce(p->>'websiteUrl', p->>'website_url', existing_platform.website_url),
-          last_checked_at = coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
-          trust_status = case when (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') <> 'unverified' then coalesce(p->>'trustStatus', p->>'trust_status') else existing_platform.trust_status end,
-          logo_url = case when (p ? 'logoUrl' or p ? 'logo_url') then coalesce(p->>'logoUrl', p->>'logo_url') else existing_platform.logo_url end,
-          updated_at = now_ts
-        where id = existing_platform.id;
-        platforms_updated := platforms_updated + 1;
+        has_platform_diff := false;
+        if (p ? 'name') and (p->>'name' is distinct from existing_platform.name) then has_platform_diff := true; end if;
+        if (p ? 'description') and (p->>'description' is distinct from existing_platform.description) then has_platform_diff := true; end if;
+        if (p ? 'category') and (p->>'category' is distinct from existing_platform.category) then has_platform_diff := true; end if;
+        if (p ? 'websiteUrl' or p ? 'website_url') and (coalesce(p->>'websiteUrl', p->>'website_url') is distinct from existing_platform.website_url) then has_platform_diff := true; end if;
+        if (p ? 'trustStatus' or p ? 'trust_status') and (coalesce(p->>'trustStatus', p->>'trust_status') is distinct from existing_platform.trust_status) then has_platform_diff := true; end if;
+        if (p ? 'logoUrl' or p ? 'logo_url') and (coalesce(p->>'logoUrl', p->>'logo_url') is distinct from existing_platform.logo_url) then has_platform_diff := true; end if;
+
+        if has_platform_diff then
+          update public.platforms set
+            name = coalesce(p->>'name', existing_platform.name),
+            description = case when (p ? 'description') and (p->>'description' <> '') then p->>'description' else existing_platform.description end,
+            category = case when (p ? 'category') then coalesce(p->>'category', existing_platform.category) else existing_platform.category end,
+            website_url = coalesce(p->>'websiteUrl', p->>'website_url', existing_platform.website_url),
+            last_checked_at = coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
+            trust_status = case when (p ? 'trustStatus' or p ? 'trust_status') and coalesce(p->>'trustStatus', p->>'trust_status') <> 'unverified' then coalesce(p->>'trustStatus', p->>'trust_status') else existing_platform.trust_status end,
+            logo_url = case when (p ? 'logoUrl' or p ? 'logo_url') then coalesce(p->>'logoUrl', p->>'logo_url') else existing_platform.logo_url end,
+            updated_at = now_ts
+          where id = existing_platform.id;
+          platforms_updated := platforms_updated + 1;
+        else
+          -- 业务数据无实质变动时，仅静默更新 last_checked_at 证明巡检查验过，不递增 platforms_updated 避免误触发重新部署
+          update public.platforms set
+            last_checked_at = coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts)
+          where id = existing_platform.id;
+        end if;
       else
         insert into public.platforms (
           id, name, slug, canonical_domain, website_url, description,
@@ -596,6 +620,10 @@ begin
           where id = existing_rec.id;
           offers_updated := offers_updated + 1;
         else
+          -- 业务数据无变动时，仅静默刷新 last_verified_at 保持数据新鲜度，绝不累加 offers_updated 避免误触发构建部署
+          update public.offers set
+            last_verified_at = coalesce((o->>'lastVerifiedAt')::timestamptz, (o->>'last_verified_at')::timestamptz, now_ts)
+          where id = existing_rec.id;
           offers_unchanged := offers_unchanged + 1;
         end if;
       else
@@ -703,6 +731,11 @@ begin
     for end_item in select * from jsonb_array_elements(patch->'ends') loop
       target_offer_id := coalesce(end_item->>'offerId', end_item->>'offer_id');
       if target_offer_id is not null then
+        -- 证据校验：结束下线必须提供至少一条证据来源
+        if not (end_item ? 'sources') or jsonb_typeof(end_item->'sources') <> 'array' or jsonb_array_length(end_item->'sources') = 0 then
+          raise exception 'Ending offer % requires at least one source (sources array cannot be empty)', target_offer_id;
+        end if;
+
         select * into existing_rec from public.offers where id = target_offer_id limit 1;
         if existing_rec.id is not null and existing_rec.status <> 'ended' then
           update public.offers set

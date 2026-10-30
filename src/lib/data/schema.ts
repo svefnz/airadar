@@ -135,7 +135,7 @@ export const endOfferPatchSchema = z.object({
   offerId: z.string(),
   reason: z.string().default(''),
   timestamp: isoDate,
-  sources: z.array(sourceSchema).default([]),
+  sources: z.array(sourceSchema).min(1, '下线活动必须提供至少一条证据来源'),
 });
 export type EndOfferPatch = z.infer<typeof endOfferPatchSchema>;
 
