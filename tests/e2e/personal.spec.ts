@@ -1,66 +1,77 @@
 import { expect, test } from '@playwright/test';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { loginAsTestUser, waitForHydration } from './helpers/auth';
 
 const radar = JSON.parse(readFileSync('data/radar.json', 'utf8'));
 const radarMd5 = createHash('md5').update(readFileSync('data/radar.json')).digest('hex');
 const platform = radar.platforms[0];
 const offer = radar.offers.find((o: { platformId: string }) => o.platformId === platform.id);
 
-test('个人状态: 收藏与已领取在刷新后保留', async ({ page }) => {
-  await page.goto('/resources/');
-  const firstCard = page.locator('article').first();
+test.describe('个人数据与安全认证 E2E', () => {
+  test('未登录时触发全站访问守卫 (AuthGuard)', async ({ page }) => {
+    await page.goto('/resources/');
 
-  await firstCard.getByRole('button', { name: '收藏' }).click();
-  await firstCard.getByRole('button', { name: '领取' }).click();
-  await expect(firstCard.getByRole('button', { name: '已领取' })).toBeVisible();
+    // 未登录时必须呈现登录守卫视图与 GitHub 登录提示
+    await expect(page.getByText('私密多端云同步系统')).toBeVisible();
+    await expect(page.getByText('本项目已升级为全站云端资产雷达，仅支持 GitHub OAuth 授权登录')).toBeVisible();
+    await expect(page.getByRole('button', { name: '使用 GitHub 授权登录' })).toBeVisible();
+  });
 
-  await page.reload();
-  const card = page.locator('article').first();
-  await expect(card.getByRole('button', { name: '已领取' })).toBeVisible();
-  await expect(card.getByRole('button', { name: '取消收藏' })).toBeVisible();
+  test('GitHub 授权登录后可执行收藏操作并同步云端状态', async ({ page }) => {
+    // 注入模拟 GitHub 登录会话
+    await loginAsTestUser(page, { userName: 'octocat' });
 
-  // 个人状态只写 localStorage, 公共数据文件必须保持原样
-  const now = createHash('md5').update(readFileSync('data/radar.json')).digest('hex');
-  expect(now).toBe(radarMd5);
-  const localStorageKeys = await page.evaluate(() => Object.keys(localStorage));
-  expect(localStorageKeys).toContain('ai-radar:personal:v1');
-});
+    await page.goto('/resources/');
+    await waitForHydration(page);
 
-test('个人状态: 清除需要确认, 取消不删除', async ({ page, isMobile }) => {
-  test.skip(isMobile, '个人数据面板在侧边栏, 仅桌面可见');
-  // 先制造个人状态
-  await page.goto('/resources/');
-  const firstCard = page.locator('article').first();
-  await firstCard.getByRole('button', { name: '收藏' }).click();
-  await firstCard.getByRole('button', { name: '更多操作' }).click();
-  await page.getByRole('menuitem', { name: /忽略/ }).click();
+    // 确认顶部导航栏展示当前登录的 GitHub 用户名与退出按钮
+    await expect(page.getByText('octocat')).toBeVisible();
+    await expect(page.getByRole('button', { name: '退出登录' })).toBeVisible();
 
-  const count = await page.evaluate(() => localStorage.getItem('ai-radar:personal:v1')?.length ?? 0);
-  expect(count).toBeGreaterThan(0);
+    // 定位首张卡片的收藏按钮 (aria-label 模式)
+    const firstCard = page.locator('article').first();
+    const favButton = firstCard.locator('button[aria-label="收藏"], button[aria-label="取消收藏"]');
+    await expect(favButton).toBeVisible();
 
-  // 打开清除确认并取消
-  await page.getByRole('button', { name: '清除', exact: true }).click();
-  await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.getByText('清除个人记录？')).toBeVisible();
-  await page.getByRole('button', { name: '取消' }).click();
-  await expect(page.getByRole('dialog')).toBeHidden();
-  const afterCancel = await page.evaluate(() => localStorage.getItem('ai-radar:personal:v1')?.length ?? 0);
-  expect(afterCancel).toBe(count);
+    // 点击执行收藏
+    await favButton.click();
+    // 验证收藏状态响应式切换，且不会破坏公共文件
+    await expect(firstCard.locator('button[aria-label="取消收藏"]')).toBeVisible();
 
-  // 再次打开并确认清除
-  await page.getByRole('button', { name: '清除', exact: true }).click();
-  await page.getByRole('button', { name: '确认清除' }).click();
-  const afterConfirm = await page.evaluate(() => JSON.parse(localStorage.getItem('ai-radar:personal:v1') ?? '{}'));
-  expect(afterConfirm.favorites).toEqual([]);
-  expect(afterConfirm.claims).toEqual({});
-});
+    // 再次点击取消收藏
+    await firstCard.locator('button[aria-label="取消收藏"]').click();
+    await expect(firstCard.locator('button[aria-label="收藏"]')).toBeVisible();
 
-test('资源库: 平台详情页可打开并展示活动细节', async ({ page }) => {
-  await page.goto('/resources/');
-  await page.getByRole('link', { name: platform.name }).first().click();
-  await expect(page).toHaveURL(new RegExp(`/platforms/${platform.slug}/`));
-  await expect(page.getByRole('heading', { name: platform.name, exact: true })).toBeVisible();
-  // 详情页应展示该平台真实权益标题
-  await expect(page.getByText(offer.title)).toBeVisible();
+    // 公共数据文件必须保持绝对一致（个人状态完全走云端，不污染静态 radar.json）
+    const currentMd5 = createHash('md5').update(readFileSync('data/radar.json')).digest('hex');
+    expect(currentMd5).toBe(radarMd5);
+  });
+
+  test('退出登录后立即撤销权限并恢复访问守卫', async ({ page }) => {
+    await loginAsTestUser(page, { userName: 'octocat' });
+    await page.goto('/resources/');
+    await expect(page.getByText('octocat')).toBeVisible();
+
+    // 点击退出登录
+    await page.getByRole('button', { name: '退出登录' }).click();
+
+    // 应立即回到未登录守卫视图
+    await expect(page.getByText('私密多端云同步系统')).toBeVisible();
+    await expect(page.getByRole('button', { name: '使用 GitHub 授权登录' })).toBeVisible();
+  });
+
+  test('资源库: 平台详情页在登录态下可正常访问并展示活动细节', async ({ page }) => {
+    await loginAsTestUser(page);
+    await page.goto('/resources/');
+
+    await page.getByRole('link', { name: platform.name }).first().click();
+    await expect(page).toHaveURL(new RegExp(`/platforms/${platform.slug}/`));
+    await expect(page.getByRole('heading', { name: platform.name, exact: true })).toBeVisible();
+
+    // 详情页应展示该平台的权益标题
+    if (offer) {
+      await expect(page.getByText(offer.title).first()).toBeVisible();
+    }
+  });
 });

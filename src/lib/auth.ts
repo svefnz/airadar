@@ -24,6 +24,16 @@ export function useAuth() {
   };
 
   const signOut = async () => {
+    if (typeof window !== 'undefined' && (window as any).__MOCK_AUTH_SESSION__) {
+      delete (window as any).__MOCK_AUTH_SESSION__;
+      $auth.set({
+        session: null,
+        user: null,
+        loading: false,
+        isConfigured: true,
+      });
+      return { error: null };
+    }
     if (!isSupabaseConfigured) return { error: null };
     return await supabase.auth.signOut();
   };

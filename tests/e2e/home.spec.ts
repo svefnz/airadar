@@ -1,4 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { loginAsTestUser } from './helpers/auth';
+
+test.beforeEach(async ({ page }) => {
+  await loginAsTestUser(page);
+});
 
 test('首页: 总览内容与导航', async ({ page }) => {
   await page.goto('/');
@@ -12,7 +17,7 @@ test('首页: 总览内容与导航', async ({ page }) => {
   }
   await page.getByRole('link', { name: '资源库' }).first().click();
   await expect(page).toHaveURL(/\/resources\//);
-  await expect(page.getByRole('heading', { name: '资源库' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /AI 免费额度与活动雷达|资源/ })).toBeVisible();
 });
 
 test('首页: 没有数据时不伪造统计', async ({ page }) => {

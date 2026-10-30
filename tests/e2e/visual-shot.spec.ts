@@ -1,4 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { loginAsTestUser } from './helpers/auth';
+
+test.beforeEach(async ({ page }) => {
+  await loginAsTestUser(page);
+});
 
 /**
  * 视觉回归辅助: 关键页截图(浅色/深色), 供人工比对语义色与排版。

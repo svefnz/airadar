@@ -131,6 +131,11 @@ const PRESETS: PresetItem[] = [
 ];
 
 export function ResourcesApp({ data }: { data: RadarData }) {
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
   const [filters, setFilters] = useUrlState<Filters>(parseFilters, serializeFilters, DEFAULT_FILTERS);
   const view = filters.view;
   const setView = (v: View) => setFilters({ ...filters, view: v });
@@ -222,7 +227,7 @@ export function ResourcesApp({ data }: { data: RadarData }) {
   }, [filters]);
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5" data-hydrated={hydrated ? 'true' : undefined}>
       {/* Search and Tool Bar */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <div className="relative flex-1">

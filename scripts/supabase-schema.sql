@@ -320,10 +320,15 @@ begin
     raise exception 'Missing or unsupported schema version: % (expected: 1)', coalesce(patch->>'schemaVersion', 'null');
   end if;
 
-  -- 强制要求 generatedAt
+  -- 强制要求 generatedAt 且必须为合法 ISO 时间戳
   if not (patch ? 'generatedAt') or trim(patch->>'generatedAt') = '' then
     raise exception 'Patch requires non-empty generatedAt ISO timestamp';
   end if;
+  begin
+    perform (patch->>'generatedAt')::timestamptz;
+  exception when others then
+    raise exception 'Invalid generatedAt timestamp format: %', patch->>'generatedAt';
+  end;
 
   -- 1. 合并平台 (platforms)
   if patch ? 'platforms' and jsonb_typeof(patch->'platforms') = 'array' then

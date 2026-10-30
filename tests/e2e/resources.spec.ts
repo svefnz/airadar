@@ -1,12 +1,19 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
+import { loginAsTestUser, waitForHydration } from './helpers/auth';
 
 const radar = JSON.parse(readFileSync('data/radar.json', 'utf8'));
 const firstPlatform = radar.platforms[0];
 const firstOffer = radar.offers.find((o: { platformId: string }) => o.platformId === firstPlatform.id);
 
+test.beforeEach(async ({ page }) => {
+  await loginAsTestUser(page);
+});
+
 test('资源库: 搜索过滤并同步 URL', async ({ page }) => {
   await page.goto('/resources/');
+  await waitForHydration(page);
+  await expect(page.locator('article').first()).toBeVisible();
 
   const total = await page.locator('article').count();
   expect(total).toBeGreaterThan(0);
@@ -31,6 +38,8 @@ test('资源库: 搜索过滤并同步 URL', async ({ page }) => {
 
 test('资源库: 筛选芯片可组合、可清除', async ({ page }) => {
   await page.goto('/resources/');
+  await waitForHydration(page);
+  await expect(page.locator('article').first()).toBeVisible();
   const before = await page.locator('article').count();
 
   const clientChip = page.getByRole('button', { name: '客户端专用' });
@@ -41,7 +50,7 @@ test('资源库: 筛选芯片可组合、可清除', async ({ page }) => {
     expect(after).toBeLessThan(before);
   }
 
-  await page.getByRole('button', { name: '清除筛选' }).click();
+  await page.getByRole('button', { name: /重置全部筛选/ }).click();
   await expect(page.locator('article').first()).toBeVisible();
   // 清除后恢复全量(URL 参数清空)
   await expect(page).not.toHaveURL(/\?/);
@@ -49,8 +58,9 @@ test('资源库: 筛选芯片可组合、可清除', async ({ page }) => {
 
 test('资源库: 视图切换与排序', async ({ page }) => {
   await page.goto('/resources/');
-  await page.getByRole('button', { name: '紧凑列表视图' }).click();
+  await waitForHydration(page);
   await expect(page.locator('article').first()).toBeVisible();
+  await page.getByRole('button', { name: /紧凑列表表格视图/ }).click();
   await page.getByLabel('排序方式').click();
   await page.getByRole('option', { name: '平台名称' }).click();
 });

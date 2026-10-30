@@ -1,4 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { loginAsTestUser } from './helpers/auth';
+
+test.beforeEach(async ({ page }) => {
+  await loginAsTestUser(page);
+});
 
 test('无横向溢出(桌面与移动端)', async ({ page }) => {
   await page.goto('/resources/');
