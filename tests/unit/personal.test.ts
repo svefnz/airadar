@@ -50,4 +50,13 @@ describe('personal: 纯函数状态模型与云端契约', () => {
     expect(isFavorite(s, 'off_1')).toBe(false);
     expect(isFavorite(s, 'off_2')).toBe(true);
   });
+
+  it('支持无领取状态但有备注的解耦形态 (status: null)', () => {
+    let s: PersonalState = emptyPersonal();
+    s = setClaim(s, 'off_1', { status: null, note: '仅保存个人备注，未实际领取' });
+    const record = getClaim(s, 'off_1');
+    expect(record).toBeDefined();
+    expect(record?.status).toBeNull();
+    expect(record?.note).toBe('仅保存个人备注，未实际领取');
+  });
 });

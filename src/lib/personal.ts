@@ -16,13 +16,13 @@ export const CLAIM_STATUS_LABELS: Record<ClaimStatus, string> = {
 };
 
 export interface ClaimRecord {
-  status: ClaimStatus;
+  status: ClaimStatus | null;
   claimedAt?: string;
   note?: string;
 }
 
 export const claimRecordSchema = z.object({
-  status: z.enum(CLAIM_STATUSES),
+  status: z.enum(CLAIM_STATUSES).nullable(),
   claimedAt: z.string().optional(),
   note: z.string().max(2000).optional(),
 });
@@ -155,6 +155,10 @@ export async function saveCloudClaim(
   claim: ClaimRecord
 ): Promise<{ error: Error | null }> {
   if (!isSupabaseConfigured || !userId) return { error: null };
+  // 若既无状态也无备注，直接彻底从云端清理
+  if (!claim.status && !claim.note) {
+    return await deleteCloudClaim(userId, offerId);
+  }
   const { error } = await supabase.from('user_claims').upsert(
     {
       user_id: userId,
@@ -183,24 +187,13 @@ export async function deleteCloudClaim(userId: string, offerId: string): Promise
 }
 
 /**
- * 清空当前用户在云端的所有个人记录 (优先使用原子 RPC 事务)
+ * 清空当前用户在云端的所有个人记录 (严格使用原子 RPC 事务，失败直接抛错不执行非原子降级)
  */
 export async function clearCloudPersonal(userId: string): Promise<{ error: Error | null }> {
   if (!isSupabaseConfigured || !userId) return { error: null };
-  try {
-    // 优先尝试原子 RPC
-    const rpcRes = await supabase.rpc('clear_my_personal_data');
-    if (!rpcRes.error) return { error: null };
-
-    // 降级回退双表删除
-    const [delFavs, delClaims] = await Promise.all([
-      supabase.from('user_favorites').delete().eq('user_id', userId),
-      supabase.from('user_claims').delete().eq('user_id', userId),
-    ]);
-    if (delFavs.error) throw delFavs.error;
-    if (delClaims.error) throw delClaims.error;
-    return { error: null };
-  } catch (err) {
-    return { error: err instanceof Error ? err : new Error('清空云端数据失败') };
+  const rpcRes = await supabase.rpc('clear_my_personal_data');
+  if (rpcRes.error) {
+    return { error: new Error(`清空云端数据失败: ${rpcRes.error.message}`) };
   }
+  return { error: null };
 }

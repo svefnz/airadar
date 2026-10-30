@@ -84,19 +84,26 @@ export const $favoritesSet = computed($personal, (state) => new Set(state.data.f
 
 let activeUserId: string | null = null;
 let currentFetchSeq = 0;
+let personalSyncUnsub: (() => void) | null = null;
 
 /**
- * 监听 Auth 变化，在有效登录时全局只加载一次个人数据
+ * 监听 Auth 变化，在有效登录时全局只加载一次个人数据 (幂等注册 + 防内存泄漏)
  */
 export function initPersonalSync() {
   if (typeof window === 'undefined') return;
 
-  $auth.listen((authState) => {
+  if (personalSyncUnsub) {
+    personalSyncUnsub();
+    personalSyncUnsub = null;
+  }
+
+  personalSyncUnsub = $auth.listen((authState) => {
     const nextUserId = authState.user?.id ?? null;
     if (nextUserId === activeUserId) return;
     activeUserId = nextUserId;
 
     if (!nextUserId) {
+      currentFetchSeq++; // 登出立即废弃过去的旧用户异步请求
       $personal.set({
         data: emptyPersonal(),
         syncStatus: 'idle',
@@ -116,7 +123,8 @@ export async function loadCloudData(userId: string) {
   $personal.setKey('errorMessage', null);
 
   const result = await fetchCloudPersonal(userId);
-  if (seq !== currentFetchSeq) return; // Stale request guard
+  // 请求过期校验与当前活跃用户校验：防止已退出或切换用户后异步数据晚到回写
+  if (seq !== currentFetchSeq || $auth.get().user?.id !== userId) return;
 
   if (result.error) {
     $personal.setKey('syncStatus', 'error');
@@ -131,7 +139,7 @@ export async function loadCloudData(userId: string) {
 }
 
 // ----------------------------------------------------------------------------
-// Store Actions (Optimistic UI + Safe Rollback)
+// Store Actions (Optimistic UI + 精确局部回滚)
 // ----------------------------------------------------------------------------
 
 export async function toggleFavoriteAction(offerId: string): Promise<boolean> {
@@ -153,8 +161,12 @@ export async function toggleFavoriteAction(offerId: string): Promise<boolean> {
     : await addCloudFavorite(user.id, offerId);
 
   if (error) {
-    // Rollback
-    $personal.setKey('data', current);
+    // 细粒度回滚：仅针对当前 offerId 回滚，不覆盖并发其他卡片的成功操作
+    const latest = $personal.get().data;
+    const revertedFavorites = isFav
+      ? [...latest.favorites, offerId]
+      : latest.favorites.filter((id) => id !== offerId);
+    $personal.setKey('data', { ...latest, favorites: revertedFavorites });
     return false;
   }
   return true;
@@ -167,47 +179,42 @@ export async function toggleClaimAction(offerId: string, status: ClaimRecord['st
   const current = $personal.get().data;
   const existing = current.claims[offerId];
 
+  let nextClaim: ClaimRecord | undefined;
   if (existing?.status === status) {
-    // 取消该领取状态，但保留备注！避免误删备注
-    const nextClaim: ClaimRecord | undefined = existing.note
-      ? { status: 'expired', note: existing.note } // 或解耦保留
-      : undefined;
-
-    const nextClaims = { ...current.claims };
-    if (existing.note) {
-      nextClaims[offerId] = { status: 'ignored', note: existing.note };
-    } else {
-      delete nextClaims[offerId];
-    }
-
-    $personal.setKey('data', { ...current, claims: nextClaims });
-
-    const nextRecord = nextClaims[offerId];
-    const { error } = nextRecord
-      ? await saveCloudClaim(user.id, offerId, nextRecord)
-      : await deleteCloudClaim(user.id, offerId);
-
-    if (error) {
-      $personal.setKey('data', current);
-      return false;
-    }
+    // 取消该领取状态：若有备注，保留为无状态备注(status: null)；若无备注则清理
+    nextClaim = existing.note ? { status: null, note: existing.note } : undefined;
   } else {
-    const claim: ClaimRecord = {
+    nextClaim = {
       status,
       claimedAt: status === 'claimed' ? new Date().toISOString() : existing?.claimedAt,
       note: existing?.note,
     };
+  }
 
-    $personal.setKey('data', {
-      ...current,
-      claims: { ...current.claims, [offerId]: claim },
-    });
+  const nextClaims = { ...current.claims };
+  if (nextClaim) {
+    nextClaims[offerId] = nextClaim;
+  } else {
+    delete nextClaims[offerId];
+  }
 
-    const { error } = await saveCloudClaim(user.id, offerId, claim);
-    if (error) {
-      $personal.setKey('data', current);
-      return false;
+  $personal.setKey('data', { ...current, claims: nextClaims });
+
+  const { error } = nextClaim
+    ? await saveCloudClaim(user.id, offerId, nextClaim)
+    : await deleteCloudClaim(user.id, offerId);
+
+  if (error) {
+    // 细粒度局部回滚
+    const latest = $personal.get().data;
+    const revertedClaims = { ...latest.claims };
+    if (existing) {
+      revertedClaims[offerId] = existing;
+    } else {
+      delete revertedClaims[offerId];
     }
+    $personal.setKey('data', { ...latest, claims: revertedClaims });
+    return false;
   }
   return true;
 }
@@ -219,19 +226,43 @@ export async function setNoteAction(offerId: string, note: string): Promise<bool
   const current = $personal.get().data;
   const existing = current.claims[offerId];
 
-  // 备注解耦：如尚无领取记录，保持 status 为 'ignored' 或初始记录，不强行设为 claimed
-  const claim: ClaimRecord = existing
-    ? { ...existing, note: note || undefined }
-    : { status: 'claimed', note: note || undefined };
+  // 备注解耦：如无领取记录，保持 status 为 null，彻底不自动设为 claimed
+  const trimmed = note.trim();
+  let nextClaim: ClaimRecord | undefined;
 
-  $personal.setKey('data', {
-    ...current,
-    claims: { ...current.claims, [offerId]: claim },
-  });
+  if (existing) {
+    if (!trimmed && !existing.status) {
+      nextClaim = undefined; // 既无状态也无备注，删除
+    } else {
+      nextClaim = { ...existing, note: trimmed || undefined };
+    }
+  } else if (trimmed) {
+    nextClaim = { status: null, note: trimmed };
+  }
 
-  const { error } = await saveCloudClaim(user.id, offerId, claim);
+  const nextClaims = { ...current.claims };
+  if (nextClaim) {
+    nextClaims[offerId] = nextClaim;
+  } else {
+    delete nextClaims[offerId];
+  }
+
+  $personal.setKey('data', { ...current, claims: nextClaims });
+
+  const { error } = nextClaim
+    ? await saveCloudClaim(user.id, offerId, nextClaim)
+    : await deleteCloudClaim(user.id, offerId);
+
   if (error) {
-    $personal.setKey('data', current);
+    // 细粒度局部回滚
+    const latest = $personal.get().data;
+    const revertedClaims = { ...latest.claims };
+    if (existing) {
+      revertedClaims[offerId] = existing;
+    } else {
+      delete revertedClaims[offerId];
+    }
+    $personal.setKey('data', { ...latest, claims: revertedClaims });
     return false;
   }
   return true;

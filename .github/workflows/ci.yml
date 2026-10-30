@@ -49,6 +49,9 @@ jobs:
       - name: TypeScript check
         run: pnpm check
 
+      - name: Sync latest radar data from Supabase
+        run: pnpm exec tsx scripts/sync-radar-from-supabase.ts || true
+
       - name: Data schema & business validation
         run: pnpm validate
 
