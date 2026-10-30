@@ -96,6 +96,8 @@ select public.ingest_radar_batch('{ ...补丁数据... }'::jsonb);
       "websiteUrl": "https://www.deepseek.com",
       "description": "国产开源高性价比大模型",
       "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-30T18:00:00Z",
+      "lastCheckedAt": "2026-10-30T18:00:00Z",
       "trustStatus": "official"
     }
   ],
@@ -113,6 +115,8 @@ select public.ingest_radar_batch('{ ...补丁数据... }'::jsonb);
       "billingRequirements": "none",
       "identityVerification": "none",
       "regionRestrictions": [],
+      "contextWindow": 128000,
+      "toolCalling": true,
       "apiCompatibility": "openai",
       "status": "active",
       "verificationStatus": "official",

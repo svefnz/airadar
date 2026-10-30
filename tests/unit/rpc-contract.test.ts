@@ -290,4 +290,60 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
 
     expect(() => offerSchema.parse(negativeAmountOffer)).toThrow();
   });
+
+  it('patchSchema 强制要求 generatedAt 必填且为合法时间戳', () => {
+    const missingGeneratedAt = {
+      schemaVersion: 1,
+      platforms: [],
+    };
+    expect(() => patchSchema.parse(missingGeneratedAt)).toThrow();
+  });
+
+  it('platformSchema 强制 firstDiscoveredAt 和 lastCheckedAt 必填', () => {
+    const missingDatesPlatform = {
+      id: 'plat_missing_dates',
+      name: 'Platform',
+      slug: 'valid-slug',
+      canonicalDomain: 'valid.com',
+      websiteUrl: 'https://valid.com',
+      category: 'llm-api' as const,
+      trustStatus: 'official' as const,
+    };
+    expect(() => platformSchema.parse(missingDatesPlatform)).toThrow();
+  });
+
+  it('offerSchema 严格要求 contextWindow 为正整数 (contextWindow > 0)', () => {
+    const invalidContextOffer = {
+      id: 'off_invalid_context',
+      platformId: 'test-platform',
+      title: '非法上下文窗口活动',
+      accessType: 'api' as const,
+      amount: 100,
+      unit: 'USD' as const,
+      amountType: 'one-time' as const,
+      resetInterval: 'none' as const,
+      billingRequirements: 'none' as const,
+      identityVerification: 'none' as const,
+      apiCompatibility: 'openai' as const,
+      status: 'active' as const,
+      verificationStatus: 'official' as const,
+      discoveredAt: '2026-10-30T18:00:00Z',
+      lastVerifiedAt: '2026-10-30T18:00:00Z',
+      contextWindow: 0, // 0 不是正整数，应被拒绝
+      sources: [
+        {
+          url: 'https://example.com/source',
+          label: '来源',
+          kind: 'official' as const,
+        },
+      ],
+    };
+    expect(() => offerSchema.parse(invalidContextOffer)).toThrow();
+
+    const negativeContextOffer = {
+      ...invalidContextOffer,
+      contextWindow: -1024,
+    };
+    expect(() => offerSchema.parse(negativeContextOffer)).toThrow();
+  });
 });

@@ -181,6 +181,9 @@ create policy "Public read for offers" on public.offers for select using (true);
 alter table public.offers drop constraint if exists chk_offers_amount_nonnegative;
 alter table public.offers add constraint chk_offers_amount_nonnegative check (amount is null or amount >= 0);
 
+alter table public.offers drop constraint if exists chk_offers_context_window_positive;
+alter table public.offers add constraint chk_offers_context_window_positive check (context_window is null or context_window > 0);
+
 
 -- 4.3 变更事件表 (radar_events)
 create table if not exists public.radar_events (
@@ -317,6 +320,11 @@ begin
     raise exception 'Missing or unsupported schema version: % (expected: 1)', coalesce(patch->>'schemaVersion', 'null');
   end if;
 
+  -- 强制要求 generatedAt
+  if not (patch ? 'generatedAt') or trim(patch->>'generatedAt') = '' then
+    raise exception 'Patch requires non-empty generatedAt ISO timestamp';
+  end if;
+
   -- 1. 合并平台 (platforms)
   if patch ? 'platforms' and jsonb_typeof(patch->'platforms') = 'array' then
     for p in select * from jsonb_array_elements(patch->'platforms') loop
@@ -404,6 +412,13 @@ begin
           raise exception 'Creating platform % requires canonicalDomain with at least 3 characters (got: %)', target_platform_id, coalesce(target_platform_domain, 'null');
         end if;
 
+        if not (p ? 'firstDiscoveredAt' or p ? 'first_discovered_at') then
+          raise exception 'Creating platform % requires explicit firstDiscoveredAt timestamp', target_platform_id;
+        end if;
+        if not (p ? 'lastCheckedAt' or p ? 'last_checked_at') then
+          raise exception 'Creating platform % requires explicit lastCheckedAt timestamp', target_platform_id;
+        end if;
+
         insert into public.platforms (
           id, name, slug, canonical_domain, website_url, description,
           category, launch_date, first_discovered_at, last_checked_at,
@@ -417,8 +432,8 @@ begin
           coalesce(p->>'description', ''),
           coalesce(p->>'category', 'llm-api'),
           case when p ? 'launchDate' then (p->>'launchDate')::timestamptz else null end,
-          coalesce((p->>'firstDiscoveredAt')::timestamptz, (p->>'first_discovered_at')::timestamptz, now_ts),
-          coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz, now_ts),
+          coalesce((p->>'firstDiscoveredAt')::timestamptz, (p->>'first_discovered_at')::timestamptz),
+          coalesce((p->>'lastCheckedAt')::timestamptz, (p->>'last_checked_at')::timestamptz),
           coalesce(p->>'trustStatus', p->>'trust_status', 'unverified'),
           coalesce(p->>'logoUrl', p->>'logo_url'),
           coalesce((p->>'demo')::boolean, false),
@@ -483,6 +498,15 @@ begin
       -- 额度非负校验
       if (o ? 'amount') and (o->>'amount' is not null) and (o->>'amount' <> 'null') and ((o->>'amount')::numeric < 0) then
         raise exception 'Offer amount cannot be negative: % (offer: %)', o->>'amount', coalesce(target_offer_id, incoming_title);
+      end if;
+
+      -- 上下文窗口正整数校验
+      if (o ? 'contextWindow' or o ? 'context_window') then
+        if (coalesce(o->>'contextWindow', o->>'context_window') is not null and coalesce(o->>'contextWindow', o->>'context_window') <> 'null') then
+          if (coalesce(o->>'contextWindow', o->>'context_window')::integer <= 0) then
+            raise exception 'Offer contextWindow must be a positive integer (got: %, offer: %)', coalesce(o->>'contextWindow', o->>'context_window'), coalesce(target_offer_id, incoming_title);
+          end if;
+        end if;
       end if;
 
       -- 证据 sources 结构校验（若传入）
