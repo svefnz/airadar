@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastSuccessfulSync": "2026-10-30T02:41:32.814Z",
+  "lastSuccessfulSync": "2026-10-30T08:09:28.200Z",
   "platforms": [
     {
       "id": "agentfoundry",
@@ -1274,6 +1274,90 @@
       "category": "dev-tool",
       "firstDiscoveredAt": "2026-10-30T02:41:32.814Z",
       "lastCheckedAt": "2026-10-30T02:41:32.814Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "standard-compute",
+      "name": "Standard Compute",
+      "slug": "standard-compute",
+      "canonicalDomain": "standardcompute.com",
+      "websiteUrl": "https://standardcompute.com/free-trial",
+      "description": "OpenAI/Anthropic兼容模型路由API，符合资格新用户可申请$0.25免绑卡试用",
+      "category": "api-relay",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "unchained-code",
+      "name": "Unchained Code",
+      "slug": "unchained-code",
+      "canonicalDomain": "unchainedcode.dev",
+      "websiteUrl": "https://unchainedcode.dev/",
+      "description": "网页/Mac/CLI Coding Agent，官网声明每日10免费构建Credits，当前邀请制Beta",
+      "category": "coding-agent",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "atelier",
+      "name": "Atelier",
+      "slug": "atelier",
+      "canonicalDomain": "appsbymo.app",
+      "websiteUrl": "https://appsbymo.app/atelier/",
+      "description": "macOS Coding Agent项目管理与会话交接客户端，7天免绑卡试用，不赠模型额度",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "hallmonitor",
+      "name": "Hall Monitor",
+      "slug": "hallmonitor",
+      "canonicalDomain": "github.com",
+      "websiteUrl": "https://github.com/hiteshbandhu/hallmonitor",
+      "description": "近期Product Hunt展示的免费开源Coding Agent会话监控工具，不赠模型推理额度",
+      "category": "dev-tool",
+      "firstDiscoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastCheckedAt": "2026-10-30T05:49:07.086Z",
+      "trustStatus": "community"
+    },
+    {
+      "id": "ai21",
+      "name": "AI21 Studio",
+      "slug": "ai21",
+      "canonicalDomain": "ai21.com",
+      "websiteUrl": "https://www.ai21.com/",
+      "description": "Jamba Mini/Large 原生 API 免费七天试用",
+      "category": "llm-api",
+      "firstDiscoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastCheckedAt": "2026-10-30T08:09:28.198Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "amd-ai-developer-program",
+      "name": "AMD AI Developer Program",
+      "slug": "amd-ai-developer-program",
+      "canonicalDomain": "developer.amd.com",
+      "websiteUrl": "https://developer.amd.com/ai-developer-program/",
+      "description": "独立于 AMD Radeon Token Factory 的开发者 GPU/托管推理额度计划",
+      "category": "other",
+      "firstDiscoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastCheckedAt": "2026-10-30T08:09:28.198Z",
+      "trustStatus": "official"
+    },
+    {
+      "id": "off-grid-ai",
+      "name": "Off Grid AI",
+      "slug": "off-grid-ai",
+      "canonicalDomain": "getoffgridai.co",
+      "websiteUrl": "https://getoffgridai.co/",
+      "description": "Product Hunt 本周上架的开源本地 AI 客户端，免费本地推理但不赠送云端 API Token",
+      "category": "application",
+      "firstDiscoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastCheckedAt": "2026-10-30T08:09:28.198Z",
       "trustStatus": "official"
     }
   ],
@@ -6608,6 +6692,368 @@
       ],
       "contextWindow": 32768,
       "toolCalling": false
+    },
+    {
+      "platformId": "standard-compute",
+      "title": "新账户申请$0.25免费Coding API试用（资格审核）",
+      "models": [],
+      "accessType": "api",
+      "amount": 0.25,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "注册新账号后在Dashboard选择Activate申请试用；资格及可用性由平台审核",
+        "无需付费订阅或绑卡；额度耗尽后停止调用，不自动续费",
+        "支持OpenAI Chat Completions与Anthropic Messages；具体试用可用模型以Dashboard为准",
+        "实名、地区及赠额有效期未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "依账户与模型限制，具体未公布",
+      "apiCompatibility": "both",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://standardcompute.com/free-trial",
+      "sources": [
+        {
+          "url": "https://standardcompute.com/free-trial",
+          "label": "官方试用条款：$0.25新账号资格审核、免绑卡、一次性",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "id": "standard-compute:74iy0k",
+      "discoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastVerifiedAt": "2026-10-30T05:49:07.086Z"
+    },
+    {
+      "platformId": "unchained-code",
+      "title": "邀请制Beta每日10个免费构建Credits（获邀情况待核实）",
+      "models": [
+        "DeepSeek（动态）",
+        "Qwen（动态）",
+        "GLM（动态）",
+        "Kimi（动态）",
+        "MiniMax（动态）"
+      ],
+      "accessType": "client",
+      "amount": 10,
+      "unit": "Credit",
+      "amountType": "daily",
+      "resetInterval": "daily",
+      "claimConditions": [
+        "Invite-only Beta，须提交邮箱等待邀请码，非即时开放注册",
+        "官网声明每日10个免费Build Credits及免费聊天；免费档含广告",
+        "网页/Mac/CLI客户端内部使用，不是独立开放模型API",
+        "免绑卡、Google OAuth；实名、地区、重置时刻及邀请发放未确认"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "每日10个Build Credits；聊天不限消息但共享容量限制未公布",
+      "apiCompatibility": "none",
+      "status": "unknown",
+      "verificationStatus": "official",
+      "officialUrl": "https://unchainedcode.dev/",
+      "sources": [
+        {
+          "url": "https://unchainedcode.dev/",
+          "label": "官网免费档每日10构建Credits；当前邀请制Beta",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "id": "unchained-code:193vas",
+      "discoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastVerifiedAt": "2026-10-30T05:49:07.086Z"
+    },
+    {
+      "platformId": "atelier",
+      "title": "Atelier Mac Coding Agent工作台7天完整功能免费试用",
+      "models": [],
+      "accessType": "client",
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "claimConditions": [
+        "官网下载后可免费试用7天完整功能，无账户无绑卡",
+        "仅macOS 14+；试用结束后需一次性购买",
+        "管理Claude Code、Codex等Agent，需自有订阅或API；不附赠模型Tokens",
+        "实名和地区限制未公布"
+      ],
+      "billingRequirements": "none",
+      "identityVerification": "none",
+      "regionRestrictions": [],
+      "rateLimits": "免费试用7天，模型调用消耗自有额度",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "officialUrl": "https://appsbymo.app/atelier/",
+      "sources": [
+        {
+          "url": "https://appsbymo.app/atelier/",
+          "label": "官方7天完整功能免绑卡试用",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "id": "atelier:kt1vl6",
+      "discoveredAt": "2026-10-30T05:49:07.086Z",
+      "lastVerifiedAt": "2026-10-30T05:49:07.086Z"
+    },
+    {
+      "amount": null,
+      "unit": "Unknown",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "card",
+      "identityVerification": "unknown",
+      "regionRestrictions": [
+        "美国符合条件的高校学生"
+      ],
+      "rateLimits": "沿用 Plus 模型/功能限额；具体次数未公开",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "platformId": "openai",
+      "title": "ChatGPT 2026 Back to School 美国大学生四个月免费 Plus",
+      "models": [
+        "ChatGPT Plus",
+        "ChatGPT Work"
+      ],
+      "accessType": "client",
+      "claimConditions": [
+        "须于2026-10-31前申领，连续4个月免费（价值约$80），并非API Credits",
+        "美国符合条件大学本科/研究生，SheerID 学生资格验证",
+        "直接由 ChatGPT 计费的现有 Plus 订阅也可领取，App Store/Google Play 订阅不支持",
+        "新订阅需绑有效付款方式，四个月后自动以$20/月续费，提前取消会损失剩余月份"
+      ],
+      "officialUrl": "https://chatgpt.com/students/2026/",
+      "id": "openai:i3yikd",
+      "discoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastVerifiedAt": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://chatgpt.com/students/2026/",
+          "label": "2026 ChatGPT 学生四个月免费官方页",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students",
+          "label": "ChatGPT 学生优惠官方条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ]
+    },
+    {
+      "amount": 2500,
+      "unit": "Credit",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [
+        "美国",
+        "加拿大"
+      ],
+      "rateLimits": "按 Codex 模型消耗积分，具体费率随服务变化",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "platformId": "openai",
+      "title": "Codex for University Students $100（2500 ChatGPT Credits）",
+      "models": [
+        "Codex"
+      ],
+      "accessType": "client",
+      "claimConditions": [
+        "美国/加拿大符合资格大学生且领取时居住在美国或加拿大，SheerID 大学邮箱验证",
+        "ChatGPT Free/Go/Plus/Pro 均可，个人账户自动获得2500 Credits，价值$100",
+        "仅延长 Codex 客户端使用，不是模型原生 API；不要求额外购买订阅",
+        "一次性，一人限一次，到账12个月后过期"
+      ],
+      "officialUrl": "https://chatgpt.com/codex/students/",
+      "id": "openai:h8aj0d",
+      "discoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastVerifiedAt": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://chatgpt.com/codex/students/",
+          "label": "Codex 大学生 $100 免费积分官方页",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/20001147-codex-credits-for-students-terms-of-service",
+          "label": "Codex 大学生免费积分官方条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ]
+    },
+    {
+      "amount": 1000,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [
+        "OpenAI API 支持国家和地区"
+      ],
+      "rateLimits": "",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "platformId": "openai",
+      "title": "Researcher Access Program 最高 $1000 原生 API 研究资助",
+      "models": [
+        "OpenAI 公开 API 模型"
+      ],
+      "accessType": "api",
+      "claimConditions": [
+        "仅面向负责任 AI 部署、安全、社会影响相关研究项目，提交计划并经审核，非普惠赠额",
+        "3/6/9/12月季度审核，获批后4–6周发放，最高$1000",
+        "发放起12个月有效，不可续期，优先资源有限研究者"
+      ],
+      "officialUrl": "https://openai.com/form/researcher-access-program/",
+      "id": "openai:y6f1vd",
+      "discoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastVerifiedAt": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://openai.com/form/researcher-access-program/",
+          "label": "OpenAI Researcher Access 最高 $1000 官方申请",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ]
+    },
+    {
+      "amount": 10,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "none",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "API/SDK具体速率及地区要求未确认",
+      "apiCompatibility": "unknown",
+      "status": "active",
+      "verificationStatus": "official",
+      "platformId": "ai21",
+      "title": "AI21 Studio 新用户 $10 原生模型 API 七天试用",
+      "models": [
+        "Jamba Mini",
+        "Jamba Large"
+      ],
+      "accessType": "api",
+      "claimConditions": [
+        "新注册 AI21 Studio 免费试用，$10额度7天内使用",
+        "无需信用卡，非每周恢复；过期后需另行启用按量付费"
+      ],
+      "officialUrl": "https://www.ai21.com/pricing/",
+      "id": "ai21:sd98t2",
+      "discoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastVerifiedAt": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://www.ai21.com/pricing/",
+          "label": "AI21 Studio $10/7天免绑卡官方定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ]
+    },
+    {
+      "amount": 100,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "GPU 机型与额度按审批结果",
+      "apiCompatibility": "none",
+      "status": "active",
+      "verificationStatus": "official",
+      "platformId": "amd-ai-developer-program",
+      "title": "AMD AI Developer Program $100 Developer Cloud GPU 额度",
+      "models": [
+        "AMD Instinct GPU 云算力，可自行部署模型"
+      ],
+      "accessType": "unknown",
+      "claimConditions": [
+        "免费加入 AMD AI Developer Program，在 Member Perks 申请 Cloud Credits",
+        "提交机构、职能、用途及公开 GitHub/LinkedIn 资料；需审核约2–3工作日",
+        "获批后激活 AMD Developer Cloud，30天内使用",
+        "GPU算力额度而非现成原生模型 API；与 Fireworks $50 能否同时领取未确认"
+      ],
+      "officialUrl": "https://developer.amd.com/ai-developer-program/",
+      "id": "amd-ai-developer-program:1ep321p",
+      "discoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastVerifiedAt": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://developer.amd.com/ai-developer-program/",
+          "label": "AMD AI Developer Program 官方 $100 云算力权益",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-claim-amd-cloud-credits.html",
+          "label": "AMD 官方 $100 GPU 与 $50 Fireworks 领取说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ]
+    },
+    {
+      "amount": 50,
+      "unit": "USD",
+      "amountType": "one-time",
+      "resetInterval": "none",
+      "billingRequirements": "unknown",
+      "identityVerification": "unknown",
+      "regionRestrictions": [],
+      "rateLimits": "Fireworks模型及限流以平台为准",
+      "apiCompatibility": "openai",
+      "status": "active",
+      "verificationStatus": "official",
+      "platformId": "amd-ai-developer-program",
+      "title": "AMD AI Developer Program Fireworks AI 托管推理 $50 额度",
+      "models": [
+        "Fireworks 托管 Llama/Mixtral/MiniMax/Kimi 等"
+      ],
+      "accessType": "api",
+      "claimConditions": [
+        "免费加入 AMD AI Developer Program，提交 Cloud Credits 申请，经人工审核领取 Fireworks $50",
+        "发放后90天内有效；不是 Fireworks 普通注册 $1 额度",
+        "Fireworks OpenAI兼容API；是否能与AMD Developer Cloud $100 同时领取未确认"
+      ],
+      "officialUrl": "https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-claim-amd-cloud-credits.html",
+      "id": "amd-ai-developer-program:1rtfm31",
+      "discoveredAt": "2026-10-30T08:09:28.198Z",
+      "lastVerifiedAt": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-claim-amd-cloud-credits.html",
+          "label": "AMD 官方 $100 GPU 与 $50 Fireworks 领取说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://developer.amd.com/ai-developer-program/",
+          "label": "AMD AI Developer Program 官方 $100 云算力权益",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ]
     }
   ],
   "events": [
@@ -9067,6 +9513,306 @@
         }
       ],
       "description": "本轮A类核验新增：Qwen3Guard-Gen-8B免费内容安全审核API（匿名2RPM）"
+    },
+    {
+      "id": "ev_1w1h5gu",
+      "platformId": "standard-compute",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://standardcompute.com/free-trial",
+          "label": "官方试用条款：$0.25新账号资格审核、免绑卡、一次性",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Standard Compute；不推断免费模型API。"
+    },
+    {
+      "id": "ev_dcisty",
+      "platformId": "unchained-code",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://unchainedcode.dev/",
+          "label": "官网免费档每日10构建Credits；当前邀请制Beta",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Unchained Code；不推断免费模型API。"
+    },
+    {
+      "id": "ev_1h0jsm1",
+      "platformId": "atelier",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://appsbymo.app/atelier/",
+          "label": "官方7天完整功能免绑卡试用",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Atelier；不推断免费模型API。"
+    },
+    {
+      "id": "ev_1kuvme4",
+      "platformId": "hallmonitor",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "sources": [
+        {
+          "url": "https://www.producthunt.com/products/hallmonitor",
+          "label": "Product Hunt近期发布，免费开源Agent会话监控",
+          "kind": "community",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "本轮新发现平台 Hall Monitor；不推断免费模型API。"
+    },
+    {
+      "id": "ev_1xaofnn",
+      "offerId": "standard-compute:74iy0k",
+      "platformId": "standard-compute",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://standardcompute.com/free-trial",
+          "label": "官方试用条款：$0.25新账号资格审核、免绑卡、一次性",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "新发现权益：新账户申请$0.25免费Coding API试用（资格审核）；未实测个人账号到账。"
+    },
+    {
+      "id": "ev_145thcu",
+      "offerId": "unchained-code:193vas",
+      "platformId": "unchained-code",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "unknown",
+      "sources": [
+        {
+          "url": "https://unchainedcode.dev/",
+          "label": "官网免费档每日10构建Credits；当前邀请制Beta",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "新发现权益：邀请制Beta每日10个免费构建Credits（获邀情况待核实）；未实测个人账号到账。"
+    },
+    {
+      "id": "ev_1kev69i",
+      "offerId": "atelier:kt1vl6",
+      "platformId": "atelier",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T05:49:07.086Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://appsbymo.app/atelier/",
+          "label": "官方7天完整功能免绑卡试用",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T05:49:07.086Z"
+        }
+      ],
+      "description": "新发现权益：Atelier Mac Coding Agent工作台7天完整功能免费试用；未实测个人账号到账。"
+    },
+    {
+      "id": "ev_ep3qhu",
+      "platformId": "ai21",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://www.ai21.com/pricing/",
+          "label": "AI21 Studio $10/7天免绑卡官方定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮发现并核验平台，非断言今日首发"
+    },
+    {
+      "id": "ev_syifwo",
+      "platformId": "amd-ai-developer-program",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://developer.amd.com/ai-developer-program/",
+          "label": "AMD AI Developer Program 官方 $100 云算力权益",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮发现并核验平台，非断言今日首发"
+    },
+    {
+      "id": "ev_16isyo2",
+      "platformId": "off-grid-ai",
+      "eventType": "platform-added",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "sources": [
+        {
+          "url": "https://getoffgridai.co/",
+          "label": "Off Grid AI 免费本地模型官方说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮发现并核验平台，非断言今日首发"
+    },
+    {
+      "id": "ev_emj1ft",
+      "offerId": "openai:i3yikd",
+      "platformId": "openai",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://chatgpt.com/students/2026/",
+          "label": "2026 ChatGPT 学生四个月免费官方页",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students",
+          "label": "ChatGPT 学生优惠官方条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮官方核验新增权益，未实测账户到账：ChatGPT 2026 Back to School 美国大学生四个月免费 Plus"
+    },
+    {
+      "id": "ev_1bdx5eb",
+      "offerId": "openai:h8aj0d",
+      "platformId": "openai",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://chatgpt.com/codex/students/",
+          "label": "Codex 大学生 $100 免费积分官方页",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/20001147-codex-credits-for-students-terms-of-service",
+          "label": "Codex 大学生免费积分官方条款",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮官方核验新增权益，未实测账户到账：Codex for University Students $100（2500 ChatGPT Credits）"
+    },
+    {
+      "id": "ev_1i0uxke",
+      "offerId": "openai:y6f1vd",
+      "platformId": "openai",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://openai.com/form/researcher-access-program/",
+          "label": "OpenAI Researcher Access 最高 $1000 官方申请",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮官方核验新增权益，未实测账户到账：Researcher Access Program 最高 $1000 原生 API 研究资助"
+    },
+    {
+      "id": "ev_965n8v",
+      "offerId": "ai21:sd98t2",
+      "platformId": "ai21",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.ai21.com/pricing/",
+          "label": "AI21 Studio $10/7天免绑卡官方定价",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮官方核验新增权益，未实测账户到账：AI21 Studio 新用户 $10 原生模型 API 七天试用"
+    },
+    {
+      "id": "ev_11p0wyz",
+      "offerId": "amd-ai-developer-program:1ep321p",
+      "platformId": "amd-ai-developer-program",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://developer.amd.com/ai-developer-program/",
+          "label": "AMD AI Developer Program 官方 $100 云算力权益",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-claim-amd-cloud-credits.html",
+          "label": "AMD 官方 $100 GPU 与 $50 Fireworks 领取说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮官方核验新增权益，未实测账户到账：AMD AI Developer Program $100 Developer Cloud GPU 额度"
+    },
+    {
+      "id": "ev_hbswth",
+      "offerId": "amd-ai-developer-program:1rtfm31",
+      "platformId": "amd-ai-developer-program",
+      "eventType": "offer-created",
+      "timestamp": "2026-10-30T08:09:28.198Z",
+      "field": "status",
+      "previousValue": "",
+      "currentValue": "active",
+      "sources": [
+        {
+          "url": "https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-claim-amd-cloud-credits.html",
+          "label": "AMD 官方 $100 GPU 与 $50 Fireworks 领取说明",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        },
+        {
+          "url": "https://developer.amd.com/ai-developer-program/",
+          "label": "AMD AI Developer Program 官方 $100 云算力权益",
+          "kind": "official",
+          "verifiedAt": "2026-10-30T08:09:28.198Z"
+        }
+      ],
+      "description": "本轮官方核验新增权益，未实测账户到账：AMD AI Developer Program Fireworks AI 托管推理 $50 额度"
     }
   ],
   "runs": [
@@ -9234,6 +9980,36 @@
       "offersExpired": 0,
       "errors": [],
       "note": "独立完成A（48h/7d/30d及长期中英交叉免费额度、官方定价、客户端与API）与B（Product Hunt/HN/GitHub/HF/Reddit/Linux.do/V2EX/X及官方新平台）搜索。新增国内WorkBuddy 500积分/月、Hy3社区实测限免、OVH匿名Qwen3.8试用与官方Qwen3Guard免费API；Inferock仅新平台候选，不赠推理额度。已排除Amp暂停Free及不确定赠额；未实测个人账号注册到账；正式OVH Key API收费。"
+    },
+    {
+      "id": "run_20261030t054649z_nfmfcq",
+      "startedAt": "2026-10-30T05:46:49.000Z",
+      "completedAt": "2026-10-30T05:49:07.086Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 24,
+      "candidatesFound": 7,
+      "offersCreated": 3,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A：独立中英交叉检索48h/7d/30d/长期免费API、模型、IDE/CLI客户端，核查Qoder/DeepSeek/OpenCode/Vercel/Cloudflare等官方资料；B：独立检索Product Hunt/HN/GitHub/HF/Reddit/Linux.do/V2EX/X近期新平台。新增Standard Compute一次性$0.25 API试用（资格审核）、Unchained Code邀请制每日10构建Credits（status=unknown）、Atelier 7天客户端试用；Hall Monitor仅新平台候选。Mistral Large 4开源权重不等于免费云API。未实测到账。"
+    },
+    {
+      "id": "run_20261030T080928200z_r11",
+      "startedAt": "2026-10-30T08:06:25.000Z",
+      "completedAt": "2026-10-30T08:09:28.200Z",
+      "status": "success",
+      "searchACompleted": true,
+      "searchBCompleted": true,
+      "sourcesChecked": 23,
+      "candidatesFound": 10,
+      "offersCreated": 6,
+      "offersUpdated": 0,
+      "offersExpired": 0,
+      "errors": [],
+      "note": "A: 中英交叉搜索48小时/7天/30天及长期免费API、Coding/CLI/客户端，核查OpenAI、AI21、AMD官方权益；B: 独立搜索Product Hunt/HN/GitHub/Hugging Face/Reddit/Linux.do/V2EX/X 新平台，Off Grid AI仅收录平台候选（本地免费，非云API）。Anthropic Startups $1000因新申请已暂停而排除；ManyAgents需自有Claude付费权限，CutBay限前100人兑换资格未证实，不入库。所有权益未实测到账。"
     }
   ]
 }
