@@ -12,6 +12,9 @@ const base = process.env.ASTRO_BASE || '/';
 export default defineConfig({
   site: process.env.SITE_URL || 'https://yourname.github.io/ai-radar/',
   base,
+  server: {
+    port: 2812,
+  },
   integrations: [react()],
   vite: {
     server: {

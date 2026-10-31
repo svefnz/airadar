@@ -1,6 +1,6 @@
 ## Development
 
-When starting the dev server, use background mode:
+When starting the dev server, use background mode (runs on port 2812):
 
 ```
 astro dev --background
