@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { patchSchema, offerSchema, platformSchema, sourceSchema } from '../../src/lib/data/schema';
+import { patchSchema, offerSchema, platformSchema, sourceSchema, monitorRunSchema } from '../../src/lib/data/schema';
 import { RUN_STATUSES, OFFER_STATUSES } from '../../src/lib/data/enums';
 import { claimRecordSchema } from '../../src/lib/personal';
 
@@ -345,5 +345,26 @@ describe('rpc-contract: 增量写入协议与安全契约', () => {
       contextWindow: -1024,
     };
     expect(() => offerSchema.parse(negativeContextOffer)).toThrow();
+  });
+
+  it('monitorRunSchema 能够兼容量化字符串 error 与对象 error', () => {
+    const runWithStringError = {
+      id: 'run_test_errors',
+      startedAt: '2026-10-30T18:00:00Z',
+      status: 'partial' as const,
+      searchACompleted: true,
+      searchBCompleted: false,
+      sourcesChecked: 10,
+      candidatesFound: 2,
+      offersCreated: 1,
+      offersUpdated: 0,
+      offersExpired: 0,
+      errors: ['网络波动请求超时', { code: 'HTTP_500', message: '服务异常' }],
+    };
+    const parsed = monitorRunSchema.parse(runWithStringError);
+    expect(parsed.errors).toEqual([
+      { code: 'GENERAL_ERROR', message: '网络波动请求超时' },
+      { code: 'HTTP_500', message: '服务异常' },
+    ]);
   });
 });

@@ -96,6 +96,18 @@ export const eventSchema = z.object({
 });
 export type ChangeEvent = z.infer<typeof eventSchema>;
 
+export const monitorErrorSchema = z.union([
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    item: z.string().optional(),
+  }),
+  z.string().transform((str) => ({
+    code: 'GENERAL_ERROR',
+    message: str,
+  })),
+]);
+
 export const monitorRunSchema = z.object({
   id: z.string().min(1),
   startedAt: isoDate,
@@ -108,7 +120,7 @@ export const monitorRunSchema = z.object({
   offersCreated: z.number().int().nonnegative().default(0),
   offersUpdated: z.number().int().nonnegative().default(0),
   offersExpired: z.number().int().nonnegative().default(0),
-  errors: z.array(z.object({ code: z.string(), message: z.string(), item: z.string().optional() })).default([]),
+  errors: z.array(monitorErrorSchema).default([]),
   repositoryCommit: z.string().optional(),
   note: z.string().optional(),
 });

@@ -162,7 +162,20 @@ async function sync() {
     offersCreated: Number(r.offers_created || 0),
     offersUpdated: Number(r.offers_updated || 0),
     offersExpired: Number(r.offers_expired || 0),
-    errors: r.errors || [],
+    errors: (Array.isArray(r.errors) ? r.errors : []).map((err: unknown) => {
+      if (typeof err === 'string') {
+        return { code: 'GENERAL_ERROR', message: err };
+      }
+      if (err && typeof err === 'object') {
+        const obj = err as Record<string, unknown>;
+        return {
+          code: typeof obj.code === 'string' ? obj.code : 'GENERAL_ERROR',
+          message: typeof obj.message === 'string' ? obj.message : JSON.stringify(obj),
+          item: typeof obj.item === 'string' ? obj.item : undefined,
+        };
+      }
+      return { code: 'GENERAL_ERROR', message: String(err) };
+    }),
     repositoryCommit: r.repository_commit || undefined,
     note: r.note || undefined,
   }));
