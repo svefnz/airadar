@@ -9,6 +9,8 @@ import { existsSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import type { RadarData } from '../src/lib/data/schema';
 import { radarSchema, SCHEMA_VERSION } from '../src/lib/data/schema';
+import { canonicalDomain } from '../src/lib/data/ids';
+import { AMOUNT_TYPE_TO_RESET } from '../src/lib/data/validate';
 
 // 优先读取本地 .env
 if (existsSync('.env')) {
@@ -91,51 +93,57 @@ async function sync() {
     `✅ 成功拉取：${rawPlatforms.length} 个平台、${rawOffers.length} 项权益、${rawEvents.length} 条事件、${rawRuns.length} 次监控记录`
   );
 
-  const platforms = (rawPlatforms || []).map((p) => ({
-    id: p.id,
-    name: p.name,
-    slug: p.slug,
-    canonicalDomain: p.canonical_domain,
-    websiteUrl: p.website_url,
-    description: p.description || '',
-    category: p.category,
-    launchDate: p.launch_date || undefined,
-    firstDiscoveredAt: p.first_discovered_at,
-    lastCheckedAt: p.last_checked_at,
-    trustStatus: p.trust_status,
-    logoUrl: p.logo_url || undefined,
-    demo: p.demo || undefined,
-  }));
+  const platforms = (rawPlatforms || []).map((p) => {
+    const derivedDomain = canonicalDomain(p.website_url);
+    return {
+      id: p.id,
+      name: p.name,
+      slug: p.slug,
+      canonicalDomain: derivedDomain || p.canonical_domain,
+      websiteUrl: p.website_url,
+      description: p.description || '',
+      category: p.category,
+      launchDate: p.launch_date || undefined,
+      firstDiscoveredAt: p.first_discovered_at,
+      lastCheckedAt: p.last_checked_at,
+      trustStatus: p.trust_status,
+      logoUrl: p.logo_url || undefined,
+      demo: p.demo || undefined,
+    };
+  });
 
-  const offers = (rawOffers || []).map((o) => ({
-    id: o.id,
-    platformId: o.platform_id,
-    title: o.title,
-    models: o.models || [],
-    accessType: o.access_type,
-    amount: o.amount !== null ? Number(o.amount) : null,
-    unit: o.unit,
-    amountType: o.amount_type,
-    resetInterval: o.reset_interval,
-    claimConditions: o.claim_conditions || [],
-    billingRequirements: o.billing_requirements,
-    identityVerification: o.identity_verification,
-    regionRestrictions: o.region_restrictions || [],
-    rateLimits: o.rate_limits || '',
-    contextWindow: o.context_window !== null ? Number(o.context_window) : null,
-    toolCalling: o.tool_calling !== null ? Boolean(o.tool_calling) : null,
-    apiCompatibility: o.api_compatibility,
-    startAt: o.start_at || undefined,
-    endAt: o.end_at || undefined,
-    creditExpiresAt: o.credit_expires_at || undefined,
-    status: o.status,
-    verificationStatus: o.verification_status,
-    discoveredAt: o.discovered_at,
-    lastVerifiedAt: o.last_verified_at,
-    officialUrl: o.official_url || undefined,
-    sources: o.sources || [],
-    demo: o.demo || undefined,
-  }));
+  const offers = (rawOffers || []).map((o) => {
+    const expectedReset = AMOUNT_TYPE_TO_RESET[o.amount_type];
+    return {
+      id: o.id,
+      platformId: o.platform_id,
+      title: o.title,
+      models: o.models || [],
+      accessType: o.access_type,
+      amount: o.amount !== null ? Number(o.amount) : null,
+      unit: o.unit,
+      amountType: o.amount_type,
+      resetInterval: expectedReset || o.reset_interval,
+      claimConditions: o.claim_conditions || [],
+      billingRequirements: o.billing_requirements,
+      identityVerification: o.identity_verification,
+      regionRestrictions: o.region_restrictions || [],
+      rateLimits: o.rate_limits || '',
+      contextWindow: o.context_window !== null ? Number(o.context_window) : null,
+      toolCalling: o.tool_calling !== null ? Boolean(o.tool_calling) : null,
+      apiCompatibility: o.api_compatibility,
+      startAt: o.start_at || undefined,
+      endAt: o.end_at || undefined,
+      creditExpiresAt: o.credit_expires_at || undefined,
+      status: o.status,
+      verificationStatus: o.verification_status,
+      discoveredAt: o.discovered_at,
+      lastVerifiedAt: o.last_verified_at,
+      officialUrl: o.official_url || undefined,
+      sources: o.sources || [],
+      demo: o.demo || undefined,
+    };
+  });
 
   const events = (rawEvents || []).map((e) => ({
     id: e.id,

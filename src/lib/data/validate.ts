@@ -12,7 +12,7 @@ export interface ValidationResult {
   warnings: string[];
 }
 
-const AMOUNT_TYPE_TO_RESET: Record<string, string> = {
+export const AMOUNT_TYPE_TO_RESET: Record<string, string> = {
   'one-time': 'none',
   daily: 'daily',
   weekly: 'weekly',
